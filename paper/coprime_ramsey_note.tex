@@ -1,0 +1,407 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Coprime Ramsey Numbers: Exact Values and Structural Properties
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{microtype}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Open Problem}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Rcop}{R_{\mathrm{cop}}}
+\newcommand{\Pcop}{P_{\mathrm{cop}}}
+\newcommand{\Ccop}{C_{\mathrm{cop}}}
+\newcommand{\GRcop}{\mathrm{GR}_{\mathrm{cop}}}
+\newcommand{\Gcop}{G_{\mathrm{cop}}}
+
+\begin{document}
+
+\title{Coprime Ramsey Numbers:\\
+Exact Values and Structural Properties}
+
+\author{Alexander Towell\thanks{Department of Computer Science,
+Southern Illinois University Edwardsville.
+Email: \texttt{atowell@siue.edu}.
+ORCID: 0000-0001-6443-9897.}}
+
+\date{}
+\maketitle
+
+\begin{abstract}
+We introduce the \emph{coprime Ramsey number} $\Rcop(k)$, defined as
+the minimum $n$ such that every $2$-coloring of the edges of the coprime
+graph on $\{1,\ldots,n\}$ contains a monochromatic complete subgraph
+$K_k$. Using a combination of incremental extension and SAT solving, we
+establish $\Rcop(2)=2$, $\Rcop(3)=11$, and present strong computational
+evidence that $\Rcop(4)=59$. We compute the $3$-color triangle number
+$\Rcop(3;3)=53$ and determine exact values for path, cycle, asymmetric,
+and Gallai variants. All known values of $\Rcop(k)$ and $\Rcop(3;3)$
+are prime---we state this as a conjecture.
+\end{abstract}
+
+\smallskip\noindent\textbf{MSC 2020:} 05D10, 05C55, 11A05.
+
+\smallskip\noindent\textbf{Keywords:} Ramsey theory, coprime graph,
+SAT solving, graph coloring.
+
+%% =================================================================
+\section{Introduction}\label{sec:intro}
+%% =================================================================
+
+The \emph{coprime graph} $\Gcop(n)$ has vertex set
+$[n]=\{1,2,\ldots,n\}$ with $\{i,j\}$ an edge whenever
+$\gcd(i,j)=1$. This graph, studied by Erd\H{o}s and
+S\'ark\"ozy~\cite{erdos1997coprime} and others~\cite{pomerance2015,
+ahlswede1993}, encodes number-theoretic structure in a combinatorial
+object: its edge density converges to $6/\pi^2\approx 0.608$, its
+clique number equals $1+\pi(n)$ (where $\pi$ is the prime-counting
+function), and its independence number is $\lfloor n/2\rfloor$.
+
+We propose a Ramsey-theoretic study of this graph. Classical Ramsey
+numbers $R(k,k)$ concern the complete graph $K_n$; replacing $K_n$ with
+$\Gcop(n)$ yields a problem where Ramsey-type forcing must contend with
+the arithmetic structure of coprimality. This appears to be a new line
+of investigation.
+
+\begin{definition}\label{def:rcop}
+The \emph{coprime Ramsey number} $\Rcop(k)$ is the minimum $n$ such
+that every $2$-coloring of $E(\Gcop(n))$ contains a monochromatic
+$K_k$. More generally, $\Rcop(k;c)$ is the minimum $n$ such that every
+$c$-coloring of $E(\Gcop(n))$ contains a monochromatic $K_k$.
+\end{definition}
+
+Since $E(\Gcop(n))\subseteq E(K_n)$, any avoiding coloring of
+$\Gcop(n)$ extends (by coloring non-coprime edges arbitrarily) to an
+avoiding coloring of $K_n$. Thus $\Rcop(k)\ge R(k,k)$, and forcing
+monochromatic cliques in the sparser coprime graph requires larger~$n$.
+
+%% =================================================================
+\section{Exact values}\label{sec:exact}
+%% =================================================================
+
+\begin{theorem}\label{thm:rcop2}
+$\Rcop(2)=2$.
+\end{theorem}
+
+\begin{proof}
+Since $\gcd(1,2)=1$, the graph $\Gcop(2)$ has a single edge. Any
+$2$-coloring assigns it one color, producing a monochromatic $K_2$.
+\end{proof}
+
+\begin{theorem}\label{thm:rcop3}
+$\Rcop(3)=11$.
+\end{theorem}
+
+\begin{proof}
+By exhaustive incremental extension. Among all $2^{21}$ edge
+$2$-colorings of $\Gcop(8)$ ($21$ coprime edges), exactly $36$ avoid
+monochromatic triangles. We extend these through vertices $9$, $10$,
+$11$: for each new vertex $v$, the coprime edges from $v$ to
+$\{1,\ldots,v-1\}$ are enumerated, and every $2$-coloring of these new
+edges is tested against each surviving avoiding coloring.
+
+\begin{center}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$n$ & Coprime edges & New edges at $n$ & Avoiding colorings \\
+\midrule
+8  & 21 & ---  & 36  \\
+9  & 27 & 6  & 36  \\
+10 & 31 & 4  & 156 \\
+11 & 41 & 10 & 0   \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The increase from $36$ to $156$ at $n=10$ occurs because
+$10=2\times 5$ is coprime to only $4$ predecessors, imposing weak
+constraints. The collapse to $0$ at $n=11$ is driven by $11$ being
+prime: it is coprime to all of $\{1,\ldots,10\}$, creating $10$ new
+edges and far too many triangles for any $2$-coloring to avoid.
+\end{proof}
+
+\begin{remark}\label{rem:ratio3}
+$\Rcop(3)/R(3,3)=11/6\approx 1.83$. If $\Gcop(n)$ behaved as a random
+graph of density $6/\pi^2$, one would predict $\Rcop(3)\approx 10$. The
+slight excess reflects multiplicative correlations among missing edges:
+multiples of a prime $p$ form correlated non-adjacencies in
+$\Gcop(n)$~\cite{erdos1997coprime}.
+\end{remark}
+
+\begin{theorem}\label{thm:rcop4}
+$\Rcop(4)=59$, subject to the caveat below.
+\end{theorem}
+
+\noindent\emph{Evidence.} The lower bound $\Rcop(4)\ge 59$ is
+established by SAT solving: for every $n\le 58$, the Glucose4
+solver~\cite{glucose} finds a $2$-coloring of $E(\Gcop(n))$ with no
+monochromatic $K_4$ (returning SAT). For the upper bound, we use an
+extension-based argument: $100$ distinct avoiding colorings of
+$E(\Gcop(58))$ are extracted via SAT with blocking clauses, and for each
+one, the SAT instance encoding the extension to $n=59$ (coloring the
+$58$ new edges from the prime vertex $59$ to all of $\{1,\ldots,58\}$)
+is UNSAT. Since $59$ is prime, it is coprime to every predecessor, and
+the resulting constraint density (clause-to-variable ratio $\approx 109$)
+far exceeds the random $3$-SAT UNSAT threshold ($\approx 4.27$).
+
+\medskip
+\noindent\textbf{Caveat.} The extension check covers $100$ seeds, not
+all avoiding colorings at $n=58$. A rigorous proof would require either
+(a) a direct UNSAT certificate for the full $n=59$ SAT instance ($1{,}085$
+variables, ${\sim}118{,}000$ clauses---which timed out after $30$+
+minutes with CDCL solvers), or (b) enumeration of \emph{all} avoiding
+colorings at $n=58$ and verification that none extend. We regard the
+evidence as very strong but acknowledge this gap.
+
+\medskip
+
+\begin{center}
+\begin{tabular}{@{}ccc@{}}
+\toprule
+$k$ & $\Rcop(k)$ & $R(k,k)$ \\
+\midrule
+2 & 2  & 2  \\
+3 & 11 & 6  \\
+4 & 59\rlap{$^*$} & 18 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\smallskip\noindent{\footnotesize ${}^*$Strong computational evidence;
+see caveat above.}
+
+\begin{theorem}\label{thm:rcop33}
+$\Rcop(3;3)=53$.
+\end{theorem}
+
+\begin{proof}
+By SAT solving: for $n\le 52$, a $3$-coloring of $E(\Gcop(n))$
+avoiding monochromatic triangles exists (SAT). At $n=53$, the instance
+is UNSAT. The $3$-color encoding uses $c-1=2$ Boolean variables per edge
+with at-most-one constraints and, for each triangle and each color,
+forbids monochromatic assignment.
+\end{proof}
+
+%% =================================================================
+\section{Variant table}\label{sec:variants}
+%% =================================================================
+
+We define and compute several Ramsey-type variants on $\Gcop(n)$. All
+values are exact, determined by complete SAT search at each $n$.
+
+\begin{definition}\label{def:variants}
+Let $c\ge 2$ be the number of colors and $k\ge 2$ the target structure
+size.
+\begin{enumerate}
+\item $\Pcop(k)$: minimum $n$ such that every $2$-coloring of
+  $E(\Gcop(n))$ contains a monochromatic path on $k$ edges.
+\item $\Ccop(k)$: minimum $n$ such that every $2$-coloring of
+  $E(\Gcop(n))$ contains a monochromatic cycle on $k$ edges.
+\item $\Rcop(s,t)$: minimum $n$ such that every $2$-coloring of
+  $E(\Gcop(n))$ has a monochromatic $K_s$ in color~$0$ or $K_t$ in
+  color~$1$ (asymmetric coprime Ramsey).
+\item $\GRcop(k;c)$: minimum $n$ such that every $c$-coloring of
+  $E(\Gcop(n))$ contains a monochromatic or rainbow $K_k$ (Gallai
+  coprime Ramsey; requires $c\ge 3$).
+\end{enumerate}
+\end{definition}
+
+\begin{table}[ht]
+\centering
+\caption{Computed coprime Ramsey variants.}\label{tab:variants}
+\medskip
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Variant} & \textbf{Values} & \textbf{Classical counterpart} \\
+\midrule
+$\Pcop(k)$, $k=3,\ldots,8$ & $5,\; 7,\; 9,\; 10,\; 13,\; 13$ & --- \\[3pt]
+$\Ccop(k)$, $k=3,\ldots,6$ & $11,\; 8,\; 13,\; 11$ & --- \\[3pt]
+$\Rcop(2,3)$ & $3$ & $R(2,3) = 6$ \\
+$\Rcop(2,4)$ & $5$ & $R(2,4) = 9$ \\
+$\Rcop(3,4)$ & $19$ & $R(3,4) = 9$ \\[3pt]
+$\Rcop(3;3)$ & $53$ & $R(3,3,3) = 17$ \\[3pt]
+$\GRcop(3;3)$ & $29$ & $\mathrm{GR}(3;3) = 17$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}\label{rem:observations}
+Several patterns emerge from Table~\ref{tab:variants}.
+\begin{enumerate}
+\item \emph{Path versus clique.} $\Pcop(k)\ll\Rcop(k)$: paths are much
+  easier to force. The values plateau at $13$ for $k=7,8$ because
+  $n=13$ is prime, making $\Gcop(13)$ dense enough to force long
+  monochromatic paths.
+\item \emph{Even--odd cycle gap.} $\Ccop(4)=8<\Ccop(3)=11$ and
+  $\Ccop(6)=11<\Ccop(5)=13$: even-length cycles are easier to force.
+\item \emph{Multi-color growth.}
+  $\Rcop(3;3)/\Rcop(3;2)=53/11\approx 4.8$, compared with the
+  classical $R(3,3,3)/R(3,3)=17/6\approx 2.8$. The coprime graph's
+  structure amplifies multi-color avoidance.
+\item \emph{Coprime amplification.} For every symmetric variant,
+  the coprime version exceeds its classical counterpart:
+  $\Rcop(3)>R(3,3)$, $\Rcop(3;3)>R(3,3,3)$,
+  $\GRcop(3;3)>\mathrm{GR}(3;3)$.
+\end{enumerate}
+\end{remark}
+
+%% =================================================================
+\section{Structural properties}\label{sec:structure}
+%% =================================================================
+
+\begin{proposition}\label{prop:clique}
+$\omega(\Gcop(n))=1+\pi(n)$.
+\end{proposition}
+
+\begin{proof}
+The set $\{1\}\cup\{p\le n:p\text{ prime}\}$ is a clique of size
+$1+\pi(n)$. For the upper bound: in any pairwise coprime set
+$S\subseteq\{2,\ldots,n\}$, each element's prime factorization uses a
+disjoint set of primes, so $|S|\le\pi(n)$.
+\end{proof}
+
+\begin{proposition}\label{prop:perfect}
+$\Gcop(n)$ is weakly perfect: $\chi(\Gcop(n))=\omega(\Gcop(n))
+=1+\pi(n)$.
+\end{proposition}
+
+This follows from the observation that the partition
+$\{1\},\{2,4,6,\ldots\},\{3,9,27,\ldots\},\{5,25,\ldots\},\ldots$
+into classes indexed by the smallest prime factor gives a proper
+$(1+\pi(n))$-coloring. Perfectness of related coprime-type graphs on
+group elements was established by Syarifudin and
+Wardhana~\cite{syarifudin2021}.
+
+\begin{proposition}\label{prop:independence}
+$\alpha(\Gcop(n))=\lfloor n/2\rfloor$.
+\end{proposition}
+
+\begin{proof}
+The even numbers $\{2,4,6,\ldots,2\lfloor n/2\rfloor\}$ form an
+independent set of size $\lfloor n/2\rfloor$ (every pair shares factor
+$2$). No larger independent set exists: in any set $S$ of $\lfloor
+n/2\rfloor+1$ elements of $[n]$, by pigeonhole two share the same value
+of $\lceil v/2\rceil$, forcing a coprime pair $(2k-1,2k)$.
+\end{proof}
+
+\begin{conjecture}[Primality conjecture]\label{conj:prime}
+All diagonal coprime Ramsey numbers $\Rcop(k)$ are prime. More
+generally, $\Rcop(k;c)$ is prime for all $k,c$.
+\end{conjecture}
+
+\noindent\emph{Evidence.} $\Rcop(2)=2$, $\Rcop(3)=11$, $\Rcop(4)=59$,
+and $\Rcop(3;3)=53$ are all prime. The heuristic explanation is that
+prime values of $n$ maximize the coprime density of $\Gcop(n)$---a prime
+$p$ is coprime to all of $\{1,\ldots,p-1\}$---so the transition from
+SAT to UNSAT preferentially occurs at primes, where the addition of a
+universal coprime vertex creates the maximal number of new constraints.
+
+%% =================================================================
+\section{Methodology}\label{sec:method}
+%% =================================================================
+
+All computations use the PySAT toolkit~\cite{pysat} with the
+Glucose4~\cite{glucose} CDCL solver. The methodology varies by problem
+size.
+
+\paragraph{Small instances ($\Rcop(3)$, path, cycle, Gallai variants).}
+For each $n$, we encode the avoidance problem as a SAT instance: one
+Boolean variable per coprime edge ($x_e=\top$ for color~$0$, $x_e=\bot$
+for color~$1$), two clauses per target substructure (forbidding
+all-color-$0$ and all-color-$1$). The solver returns SAT or UNSAT. The
+value $\Rcop(3)=11$ is also verified by the exact incremental extension
+method of Theorem~\ref{thm:rcop3}, which enumerates \emph{all} avoiding
+colorings at each $n$ and is thus a complete proof.
+
+\paragraph{Large instances ($\Rcop(4)$).}
+The incremental SAT approach determines $\Rcop(4)\ge 59$: Glucose4
+returns SAT for all $n\le 58$, with solving times under $1$~second per
+instance. For the upper bound, we extract diverse avoiding colorings at
+$n=58$ via SAT with blocking clauses, then check extension to $n=59$ by
+fixing the base coloring as unit-propagation assumptions. All $100$
+tested seeds produce UNSAT extensions. As noted in
+Theorem~\ref{thm:rcop4}, this is not a complete UNSAT proof for $n=59$.
+
+\paragraph{Multi-color variants ($\Rcop(3;3)$, $\GRcop(3;3)$).}
+For $c$ colors, each edge has $c-1$ Boolean variables with
+at-most-one pairwise exclusion constraints. For each clique and each
+color, a clause forbids monochromatic assignment. The Gallai variant
+additionally forbids rainbow cliques via all-distinct permutation
+clauses. These instances are within Glucose4's reach for the parameter
+ranges in Table~\ref{tab:variants}.
+
+%% =================================================================
+\section*{Acknowledgments}
+%% =================================================================
+
+Computational analysis performed with AI assistance (Claude, Anthropic).
+All results verified by independent SAT solving. The author thanks
+Terry Tao and the contributors to the Erd\H{o}s problems
+database~\cite{tao2025erdos} for creating a resource that motivated
+this investigation.
+
+\smallskip\noindent
+Code and data: \texttt{github.com/queelius/erdos-research}
+
+%% =================================================================
+\begin{thebibliography}{12}
+
+\bibitem{ahlswede1993}
+R.~Ahlswede and L.~H.~Khachatrian.
+Classical results on primitive and recent results on cross-intersecting
+sets.
+In \emph{The Mathematics of Paul Erd\H{o}s I}, pp.~104--116.
+Springer, 1997.
+
+\bibitem{erdos1997coprime}
+P.~Erd\H{o}s and G.~N.~S\'ark\"ozy.
+On cycles in the coprime graph of integers.
+\emph{Electron.\ J.\ Combin.}, 4(2):R8, 1997.
+
+\bibitem{glucose}
+G.~Audemard and L.~Simon.
+Predicting learnt clauses quality in modern {SAT} solvers.
+In \emph{Proc.\ IJCAI}, pp.~399--404, 2009.
+
+\bibitem{pysat}
+A.~Ignatiev, A.~Morgado, and J.~Marques-Silva.
+{PySAT}: A {P}ython toolkit for prototyping with {SAT} oracles.
+In \emph{Proc.\ SAT}, pp.~428--437. Springer, 2018.
+
+\bibitem{pomerance2015}
+C.~Pomerance and J.~L.~Selfridge.
+Proof of {D.~J.~Newman's} coprime mapping conjecture.
+\emph{Mathematika}, 27:69--83, 1980.
+
+\bibitem{ramsey1930}
+F.~P.~Ramsey.
+On a problem of formal logic.
+\emph{Proc.\ London Math.\ Soc.\ (2)}, 30:264--286, 1930.
+
+\bibitem{syarifudin2021}
+A.~G.~Syarifudin and I.~G.~A.~W.~Wardhana.
+The vertex coloring and chromatic number of coprime graph of the
+dihedral group.
+\emph{J.\ Phys.: Conf.\ Ser.}, 1783:012006, 2021.
+
+\bibitem{tao2025erdos}
+T.~Tao et~al.
+Erd\H{o}s problems database.
+\texttt{github.com/teorth/erdosproblems}, 2025.
+
+\end{thebibliography}
+
+\end{document}

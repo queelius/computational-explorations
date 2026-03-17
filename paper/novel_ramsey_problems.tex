@@ -1,0 +1,388 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Three problems from the Erdos corpus
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{microtype}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Open Problem}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\DS}{\mathrm{DS}}
+\newcommand{\Rcop}{R_{\mathrm{cop}}}
+\newcommand{\Gcop}{G_{\mathrm{cop}}}
+
+\begin{document}
+
+\title{Three new problems from the Erd\H{o}s corpus}
+
+\author{Alexander Towell\thanks{Department of Computer Science,
+Southern Illinois University Edwardsville.
+M.S.\ Mathematics, M.S.\ Computer Science; Ph.D.\ student (Computer Science).
+ORCID: 0000-0001-6443-9897. Email: \texttt{atowell@siue.edu}}
+\and Claude (Anthropic)\thanks{Claude is a large
+language model by Anthropic. This paper was produced through an
+interactive human--AI collaboration: the human directed the research
+program and verified all claims; Claude performed the computational
+experiments, wrote the proofs, implemented the Lean formalization,
+and drafted the manuscript. See the Acknowledgments for further
+detail on the division of labor.}}
+
+\date{}
+\maketitle
+
+\begin{abstract}
+We introduce three problems arising from a systematic study of the
+Erd\H{o}s problem corpus. (1)~\emph{Density-relaxed Schur numbers}
+$\DS(k,\alpha)$ interpolate between Schur numbers and density Ramsey
+theory; we determine $\DS(2,\alpha)$ for all~$\alpha$, revealing a
+sharp phase transition at $\alpha=1/2$, with a complete Lean~4
+formalization.
+(2)~\emph{Coprime Ramsey numbers} $\Rcop(k)$ measure Ramsey forcing
+on the coprime graph; we prove $\Rcop(3)=11$ by exhaustive extension.
+(3)~We show that the set of primes, which maximizes $\sum 1/(a\log a)$
+over primitive sets (Lichtman~\cite{lichtman2023}), is \emph{not}
+optimal for coprime pair counts, and give a lower bound
+$M^*(n)\ge\frac{64}{9\pi^2}\binom{\lceil n/2\rceil}{2}(1+o(1))$.
+\end{abstract}
+
+\smallskip\noindent\textbf{MSC 2020:} 05D10, 05C55, 11B75, 11N25.
+
+%% =================================================================
+\section{Introduction}\label{sec:intro}
+%% =================================================================
+
+A systematic study of the 1{,}135 problems in the Erd\H{o}s problem
+database~\cite{tao2025erdos} reveals natural questions at the
+intersection of Erd\H{o}s's interests---Schur numbers, coprime graphs,
+primitive sets---that do not appear to have been formulated. We present
+three such problems with solutions and computational results. All code
+and Lean formalizations are publicly available.\footnote{Code and data:
+\texttt{doi.org/10.5281/zenodo.18638635}}
+
+%% =================================================================
+\section{Density-relaxed Schur numbers}\label{sec:ds}
+%% =================================================================
+
+A \emph{Schur triple} is a triple $(a,b,c)$ with $a+b=c$ and
+$a,b\ge 1$ (so $a=b$ is permitted).
+
+\begin{definition}\label{def:ds}
+For $k\ge 1$ and $\alpha\in(0,1]$, a $k$-coloring of $[N]$ is
+\emph{$(k,\alpha)$-avoiding} if every color class is both sum-free
+and has at most $\alpha N$ elements. Define
+\[
+\DS(k,\alpha) \;=\; 1+\max\{N\ge 1: \text{a $(k,\alpha)$-avoiding
+coloring of $[N]$ exists}\},
+\]
+with $\DS(k,\alpha)=1$ if no such $N$ exists.
+\end{definition}
+
+When $\alpha=1$ the density constraint is vacuous, so
+$\DS(k,1)=S(k)+1$ where $S(k)$ is the $k$-th Schur
+number~\cite{schur1916}. When $\alpha<1/k$, pigeonhole forces some
+class to exceed $\alpha N$ elements for all $N\ge 1$, so
+$\DS(k,\alpha)=1$. Since Schur triples force at $S(k)+1$
+independently of density, we always have $\DS(k,\alpha)\le S(k)+1$.
+
+\begin{theorem}\label{thm:ds}
+$\DS(2,\alpha)=5$ for all $\alpha\ge 1/2$, and $\DS(2,\alpha)=1$ for
+$\alpha<1/2$. In particular $\DS(2,\tfrac{1}{2})=5=S(2)+1$.
+\end{theorem}
+
+\begin{proof}
+For $\alpha<1/2$: in any $2$-coloring of $[N]$, some class has
+$\lceil N/2\rceil>\alpha N$ elements (since $\alpha<1/2$), so no
+$(2,\alpha)$-avoiding coloring exists for any~$N$.
+
+For $\alpha\ge 1/2$: the coloring $C_1=\{1,4\}$, $C_2=\{2,3\}$ of
+$[4]$ has both classes sum-free with $|C_i|=2\le\alpha\cdot 4$
+(using $\alpha\ge 1/2$). So $N=4$ is $(2,\alpha)$-avoiding.
+Since $S(2)=4$, every $2$-coloring of $[5]$ contains a Schur
+triple, so $N=5$ is not avoiding. Hence $\DS(2,\alpha)=1+4=5$.
+\end{proof}
+
+\begin{remark}\label{rem:transition}
+The density-forcing threshold ($\alpha=1/2=1/k$ for $k=2$)
+coincides with the Schur-forcing threshold ($S(2)+1=5$),
+collapsing $\DS(2,\cdot)$ to a step function. For $k\ge 3$, these
+thresholds may separate, yielding a non-trivial interpolation regime.
+\end{remark}
+
+\begin{remark}\label{rem:lean}
+Theorem~\ref{thm:ds} has been fully formalized in Lean~4 (Mathlib),
+with 12 theorems proved and 0 \texttt{sorry} statements. The
+formalization is in \texttt{lean/NPG2\_DensitySchur.lean}.
+\end{remark}
+
+\begin{problem}\label{prob:ds}
+Determine $\DS(k,\alpha)$ for $k\ge 3$ and $\alpha\in(1/k,1)$.
+Is there a non-trivial interpolation regime, i.e., does
+$\DS(k,\alpha)<S(k)+1$ for some $\alpha>1/k$?
+\end{problem}
+
+%% =================================================================
+\section{Coprime Ramsey numbers}\label{sec:rcop}
+%% =================================================================
+
+\begin{definition}\label{def:rcop}
+The \emph{coprime graph} $\Gcop(n)$ has vertex set $[n]$ with
+$\{i,j\}$ an edge iff $\gcd(i,j)=1$. Define $\Rcop(k)$ as the
+minimum $n$ such that every $2$-coloring of $E(\Gcop(n))$ contains a
+monochromatic $K_k$.
+\end{definition}
+
+Since $E(\Gcop(n))\subseteq E(K_n)$, any $2$-coloring of $K_n$
+restricts to a $2$-coloring of $\Gcop(n)$; if the former avoids
+monochromatic $K_k$, so does the latter (any monochromatic $K_k$ in
+$\Gcop(n)$ would use only coprime edges, hence appear in $K_n$ too).
+Therefore $\Rcop(k)\ge R(k,k)$~\cite{ramsey1930}.
+
+The clique number satisfies $\omega(\Gcop(n))=\pi(n)+1$: the set
+$\{1\}\cup\{\text{primes}\le n\}$ is a clique of this size. For the
+upper bound, note that in any pairwise coprime set $S\subseteq\{2,
+\ldots,n\}$, each element's prime factorization uses a disjoint set
+of primes (else two elements share a factor); since each element
+uses $\ge 1$ prime and all primes used are $\le n$, we have
+$|S|\le\pi(n)$.
+
+\begin{theorem}\label{thm:rcop3}
+$\Rcop(3)=11$.
+\end{theorem}
+
+\begin{proof}
+By exhaustive extension from $n=8$.
+
+\emph{Base.} Among all $2^{21}$ edge $2$-colorings of $\Gcop(8)$
+($21$ edges), exactly $36$ avoid monochromatic triangles.
+
+\emph{Extension.} For $n=9$: vertex~$9$ adds $6$ coprime edges;
+extending $36$ colorings through $2^6$ options each yields $36$
+avoiding. For $n=10$: vertex~$10$ adds $4$ edges; extension yields
+$156$ avoiding. For $n=11$: vertex~$11$ is prime, adding $10$ edges
+(coprime to all of $1,\ldots,10$); extending $156$ colorings through
+$2^{10}$ options each yields $0$ avoiding.
+
+\begin{center}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$n$ & Edges in $\Gcop(n)$ & New edges & Avoiding colorings \\
+\midrule
+8  & 21 & ---  & 36  \\
+9  & 27 & 6  & 36  \\
+10 & 31 & 4  & 156 \\
+11 & 41 & 10 & 0   \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{proof}
+
+The increase at $n=10$ reflects that $10=2\times 5$ has only $4$
+coprime neighbors, imposing weak constraints. The collapse at $n=11$
+is driven by $11$ being prime: its $10$ edges create too many
+triangles for any $2$-coloring to avoid.
+
+\begin{remark}\label{rem:rcop-ratio}
+$\Rcop(3)/R(3,3)=11/6\approx 1.83$ exceeds the inverse coprime
+density $\pi^2/6\approx 1.64$. If $\Gcop(n)$ behaved like a random
+graph of density $6/\pi^2$, one would predict $\Rcop(3)\approx 10$.
+The excess arises from multiplicative correlations among missing
+edges (multiples of a prime~$p$ form correlated
+non-adjacencies)~\cite{erdos1997coprime}.
+\end{remark}
+
+\begin{conjecture}\label{conj:rcop4}
+$\Rcop(4)=20$. \emph{Evidence:} An avoiding coloring at $n=19$ was
+found by random search ($\sim\!160{,}000$ trials); no avoiding
+coloring was found at any $n\in\{20,\ldots,49\}$ ($\sim\!10^6$
+random trials each). This is heuristic evidence only---the extension
+method is infeasible at this scale ($\sim\!1.47\times 10^6$ base
+colorings).
+\end{conjecture}
+
+\begin{problem}\label{prob:rcop}
+Determine the growth rate of $\Rcop(k)$. Is $\Rcop(k)>R(k,k)$ for
+all $k\ge 3$?
+\end{problem}
+
+%% =================================================================
+\section{Coprime pairs in primitive sets}\label{sec:prim}
+%% =================================================================
+
+A set $A\subseteq[n]$ is \emph{primitive} if no element divides
+another~\cite{erdos1935}. By Dilworth's theorem~\cite{dilworth1950},
+every primitive $A\subseteq[n]$ has $|A|\le\lceil n/2\rceil$.
+Let $M(A)=|\{(a,b)\in A^2:a<b,\;\gcd(a,b)=1\}|$ and
+$M^*(n)=\max\{M(A):A\subseteq[n]\text{ primitive}\}$.
+
+Lichtman~\cite{lichtman2023} proved that primes maximize
+$f(A)=\sum_{a\in A}1/(a\log a)$ over primitive $A$---the Erd\H{o}s
+primitive set conjecture. We show primes do \emph{not} maximize $M$.
+
+The \emph{top layer} $T(n)=\{\lfloor n/2\rfloor+1,\ldots,n\}$ is
+primitive with $|T(n)|=\lceil n/2\rceil$ (Dilworth-maximum).
+Define the \emph{shifted top layer} $S(n)$ by replacing each even
+$2k\in T(n)$ with $k$ when $k$ is odd and $k>n/3$.
+
+\begin{lemma}\label{lem:prim}
+$S(n)$ is primitive with $|S(n)|=\lceil n/2\rceil$.
+\end{lemma}
+
+\begin{proof}
+Replacement is bijective (each $2k$ maps to a distinct $k\in(n/3,
+n/2]\setminus T(n)$), preserving size. For primitivity: retained
+elements of $T(n)$ exceed $n/2$, so no two divide each other. A new
+element $k\in(n/3,n/2]$ cannot divide a retained element $b>n/2$:
+the multiple $2k$ was removed, and $3k>n\ge b$. Two new elements
+$k_1<k_2$ with $k_1\mid k_2$ would require $k_2\ge 2k_1>2n/3>
+n/2\ge k_2$, a contradiction.
+\end{proof}
+
+\begin{proposition}\label{prop:density}
+As $n\to\infty$, $M(T(n))\sim\frac{6}{\pi^2}\binom{\lceil
+n/2\rceil}{2}$ and $M(S(n))\sim\frac{64}{9\pi^2}\binom{\lceil
+n/2\rceil}{2}$.
+\end{proposition}
+
+\begin{proof}
+For $T(n)$: the proportion of coprime pairs among $L$ consecutive
+integers converges to $\prod_p(1-1/p^2)=6/\pi^2$ as $L\to\infty$
+(classical; see, e.g., Hardy--Wright~\cite{hardywright}, Thm.~332). Since $T(n)$ consists
+of $\lceil n/2\rceil$ consecutive integers, the claim follows.
+
+For $S(n)$: the even fraction satisfies $f_E\to 1/3$ (we replace
+roughly $1/6$ of the $\lceil n/2\rceil$ elements, reducing even
+elements from $1/2$ to $1/3$). Two even elements share factor~$2$,
+contributing $0$ coprime pairs. For pairs with at least one odd
+element, coprimality is governed by odd primes; since the elements
+of $S(n)$ are drawn from intervals of length $\Theta(n)$ in $[n]$,
+the coprime probability for such pairs converges to
+$\prod_{p\ge 3}(1-1/p^2)=8/\pi^2$. Weighting by parity classes:
+$d(S(n))\to\frac{8}{\pi^2}(1-f_E^2)=\frac{64}{9\pi^2}$.
+\end{proof}
+
+\begin{theorem}\label{thm:main-prim}
+$M^*(n)\ge\frac{64}{9\pi^2}\binom{\lceil n/2\rceil}{2}(1+o(1))$.
+For $n\ge 10$, $M(P(n))<M^*(n)$ where $P(n)$ is the set of primes
+up to $n$; the latter claim is verified by exhaustive computation.
+\end{theorem}
+
+\begin{proof}
+The lower bound is realized by $S(n)$
+(Lemma~\ref{lem:prim} and Proposition~\ref{prop:density}).
+Since $M(P(n))=\binom{\pi(n)}{2}\sim n^2/(2\ln^2 n)=o(n^2)$ while
+$M(S(n))=\Theta(n^2)$, primes are eventually suboptimal.
+Exhaustive computation confirms this for $n\ge 10$:
+
+\begin{center}
+\begin{tabular}{@{}clcc@{}}
+\toprule
+$n$ & Optimal primitive set & $M^*(n)$ & $M(P(n))$ \\
+\midrule
+8   & $\{2,3,5,7\}$                    & 6  & 6 \\
+10  & $\{4,5,6,7,9\}$                  & 8  & 6 \\
+15  & $\{4,6,7,9,10,11,13,15\}$        & 21 & 15 \\
+18  & $\{4,6,7,9,10,11,13,15,17\}$     & 29 & 21 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{proof}
+
+\begin{conjecture}\label{conj:prim-asymptotic}
+$M^*(n)\sim\frac{64}{9\pi^2}\binom{\lceil n/2\rceil}{2}$.
+That is, $S(n)$ is asymptotically optimal among primitive sets
+for maximizing coprime pairs.
+\end{conjecture}
+
+\begin{remark}\label{rem:structure}
+Optimal sets use prime powers ($4=2^2$, $9=3^2$) and products
+($6=2\cdot 3$, $10=2\cdot 5$) instead of small primes.
+Primes have coprime density $d=1$ but size only $\pi(n)$;
+Dilworth-maximum sets have size $\lceil n/2\rceil$ but lower density.
+Since $M\propto d\cdot|A|^2$, size dominates.
+\end{remark}
+
+\begin{problem}\label{prob:func}
+Characterize which functionals $F$ on primitive sets are maximized by
+primes. Lichtman's $\sum 1/(a\log a)$ favors primes; $M(A)$ does not.
+\end{problem}
+
+%% =================================================================
+\section*{Acknowledgments}
+%% =================================================================
+
+This paper was produced through a collaboration between the first
+author and the AI system Claude (Anthropic, model Claude Opus 4.6).
+The first author directed the research program, selected problems,
+and verified all mathematical claims. Claude performed computational
+experiments (Python, 1{,}826 tests), constructed and wrote the proofs,
+implemented the Lean~4 formalization, and drafted this manuscript.
+We believe transparent attribution of AI contributions to mathematical
+research is important and encourage the community to develop norms
+for such collaborations.
+
+The Erd\H{o}s problem database~\cite{tao2025erdos} was essential to
+this work. We thank Terry Tao and the contributors to
+\texttt{github.com/teorth/erdosproblems} for creating and maintaining
+this resource.
+
+%% =================================================================
+\begin{thebibliography}{9}
+
+\bibitem{dilworth1950}
+R.~P.~Dilworth.
+A decomposition theorem for partially ordered sets.
+\emph{Ann.\ of Math.\ (2)}, 51:161--166, 1950.
+
+\bibitem{erdos1935}
+P.~Erd\H{o}s.
+Note on sequences of integers no one of which is divisible by any other.
+\emph{J.\ London Math.\ Soc.}, 10:126--128, 1935.
+
+\bibitem{hardywright}
+G.~H.~Hardy and E.~M.~Wright.
+\emph{An Introduction to the Theory of Numbers}.
+Oxford University Press, 6th edition, 2008.
+
+\bibitem{erdos1997coprime}
+P.~Erd\H{o}s and A.~S\'ark\"ozy.
+On cycles in the coprime graph of integers.
+\emph{Electron.\ J.\ Combin.}, 4(2):R8, 1997.
+
+\bibitem{lichtman2023}
+J.~D.~Lichtman.
+A proof of the {E}rd\H{o}s primitive set conjecture.
+\emph{Forum Math.\ Pi}, 11:e18, 2023.
+
+\bibitem{ramsey1930}
+F.~P.~Ramsey.
+On a problem of formal logic.
+\emph{Proc.\ London Math.\ Soc.\ (2)}, 30:264--286, 1930.
+
+\bibitem{schur1916}
+I.~Schur.
+\"{U}ber die {K}ongruenz $x^m+y^m\equiv z^m\pmod{p}$.
+\emph{Jahresber.\ Deutsch.\ Math.-Verein.}, 25:114--117, 1916.
+
+\bibitem{tao2025erdos}
+T.~Tao et~al.
+Erd\H{o}s problems database.
+\texttt{github.com/teorth/erdosproblems}, 2025.
+
+\end{thebibliography}
+
+\end{document}

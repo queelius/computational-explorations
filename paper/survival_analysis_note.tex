@@ -1,0 +1,475 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Mathematical Epidemiology: Survival Analysis of Erdos Problems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\setlist{nosep}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=blue!60!black,
+  urlcolor=blue!60!black
+}
+
+% Notation
+\newcommand{\HR}{\mathrm{HR}}
+\newcommand{\AF}{\mathrm{AF}}
+\newcommand{\CI}{\mathrm{CI}}
+\newcommand{\AIC}{\mathrm{AIC}}
+\newcommand{\CIF}{\mathrm{CIF}}
+
+\begin{document}
+
+\title{Mathematical Epidemiology:\\
+Survival Analysis of 1,183 Erd\H{o}s Problems}
+
+\author{
+  Alex Towell\thanks{Department of Computer Science,
+  Southern Illinois University Edwardsville.
+  Email: \texttt{atowell@siue.edu}.}
+}
+
+\date{}
+\maketitle
+
+\begin{abstract}
+We present, to our knowledge, the first application of survival analysis
+to the resolution dynamics of a mathematical problem corpus.
+Treating 1,183 Erd\H{o}s problems as subjects in a right-censored
+time-to-event study---with problem index serving as an ordinal time
+proxy and resolution as the event of interest---we apply
+Kaplan--Meier estimation, Cox proportional hazards regression,
+competing risks analysis, and Weibull accelerated failure time
+modeling.
+Our principal findings are:
+(i)~prize problems resolve significantly faster
+($\HR = 2.60$, 95\%~$\CI$: $1.85$--$3.67$, $p < 0.001$);
+(ii)~formalized problems exhibit 45\% lower hazard of resolution
+($\HR = 0.55$, 95\%~$\CI$: $0.43$--$0.71$, $p < 0.001$),
+consistent with a selection effect rather than a causal mechanism;
+(iii)~the overall proved-to-disproved ratio is $2.63{:}1$,
+but varies from $8.5{:}1$ in combinatorics to $1.3{:}1$ in set theory;
+and (iv)~a Weibull AFT model with shape parameter $\hat\rho = 1.61$
+indicates decreasing marginal hazard, with prize attachment
+accelerating resolution by a factor of $0.60$ ($p < 0.001$).
+The Cox model achieves a concordance index of $C = 0.60$ with a
+significant global test ($\chi^2 = 65.4$, $\text{df} = 7$,
+$p < 10^{-10}$).
+\end{abstract}
+
+
+%% ================================================================
+\section{Introduction}
+%% ================================================================
+
+The Erd\H{o}s problem corpus---1,183 conjectures, questions, and
+challenges posed by Paul Erd\H{o}s (1913--1996) and catalogued by
+Tao et al.~\cite{erdosproblems}---provides an opportunity
+to study the \emph{dynamics} of mathematical progress through a
+quantitative lens. Each problem can be viewed as a patient entering
+a longitudinal study at the time of its formulation, with resolution
+(proof, disproof, or other definitive answer) constituting the event
+of interest. Problems that remain open are right-censored.
+
+While bibliometric approaches to mathematical productivity are
+established~\cite{borjas2015,mihaljevi2019}, survival-analytic
+methods have not previously been applied to a structured database of
+open problems. The Erd\H{o}s corpus is particularly suited: problems
+span six decades, carry metadata (tags, prizes, OEIS references,
+formalization status), and exhibit a natural ordering by problem
+number that serves as an ordinal time proxy.
+We ask: which covariates predict faster resolution, how does the
+hazard change across the corpus, and how do the competing risks
+of proof versus disproof vary by subfield?
+
+\smallskip\noindent
+\textbf{Notation.}
+Problem numbers $i \in \{1, \ldots, 1183\}$ serve as the
+time variable~$T$. The event indicator is $\delta_i = 1$ if problem
+$i$ has been resolved and $\delta_i = 0$ otherwise (right-censored).
+
+
+%% ================================================================
+\section{Data and Methods}
+%% ================================================================
+
+\subsection{Dataset}
+
+The Erd\H{o}s Problems database~\cite{erdosproblems} records
+$n = 1{,}183$ problems with the following fields: problem number,
+status (open, proved, disproved, solved, falsifiable, verifiable,
+decidable, independent, or Lean-verified variants), tags
+(mathematical subfields), prize amount (USD or GBP), OEIS sequence
+references, and formalization status. We restrict the primary analysis
+to problems with a definitive binary outcome:
+\[
+  n_{\text{events}} = 483 \text{ (resolved)}, \quad
+  n_{\text{censored}} = 650 \text{ (open)}, \quad
+  n_{\text{total}} = 1{,}133.
+\]
+The remaining 50 observations with intermediate statuses
+(falsifiable, verifiable, decidable, independent) are excluded
+from the main survival models but included in the competing risks
+analysis as a third event type.
+
+Covariates are summarized in Table~\ref{tab:covariates}.
+
+\begin{table}[ht]
+\centering
+\caption{Covariate definitions and descriptive statistics ($n = 1{,}133$).}
+\label{tab:covariates}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Covariate & Type & Prevalence/Mean & Events (\%) \\
+\midrule
+Prize ($> \$0$)       & Binary & $8.8\%$  ($100/1133$)   & $38.0\%$ \\
+Formalized            & Binary & $33.4\%$ ($378/1133$)   & $21.7\%$ \\
+OEIS sequences        & Binary & $25.2\%$ ($286/1133$)   & $26.2\%$ \\
+Number of tags        & Count  & $\bar x = 1.63$         & --- \\
+Tag solve rate        & Continuous $[0,1]$ & $\bar x = 0.40$ & --- \\
+Number theory         & Binary & $47.7\%$ & $37.2\%$ \\
+Graph theory          & Binary & $22.3\%$ & $49.0\%$ \\
+Ramsey theory         & Binary & $9.3\%$  & $40.9\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Statistical Methods}
+
+\paragraph{Kaplan--Meier estimation.}
+We estimate the survival function $\hat S(t)$ using the product-limit
+estimator~\cite{kaplan1958}, with pointwise 95\% confidence intervals
+via Greenwood's formula. Stratified curves are compared using the
+log-rank test.
+
+\paragraph{Cox proportional hazards regression.}
+The hazard for problem $i$ is modeled as
+\[
+  h(t \mid \mathbf{x}_i) = h_0(t) \exp(\boldsymbol\beta^\top \mathbf{x}_i),
+\]
+where $h_0(t)$ is the unspecified baseline hazard and $\mathbf{x}_i$
+is the covariate vector~\cite{cox1972}. Ties are handled via the
+Breslow approximation. Model adequacy is assessed by the concordance
+index~$C$, partial $\AIC$, and the proportional hazards assumption is
+tested via scaled Schoenfeld residuals~\cite{grambsch1994}.
+
+\paragraph{Accelerated failure time models.}
+We fit parametric AFT models of the form
+$\log T_i = \boldsymbol\mu^\top \mathbf{x}_i + \sigma\, W_i$,
+where $W_i$ follows a standard extreme value (Weibull), normal
+(log-normal), or logistic (log-logistic) distribution. Model
+selection is by $\AIC$.
+
+\paragraph{Competing risks.}
+Resolution events are decomposed into proof ($k = 1$) and disproof
+($k = 2$) as competing risks. We report cause-specific cumulative
+incidence functions $\CIF_k(t) = P(T \le t, \text{cause} = k)$
+and proved-to-disproved ratios stratified by tag.
+
+
+%% ================================================================
+\section{Results}
+%% ================================================================
+
+\subsection{Kaplan--Meier Estimates}
+
+The overall Kaplan--Meier curve yields an estimated median survival
+of $\tilde t = 946$ (i.e., the survival function crosses $0.50$
+at problem number 946). The interquartile range is
+$[\hat t_{0.25}, \hat t_{0.75}] = [570, 1134]$. At selected
+timepoints: $\hat S(250) = 0.899$, $\hat S(500) = 0.782$,
+$\hat S(750) = 0.654$, $\hat S(1000) = 0.451$.
+
+Stratified Kaplan--Meier analysis reveals significant differences
+by covariate group (Table~\ref{tab:logrank}).
+
+\begin{table}[ht]
+\centering
+\caption{Log-rank tests for stratified Kaplan--Meier curves.}
+\label{tab:logrank}
+\begin{tabular}{@{}lcccl@{}}
+\toprule
+Stratum & $\tilde t_1$ & $\tilde t_0$ & $\chi^2$ & $p$-value \\
+\midrule
+Prize (yes/no)         & 703  & 965  & 24.29 & $< 0.001$ \\
+Formalized (yes/no)    & 1102 & 900  & 24.22 & $< 0.001$ \\
+OEIS (yes/no)          & ---  & ---  & 10.12 & $0.001$ \\
+Graph theory (yes/no)  & 842  & ---  & 2.86  & $0.091$ \\
+Ramsey theory (yes/no) & 894  & ---  & 0.01  & $0.906$ \\
+\bottomrule
+\end{tabular}
+\raggedright
+\small $\tilde t_1$, $\tilde t_0$: median survival for the indicated
+and reference group, respectively. ``---'' indicates the median was
+not reached or is omitted for brevity.
+\end{table}
+
+Prize problems have a median survival of 703, compared to 965 for
+non-prize problems---a reduction of 262 ordinal units
+($\chi^2_{LR} = 24.29$, $p < 0.001$). Conversely, formalized
+problems exhibit a \emph{higher} median survival of 1102 versus 900,
+which we discuss in Section~\ref{sec:discussion} as a selection effect.
+
+\subsection{Cox Proportional Hazards Regression}
+
+We fit a Cox model with structural covariates and subfield indicators
+(Table~\ref{tab:cox}).
+
+\begin{table}[ht]
+\centering
+\caption{Cox proportional hazards model with tag indicators
+($n = 1{,}133$, events $= 483$).}
+\label{tab:cox}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Covariate & $\hat\beta$ & $\HR$ & 95\% CI & $p$ \\
+\midrule
+Prize             & $0.96$  & $2.60$ & $(1.85, 3.67)$ & $< 0.001$ \\
+Formalized        & $-0.59$ & $0.55$ & $(0.43, 0.71)$ & $< 0.001$ \\
+OEIS              & $-0.47$ & $0.63$ & $(0.48, 0.82)$ & $< 0.001$ \\
+Number theory     & $0.36$  & $1.44$ & $(1.13, 1.84)$ & $0.004$ \\
+Graph theory      & $0.18$  & $1.20$ & $(0.93, 1.55)$ & $0.171$ \\
+Ramsey theory     & $-0.18$ & $0.83$ & $(0.60, 1.16)$ & $0.284$ \\
+Analysis          & $-0.12$ & $0.89$ & $(0.62, 1.26)$ & $0.503$ \\
+\midrule
+\multicolumn{5}{@{}l}{$C = 0.60$; partial $\AIC = 5838.0$;
+LR $\chi^2 = 65.4$, $\mathrm{df} = 7$, $p < 10^{-10}$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three covariates achieve significance at $\alpha = 0.01$: prize
+attachment ($\HR = 2.60$; prize problems have $2.6\times$ the
+instantaneous hazard of resolution), formalization
+($\HR = 0.55$; 45\% reduction), and OEIS linkage
+($\HR = 0.63$; 37\% reduction). Among tag indicators, only number
+theory is significant ($\HR = 1.44$, $p = 0.004$), indicating that
+number theory problems resolve faster than the baseline after
+controlling for other covariates---a finding that may reflect the
+larger community working in number theory rather than intrinsic
+tractability.
+
+Ramsey theory shows a non-significant tendency toward lower hazard
+($\HR = 0.83$, $p = 0.284$), though the multivariate log-rank test
+across five tag groups approaches significance
+($\chi^2 = 8.63$, $\mathrm{df} = 4$, $p = 0.071$).
+
+The global concordance index of $C = 0.60$ indicates modest but
+real discriminative ability---consistent with the expectation that
+problem-level metadata captures only a fraction of the variance in
+resolution difficulty, the remainder being driven by the
+(unobserved) intrinsic mathematical content.
+
+\subsection{Competing Risks}
+
+Decomposing resolution events into proof ($k = 1$) and disproof
+($k = 2$), the overall proved-to-disproved ratio is $2.63{:}1$
+($305$ proofs, $116$ disproofs), with 62 additional events classified
+as ``solved'' without further specification. This ratio varies
+substantially across subfields (Table~\ref{tab:competing}).
+
+\begin{table}[ht]
+\centering
+\caption{Competing risks decomposition by mathematical subfield.}
+\label{tab:competing}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Subfield & $n$ & Proved & Disproved & P\,:\,D ratio \\
+\midrule
+Overall         & 1133 & 305 & 116 & $2.6{:}1$ \\
+Combinatorics   &   46 &  17 &   2 & $8.5{:}1$ \\
+Ramsey theory   &  105 &  31 &   8 & $3.9{:}1$ \\
+Analysis        &   74 &  29 &   9 & $3.2{:}1$ \\
+Number theory   &  541 & 133 &  46 & $2.9{:}1$ \\
+Geometry        &  101 &  25 &   9 & $2.8{:}1$ \\
+Graph theory    &  253 &  74 &  35 & $2.1{:}1$ \\
+Set theory      &   31 &   4 &   3 & $1.3{:}1$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The P\,:\,D ratio ranges from $8.5{:}1$ in combinatorics
+to $1.3{:}1$ in set theory. Graph theory exhibits an elevated
+disproof rate ($2.1{:}1$), consistent with the availability of
+explicit counterexample constructions.
+
+\subsection{Accelerated Failure Time Models}
+
+We fit Weibull ($\AIC = 7793.7$), log-logistic ($7854.1$), and
+log-normal ($7930.9$) AFT models; the Weibull provides the best fit
+(Table~\ref{tab:aft}). The shape parameter $\hat\rho = 1.61$
+(95\% CI: $1.49$--$1.74$) exceeds 1, indicating \emph{decreasing}
+marginal hazard---problems surviving to higher indices have
+progressively lower resolution rates.
+
+\begin{table}[ht]
+\centering
+\caption{Weibull AFT model estimates ($n = 1{,}133$, events $= 483$).}
+\label{tab:aft}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Covariate & $\hat\beta$ & $\AF = e^{\hat\beta}$ & 95\% CI & $p$ \\
+\midrule
+Prize      & $-0.51$ & $0.60$ & $(0.49, 0.74)$ & $< 0.001$ \\
+Formalized & $0.32$  & $1.38$ & $(1.19, 1.61)$ & $< 0.001$ \\
+OEIS       & $0.19$  & $1.21$ & $(1.03, 1.41)$ & $0.020$ \\
+$n_{\text{tags}}$ & $-0.04$ & $0.96$ & $(0.87, 1.05)$ & $0.363$ \\
+\midrule
+\multicolumn{5}{@{}l}{Shape $\hat\rho = 1.61$ (95\% CI: $1.49$--$1.74$);
+$\AIC = 7793.7$; $C = 0.58$} \\
+\bottomrule
+\end{tabular}
+\raggedright
+\small Acceleration factors $\AF < 1$ indicate faster resolution
+(shorter ``survival''); $\AF > 1$ indicates slower resolution.
+\end{table}
+
+Prize attachment yields $\AF = 0.60$ (resolution in 60\% of the
+time required by non-prize problems); formalization yields
+$\AF = 1.38$ (38\% longer survival), reflecting the selection
+effect discussed below.
+
+
+%% ================================================================
+\section{Discussion}
+\label{sec:discussion}
+%% ================================================================
+
+\paragraph{The formalization paradox.}
+Our most counterintuitive finding is that formalized problems
+resolve \emph{more slowly} ($\HR = 0.55$, $\AF = 1.38$). This
+is not a causal effect; rather, it is a classic \emph{selection bias}.
+Problems chosen for formalization in Lean or Coq tend to be famous
+and difficult---precisely those that resist resolution. The
+formalization indicator acts as a proxy for unobserved difficulty:
+only $21.7\%$ of formalized problems are resolved, versus $50.1\%$
+of non-formalized problems.
+
+\paragraph{The prize effect and Simpson's paradox.}
+The prize hazard ratio of $\HR = 2.60$ admits two interpretations:
+incentive effects attracting effort~\cite{kremer1998}, and more
+precise problem statements facilitating targeted attacks.
+Notably, the raw solve rate for prize problems ($38.0\%$) is
+\emph{lower} than for non-prize problems ($41.2\%$)---the Cox model
+reverses this after controlling for formalization and OEIS status,
+which confound the association. This is Simpson's paradox in
+survival data.
+
+\paragraph{Competing risks and epistemic calibration.}
+The $2.63{:}1$ proved-to-disproved ratio quantifies Erd\H{o}s's
+\emph{epistemic calibration}: his conjectures were correct
+$\sim\!70\%$ of the time among resolved problems. In combinatorics
+($8.5{:}1$) his intuition was nearly infallible; in set theory
+($1.3{:}1$) the near-parity suggests genuine uncertainty, consistent
+with independence phenomena prevalent in that domain.
+
+\paragraph{Limitations.}
+(i)~Problem number is an ordinal proxy for time, not a metric variable;
+the mapping from index to calendar time is nonlinear.
+(ii)~The database lacks true resolution dates, preventing
+calendar-time survival analysis.
+(iii)~Covariates capture metadata rather than mathematical content;
+the moderate concordance ($C = 0.58$--$0.60$) reflects this
+inherent limitation.
+Despite these constraints, the survival-analytic framework reveals
+structure that descriptive statistics alone do not: Simpson's paradox
+in the prize effect, the selection mechanism underlying the
+formalization paradox, and field-dependent asymmetry in competing risks.
+
+\paragraph{Implications.}
+As AI-assisted theorem proving accelerates~\cite{trinh2024,
+yang2024}, the resolution hazard may increase. Our Weibull baseline
+provides a benchmark: if the post-2025 hazard exceeds the predicted
+rate, this constitutes measurable evidence of AI impact on open
+mathematical problems.
+
+
+%% ================================================================
+\paragraph{Acknowledgments.}
+%% ================================================================
+The Erd\H{o}s Problems database was compiled by Terence Tao and
+contributors. Computational analyses used
+\texttt{lifelines}~\cite{davidson-pilon2019} for survival modeling
+and \texttt{scipy} for statistical tests. AI tools (Claude, Anthropic)
+assisted with data analysis and manuscript preparation.
+
+
+%% ================================================================
+%% Bibliography
+%% ================================================================
+\begingroup
+\raggedright
+\begin{thebibliography}{99}
+
+\bibitem{erdosproblems}
+T.~Tao et al.,
+``Erd\H{o}s Problems,''
+\url{https://www.erdosproblems.com/}, 2024.
+
+\bibitem{kaplan1958}
+E.~L. Kaplan and P.~Meier,
+``Nonparametric estimation from incomplete observations,''
+\emph{J.\ Amer.\ Statist.\ Assoc.}, vol.~53, pp.~457--481, 1958.
+
+\bibitem{cox1972}
+D.~R. Cox,
+``Regression models and life-tables (with discussion),''
+\emph{J.\ Roy.\ Statist.\ Soc.\ Ser.~B}, vol.~34, pp.~187--220, 1972.
+
+\bibitem{grambsch1994}
+P.~M. Grambsch and T.~M. Therneau,
+``Proportional hazards tests and diagnostics based on weighted residuals,''
+\emph{Biometrika}, vol.~81, pp.~515--526, 1994.
+
+\bibitem{davidson-pilon2019}
+C.~Davidson-Pilon,
+``lifelines: survival analysis in Python,''
+\emph{J.\ Open Source Softw.}, vol.~4, no.~40, p.~1317, 2019.
+
+\bibitem{borjas2015}
+G.~J. Borjas and K.~B. Doran,
+``Prizes and productivity: how winning the Fields Medal affects
+scientific output,''
+\emph{J.\ Human Resources}, vol.~50, pp.~728--758, 2015.
+
+\bibitem{mihaljevi2019}
+H.~Mihaljevi\'{c} and L.~Santamar\'{i}a,
+``Mathematics publications and authors' gender:
+learning from the Gender Gap in Science project,''
+\emph{European J.\ Math.}, vol.~5, pp.~1--16, 2019.
+
+\bibitem{cranshaw2011}
+J.~Cranshaw and A.~Kittur,
+``The Polymath Project: lessons from a successful online
+collaboration in mathematics,''
+in \emph{Proc.\ CHI}, ACM, 2011, pp.~1865--1874.
+
+\bibitem{kremer1998}
+M.~Kremer,
+``Patent buyouts: a mechanism for encouraging innovation,''
+\emph{Quarterly J.\ Economics}, vol.~113, pp.~1137--1167, 1998.
+
+\bibitem{trinh2024}
+T.~H. Trinh et al.,
+``Solving olympiad geometry without human demonstrations,''
+\emph{Nature}, vol.~625, pp.~476--482, 2024.
+
+\bibitem{yang2024}
+K.~Yang et al.,
+``LeanDojo: theorem proving with retrieval-augmented language models,''
+in \emph{NeurIPS}, 2024.
+
+\end{thebibliography}
+\endgroup
+
+\end{document}

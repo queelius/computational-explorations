@@ -1,0 +1,390 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Extensions of Schur Numbers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Observation}
+
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\DS}{\mathrm{DS}}
+\newcommand{\MS}{\mathrm{MS}}
+
+\begin{document}
+
+\title{Extensions of Schur Numbers:\\
+Order-Invariance, Density Thresholds, and Multiplicative Variants}
+
+\author{Alex Towell\thanks{Department of Computer Science,
+Southern Illinois University Edwardsville.
+Email: \texttt{atowell@siue.edu}}}
+
+\date{}
+\maketitle
+
+\begin{abstract}
+We report computational results in three directions extending
+classical Schur numbers.
+First, we study Schur numbers $S(G,k)$ for finite abelian groups~$G$
+and find that $S(G,1)$ and $S(G,2)$ depend only on $|G|$, verified
+through order~20, while $S(G,3)$ is \emph{not} order-invariant:
+$S(\ZZ/9\ZZ,3)=8$ but $S(\ZZ/3\ZZ\times\ZZ/3\ZZ,3)=7$.
+Second, we introduce density Schur numbers $\DS(k,\alpha)$ and
+determine $\DS(2,\tfrac{1}{2})=5$ with a Lean~4 proof,
+identifying a phase transition in the parameter~$\alpha$.
+Third, we tabulate Rado numbers for several linear equations and
+compute multiplicative Schur numbers $\MS(k)$ on the domain
+$\{2,\ldots,N\}$, finding $\MS(1)=3$ and $\MS(2)=31$.
+All results are computational (exhaustive enumeration or SAT-based)
+and should be regarded as such until independent formal verification.
+\end{abstract}
+
+%% ================================================================
+\section{Schur numbers in finite abelian groups}\label{sec:groups}
+%% ================================================================
+
+\subsection{Definitions}
+
+Let $G$ be a finite abelian group written additively.
+A subset $C\subseteq G$ is \emph{sum-free} if there are no
+$a,b,c\in C$ with $a+b=c$ (the case $a=b$ is permitted, so
+$\{0\}$ is never sum-free since $0+0=0$).
+
+\begin{definition}
+$S(G,k)$ is the maximum size of a subset $A\subseteq G$ admitting a
+partition $A=C_1\sqcup\cdots\sqcup C_k$ into $k$ sum-free sets.
+\end{definition}
+
+\noindent
+Equivalently, $S(G,k)+1$ is the minimum size of a subset of~$G$ that
+forces a monochromatic Schur triple in every $k$-coloring.
+When $G=\ZZ/n\ZZ$ and $k=1$, the quantity $S(G,1)$ is the maximum
+sum-free subset of~$\ZZ/n\ZZ$.
+
+For a single color ($k=1$), Green and
+Ruzsa~\cite{green-ruzsa} established asymptotically tight bounds on
+the maximum sum-free subset of a general abelian group.
+For $\ZZ/p\ZZ$ with $p$ an odd prime, the interval
+$\{x : p/3 < x < 2p/3\}$ is a maximum sum-free set of size
+$\lfloor p/3 \rfloor + O(1)$; we have verified this computationally
+for all primes $p \le 19$.
+
+\subsection{Order-invariance}
+
+We say that $S(-,k)$ is \emph{order-invariant} if $S(G,k)$
+depends only on $|G|$ for all finite abelian groups~$G$.
+Since any group isomorphism preserves sum-freeness, $S(G,k)$
+is certainly an isomorphism invariant.
+The question is whether non-isomorphic groups of the same order can
+differ.
+
+\begin{observation}[Computational, verified through order 20]\label{obs:inv}
+$S(G,1)$ and $S(G,2)$ are order-invariant for finite abelian groups
+of order $\le 20$.
+This covers 30 non-isomorphic groups, including all~5 abelian
+groups of order~16 (which all satisfy $S(G,1)=8$ and $S(G,2)=12$).
+\end{observation}
+
+\noindent
+For $k=1$, order-invariance may follow from the Green--Ruzsa
+theory~\cite{green-ruzsa}, which determines $S(G,1)$ in terms of
+$|G|$ and the group's structure constants.
+The $k=2$ invariance appears to be a new observation.
+
+\begin{observation}[Computational]\label{obs:break}
+$S(G,3)$ is \emph{not} order-invariant.
+The first failure occurs at order~$9$:
+\[
+S(\ZZ/9\ZZ,\, 3) = 8, \qquad
+S(\ZZ/3\ZZ\times\ZZ/3\ZZ,\, 3) = 7.
+\]
+A second failure occurs at order~12:
+$S(\ZZ/3\ZZ\times\ZZ/4\ZZ,\, 3) = 11$ while
+$S(\ZZ/2\ZZ\times\ZZ/2\ZZ\times\ZZ/3\ZZ,\, 3) = 10$.
+\end{observation}
+
+\noindent
+The underlying mechanism appears related to the group exponent:
+$\ZZ/9\ZZ$ has exponent~$9$ while
+$(\ZZ/3\ZZ)^2$ has exponent~$3$, and the higher exponent allows more
+room for three independent sum-free color classes.
+
+\subsection{Tables}
+
+Table~\ref{tab:cyclic} records $S(\ZZ/n\ZZ, k)$ for small~$n$ and
+$k=1,2,3$.
+
+\begin{table}[ht]
+\centering
+\caption{Schur numbers $S(\ZZ/n\ZZ,k)$ for $n=2,\ldots,16$.
+All values computed by exhaustive enumeration.}\label{tab:cyclic}
+\smallskip
+\begin{tabular}{@{}r rrr r@{}}
+\toprule
+$n$ & $S(-,1)$ & $S(-,2)$ & $S(-,3)$ & $S_2/n$ \\
+\midrule
+ 2  &  1 &  1 &  1 & 0.500 \\
+ 3  &  1 &  2 &  2 & 0.667 \\
+ 4  &  2 &  3 &  3 & 0.750 \\
+ 5  &  2 &  4 &  4 & 0.800 \\
+ 6  &  3 &  4 &  5 & 0.667 \\
+ 7  &  2 &  4 &  6 & 0.571 \\
+ 8  &  4 &  6 &  7 & 0.750 \\
+ 9  &  3 &  6 &  8 & 0.667 \\
+10  &  5 &  8 &  9 & 0.800 \\
+11  &  4 &  8 & 10 & 0.727 \\
+12  &  6 &  9 &    & 0.750 \\
+13  &  4 &  8 &    & 0.615 \\
+14  &  7 &  9 &    & 0.643 \\
+15  &  6 & 12 &    & 0.800 \\
+16  &  8 & 12 &    & 0.750 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+Blank entries in the $k=3$ column indicate that the exhaustive
+computation ($3^n$ colorings) was not run for those~$n$ due to time
+constraints.
+For $k=3$, note that $S(\ZZ/n\ZZ,3) = n-1$ for all $n \le 11$:
+the $n-1$ nonzero elements of $\ZZ/n\ZZ$ can always be 3-colored
+with each color class sum-free, at least through $n=11$.
+
+\begin{conjecture}
+$S(G,2)$ is order-invariant for all finite abelian groups.
+\end{conjecture}
+
+%% ================================================================
+\section{Density Schur numbers}\label{sec:density}
+%% ================================================================
+
+\begin{definition}\label{def:ds}
+For integers $k\ge 1$ and a real parameter $\alpha\in[0,1]$,
+define the \emph{density Schur number} $\DS(k,\alpha)$ as the
+minimum~$N$ such that every $k$-coloring of $\{1,\ldots,N\}$ has at
+least one color class~$C_i$ that is \emph{good}: either $C_i$
+contains a Schur triple ($a+b=c$ with $a,b,c\in C_i$ and
+$a,b,c\ge 1$) or $|C_i| > \alpha N$.
+\end{definition}
+
+\begin{remark}[Indexing caveat]\label{rem:index}
+Definition~\ref{def:ds} uses the 1-indexed domain $\{1,\ldots,N\}$,
+which is the natural setting for integer Schur triples.
+An alternative 0-indexed definition on $\{0,\ldots,N-1\}$ would give
+different values because $0+0=0$ is a ``free'' Schur triple that
+forces any color class containing~0 to be good by default.
+Our Lean~4 formalization~\cite{code-repo} uses the
+1-indexed convention (elements $\{1,\ldots,N\}$, represented
+internally as \texttt{Fin~N} with the Schur condition
+$(a+1)+(b+1)=(c+1)$).
+\end{remark}
+
+\begin{theorem}[Lean-verified]\label{thm:ds2}
+$\DS(2,\tfrac{1}{2}) = 5$.
+That is, for every 2-coloring of $\{1,2,3,4,5\}$, some
+color class either contains a Schur triple or has more than
+$\tfrac{1}{2}\cdot 5 = 2.5$ elements.
+The witness coloring on $\{1,2,3,4\}$ that avoids this is
+$C_0=\{1,4\}$, $C_1=\{2,3\}$: both classes are sum-free and both
+have exactly $2 \le \lfloor 4/2 \rfloor$ elements, so neither
+exceeds the density threshold.
+\end{theorem}
+
+\noindent
+The proof is formalized in Lean~4 with zero sorry statements.
+The lower bound (exhibiting the witness coloring) and upper bound
+(pigeonhole: some class has $\ge 3 > 5/2$ elements) are both
+machine-checked.
+
+\begin{theorem}[Pigeonhole]\label{thm:ds-pigeonhole}
+$\DS(k,\, 1/k) = S(k)+1$,
+where $S(k)$ is the classical Schur number.
+\end{theorem}
+
+\begin{proof}
+At $N = S(k)+1$, every $k$-coloring of $\{1,\ldots,N\}$ forces a
+monochromatic Schur triple by the definition of~$S(k)$, so every
+color class is good (the Schur-triple condition alone suffices).
+At $N = S(k)$, there exists a $k$-coloring with no monochromatic
+Schur triple.
+By pigeonhole, some class has $\ge \lceil N/k \rceil$ elements, but
+the density condition requires \emph{strictly} more than $N/k$
+elements; when $k$ divides~$N$ and the partition is balanced, this
+threshold is not exceeded.
+\end{proof}
+
+\subsection{Phase transition for $k=2$}
+
+A related quantity is the \emph{density Ramsey number}
+$\DS'(k,\alpha)$: the minimum~$N$ such that every $k$-coloring of
+$\{1,\ldots,N\}$ has a color class~$C$ satisfying \emph{both}
+$|C|\ge\alpha N$ \emph{and} $C$ contains a Schur triple (the
+conjunction, not the disjunction in Definition~\ref{def:ds}).
+Computational experiments reveal three regimes for
+$\DS'(2,\alpha)$:
+
+\begin{enumerate}[nosep]
+\item \textbf{Regime~1} ($\alpha \le 0.59$): $\DS'(2,\alpha) = 5$,
+matching $S(2)+1$.
+\item \textbf{Regime~2} ($0.60 \le \alpha \le 0.66$):
+$\DS'(2,\alpha) = 6$.
+\item \textbf{Regime~3} ($\alpha \ge 0.67$): $\DS'(2,\alpha) > 12$.
+\end{enumerate}
+
+\noindent
+The transition from Regime~1 to Regime~2 is sharp: at $\alpha=0.60$,
+$N=5$ has an avoiding coloring (one class can have 3 out of 5
+elements, and $3 < 0.60 \times 5 = 3.0$, so the density condition
+is not triggered), but $N=6$ does not.
+These values are determined by exhaustive enumeration over all
+$2^N$ colorings.
+
+%% ================================================================
+\section{Rado numbers and multiplicative Schur}\label{sec:rado}
+%% ================================================================
+
+\subsection{Rado numbers for linear equations}
+
+A Rado number $R(E,k)$ for an equation~$E$ is the minimum~$N$ such
+that every $k$-coloring of $\{1,\ldots,N\}$ has a monochromatic
+solution to~$E$.
+We computed the following values using a SAT-based approach
+(CaDiCaL 1.5 solver with direct encoding).
+
+\begin{table}[ht]
+\centering
+\caption{Rado numbers $R(E,k)$ for small equations and
+$k=1,2,3$.}\label{tab:rado}
+\smallskip
+\begin{tabular}{@{}l rrr@{}}
+\toprule
+Equation $E$ & $k=1$ & $k=2$ & $k=3$ \\
+\midrule
+$a+b=c$ (Schur)       &  2 &  5 & 14 \\
+$a+b=2c$ (van der Waerden) &  --- &  9 & 27 \\
+$a+b+c=d$             &  --- & 11 & 43 \\
+$a+2b=3c$             &  --- & 13 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+The Schur values $R(a{+}b{=}c,\, k) = S(k)+1$ are well-known
+($S(1)=1$, $S(2)=4$, $S(3)=13$, $S(4)=44$).
+The van der Waerden values match $W(k;3)$.
+The values $R(a{+}b{+}c{=}d,\, 2)=11$ and
+$R(a{+}b{+}c{=}d,\, 3)=43$ are verified by our SAT solver and are
+consistent with the known literature on Rado's theorem.
+A dash (---) indicates that the value was not computed (either
+trivial or exceeding our search bound).
+
+\subsection{Multiplicative Schur numbers}
+
+\begin{definition}
+$\MS(k)$ is the minimum~$N$ such that every $k$-coloring of
+$\{2,3,\ldots,N\}$ contains a monochromatic \emph{multiplicative
+triple} $\{a,b,ab\}$ (with $a\le b$).
+\end{definition}
+
+\noindent
+The domain starts at~2 to exclude~1, which would trivially satisfy
+$1\cdot a = a$ for all~$a$.
+
+\begin{observation}[SAT-verified]\label{obs:ms}
+$\MS(1) = 3$ and $\MS(2) = 31$.
+Equivalently, $\{2,3\}$ can be 1-colored avoiding multiplicative
+triples, but $\{2,3,4\}$ cannot (since $2\cdot 2=4$).
+For $k=2$, $\{2,\ldots,31\}$ can be 2-colored, but
+$\{2,\ldots,32\}$ cannot.
+\end{observation}
+
+\noindent
+Additionally, SAT verification for $k=3$ yields
+$\MS(3)=16383=2^{14}-1$ (with $\{2,\ldots,16383\}$ admitting a valid
+3-coloring but $\{2,\ldots,16384\}$ not).
+This suggests the formula
+\begin{equation}\label{eq:ms-formula}
+\MS(k) = 2^{(3^k+1)/2} - 1,
+\end{equation}
+which gives $\MS(1)=2^2-1=3$, $\MS(2)=2^5-1=31$, $\MS(3)=2^{14}-1=16383$.
+We emphasize that \eqref{eq:ms-formula} is a \emph{conjecture}
+extrapolated from three data points, not a theorem.
+The exponents $2,5,14$ satisfy the recurrence $f(k)=3f(k-1)-1$ with
+$f(1)=2$.
+
+Multiplicative Schur triples have been studied recently by
+Mattos, Mergoni Cecchelli, and Parczyk~\cite{mattos2024}, who
+investigate the equation $xy=z$ in the integers and obtain asymptotic
+density bounds.
+Our exact small-$k$ values may complement their asymptotic results,
+but we have not verified whether the values $\MS(1)$ and $\MS(2)$
+appear in prior work.
+
+\subsection{Mixed additive-multiplicative constraints}
+
+One can also forbid \emph{both} additive Schur triples
+$\{a,b,a{+}b\}$ and multiplicative triples $\{a,b,ab\}$
+simultaneously.
+We find that the resulting mixed number equals $S(k)+1$ for
+$k=1,2,3$: the additive constraint completely dominates.
+This is consistent with the much larger values of $\MS(k)$ compared
+to $S(k)+1$ (e.g., $\MS(2)=31$ vs.\ $S(2)+1=5$).
+
+%% ================================================================
+\section*{Acknowledgments}
+%% ================================================================
+
+Computational analysis performed with AI assistance (Claude,
+Anthropic).
+All SAT-based results verified independently using CaDiCaL.
+The Lean~4 formalization of $\DS(2,\tfrac{1}{2})=5$ was
+machine-checked with zero sorry statements.
+Source code and Lean proofs are available at~\cite{code-repo}.
+
+%% ================================================================
+\begin{thebibliography}{9}
+%% ================================================================
+
+\bibitem{green-ruzsa}
+B.~Green and I.~Ruzsa,
+``Sum-free sets in abelian groups,''
+\emph{Israel J.\ Math.} \textbf{147} (2005), 157--188.
+
+\bibitem{mattos2024}
+L.~Mattos, T.~Mergoni Cecchelli, and J.~Parczyk,
+``On product Schur triples in the integers,''
+\emph{SIAM J.\ Discrete Math.} (2024/2025).
+\url{https://epubs.siam.org/doi/10.1137/24M1632875}
+
+\bibitem{schur-survey}
+W.~Deuber, ``Developments based on Rado's dissertation
+\emph{Studien zur Kombinatorik},''
+in \emph{Surveys in Combinatorics} (1995), 52--74.
+
+\bibitem{code-repo}
+A.~Towell,
+``Erd\H{o}s problems: computational experiments,''
+2026.
+Zenodo code deposit.
+DOI: \texttt{10.5281/zenodo.18638635}.
+
+\end{thebibliography}
+
+\end{document}
