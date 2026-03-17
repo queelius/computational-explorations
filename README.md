@@ -73,3 +73,11 @@ atowell@siue.edu · [GitHub](https://github.com/queelius)
 ## License
 
 Code: MIT. Papers: CC-BY-4.0.
+
+## DOIs
+
+| Paper | DOI |
+|-------|-----|
+| Coprime Ramsey Numbers | [10.5281/zenodo.19058647](https://doi.org/10.5281/zenodo.19058647) |
+| Schur Number Extensions | [10.5281/zenodo.19058653](https://doi.org/10.5281/zenodo.19058653) |
+| Survival Analysis of Erdős Problems | [10.5281/zenodo.19058655](https://doi.org/10.5281/zenodo.19058655) |
