@@ -22,3 +22,10 @@ lean/.lake/
 lean/lake-packages/
 lean/build/
 analysis/
+
+# coverage + stray artifacts
+.coverage
+sys
+
+# external clone of teorth/erdosproblems, kept locally, pulled-updated (not tracked here)
+data/
