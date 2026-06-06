@@ -62,7 +62,9 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 - Erdős database: [teorth/erdosproblems](https://github.com/teorth/erdosproblems)
 - Coprime graph perfectness: Prior art — Syarifudin & Wardhana (groups case)
 - Product Schur triples: Related work — Mattos et al. (SIAM J. Discrete Math, 2024)
-- Coprime Ramsey numbers R_cop(k): Novel (no prior art found, March 2026)
+- Coprime Ramsey numbers R_cop(k): introduced here (no prior art, March 2026);
+  since cited and theorized by Du, Xi, Deng & Ma (2026), who prove these values
+  equal classical Ramsey numbers via a prime-index map (see "Cited by" below)
 - Full provenance report: [docs/provenance_and_verification.md](docs/provenance_and_verification.md)
 
 ## Author
@@ -81,3 +83,11 @@ Code: MIT. Papers: CC-BY-4.0.
 | Coprime Ramsey Numbers | [10.5281/zenodo.19058647](https://doi.org/10.5281/zenodo.19058647) |
 | Schur Number Extensions | [10.5281/zenodo.19058653](https://doi.org/10.5281/zenodo.19058653) |
 | Survival Analysis of Erdős Problems | [10.5281/zenodo.19058655](https://doi.org/10.5281/zenodo.19058655) |
+
+## Cited by
+
+- Z. Du, W. Xi, Z. Deng, L. Ma, *Prime Certificates for Exact Vertex-Coprime
+  Ramsey Numbers*, [arXiv:2605.26815](https://arxiv.org/abs/2605.26815) (2026).
+  Cites the coprime Ramsey values computed here (R_cop(3)=11, R_cop(3;3)=53,
+  R_cop(4)=59) and proves, via a prime-index map to classical Ramsey numbers
+  (their Theorem 4.4), why they take these values.

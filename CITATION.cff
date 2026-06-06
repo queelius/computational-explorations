@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+title: "Computational Explorations in Number Theory and Combinatorics"
+message: "If you use this work, please cite it using the metadata below."
+type: software
+authors:
+  - given-names: Alexander
+    family-names: Towell
+    email: lex@metafunctor.com
+    orcid: "https://orcid.org/0000-0001-6443-9897"
+    alias: queelius
+abstract: >
+  Curiosity-driven computational research on Erdos problems and natural
+  extensions, via SAT solving, exhaustive search, and Lean 4 formalization.
+  Includes the coprime Ramsey numbers R_cop(3)=11, R_cop(3;3)=53, R_cop(4)=59,
+  Schur-number extensions, and density-relaxed Schur numbers.
+url: "https://github.com/queelius/computational-explorations"
+repository-code: "https://github.com/queelius/computational-explorations"
+keywords:
+  - Ramsey theory
+  - coprime Ramsey numbers
+  - Schur numbers
+  - Erdos problems
+  - SAT solving
+  - combinatorics
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.19058647
+    description: Coprime Ramsey Numbers
+  - type: doi
+    value: 10.5281/zenodo.19058653
+    description: Schur Number Extensions
+preferred-citation:
+  type: article
+  title: "Coprime Ramsey Numbers"
+  authors:
+    - given-names: Alexander
+      family-names: Towell
+      orcid: "https://orcid.org/0000-0001-6443-9897"
+  doi: 10.5281/zenodo.19058647
+  year: 2026
