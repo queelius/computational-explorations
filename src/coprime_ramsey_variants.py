@@ -5,13 +5,14 @@ Coprime Ramsey Variants -- Relaxed and generalized coprime Ramsey numbers.
 Explores a landscape of combinatorial invariants around R_cop(k):
   1. Path/cycle coprime Ramsey: P_cop(k), C_cop(k)
   2. Multi-color coprime Ramsey: R_cop(k; c) for c colors
-  3. Bipartite coprime Ramsey: R_cop(s, t) for asymmetric clique sizes
+  3. Asymmetric coprime Ramsey: R_cop(s, t) for different clique sizes
   4. Gallai coprime Ramsey: GR_cop(k; c) -- no rainbow AND no mono K_k
   5. Density coprime Ramsey: fraction of avoiding colorings at n = R_cop(k) - 1
 
-All computations use SAT (pysat Glucose4) for exactness.
+Searches use SAT (pysat Glucose4); bounded enumeration reports whether it
+exhausted the colorings. See docs/coprime-ramsey-corrections.md for evidence.
 
-Computed values (SAT-verified):
+Reported values (path parameters 7 and 8 were not reproduced in the audit):
   P_cop: {3:5, 4:7, 5:9, 6:10, 7:13, 8:13}
   C_cop: {3:11, 4:8, 5:13, 6:11}
   R_cop(3;c): {2:11, 3:53}
@@ -21,7 +22,9 @@ Computed values (SAT-verified):
 
 import math
 import time
+from dataclasses import dataclass
 from itertools import combinations, permutations
+from numbers import Integral
 from typing import List, Tuple, Dict, Set, Optional
 
 from pysat.solvers import Glucose4
@@ -304,13 +307,15 @@ def compute_multicolor_coprime_ramsey(k: int, c: int, max_n: int = 80) -> int:
 
 
 # ---------------------------------------------------------------------------
-# 3. Bipartite (asymmetric) coprime Ramsey
+# 3. Asymmetric clique coprime Ramsey
 # ---------------------------------------------------------------------------
 
 def compute_bipartite_coprime_ramsey(s: int, t: int, max_n: int = 80) -> int:
     """
     Compute R_cop(s, t) = min n such that every 2-coloring of coprime edges
     in [n] has either a monochromatic K_s in color 0 or K_t in color 1.
+
+    The legacy name is retained; these are clique, not bipartite, targets.
 
     Encoding: x_e = True => color 0, x_e = False => color 1.
     For each s-clique: at least one edge False (not all color 0).
@@ -441,21 +446,40 @@ def compute_gallai_coprime_ramsey(k: int, c: int, max_n: int = 80) -> int:
 # 5. Density coprime Ramsey: fraction of avoiding colorings
 # ---------------------------------------------------------------------------
 
-def count_avoiding_colorings_sat(n: int, k: int, max_count: int = 100000) -> int:
-    """
-    Count the number of 2-colorings of coprime edges on [n] that avoid
-    monochromatic K_k, using SAT with blocking clauses.
+@dataclass(frozen=True)
+class ColoringCount:
+    """Enumerated labeled colorings and whether the search is complete."""
 
-    Returns exact count (up to max_count).
+    count: int
+    exhausted: bool
+
+
+class IncompleteEnumerationError(RuntimeError):
+    """An exact-count request reached its cap before exhausting colorings."""
+
+    def __init__(self, result: ColoringCount):
+        self.result = result
+        super().__init__(f"Enumeration capped at {result.count}; this is only a lower bound")
+
+
+def count_avoiding_colorings(n: int, k: int,
+                            max_count: int = 100000) -> ColoringCount:
+    """Enumerate avoiding colorings, retaining explicit exhaustion status.
+
+    All edge variables are registered, including those in no forbidden
+    clique. A final solve distinguishes an exact count at the cap from a
+    truncated lower bound. max_count limits models, not solver runtime.
     """
+    if any(not isinstance(value, Integral) or isinstance(value, bool)
+           for value in (n, k, max_count)):
+        raise ValueError("Counting parameters must be integers")
+    if n < 0 or k < 2 or max_count < 0:
+        raise ValueError("Require n >= 0, k >= 2, max_count >= 0")
     edges = coprime_edges(n)
-    if not edges:
-        return 1
-
     etv = _edge_var_map(edges)
     cliques = find_coprime_cliques(n, k)
 
-    clauses: List[List[int]] = []
+    clauses: List[List[int]] = [[v, -v] for v in etv.values()]
     for clique in cliques:
         vlist = sorted(clique)
         vars_ = []
@@ -465,19 +489,26 @@ def count_avoiding_colorings_sat(n: int, k: int, max_count: int = 100000) -> int
         clauses.append([-v for v in vars_])
         clauses.append([v for v in vars_])
 
-    solver = Glucose4(bootstrap_with=clauses)
     count = 0
-    num_vars = len(edges)
+    with Glucose4(bootstrap_with=clauses) as solver:
+        while count < max_count:
+            if not solver.solve():
+                return ColoringCount(count, exhausted=True)
+            count += 1
+            model = set(solver.get_model())
+            solver.add_clause([-v if v in model else v for v in etv.values()])
+        return ColoringCount(count, exhausted=not solver.solve())
 
-    while count < max_count:
-        if not solver.solve():
-            break
-        count += 1
-        model = solver.get_model()
-        solver.add_clause([-lit for lit in model[:num_vars]])
 
-    solver.delete()
-    return count
+def count_avoiding_colorings_sat(n: int, k: int, max_count: int = 100000) -> int:
+    """Return an exact count, raising IncompleteEnumerationError at a cap.
+
+    Use count_avoiding_colorings when a bounded lower count is acceptable.
+    """
+    result = count_avoiding_colorings(n, k, max_count)
+    if not result.exhausted:
+        raise IncompleteEnumerationError(result)
+    return result.count
 
 
 def density_avoiding_colorings(n: int, k: int,
@@ -485,7 +516,8 @@ def density_avoiding_colorings(n: int, k: int,
     """
     Compute the fraction of 2-colorings that avoid mono K_k at n.
 
-    Returns (avoiding_count, total_colorings, fraction).
+    Returns (avoiding_count, total_colorings, fraction). Raises
+    IncompleteEnumerationError rather than report a capped fraction as exact.
     """
     edges = coprime_edges(n)
     total = 2 ** len(edges) if edges else 1
@@ -497,6 +529,10 @@ def density_avoiding_colorings(n: int, k: int,
 # ---------------------------------------------------------------------------
 # Main: run all experiments and report
 # ---------------------------------------------------------------------------
+
+def _format_threshold(value: int) -> str:
+    return "undetermined" if value == -1 else str(value)
+
 
 def main():
     print("=" * 72)
@@ -519,7 +555,7 @@ def main():
         val = compute_path_coprime_ramsey(k, max_n=80)
         dt = time.time() - t0
         pcop[k] = val
-        print(f"  P_cop({k}) = {val}  ({dt:.2f}s)")
+        print(f"  P_cop({k}) = {_format_threshold(val)}  ({dt:.2f}s)")
 
     print()
 
@@ -538,7 +574,7 @@ def main():
         val = compute_cycle_coprime_ramsey(k, max_n=80)
         dt = time.time() - t0
         ccop[k] = val
-        print(f"  C_cop({k}) = {val}  ({dt:.2f}s)")
+        print(f"  C_cop({k}) = {_format_threshold(val)}  ({dt:.2f}s)")
 
     print()
 
@@ -557,15 +593,15 @@ def main():
         val = compute_multicolor_coprime_ramsey(3, c, max_n=80)
         dt = time.time() - t0
         mcop[c] = val
-        print(f"  R_cop(3; {c}) = {val}  ({dt:.2f}s)")
+        print(f"  R_cop(3; {c}) = {_format_threshold(val)}  ({dt:.2f}s)")
 
     print()
 
     # ------------------------------------------------------------------
-    # 3. Bipartite coprime Ramsey R_cop(s, t)
+    # 3. Asymmetric clique coprime Ramsey R_cop(s, t)
     # ------------------------------------------------------------------
     print("=" * 72)
-    print("3. BIPARTITE COPRIME RAMSEY: R_cop(s, t)")
+    print("3. ASYMMETRIC CLIQUE COPRIME RAMSEY: R_cop(s, t)")
     print("   R_cop(s, t) = min n : every 2-coloring has mono K_s in color 0")
     print("                 or mono K_t in color 1")
     print("=" * 72)
@@ -576,7 +612,7 @@ def main():
         val = compute_bipartite_coprime_ramsey(s, t, max_n=80)
         dt = time.time() - t0
         bcop[(s, t)] = val
-        print(f"  R_cop({s}, {t}) = {val}  ({dt:.2f}s)")
+        print(f"  R_cop({s}, {t}) = {_format_threshold(val)}  ({dt:.2f}s)")
 
     print()
 
@@ -595,7 +631,7 @@ def main():
         val = compute_gallai_coprime_ramsey(3, c, max_n=60)
         dt = time.time() - t0
         grcop[c] = val
-        print(f"  GR_cop(3; {c}) = {val}  ({dt:.2f}s)")
+        print(f"  GR_cop(3; {c}) = {_format_threshold(val)}  ({dt:.2f}s)")
 
     print()
 
@@ -632,41 +668,41 @@ def main():
     rcop_known = {3: 11, 4: 59}
     for k in sorted(pcop):
         rcop_str = str(rcop_known[k]) if k in rcop_known else "?"
-        print(f"  {k}  | {pcop[k]:>8d} | {rcop_str}")
+        print(f"  {k}  | {_format_threshold(pcop[k]):>8s} | {rcop_str}")
     print()
 
     print("Cycle Coprime Ramsey C_cop(k):")
     print("  k  | C_cop(k)")
     print("  ---+---------")
     for k in sorted(ccop):
-        print(f"  {k}  | {ccop[k]:>7d}")
+        print(f"  {k}  | {_format_threshold(ccop[k]):>7s}")
     print()
 
     print("Multi-color Coprime Ramsey R_cop(3; c):")
     print("  c  | R_cop(3;c) | R(3,...,3;c) classical")
     print("  ---+------------+------------------------")
-    classical = {2: 6, 3: 17, 4: 51}
+    classical = {2: 6, 3: 17}
     for c in sorted(mcop):
         cl_str = str(classical.get(c, "?"))
-        print(f"  {c}  | {mcop[c]:>10d} | {cl_str}")
+        print(f"  {c}  | {_format_threshold(mcop[c]):>10s} | {cl_str}")
     print()
 
-    print("Bipartite Coprime Ramsey R_cop(s, t):")
+    print("Asymmetric Clique Coprime Ramsey R_cop(s, t):")
     print("  (s,t)  | R_cop(s,t) | R(s,t) classical")
     print("  -------+------------+-----------------")
-    cl_bip = {(2, 3): 6, (2, 4): 9, (3, 4): 25}
+    cl_bip = {(2, 3): 3, (2, 4): 4, (3, 4): 9}
     for st in sorted(bcop):
         cl_str = str(cl_bip.get(st, "?"))
-        print(f"  {st}   | {bcop[st]:>10d} | {cl_str}")
+        print(f"  {st}   | {_format_threshold(bcop[st]):>10s} | {cl_str}")
     print()
 
     print("Gallai Coprime Ramsey GR_cop(3; c):")
     print("  c  | GR_cop(3;c) | GR(3;c) classical")
     print("  ---+-------------+------------------")
-    cl_gr = {3: 17}
+    cl_gr = {3: 11}
     for c in sorted(grcop):
         cl_str = str(cl_gr.get(c, "?"))
-        print(f"  {c}  | {grcop[c]:>11d} | {cl_str}")
+        print(f"  {c}  | {_format_threshold(grcop[c]):>11s} | {cl_str}")
     print()
 
     print("Density of avoiding 2-colorings (k=3):")
@@ -677,49 +713,9 @@ def main():
         print(f"  {n:2d} | {av:>8d} | {tot:>15d} | {fr:.8e}")
     print()
 
-    # ------------------------------------------------------------------
-    # Key observations
-    # ------------------------------------------------------------------
-    print("=" * 72)
-    print("KEY OBSERVATIONS")
-    print("=" * 72)
-    print()
-    print("1. PATH vs CLIQUE: P_cop(k) << R_cop(k). Paths are much easier to")
-    print("   force. P_cop values plateau at 13 for k=7,8 because n=13 is prime")
-    print("   and coprime-adjacent to all of [1..12], creating a dense graph")
-    print("   that forces long monochromatic paths in every 2-coloring.")
-    print()
-    print("2. CYCLE PATTERN: C_cop(3) = R_cop(3) = 11 (triangles are cycles).")
-    print("   Even-length cycles are easier to force than odd: C_cop(4) = 8 < 11.")
-    print("   C_cop(6) = 11 < C_cop(5) = 13 shows the same even/odd gap.")
-    print()
-    print("3. MULTI-COLOR GROWTH: R_cop(3;3)/R_cop(3;2) = 53/11 = 4.82.")
-    print("   Compare classical: R(3,3,3)/R(3,3) = 17/6 = 2.83.")
-    print("   Multi-color coprime Ramsey grows FASTER than classical, likely")
-    print("   because the coprime graph's number-theoretic structure provides")
-    print("   more room for clever multi-color avoidance strategies.")
-    print()
-    print("4. BIPARTITE: R_cop(s,t) < R_cop(max(s,t)) as expected. Asymmetry")
-    print("   helps: it is easier to avoid a K_2 in one color (any non-edge)")
-    print("   than a K_3, so R_cop(2,3) = 3 is small. R_cop(3,4) = 19 << 59.")
-    print()
-    print("5. GALLAI: GR_cop(3;3) = 29. In the coprime graph, Gallai colorings")
-    print("   (no monochromatic triangle AND no rainbow triangle) exist up to")
-    print("   n=28 but not at n=29. Compare classical GR(3,3,3) = 17.")
-    print()
-    print("6. DENSITY DECAY: The fraction of K_3-avoiding 2-colorings decays")
-    print("   super-exponentially: ~0.079 at n=6, ~1.7e-5 at n=8, ~7.3e-8 at")
-    print("   n=10. At n=10 (one below R_cop(3)=11), only 156 out of ~2.1")
-    print("   billion colorings avoid monochromatic triangles.")
-    print()
-    print("7. COPRIME AMPLIFICATION: For every invariant, the coprime version")
-    print("   exceeds the classical complete-graph version:")
-    print("     R_cop(3;2) = 11 > R(3,3) = 6        (factor 1.83)")
-    print("     R_cop(3;3) = 53 > R(3,3,3) = 17     (factor 3.12)")
-    print("     R_cop(3,4) = 19 > R(3,4) = 9 [sic]  (factor ~2)")
-    print("     GR_cop(3;3) = 29 > GR(3;3) = 17     (factor 1.71)")
-    print("   The coprime graph's missing edges (non-coprime pairs) require")
-    print("   larger n to force the same Ramsey-theoretic phenomena.")
+    print("An undetermined entry means this search did not establish a threshold.")
+    print("For proofs, historical comparisons, and verification limits, see")
+    print("docs/coprime-ramsey-corrections.md and discoveries/coprime-ramsey/README.md.")
 
 
 if __name__ == "__main__":

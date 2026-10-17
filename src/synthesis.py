@@ -938,7 +938,8 @@ def main():
 
     print("\n1. Computing vulnerability scores...")
     vuln = compute_vulnerability_scores(problems)
-    print(f"   Top 3: {[f'#{v['number']}' for v in vuln[:3]]}")
+    top_three = [f"#{v['number']}" for v in vuln[:3]]
+    print(f"   Top 3: {top_three}")
 
     print("\n2. Detecting dualities...")
     duals = detect_dualities(problems)
