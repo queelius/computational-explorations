@@ -1,0 +1,123 @@
+{
+  "source_commit": "0b745ecd65087e9e239943076a40a4b8c36de3e2",
+  "workflow_run": "https://github.com/queelius/computational-explorations/actions/runs/39027092121",
+  "archives": {
+    "ci-python310-focused.xml.gz": {
+      "uncompressed_sha256": "3c498eca565cc0f7bd3cf9242fa907d7ce87ab0f6ef1089c7b7efe67e3bf2b23",
+      "compressed_sha256": "e9852605eaf17178ba561419f5e5de00b22f7d6810e79722edc4807c48e6afea"
+    },
+    "ci-python310-coverage.xml.gz": {
+      "uncompressed_sha256": "8ccb01a684055a414916639fed89e0d33778b7c7e866dab1273da7924178ca27",
+      "compressed_sha256": "aade288661369e65beb6c1ee130737140178b733ab47c6a3fb8b9060f23c8d05"
+    },
+    "ci-python310-witnesses.json.gz": {
+      "uncompressed_sha256": "6161b7644098de9234a2a0f5fb69596b7f60839afe153605858c7ba0dfc3836b",
+      "compressed_sha256": "5670490455254e207d40bbd4fff324d6416bb20136d26f53832a2a5212915577"
+    },
+    "ci-python313-focused.xml.gz": {
+      "uncompressed_sha256": "a6967d954e46358ddcc30b3188e323a8cced1ba47a8684d69430f6cd37d7eb98",
+      "compressed_sha256": "98ac71f7b981cfe8b1dd659215febef4be99e1e283f7e573fdcf4848f836d6d4"
+    },
+    "ci-python313-coverage.xml.gz": {
+      "uncompressed_sha256": "797fc35b458cd2c99204e54c9856cfe20e0746b9be95c5eeee33f37ccf9a6df1",
+      "compressed_sha256": "674ea5dac915849e855b897514b0f16513b1928a5adf4a96ca199e60657dd28d"
+    },
+    "ci-python313-witnesses.json.gz": {
+      "uncompressed_sha256": "6161b7644098de9234a2a0f5fb69596b7f60839afe153605858c7ba0dfc3836b",
+      "compressed_sha256": "5670490455254e207d40bbd4fff324d6416bb20136d26f53832a2a5212915577"
+    },
+    "ci-routine.xml.gz": {
+      "uncompressed_sha256": "f2eb326352405e8f5336db802adee62944e9c6d5942606424d7b0c330d301f8d",
+      "compressed_sha256": "0209c65b41ee67187e36d79ff83035bd1b6ab70b46c5c9ed5edd36c77b1cfee6"
+    }
+  },
+  "jobs": {
+    "focused_python310": {
+      "tests": 330,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 40.211,
+      "covered_lines": 1176,
+      "measured_lines": 1379,
+      "witnesses": [
+        {
+          "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n10-k3-c2.json",
+          "valid": true,
+          "n": 10,
+          "forbidden_clique_size": 3,
+          "colors": 2,
+          "edges": 31,
+          "cliques_checked": 42
+        },
+        {
+          "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n52-k3-c3.json",
+          "valid": true,
+          "n": 52,
+          "forbidden_clique_size": 3,
+          "colors": 3,
+          "edges": 829,
+          "cliques_checked": 6684
+        },
+        {
+          "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n58-k4-c2.json",
+          "valid": true,
+          "n": 58,
+          "forbidden_clique_size": 4,
+          "colors": 2,
+          "edges": 1027,
+          "cliques_checked": 49815
+        }
+      ]
+    },
+    "focused_python313": {
+      "tests": 330,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 27.958,
+      "covered_lines": 1176,
+      "measured_lines": 1379,
+      "witnesses": [
+        {
+          "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n10-k3-c2.json",
+          "valid": true,
+          "n": 10,
+          "forbidden_clique_size": 3,
+          "colors": 2,
+          "edges": 31,
+          "cliques_checked": 42
+        },
+        {
+          "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n52-k3-c3.json",
+          "valid": true,
+          "n": 52,
+          "forbidden_clique_size": 3,
+          "colors": 3,
+          "edges": 829,
+          "cliques_checked": 6684
+        },
+        {
+          "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n58-k4-c2.json",
+          "valid": true,
+          "n": 58,
+          "forbidden_clique_size": 4,
+          "colors": 2,
+          "edges": 1027,
+          "cliques_checked": 49815
+        }
+      ]
+    },
+    "routine_python310": {
+      "tests": 6016,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1205.787,
+      "matches_local_collection": true,
+      "slow_tests_excluded": 14
+    }
+  },
+  "workflow_status": "completed",
+  "workflow_conclusion": "success"
+}

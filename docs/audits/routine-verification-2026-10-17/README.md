@@ -5,6 +5,29 @@ It adds verification infrastructure; it does not replace that release's evidence
 or claim that every research result has been checked. Reproduction commands are
 in [Running Verification](../../verification.md).
 
+## Final hosted result
+
+[GitHub Actions run 39027092121](https://github.com/queelius/computational-explorations/actions/runs/39027092121)
+passed all three jobs at source commit
+`0b745ecd65087e9e239943076a40a4b8c36de3e2`:
+
+| Suite | Passed | Test duration |
+| --- | ---: | ---: |
+| Routine, Python 3.10 | 6,016 | 1,205.79s |
+| Focused, Python 3.10 | 330 | 40.21s |
+| Focused, Python 3.13 | 330 | 27.96s |
+
+Each report has zero failures, errors, or skips. The routine report's test
+identities exactly match the locally collected routine selection. The focused
+jobs independently validate all three witnesses and measure 1,176 of 1,379
+lines covered (85.28%) across the five selected modules. Focused tests overlap
+the routine suite; these counts are not a sum of distinct tests.
+
+[The final manifest](final-ci.json) records counts, timings, witness results,
+and checksums for the compressed JUnit, coverage, and witness artifacts stored
+alongside it. The follow-up results commit changes only this audit directory;
+the tested source, tests, dependencies, and workflow remain identical.
+
 ## Historical paper notices
 
 Dated correction notices are published on Zenodo records
@@ -113,9 +136,9 @@ The dependency and assertion repairs pass 51 related tests on Python 3.10
 ([25.95s](assertion-repairs-python313.txt)). All 12 timing-related regression
 tests pass in [187.76s](timing-repairs.txt): n=10 witness setup takes 43.92s,
 n=11 enumeration 54.51s, and the two-search test 89.15s. The additional
-parameterized oracle increases the
-routine selection to 6,016 tests. Final hosted results are linked from the
-[integration PR](https://github.com/queelius/computational-explorations/pull/3).
+parameterized oracle increases the routine selection to 6,016 tests. The final
+hosted result above supersedes the incomplete local attempts. Integration is
+tracked in [PR #3](https://github.com/queelius/computational-explorations/pull/3).
 
 The [collected selection](test-selection.json) lists every excluded test.
 Four existing searches with declared timeouts over 300 seconds and the
