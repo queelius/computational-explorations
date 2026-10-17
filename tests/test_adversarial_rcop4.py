@@ -391,6 +391,7 @@ class TestAV7CrossSolver:
 # ======================================================================
 
 class TestAV5Extension:
+    @pytest.mark.slow
     @pytest.mark.timeout(600)
     def test_no_extension_to_59(self):
         """No valid n=58 coloring should extend to n=59."""

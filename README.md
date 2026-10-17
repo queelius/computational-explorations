@@ -17,8 +17,8 @@ A curiosity-driven research project exploring mathematical structure through com
 ## Repository Structure
 
 ```
-src/                    # 56+ Python modules — computational experiments
-tests/                  # 57+ test files, ~3000 tests
+src/                    # Python modules — computational experiments
+tests/                  # Unit, integration, and long-running research tests
 lean/                   # Lean 4 formalizations (mixed status; coprime Ramsey incomplete)
 paper/                  # LaTeX papers for DOI minting
 docs/                   # Research findings, provenance, OEIS candidates
@@ -34,6 +34,7 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 
 ## Key Documents
 
+- [Running verification](docs/verification.md) — Fresh environment, independent witness checker, routine tests, and CI scope
 - [Coprime Ramsey release](docs/coprime-ramsey-release.md) — Versioned corrections, witnesses, and verification scope
 - [Coprime Ramsey corrections (2026-10-17)](docs/coprime-ramsey-corrections.md) — Current proof status and errata for the archived manuscript
 - [Coprime Ramsey audit](docs/coprime-ramsey-citation-audit.md) — Reproduced checks, witnesses, and remaining gaps

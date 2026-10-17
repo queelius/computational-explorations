@@ -1,0 +1,124 @@
+{
+  "status": "incomplete",
+  "summary": "18 failed, 2716 passed; worker restart followed by collection error",
+  "dataset_commit": "350c521bd45292ddcdb751e86604a652c68558c5",
+  "collected_at_start": 6017,
+  "slow_deselected": 11,
+  "issues": [
+    {
+      "class": "tests.test_ai_math_analysis.TestResolutionVelocity",
+      "test": "test_full_corpus_213_recent",
+      "kind": "failure",
+      "message": "assert 300 == 213"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestResolutionVelocity",
+      "test": "test_full_corpus_7_months",
+      "kind": "failure",
+      "message": "AssertionError: assert 10 == 7\n +  where 10 = len({'2025-09': 22, '2025-10': 19, '2025-11': 12, '2025-12': 41, ...})"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestResolutionVelocity",
+      "test": "test_full_corpus_cumulative_213",
+      "kind": "failure",
+      "message": "assert 300.0 == 213"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestLeanFactor",
+      "test": "test_full_corpus_120_lean",
+      "kind": "failure",
+      "message": "assert 186 == 120"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestLeanFactor",
+      "test": "test_full_corpus_118_recent_lean",
+      "kind": "failure",
+      "message": "assert 182 == 118"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestLeanFactor",
+      "test": "test_full_corpus_ai_era_lean_fraction",
+      "kind": "failure",
+      "message": "assert 0.607 < 0.6"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestDifficultyCurve",
+      "test": "test_full_corpus_7_months",
+      "kind": "failure",
+      "message": "AssertionError: assert 10 == 7\n +  where 10 = len(['2025-09', '2025-10', '2025-11', '2025-12', '2026-01', '2026-02', ...])"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestPrediction",
+      "test": "test_full_corpus_all_open",
+      "kind": "failure",
+      "message": "assert 622 == 650"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestSynthesis",
+      "test": "test_full_corpus_narrative",
+      "kind": "failure",
+      "message": "assert 1217 == 1183"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestDataIntegrity",
+      "test": "test_total_problems",
+      "kind": "failure",
+      "message": "AssertionError: assert 1217 == 1183\n +  where 1217 = len([{'number': '1', 'prize': '$500', 'status': {'state': 'open', 'last_update': '2025-08-31'}, 'oeis': ['A276661'], ...},...ber': '6', 'prize': '$100', 'status': {'state': 'proved', 'last_update': '2025-08-31'}, 'oeis': ['A335277'], ...}, ...])"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestDataIntegrity",
+      "test": "test_resolved_count",
+      "kind": "failure",
+      "message": "assert 542 == 483"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestDataIntegrity",
+      "test": "test_open_count",
+      "kind": "failure",
+      "message": "assert 622 == 650"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestDataIntegrity",
+      "test": "test_lean_resolved_count",
+      "kind": "failure",
+      "message": "assert 186 == 120"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestDataIntegrity",
+      "test": "test_recent_resolutions",
+      "kind": "failure",
+      "message": "assert 300 == 213"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestDataIntegrity",
+      "test": "test_recent_lean",
+      "kind": "failure",
+      "message": "assert 182 == 118"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestDataIntegrity",
+      "test": "test_formalized_count",
+      "kind": "failure",
+      "message": "assert 430 == 383"
+    },
+    {
+      "class": "tests.test_ai_math_analysis.TestDataIntegrity",
+      "test": "test_jan_2026_spike",
+      "kind": "failure",
+      "message": "assert 58 == 60"
+    },
+    {
+      "class": "tests.test_ramsey_algorithms.TestCompareAlgorithmsRcop3",
+      "test": "test_all_agree_on_n11",
+      "kind": "error",
+      "message": "failed on setup with \"worker 'gw1' crashed while running 'tests/test_ramsey_algorithms.py::TestCompareAlgorithmsRcop3::test_all_agree_on_n11'\""
+    },
+    {
+      "class": "pytest",
+      "test": "internal",
+      "kind": "error",
+      "message": "internal error"
+    }
+  ],
+  "explanation": "17 historical-data assertions used the newer June snapshot. The exhaustive algorithm benchmark lost a worker. Eight tests were added while this run was active, so restart collection was inconsistent; the subsequent assessment freezes the test tree."
+}

@@ -110,6 +110,15 @@ class TestUnitDistanceCount:
         assert unit_distance_count(pts, tol=1e-7) == 1
         assert unit_distance_count(pts, tol=1e-15) == 0
 
+    @pytest.mark.parametrize("count", [0, 1])
+    def test_no_pairs(self, count):
+        assert unit_distance_count(np.zeros((count, 2))) == 0
+
+    def test_strict_squared_distance_tolerance(self):
+        pts = np.array([[0.0, 0.0], [1.0, 1.0]])
+        assert unit_distance_count(pts, tol=1.0) == 0
+        assert unit_distance_count(pts, tol=np.nextafter(1.0, 2.0)) == 1
+
 
 class TestMaxDistanceMultiplicity:
     def test_equilateral_triangle(self):
@@ -144,6 +153,19 @@ class TestHasDuplicatePoints:
         pts = np.array([[0.0, 0.0], [1e-5, 0.0]])
         assert _has_duplicate_points(pts, min_sep=1e-4)
         assert not _has_duplicate_points(pts, min_sep=1e-6)
+
+    @pytest.mark.parametrize("count", [0, 1])
+    def test_no_pairs(self, count):
+        assert not _has_duplicate_points(np.zeros((count, 2)))
+
+    def test_strict_separation_boundary(self):
+        pts = np.array([[0.0, 0.0], [1.0, 0.0]])
+        assert not _has_duplicate_points(pts, min_sep=1.0)
+        assert _has_duplicate_points(pts, min_sep=np.nextafter(1.0, 2.0))
+
+    @pytest.mark.parametrize("min_sep", [0.0, -1.0])
+    def test_nonpositive_separation(self, min_sep):
+        assert not _has_duplicate_points(np.zeros((2, 2)), min_sep=min_sep)
 
 
 # =====================================================================

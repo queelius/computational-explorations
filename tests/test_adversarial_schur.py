@@ -764,12 +764,14 @@ class TestOrder49Counterexample:
         s = sat_schur((49,), k=2)
         assert s == 32
 
+    @pytest.mark.slow
     @pytest.mark.timeout(3600)
     def test_z7z7_value(self):
         """S(Z/7Z x Z/7Z, 2) = 28.  (~30 min computation)"""
         s = sat_schur((7, 7), k=2)
         assert s == 28
 
+    @pytest.mark.slow
     @pytest.mark.timeout(3600)
     def test_order_49_counterexample(self):
         """COUNTEREXAMPLE: S(Z/49Z, 2) = 32 != S(Z/7Z x Z/7Z, 2) = 28.

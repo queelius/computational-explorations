@@ -213,7 +213,11 @@ class TestBacktrackingWithPruning:
         assert nodes > 0
 
 
+@pytest.mark.slow
+@pytest.mark.timeout(1800)
 class TestCompareAlgorithmsRcop3:
+    """Full benchmark includes exhaustive enumeration of 2**27 colorings."""
+
     @pytest.fixture(scope="class")
     def rcop3_results(self):
         return compare_algorithms_rcop3()
