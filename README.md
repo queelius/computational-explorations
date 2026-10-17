@@ -105,6 +105,10 @@ Code: MIT. Papers: CC-BY-4.0.
 
 ## DOIs
 
+The corrected software and witnesses are archived as
+[coprime-ramsey-2026.10.17](https://doi.org/10.5281/zenodo.23433640).
+See the [release record](docs/coprime-ramsey-release.md) for verification scope.
+
 | Paper | DOI |
 |-------|-----|
 | Coprime Ramsey Numbers (original paper; [corrections](docs/coprime-ramsey-corrections.md)) | [10.5281/zenodo.19058647](https://doi.org/10.5281/zenodo.19058647) |

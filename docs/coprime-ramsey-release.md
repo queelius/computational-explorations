@@ -76,9 +76,14 @@ manifest identify this branch separately.
 
 The [GitHub release](https://github.com/queelius/computational-explorations/releases/tag/coprime-ramsey-2026.10.17)
 provides the exact tagged source and verification artifacts. The repository's
-existing Zenodo release integration archives the software; its resulting
-version DOI should be used to cite this snapshot. The original paper remains
-at [10.5281/zenodo.19058647](https://doi.org/10.5281/zenodo.19058647).
+Zenodo integration archived the software at version DOI
+[10.5281/zenodo.23433640](https://doi.org/10.5281/zenodo.23433640). Use that DOI
+to cite this snapshot. All 310 files in the downloaded archive match the
+tagged source manifest by path, size, and SHA-256. The release's
+`zenodo-verification.json` attachment records the comparison against commit
+`9b6fd18bf0ea736736ec4bad6fa1c332afe0bcb7`. This DOI link was added to the
+repository after archiving; the release tag remains unchanged. The original
+paper remains at [10.5281/zenodo.19058647](https://doi.org/10.5281/zenodo.19058647).
 
 Completing Lean proofs, preserving UNSAT certificates for every variant, and
 independently reproducing the two longer path thresholds remain separate
