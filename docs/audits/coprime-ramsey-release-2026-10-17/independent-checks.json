@@ -1,0 +1,59 @@
+{
+  "head": "4bef9df23fba3801b069dccdce32027d9c7e5865",
+  "python": "3.10.20",
+  "python_sat": "1.9.dev6",
+  "witnesses": [
+    {
+      "n": 10,
+      "forbidden_clique_size": 3,
+      "colors": 2,
+      "construction": "C5 red edges and its complement; least-prime-divisor pullback",
+      "edges": 31,
+      "cliques_checked": 42,
+      "valid": true,
+      "provenance": "New audit construction; not an original SAT witness",
+      "file": "witness-n10-k3-c2.json"
+    },
+    {
+      "n": 58,
+      "forbidden_clique_size": 4,
+      "colors": 2,
+      "construction": "Quadratic-residue coloring of K17; least-prime-divisor pullback",
+      "edges": 1027,
+      "cliques_checked": 49815,
+      "valid": true,
+      "provenance": "New audit construction; not an original SAT witness",
+      "file": "witness-n58-k4-c2.json"
+    },
+    {
+      "n": 52,
+      "forbidden_clique_size": 3,
+      "colors": 3,
+      "construction": "F16 nonzero-difference exponent classes modulo 3; prime-label pullback",
+      "edges": 829,
+      "cliques_checked": 6684,
+      "valid": true,
+      "provenance": "New audit construction; not an original SAT witness",
+      "file": "witness-n52-k3-c3.json"
+    }
+  ],
+  "probes": {
+    "sampled_extension_6_to_7_one_seed": [
+      false,
+      1
+    ],
+    "direct_target_n7_sat": true,
+    "empty_coloring_accepted": false,
+    "out_of_palette_coloring_accepted": false,
+    "n2_triangle_avoiding_count_actual": 2,
+    "n2_triangle_avoiding_count_expected": 2,
+    "n8_n9_n10_n11_counts": {
+      "8": 36,
+      "9": 36,
+      "10": 156,
+      "11": 0
+    },
+    "n11_edge_count": 41
+  },
+  "scope": "Lower-bound witnesses and diagnostic probes; no upper SAT proof certificates"
+}

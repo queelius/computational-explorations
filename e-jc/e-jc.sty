@@ -1,0 +1,219 @@
+%% Style file for the Electronic Journal of Combinatorics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{e-jc}[2023/07/03 Electronic Journal of Combinatorics]
+
+% We change the footnote style to alphabetic in this style file
+% for use in the author list.  Then it is changed back to numeric
+% by \maketitle
+
+\renewcommand{\thefootnote}{\textit{\alph{footnote}}}
+\renewcommand{\thanks}[1]{\textbf{Please don't use ``thanks''.}}
+
+\def\get@fnmark#1{%
+  \begingroup
+     \c@footnote #1\relax
+     \unrestored@protected@xdef\@thisfnmark{\thefootnote}%
+  \endgroup
+  \@thisfnmark}
+\def\authornote#1{\unskip\kern0.03em\proc@anote#1,,,,\endproc@anote}
+\def\proc@anote#1,#2,#3,#4,#5\endproc@anote
+{\def\@anoteA{\get@fnmark{#1}}%
+  \ifx\relax#2\relax\let\@anoteB=\relax\else\def\@anoteB{,\get@fnmark{#2}}\fi
+  \ifx\relax#3\relax\let\@anoteC=\relax\else\def\@anoteC{,\get@fnmark{#3}}\fi
+  \ifx\relax#4\relax\let\@anoteD=\relax\else\def\@anoteD{,\get@fnmark{#4}}\fi
+  \rlap{\@textsuperscript{\normalfont\@anoteA\@anoteB\@anoteC\@anoteD}}}
+% \authortext accepts for its first argument either a number or {} or { }.
+% The last two cases and number 0 create a footnote with an empty label.
+\long\def\the@authortext{}
+\long\def\authortext#1#2{%
+  \ifx\relax#1\relax
+  \g@addto@macro\the@authortext{\footnotetext[0]{\raggedright #2}}\else
+  \ifx#1 % intentional space before percent
+  \g@addto@macro\the@authortext{\footnotetext[0]{\raggedright #2}}\else
+  \g@addto@macro\the@authortext{\footnotetext[#1]{\raggedright #2}}\fi\fi}
+
+\newcommand\email[1]{\texttt{#1}}
+
+% Use hanging indentation in footnotes
+\long\def\@makefntext#1{\parindent 1.02em\noindent
+   \everypar={\hangindent=1.02em}\hangindent=1.02em
+  \hb@xt@1em{\hss\@textsuperscript{\normalfont\@thefnmark}}\kern0.02em #1}
+
+\renewcommand\maketitle{\par
+  \begingroup
+    \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+    \newpage
+    \global\@topnum\z@   % Prevents figures from going at top of page.
+    \the@authortext
+    \@maketitle
+    \thispagestyle{plain} % \@thanks
+  \endgroup
+  \setcounter{footnote}{0}%
+  \renewcommand{\thefootnote}{\arabic{footnote}}
+  \global\let\maketitle\relax
+  \global\let\@maketitle\relax
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@title\@empty
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\and\relax}
+
+\DeclareOption{amsmath}{\let\use@amsmath=\relax}
+\DeclareOption{cleveref}{\let\use@cleveref=\relax}
+\ProcessOptions\relax
+
+\RequirePackage[a4paper]{geometry}
+\ifx\use@amsmath\undefined\else\RequirePackage{amsmath}\fi
+\RequirePackage{amsthm,amssymb}
+\RequirePackage[colorlinks=true,citecolor=black,linkcolor=black,urlcolor=blue]{hyperref}
+
+\setlength{\textwidth}{160mm}
+\setlength{\textheight}{221mm}
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\footskip}{9mm}
+
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\le}{\leqslant}
+
+\newenvironment{corrigendum}[1]%
+{\clearpage\newpage\section*{Corrigendum -- submitted #1}}{}
+\newenvironment{addendum}[1]%
+{\clearpage\newpage\section*{Addendum -- submitted #1}}{}
+
+\newcommand{\reusenumber}[2]{\setcounter{#1}{#2}\addtocounter{#1}{-1}}
+
+\newcommand{\specs}[4]{\def\papno{#1}\def\volno{#2}\def\volyear{#3}\def\papid{#4}}
+\ifx\volno\undefined\def\volno{30}\fi
+\ifx\volyear\undefined\def\volyear{2023}\fi
+\ifx\papno\undefined\def\papno{P00}\fi
+\ifx\papid\undefined\def\papid{00000}\fi
+
+\def\copy@right{PLEASE ADD A \texttt{\textbackslash Copyright\{\}} STATEMENT.}
+\newcommand{\Copyright}[1]{\def\copy@right{\copyright\thinspace\ignorespaces#1}}
+\newcommand{\dateline}[3]{\def\the@dateline{Submitted: \ignorespaces#1;
+    Accepted: \ignorespaces#2; Published: \ignorespaces#3\\[0.5ex]\copy@right}}
+\newcommand{\MSC}[1]{\def\the@MSC{\ignorespaces#1}}
+
+\let\old@maketitle\maketitle
+\renewcommand{\maketitle}{\date{\small\the@dateline}\old@maketitle}
+
+\renewenvironment{abstract}{%
+  \small
+      \begin{center}%
+	{\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
+      \end{center}%
+      \quotation}%
+  {\par\smallskip\noindent
+   \textbf{Mathematics Subject Classifications: }\the@MSC\endquotation} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The next group of commands makes the font smaller for the title and
+%% for section and subsection headings, and adjusts the space just below 
+%% each such heading.
+
+\renewcommand\title[1]{\gdef\@title{\reset@font\Large\bfseries #1}}
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {-2.5ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                     {2ex \@plus.5ex \@minus.2ex}%
+                                     {-1em}%
+                                     {\normalfont\normalsize\bfseries}}
+
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                     {2ex \@plus.5ex \@minus .2ex}%
+                                     {-1em}%
+                                     {\normalfont\normalsize\bfseries}}
+
+% These font declarations are for the footer appearing on all pages.
+\newfont{\footsc}{cmcsc10 at 8truept}
+\newfont{\footbf}{cmbx10 at 8truept}
+\newfont{\footrm}{cmr10 at 10truept}
+\newfont{\foottt}{cmtt10 at 10truept}
+
+\renewcommand{\ps@plain}{%
+\renewcommand{\@oddfoot}{\footsc the electronic journal of combinatorics
+{\footbf\volno} (\volyear), \#\papno\hfil
+\ifnum\value{page}>1{\thepage}\else
+ \href{https://doi.org/10.37236/\papid}{\foottt
+      https://doi.org/10.37236/\papid\kern0.1em}\fi}}
+
+\pagestyle{plain}
+\g@addto@macro\bfseries{\boldmath}
+
+%%%  Squashing the bibliography together a bit
+  \newlength{\BiblioSpacing}
+  \setlength{\BiblioSpacing}{0.4ex plus 0.1ex minus 0.1ex}
+  \newcommand{\SquashBibFurther}{%
+     \setlength{\BiblioSpacing}{0.2ex plus 0.1ex}}
+
+  \let\oldthebibliography\thebibliography
+  \let\endoldthebibliography\endthebibliography
+  \renewenvironment{thebibliography}[1]{%
+    \begin{oldthebibliography}{#1}%
+      \setlength{\parskip}{\BiblioSpacing}
+      \setlength{\itemsep}{\BiblioSpacing}
+      \ifdefined\bibsep\setlength{\bibsep}{\BiblioSpacing}\fi% for natbib
+  }%
+  {%
+    \end{oldthebibliography}%
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifx\use@cleveref\undefined
+\else
+  \ifx\cleverefoptions\undefined
+      \RequirePackage{cleveref}%
+  \else
+      \RequirePackage[\cleverefoptions]{cleveref}%
+  \fi
+\fi
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{claim}[theorem]{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{open}[theorem]{Open Problem}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{question}[theorem]{Question}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+% For linking to an arXiv article:
+\newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\texttt{arXiv:#1}}}
+
+% Typeset a doi. Some magic to make underscores work:
+\def\doi{\begingroup\catcode`\_=12\relax\doi@arg}
+\def\doi@arg#1{\href{https://doi.org/#1}{\texttt{doi:#1}}\endgroup}

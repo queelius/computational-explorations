@@ -7,6 +7,7 @@ dependencies = [
     "numpy",
     "pyyaml",
     "networkx",
+    "python-sat",
 ]
 
 [project.optional-dependencies]
@@ -14,6 +15,10 @@ test = [
     "pytest",
     "pytest-cov",
     "pytest-timeout",
+    "pytest-xdist",
+    "scipy",
+    "sympy",
+    "scikit-learn",
 ]
 
 [tool.pytest.ini_options]

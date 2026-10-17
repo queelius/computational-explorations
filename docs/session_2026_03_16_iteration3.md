@@ -70,16 +70,22 @@ And AP cluster: #3, #52, #142, #160, #168, #170, #172, #201, #271
 
 ## R_cop(4) = 59 (EXACT — from SAT agent)
 
-Proved by two-phase approach:
-- Lower bound: Glucose4 SAT solver finds avoiding colorings at n≤58
-- Upper bound: 100 independent n=58 colorings ALL fail to extend to n=59
-- Clause/variable ratio at n=59 is ~109 (far above UNSAT threshold)
-- 59 is prime → coprime to all 1..58 → 9,141 new K_4-cliques
+**Correction (2026-10-17):** the original two-phase report below did not prove its upper bound. The complete proof combines an avoiding witness at 58 with the K_18 formed by 1 and the primes at most 59; R(4,4)=18 forces a monochromatic K_4. See [corrections](coprime-ramsey-corrections.md).
 
-## Meta-Pattern: R_cop(k) is Always Prime
-R_cop(2)=2, R_cop(3)=11, R_cop(4)=59 — all prime.
-Mechanism: primes have φ(p)=p-1, maximum edge connectivity.
-Conjecture (NPG-30): R_cop(k) is always prime.
+Historical computational report:
+
+- Lower bound: Glucose4 SAT solver finds avoiding colorings at n≤58.
+- Sampled extensions: 100 independent n=58 colorings all fail to extend to n=59; this does not exhaust the base colorings.
+- Reported clause/variable ratio at n=59 was ~109; clause density does not prove UNSAT.
+- 59 is prime → coprime to all 1..58 → 9,141 new K_4-cliques.
+
+## Meta-Pattern: R_cop(k) is Always Prime (later EXPLAINED)
+R_cop(2)=2, R_cop(3)=11, R_cop(4)=59, all prime.
+Original conjecture (NPG-30): R_cop(k) is always prime.
+RESOLVED: Du, Xi, Deng & Ma (2026, arXiv:2605.26815, Thm 4.4) prove
+R_cop(k) = p_{R(k,k)-1}, so primality is automatic (prime by construction).
+The φ(p)=p-1 connectivity story is a consistent heuristic, not the cause.
+See docs/novel_problems.md (NPG-30) and docs/rcop5-reconciliation.md.
 
 ## DS Definition Sensitivity (0-indexed vs 1-indexed)
 CRITICAL FINDING: DS(2, 1/2) = 5 on {0,...,N-1} but 6 on {1,...,N}.

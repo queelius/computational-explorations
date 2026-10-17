@@ -12,7 +12,11 @@ k-cliques, without re-encoding from scratch.
 
 import math
 import time
+from collections.abc import Mapping
+from dataclasses import dataclass
+from enum import Enum, auto
 from itertools import combinations
+from numbers import Integral
 from typing import List, Tuple, Dict, Optional, Set
 
 from pysat.solvers import Glucose4, Solver
@@ -343,8 +347,23 @@ def compute_rcop_sat(k: int, max_n: int = 100, verbose: bool = True,
     return -1
 
 
-def check_extension_unsat(n_base: int, n_new: int, k: int,
-                          num_seeds: int = 20) -> Tuple[bool, int]:
+class ExtensionStatus(Enum):
+    """Evidence established by a bounded extension search."""
+
+    EXTENSIBLE = auto()
+    EXHAUSTED = auto()
+    INCONCLUSIVE = auto()
+
+
+@dataclass(frozen=True)
+class ExtensionResult:
+    status: ExtensionStatus
+    seeds_checked: int
+    coloring: Optional[Dict[Tuple[int, int], int]] = None
+
+
+def check_extensions(n_base: int, n_new: int, k: int,
+                     num_seeds: int = 20) -> ExtensionResult:
     """
     Check whether any valid K_k-free coloring of [n_base] can be extended
     to [n_new] by coloring the new edges incident to n_new.
@@ -354,11 +373,23 @@ def check_extension_unsat(n_base: int, n_new: int, k: int,
     1. We enumerate valid n_base colorings via blocking clauses.
     2. For each, we fix the base edges and solve only for the new star edges.
 
-    Requires n_new = n_base + 1 and n_new coprime to all of [1..n_base]
-    (i.e., n_new is prime).
+    Requires n_base >= 2, n_new = n_base + 1, and k >= 2. The new
+    vertex need not be prime; only its coprime incident edges are added.
 
-    Returns (all_failed, num_seeds_checked).
+    EXHAUSTED certifies that no base coloring extends. INCONCLUSIVE means
+    the seed budget was reached with base colorings still unexamined.
+    EXTENSIBLE includes a complete avoiding coloring on [n_new]. The
+    budget limits examined seeds, not solver runtime. One final base solve
+    distinguishes exhaustion exactly at the budget from truncation.
+    Enumeration fixes edge (1, 2) to color 0; global color swapping covers
+    the other half of the base colorings without changing extensibility.
     """
+    parameters = (n_base, n_new, k, num_seeds)
+    if any(not isinstance(value, Integral) or isinstance(value, bool)
+           for value in parameters):
+        raise ValueError("Extension parameters must be integers")
+    if n_base < 2 or n_new != n_base + 1 or k < 2 or num_seeds < 0:
+        raise ValueError("Require n_base >= 2, n_new = n_base + 1, k >= 2, num_seeds >= 0")
     adj_base: Dict[int, Set[int]] = {}
     etv_base: Dict[Tuple[int, int], int] = {}
     nv = 1
@@ -407,50 +438,69 @@ def check_extension_unsat(n_base: int, n_new: int, k: int,
         full_clauses.append([-v for v in vars_])
         full_clauses.append([v for v in vars_])
 
-    # Get diverse seeds from n_base
-    solver_base = Glucose4(bootstrap_with=base_clauses)
-    solver_full = Glucose4(bootstrap_with=full_clauses)
+    # Register even edges outside every k-clique. Their assignments matter
+    # when enumerating base colorings and constructing complete witnesses.
+    base_clauses.extend([var, -var] for var in etv_base.values())
+    full_clauses.extend([var, -var] for var in etv_new.values())
 
-    seeds_checked = 0
-    for _ in range(num_seeds):
-        if not solver_base.solve():
-            break
+    with Glucose4(bootstrap_with=base_clauses) as solver_base, \
+            Glucose4(bootstrap_with=full_clauses) as solver_full:
+        seeds_checked = 0
+        while seeds_checked < num_seeds:
+            if not solver_base.solve():
+                return ExtensionResult(ExtensionStatus.EXHAUSTED, seeds_checked)
 
-        model = solver_base.get_model()
-        model_set = set(model)
-        seeds_checked += 1
+            model_set = set(solver_base.get_model())
+            seeds_checked += 1
+            assumptions = [etv_new[edge] if var in model_set else -etv_new[edge]
+                           for edge, var in etv_base.items()]
+            if solver_full.solve(assumptions=assumptions):
+                model = set(solver_full.get_model())
+                coloring = {edge: int(var not in model)
+                            for edge, var in etv_new.items()}
+                return ExtensionResult(
+                    ExtensionStatus.EXTENSIBLE, seeds_checked, coloring)
 
-        # Build assumptions: fix base edges to this seed's values
-        assumptions = []
-        for edge, var in etv_new.items():
-            if max(edge) < n_new:
-                old_var = etv_base.get(edge)
-                if old_var:
-                    if old_var in model_set:
-                        assumptions.append(var)
-                    else:
-                        assumptions.append(-var)
+            solver_base.add_clause([
+                -var if var in model_set else var for var in etv_base.values()
+            ])
 
-        sat = solver_full.solve(assumptions=assumptions)
-        if sat:
-            solver_base.delete()
-            solver_full.delete()
-            return False, seeds_checked  # Extension found
+        status = (ExtensionStatus.INCONCLUSIVE if solver_base.solve()
+                  else ExtensionStatus.EXHAUSTED)
+        return ExtensionResult(status, seeds_checked)
 
-        # Block this seed
-        solver_base.add_clause([-l for l in model])
 
-    solver_base.delete()
-    solver_full.delete()
-    return True, seeds_checked
+def check_extension_unsat(n_base: int, n_new: int, k: int,
+                          num_seeds: int = 20) -> Tuple[bool, int]:
+    """Return (proved_unsat, seeds_checked), preserving the tuple interface.
+
+    True requires exhaustive failure. False can mean either an extensible
+    witness or an inconclusive sample; use check_extensions to distinguish
+    them. Failed samples alone never certify an upper bound.
+    """
+    result = check_extensions(n_base, n_new, k, num_seeds)
+    return result.status is ExtensionStatus.EXHAUSTED, result.seeds_checked
 
 
 def validate_avoiding_coloring(n: int, k: int, coloring: Dict[Tuple[int, int], int]) -> bool:
     """
     Validate that a coloring of coprime edges on [n] avoids monochromatic K_k.
 
-    Returns True if the coloring is valid (no monochromatic K_k).
+    Requires exactly the coprime edges as canonical (i, j) keys with i < j,
+    and integer colors 0 or 1. Incomplete or malformed witnesses return False.
     """
+    if n < 0 or k < 2:
+        raise ValueError("Require n >= 0 and k >= 2")
+    if not isinstance(coloring, Mapping):
+        return False
+    if set(coloring) != set(coprime_edges(n)):
+        return False
+    for edge, color in coloring.items():
+        if (not isinstance(edge, tuple) or len(edge) != 2
+                or any(not isinstance(v, Integral) or isinstance(v, bool) for v in edge)
+                or not isinstance(color, Integral) or isinstance(color, bool)
+                or color not in (0, 1)):
+            return False
     cliques = find_coprime_cliques(n, k)
     for clique in cliques:
         vlist = sorted(clique)
@@ -458,8 +508,8 @@ def validate_avoiding_coloring(n: int, k: int, coloring: Dict[Tuple[int, int], i
         for i in range(len(vlist)):
             for j in range(i + 1, len(vlist)):
                 edge = (vlist[i], vlist[j])
-                colors.add(coloring.get(edge, -1))
-        if len(colors) == 1 and -1 not in colors:
+                colors.add(coloring[edge])
+        if len(colors) == 1:
             return False  # Monochromatic clique found
     return True
 
@@ -474,7 +524,8 @@ def compute_rcop4_with_extension(max_n: int = 60, num_seeds: int = 100,
     colorings at n-1 and check if any can be extended to n.
 
     This avoids the full SAT solve at the hard transition point.
-    Returns R_cop(4) or -1 if not determined.
+    Returns R_cop(4) only after UNSAT or exhaustive extension failure;
+    returns -1 if the seed budget leaves the threshold undetermined.
     """
     k = 4
 
@@ -524,23 +575,24 @@ def compute_rcop4_with_extension(max_n: int = 60, num_seeds: int = 100,
         print(f"\nPhase 2: extension check at n={n_test} "
               f"(checking {num_seeds} seeds from n={last_sat_n})")
 
-    all_failed, checked = check_extension_unsat(
+    result = check_extensions(
         last_sat_n, n_test, k, num_seeds=num_seeds
     )
 
     if verbose:
-        print(f"  Checked {checked} seeds, "
-              f"all failed to extend: {all_failed}")
+        print(f"  Checked {result.seeds_checked} seeds: {result.status.name}")
 
-    if all_failed:
+    if result.status is ExtensionStatus.EXHAUSTED:
         if verbose:
             print(f"\n  R_cop({k}) = {n_test} "
-                  f"(verified: {checked} seeds, none extend)")
+                  f"(exhausted {result.seeds_checked} color-symmetry representatives)")
         return n_test
-    else:
-        if verbose:
+    if verbose:
+        if result.status is ExtensionStatus.EXTENSIBLE:
             print(f"\n  Found extensible coloring. n={n_test} is SAT.")
-        return -1
+        else:
+            print("\n  Inconclusive: the seed budget does not prove an upper bound.")
+    return -1
 
 
 def main():
@@ -560,7 +612,7 @@ def main():
 
     # Main computation for R_cop(4)
     print("--- Computing R_cop(4) ---")
-    print("Phase 1: SAT confirms avoiding colorings exist for n <= 58")
+    print("Phase 1: search for avoiding colorings below the transition")
     r4 = compute_rcop4_with_extension(max_n=60, num_seeds=100)
     print()
 
@@ -568,9 +620,11 @@ def main():
     print("=" * 70)
     print("SUMMARY")
     print("=" * 70)
-    print(f"  R_cop(2) = {r2}")
-    print(f"  R_cop(3) = {r3}")
-    print(f"  R_cop(4) = {r4}")
+    for k, result in ((2, r2), (3, r3), (4, r4)):
+        if result == -1:
+            print(f"  R_cop({k}): undetermined by this search")
+        else:
+            print(f"  R_cop({k}) = {result}")
     if r4 is not None and r4 != -1:
         print(f"\n  Classical R(4,4) = 18")
         print(f"  R_cop(4) / R(4,4) = {r4 / 18:.3f}")

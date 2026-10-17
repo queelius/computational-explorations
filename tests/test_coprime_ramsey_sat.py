@@ -15,7 +15,8 @@ from coprime_ramsey_sat import (
     CoprimeSATEncoder,
     encode_rcop_sat,
     compute_rcop_sat,
-    check_extension_unsat,
+    check_extensions,
+    ExtensionStatus,
     validate_avoiding_coloring,
 )
 
@@ -273,15 +274,16 @@ class TestValidateAvoidingColoring:
 
 class TestCheckExtensionUnsat:
     def test_extension_k3_at_rcop3(self):
-        """At n=11 (R_cop(3)), no n=10 coloring extends to n=11."""
-        all_failed, checked = check_extension_unsat(10, 11, 3, num_seeds=20)
-        assert all_failed, "All n=10 seeds should fail to extend to n=11"
-        assert checked > 0
+        """Twenty failed seeds are inconclusive even at the true threshold."""
+        result = check_extensions(10, 11, 3, num_seeds=20)
+        assert result.status is ExtensionStatus.INCONCLUSIVE
+        assert result.seeds_checked == 20
 
     def test_extension_k3_below_rcop3(self):
         """At n=10 < R_cop(3)=11, some n=9 colorings extend to n=10."""
-        all_failed, checked = check_extension_unsat(9, 10, 3, num_seeds=20)
-        assert not all_failed, "Some n=9 colorings should extend to n=10"
+        result = check_extensions(9, 10, 3, num_seeds=20)
+        assert result.status is ExtensionStatus.EXTENSIBLE
+        assert validate_avoiding_coloring(10, 3, result.coloring)
 
 
 # ---------------------------------------------------------------------------
@@ -299,18 +301,11 @@ class TestRCop4:
                 assert sat, "n=58 should be SAT for k=4"
         enc.close()
 
-    def test_no_n58_coloring_extends_to_59(self):
-        """No valid K_4-free coloring of [58] can be extended to [59].
-
-        This is the key evidence for R_cop(4) = 59:
-        - 59 is prime, so coprime with all of 1..58
-        - Every tested n=58 coloring fails to extend in <0.01s
-        - The extension 3-SAT has clause/var ratio ~31 (above threshold)
-        """
-        all_failed, checked = check_extension_unsat(58, 59, 4, num_seeds=20)
-        assert all_failed, \
-            f"Expected all n=58 seeds to fail extending to n=59, but {checked} checked"
-        assert checked == 20, f"Expected 20 seeds checked, got {checked}"
+    def test_sampled_n58_failures_do_not_certify_the_upper_bound(self):
+        """The upper bound uses the prime clique; twenty seeds only corroborate it."""
+        result = check_extensions(58, 59, 4, num_seeds=20)
+        assert result.status is ExtensionStatus.INCONCLUSIVE
+        assert result.seeds_checked == 20
 
     def test_rcop4_sat_up_to_58(self):
         """SAT solver confirms avoiding colorings exist for all n <= 58."""

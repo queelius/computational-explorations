@@ -257,10 +257,10 @@ class TestGallaiCoprimeRamsey:
         assert compute_gallai_coprime_ramsey(3, 2, max_n=20) == -1
 
     def test_gallai_exceeds_classical(self):
-        """GR_cop(3; 3) = 29 > GR(3,3,3) = 17 (coprime amplification)."""
+        """GR_cop(3; 3) = 29 > classical Gallai triangle threshold 11."""
         val = compute_gallai_coprime_ramsey(3, 3, max_n=35)
         assert val == 29
-        assert val > 17  # classical Gallai Ramsey GR(3;3) = 17
+        assert val > 11
 
 
 # ---------------------------------------------------------------------------
@@ -333,11 +333,10 @@ class TestCrossConsistency:
         assert gr <= 53
 
     def test_coprime_exceeds_classical(self):
-        """All coprime Ramsey variants exceed their classical counterparts."""
+        """Selected coprime thresholds exceed or equal the classical values."""
         # R_cop(3;2) = 11 > R(3,3) = 6
         assert compute_multicolor_coprime_ramsey(3, 2, max_n=15) > 6
-        # R_cop(2,3) = 3 vs R(2,3) = 6: actually R_cop(2,3) can be smaller
-        # because R(2,t) = t for complete graphs (trivial), but coprime graph
-        # has vertex 1 adjacent to everything, so R_cop(2,t) is small.
-        # The inequality R_cop >= R_classical holds for symmetric cases.
+        # Asymmetric thresholds also satisfy R_cop >= R_classical;
+        # equality holds for R_cop(2,3) = R(2,3) = 3.
+        assert compute_bipartite_coprime_ramsey(2, 3, max_n=5) == 3
         assert compute_bipartite_coprime_ramsey(3, 3, max_n=15) > 6

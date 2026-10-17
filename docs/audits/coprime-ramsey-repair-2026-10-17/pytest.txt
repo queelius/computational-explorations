@@ -1,0 +1,24 @@
+........................................................................ [ 58%]
+....................................................                     [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.10.20-final-0 _______________
+
+Name                             Stmts   Miss  Cover   Missing
+--------------------------------------------------------------
+src/coprime_ramsey_sat.py          343     41    88%   86, 88, 170, 182, 203, 273-275, 328, 335-336, 341, 344-347, 390, 493, 495, 534, 545-548, 552-555, 561, 563, 570-572, 575, 583, 586-589, 591-594
+src/coprime_ramsey_variants.py     291     13    96%   61, 175, 183, 198, 212, 220, 242, 262, 266, 327, 357, 391, 395
+--------------------------------------------------------------
+TOTAL                              634     54    91%
+Coverage JSON written to file /tmp/coprime-repair-coverage.json
+============================= slowest 10 durations =============================
+6.80s call     tests/test_coprime_ramsey_variants.py::TestGallaiCoprimeRamsey::test_grcop_3_3
+6.70s call     tests/test_coprime_ramsey_variants.py::TestCrossConsistency::test_gallai_leq_multicolor
+6.70s call     tests/test_coprime_ramsey_variants.py::TestGallaiCoprimeRamsey::test_gallai_exceeds_classical
+6.33s call     tests/test_coprime_ramsey_sat.py::TestRCop4::test_rcop4_sat_up_to_58
+2.13s call     tests/test_coprime_ramsey_sat.py::TestRCop4::test_sampled_n58_failures_do_not_certify_the_upper_bound
+1.78s call     tests/test_coprime_ramsey_variants.py::TestPathCoprimeRamsey::test_pcop6
+1.33s call     tests/test_coprime_ramsey_sat.py::TestRCop4::test_n58_is_sat
+0.63s call     tests/test_coprime_ramsey_variants.py::TestCycleCoprimeRamsey::test_ccop6
+0.48s call     tests/test_coprime_ramsey_variants.py::TestCycleCoprimeRamsey::test_even_easier_than_odd
+0.47s call     tests/test_coprime_ramsey_variants.py::TestCycleCoprimeRamsey::test_ccop5
+124 passed in 36.03s

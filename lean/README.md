@@ -10,6 +10,7 @@ Lean 4 formalizations of results from the Erdos problems research project.
 | Erdos43.lean | PARTIAL | 6 | 0 | 10 | Main theorem proved; sorry in auxiliary lemmas |
 | Erdos883.lean | PARTIAL | 7 | 1 | 17 | Main theorem depends on sorry |
 | NPG15_SchurGroups.lean | COMPLETE | 0 | 0 | 10 | All theorems proved, including boolean_group_forces_schur |
+| CoprimeRamsey.lean | INCOMPLETE / semantic defects (2026-10-17 audit) | 9 | — | — | Does not certify the coprime Ramsey values |
 
 NPG2_DensitySchur.lean and NPG15_SchurGroups.lean are complete formalizations.
 
@@ -48,6 +49,19 @@ shares 0's color, `(a, a, 0)` is a monochromatic triple via the boolean identity
 nonzero elements `a, b` from `|G| >= 4`, then `(a, b, a+b)` is monochromatic since
 `a + b` is a third distinct nonzero element by boolean group properties.
 
+### CoprimeRamsey.lean (INCOMPLETE; audited 2026-10-17)
+
+The file contains nine `sorry` tactics. Its generic bound predicates ignore `k`
+and only express triangle avoidance; the coloring type does not require
+undirected symmetry. An admitted assertion gives 36 edges at n=11, whereas
+there are 41. Its claimed count lemma asserts existence of a 36-element subset,
+not exhaustive enumeration of all avoiding colorings. These semantic defects
+must be corrected before completing the proofs. Wrappers depending on admitted
+lemmas do not certify R_cop(3)=11, R_cop(4)=59, or R_cop(3;3)=53.
+
+The audit did not build this file: Mathlib dependencies were absent from the
+checkout. See the [audit](../docs/coprime-ramsey-citation-audit.md) for evidence.
+
 ## Build Instructions
 
 Requires Lean 4 and an internet connection (for Mathlib download on first build).
@@ -58,7 +72,10 @@ lake build
 ```
 
 The first build will download Mathlib, which may take significant time and disk space.
-Subsequent builds will be incremental.
+Subsequent builds will be incremental. The default target is only `Erdos43`;
+`lake build` does not check every listed formalization. To check the coprime
+file explicitly, use `lake build CoprimeRamsey`. A successful build allowing
+`sorry` would still not establish a complete formalization.
 
 ## Dependencies
 

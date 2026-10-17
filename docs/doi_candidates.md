@@ -4,8 +4,9 @@ Each discovery below is a candidate for minting a DOI on Zenodo (or similar),
 giving it a permanent citable reference. DOIs establish priority and provenance.
 
 **Existing DOIs from this project:**
-- Paper: 10.5281/zenodo.18638633 (concept) / 10.5281/zenodo.18638638 (v2)
-- Code: 10.5281/zenodo.18638635
+- Earlier paper: 10.5281/zenodo.18638632 (concept) / 10.5281/zenodo.18638638 (v2). **Corrected 2026-10-17:** the concept was incorrectly listed as 18638633; verified against the [Zenodo record metadata](https://zenodo.org/api/records/18638638).
+- Earlier code archive: 10.5281/zenodo.18638635 (February state; does not archive the corrected coprime SAT modules).
+- Original coprime paper: 10.5281/zenodo.19058647 (version), concept 10.5281/zenodo.19058646; PDF only, not a software/certificate archive. See [corrections](coprime-ramsey-corrections.md).
 
 ---
 
@@ -13,19 +14,20 @@ giving it a permanent citable reference. DOIs establish priority and provenance.
 
 ### 1. Coprime Ramsey Numbers: R_cop(3)=11, R_cop(4)=59
 **Type**: Dataset + short paper
-**Content**: Definition of R_cop(k), exact values for k=2,3,4, SAT-based proofs,
-the primality conjecture (NPG-30), and the full variant table (paths, cycles,
-multi-color, bipartite, Gallai).
+**Content**: Definition of R_cop(k), exact values for k=2,3,4, avoiding witnesses with prime-clique upper bounds,
+the primality phenomenon (NPG-30, now explained as a corollary of Du et al. 2026,
+Thm 4.4: R_cop(k)=p_{R(k,k)-1}), and the full variant table (paths, cycles,
+multi-color, asymmetric cliques, Gallai).
 **Novelty**: HIGH — no prior art found for "coprime Ramsey numbers"
-**Prior art check**: Searched "coprime Ramsey", "coprime graph Ramsey" — no results.
+**Prior art check (historical, March 2026)**: searched "coprime Ramsey", "coprime graph Ramsey" — no results then. Du et al. now cite and structurally explain the clique values; see the [current audit](coprime-ramsey-citation-audit.md).
 **Format**: Zenodo dataset with computational artifacts + arXiv preprint
 **Priority**: HIGHEST — this is publishable and novel
 
-### 2. Coprime Ramsey Variant Table (25+ exact values)
+### 2. Coprime Ramsey Variant Table (reported values; verification varies)
 **Type**: Dataset
 **Content**: P_cop(k) for k=3..8, C_cop(k) for k=3..6, R_cop(s,t) for (2,3),(2,4),(3,4),
 R_cop(3;3)=53, GR_cop(3;3)=29, plus AP variants and vertex removal analysis.
-**Novelty**: HIGH — entire field doesn't exist yet
+**Status (2026-10-17)**: the [audit](coprime-ramsey-citation-audit.md) reproduced the smaller variants; path parameters 7 and 8 timed out. Clique and Gallai triangle values are consequences of Du et al.'s complete-pattern transfer; non-complete targets need separate analysis.
 **Could be**: Appendix to #1 above, or standalone dataset DOI
 
 ### 3. S(G,k) Order-Invariance (NPG-27) + k=3 Failure

@@ -1,0 +1,60 @@
+{
+  "selected": 5952,
+  "collected": 5963,
+  "passed": 1011,
+  "errors": [
+    {
+      "classname": "tests.test_geometry_attacks.TestUnitDistancesComputation",
+      "name": "test_matches_known[2]",
+      "message": "failed on setup with \"Failed: Timeout (>120.0s) from pytest-timeout.\""
+    },
+    {
+      "classname": "tests.test_geometry_attacks.TestUnitDistancesComputation",
+      "name": "test_matches_known[3]",
+      "message": "failed on setup with \"Failed: Timeout (>120.0s) from pytest-timeout.\""
+    },
+    {
+      "classname": "tests.test_geometry_attacks.TestUnitDistancesComputation",
+      "name": "test_matches_known[4]",
+      "message": "failed on setup with \"Failed: Timeout (>120.0s) from pytest-timeout.\""
+    },
+    {
+      "classname": "tests.test_geometry_attacks.TestUnitDistancesComputation",
+      "name": "test_matches_known[5]",
+      "message": "failed on setup with \"Failed: Timeout (>120.0s) from pytest-timeout.\""
+    },
+    {
+      "classname": "tests.test_geometry_attacks.TestUnitDistancesComputation",
+      "name": "test_matches_known[6]",
+      "message": "failed on setup with \"Failed: Timeout (>120.0s) from pytest-timeout.\""
+    },
+    {
+      "classname": "tests.test_geometry_attacks.TestUnitDistancesComputation",
+      "name": "test_matches_known[7]",
+      "message": "failed on setup with \"Failed: Timeout (>120.0s) from pytest-timeout.\""
+    },
+    {
+      "classname": "tests.test_geometry_attacks.TestUnitDistancesComputation",
+      "name": "test_matches_known[8]",
+      "message": "failed on setup with \"Failed: Timeout (>120.0s) from pytest-timeout.\""
+    },
+    {
+      "classname": "tests.test_geometry_attacks.TestUnitDistancesComputation",
+      "name": "test_matches_known[9]",
+      "message": "failed on setup with \"Failed: Timeout (>120.0s) from pytest-timeout.\""
+    },
+    {
+      "classname": "tests.test_geometry_attacks.TestUnitDistancesComputation",
+      "name": "test_exact_match_small[2]",
+      "message": "failed on setup with \"Failed: Timeout (>120.0s) from pytest-timeout.\""
+    },
+    {
+      "classname": "tests.test_geometry_attacks.TestUnitDistancesComputation",
+      "name": "test_exact_match_small[3]",
+      "message": "failed on setup with \"Failed: Timeout (>120.0s) from pytest-timeout.\""
+    }
+  ],
+  "failures": 0,
+  "exit_code": 2,
+  "full_suite_pass": false
+}

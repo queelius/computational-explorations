@@ -1,5 +1,7 @@
 # Coprime Ramsey Numbers
 
+**Reconciled 2026-10-17.** See the [corrections and archival errata](../../docs/coprime-ramsey-corrections.md) and [reproducibility audit](../../docs/coprime-ramsey-citation-audit.md). These are edge-coloring parameters; Lean certification is incomplete.
+
 ## Definition
 
 For the **coprime graph** G(n) on {1,...,n} (edges between coprime pairs), define:
@@ -16,12 +18,20 @@ For the **coprime graph** G(n) on {1,...,n} (edges between coprime pairs), defin
 | 4 | **59** | 18 | 3.28 | Yes |
 
 ### Multi-Color (monochromatic K_3)
-| Colors c | R_cop(3;c) | R(3,...,3;c) | Prime? |
-|----------|------------|-------------|--------|
-| 2 | **11** | 6 | Yes |
-| 3 | **53** | 17 | Yes |
+| Colors c | R_cop(3;c) | R(3,...,3;c) | index R-1 | p_{R-1} | Prime? |
+|----------|------------|--------------|-----------|---------|--------|
+| 2 | **11** | 6  | 5  | p_5  = 11 | Yes |
+| 3 | **53** | 17 | 16 | p_16 = 53 | Yes |
+
+The c=3 row is a second instance, off the two-color diagonal, of the prime-index
+map R_cop = p_{R-1} (Du et al. 2026, Thm 4.4): with the multicolor Ramsey number
+R(3,3,3) = 17, the map gives p_16 = 53, matching the SAT-computed value exactly.
+(Verified in Python: sympy.prime(16) = 53, sympy.primepi(53) = 16.)
 
 ### Path Ramsey P_cop(k)
+
+Here k counts edges (a path has k+1 vertices). Values at k=7,8 are historical SAT reports: the audit did not reproduce them within its 60-second limits; k=3..6 passed exact-threshold checks.
+
 | k | 3 | 4 | 5 | 6 | 7 | 8 |
 |---|---|---|---|---|---|---|
 | P_cop | **5** | **7** | **9** | **10** | **13** | **13** |
@@ -31,29 +41,47 @@ For the **coprime graph** G(n) on {1,...,n} (edges between coprime pairs), defin
 |---|---|---|---|---|
 | C_cop | **11** | **8** | **13** | **11** |
 
-### Bipartite R_cop(s,t)
+### Asymmetric clique Ramsey R_cop(s,t)
+
+Targets are a color-0 K_s or color-1 K_t, not a complete bipartite graph. The legacy source function is named `compute_bipartite_coprime_ramsey`.
+
 | (s,t) | (2,3) | (2,4) | (3,4) |
 |-------|-------|-------|-------|
 | R_cop | **3** | **5** | **19** |
 
 ### Gallai
-GR_cop(3; 3) = **29**
+GR_cop(3; 3) = **29**. This is the complete-pattern transfer of the classical Gallai triangle threshold 11: p_10 = 29 (Du et al., Proposition 4.6).
 
-## Conjectures
+## Conjectures and resolved items
 
-1. **NPG-30 (Primality)**: R_cop(k;c) is always prime for the clique case.
-   Evidence: 2, 11, 53, 59 — all prime (4/4).
+1. **NPG-30 (Primality), EXPLAINED, not a conjecture.** Du, Xi, Deng & Ma (2026,
+   arXiv:2605.26815, Thm 4.4) prove R_cop(k) = p_{R(k,k)-1}, the (R(k,k)-1)-th
+   prime. (Thm 4.4 is the EDGE-coprime variant = our R_cop; distinct from their
+   vertex Thm 3.2, which gives p_{sum(k_i-1)}.) Primality is then automatic (R_cop is a prime by construction), so the
+   "always prime" observation is a corollary of the prime-map. The four values
+   {2, 11, 53, 59} are exactly p_1, p_5, p_16, p_17, respectively (53 is the multicolor
+   R_cop(3;3) via R(3,3,3)=17). For the two-color diagonal, identifying which
+   primes occur remains tied to the unknown R(k,k) values for k >= 5.
+   Every prime occurs in the unrestricted mixed family: R(2,t)=t gives
+   R_cop(2,t)=p_(t-1).
+   See [R_cop(5) reconciliation](../../docs/rcop5-reconciliation.md) and [novel problems](../../docs/novel_problems.md).
 
-2. **Growth**: R_cop(k) ~ 0.38 · 5.43^k (exponential fit to 3 points).
-   Predicted R_cop(5) ∈ [200, 350].
+2. **Growth (historical fit)**: R_cop(k) ~ 0.38 * 5.43^k (exponential fit to 3
+   points), which predicted R_cop(5) in [200, 350]. The prime-map now supersedes
+   any fit: R_cop(5) = p_{R(5,5)-1} in [p_42, p_45] = [181, 197] from
+   43 <= R(5,5) <= 46 ([Angeltveit–McKay](https://arxiv.org/abs/2409.15709); [Du et al. v2, Table 3](https://arxiv.org/html/2605.26815v2)). The earlier [181, 211] window was stale. (The competing quadratic-index fit of R_cop(5) =
+   p_37 = 157 is FALSIFIED; it would require R(5,5) = 38 < 43.)
 
-3. **Ratio**: R_cop(k)/R(k,k) grows exponentially, base ~1.81.
+3. **Ratio**: R_cop(k)/R(k,k) grows; the prime-map makes this precise, since
+   R_cop(k)/R(k,k) = p_{R(k,k)-1}/R(k,k) ~ ln(R(k,k)) by the prime number theorem.
 
 ## Methodology
 
 - R_cop(3) = 11: Exact incremental extension (enumerate all 36 avoiding colorings at n=8, extend to n=11 where 0 remain).
-- R_cop(4) = 59: SAT lower bound (Glucose4 finds avoiding colorings at n ≤ 58) + extension upper bound (100 independent n=58 colorings all fail to extend to n=59).
-- All variants: SAT encoding via pysat with symmetry breaking.
+- R_cop(4) = 59: a full avoiding witness at 58 supplies the lower bound. At 59, the set consisting of 1 and the 17 primes at most 59 forms K_18; R(4,4)=18 supplies the upper bound. The historical 100 failed seeded extensions are corroboration, not a proof of universal nonextendibility.
+- R_cop(3;3) = 53: a full witness at 52 and the K_17 prime clique at 53, using R(3,3,3)=17.
+- The [audit witnesses](../../docs/audits/coprime-ramsey-2026-10-17/) at 10, 58, and 52 were independently checked for all required edges, palette, and forbidden cliques.
+- Variants use pysat encodings. The audit records which exact transitions were rerun; model and UNSAT-certificate preservation remains incomplete.
 
 ## Provenance
 
@@ -65,5 +93,5 @@ GR_cop(3; 3) = **29**
 
 - `src/coprime_ramsey.py` — Incremental extension algorithm
 - `src/coprime_ramsey_sat.py` — SAT-based computation
-- `src/coprime_ramsey_variants.py` — Path, cycle, multi-color, bipartite variants
+- `src/coprime_ramsey_variants.py` — Path, cycle, multi-color, asymmetric-clique variants
 - `tests/test_coprime_ramsey.py`, `tests/test_coprime_ramsey_sat.py`, `tests/test_coprime_ramsey_variants.py`
