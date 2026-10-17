@@ -1,0 +1,25 @@
+........................................................................ [ 88%]
+.........                                                                [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.10.20-final-0 _______________
+
+Name                             Stmts   Miss  Cover   Missing
+--------------------------------------------------------------
+src/coprime_ramsey_sat.py          320     60    81%   82, 84, 166, 178, 199, 269-271, 324, 331-332, 337, 340-343, 417, 479-543
+src/coprime_ramsey_variants.py     274     13    95%   58, 172, 180, 195, 209, 217, 239, 259, 263, 322, 352, 386, 390
+src/nt_graph_ramsey.py             350    240    31%   62, 64, 87-90, 101-129, 136-172, 184, 188, 207, 228, 231, 245-250, 256-259, 264-268, 281-285, 290, 323-327, 346-350, 360, 368-373, 380-383, 388-392, 397-399, 409, 414-425, 430, 441-450, 456-462, 467-471, 483-486, 498-505, 515-522, 532-542, 548-551, 556-560, 565, 614-635, 644-716, 725-757
+--------------------------------------------------------------
+TOTAL                              944    313    67%
+Coverage JSON written to file docs/audits/coprime-ramsey-2026-10-17/coverage.json
+============================= slowest 10 durations =============================
+5.67s call     tests/test_coprime_ramsey_variants.py::TestCrossConsistency::test_gallai_leq_multicolor
+5.13s call     tests/test_coprime_ramsey_variants.py::TestGallaiCoprimeRamsey::test_grcop_3_3
+5.10s call     tests/test_coprime_ramsey_variants.py::TestGallaiCoprimeRamsey::test_gallai_exceeds_classical
+1.23s call     tests/test_coprime_ramsey_variants.py::TestPathCoprimeRamsey::test_pcop6
+0.49s call     tests/test_coprime_ramsey_variants.py::TestCycleCoprimeRamsey::test_ccop6
+0.38s call     tests/test_coprime_ramsey_variants.py::TestCycleCoprimeRamsey::test_even_easier_than_odd
+0.37s call     tests/test_coprime_ramsey_variants.py::TestCycleCoprimeRamsey::test_ccop5
+0.32s call     tests/test_coprime_ramsey_variants.py::TestGallaiCoprimeRamsey::test_grcop_below_threshold
+0.24s call     tests/test_coprime_ramsey_variants.py::TestPathCoprimeRamsey::test_monotone
+0.21s call     tests/test_coprime_ramsey_variants.py::TestPathCoprimeRamsey::test_pcop5
+81 passed, 3 deselected in 20.57s

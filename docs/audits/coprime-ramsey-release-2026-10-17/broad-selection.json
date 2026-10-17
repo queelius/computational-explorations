@@ -1,0 +1,81 @@
+{
+  "command": [
+    "timeout",
+    "1200s",
+    "python",
+    "-m",
+    "pytest",
+    "-q",
+    "-n",
+    "4",
+    "--dist=loadfile",
+    "-m",
+    "not slow",
+    "--timeout=120",
+    "--maxfail=10",
+    "--junitxml=/tmp/coprime-release-broad.xml",
+    "--deselect=tests/test_adversarial_rcop4.py::TestAV5Extension::test_no_extension_to_59",
+    "--deselect=tests/test_adversarial_schur.py::TestOrder49Counterexample::test_z7z7_value",
+    "--deselect=tests/test_adversarial_schur.py::TestOrder49Counterexample::test_order_49_counterexample",
+    "--deselect=tests/test_rado_extensions.py::TestEdgeCases::test_schur_s4"
+  ],
+  "selection_rule": "Exclude declared slow tests or explicit timeout markers greater than 300 seconds; no failing assertions are filtered by outcome.",
+  "collected": 5963,
+  "excluded": [
+    {
+      "nodeid": "tests/test_adversarial_rcop4.py::TestAV1DirectSAT::test_n59_unsat_cadical",
+      "slow": true,
+      "timeout": 3600
+    },
+    {
+      "nodeid": "tests/test_adversarial_rcop4.py::TestAV1DirectSAT::test_n59_unsat_glucose4",
+      "slow": true,
+      "timeout": 3600
+    },
+    {
+      "nodeid": "tests/test_adversarial_rcop4.py::TestAV1DirectSAT::test_n59_unsat_with_symmetry_break",
+      "slow": true,
+      "timeout": 3600
+    },
+    {
+      "nodeid": "tests/test_adversarial_rcop4.py::TestAV7CrossSolver::test_solvers_agree_n59",
+      "slow": true,
+      "timeout": 7200
+    },
+    {
+      "nodeid": "tests/test_adversarial_rcop4.py::TestAV5Extension::test_no_extension_to_59",
+      "slow": false,
+      "timeout": 600
+    },
+    {
+      "nodeid": "tests/test_adversarial_rcop4.py::TestAV9TransitionSweep::test_transition_at_59",
+      "slow": true,
+      "timeout": 3600
+    },
+    {
+      "nodeid": "tests/test_adversarial_schur.py::TestOrder49Counterexample::test_z7z7_value",
+      "slow": false,
+      "timeout": 3600
+    },
+    {
+      "nodeid": "tests/test_adversarial_schur.py::TestOrder49Counterexample::test_order_49_counterexample",
+      "slow": false,
+      "timeout": 3600
+    },
+    {
+      "nodeid": "tests/test_binomial_factorial_attacks.py::TestWolstenholme::test_wolstenholme_prime_16843",
+      "slow": true,
+      "timeout": null
+    },
+    {
+      "nodeid": "tests/test_rado_extensions.py::TestEdgeCases::test_schur_s4",
+      "slow": false,
+      "timeout": 600
+    },
+    {
+      "nodeid": "tests/test_verify_883.py::TestVerifyOptimized::test_medium_n",
+      "slow": true,
+      "timeout": null
+    }
+  ]
+}

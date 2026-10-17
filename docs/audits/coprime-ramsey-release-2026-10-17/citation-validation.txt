@@ -1,0 +1,2 @@
+Installed 16 packages in 33ms
+Citation metadata are valid according to schema version 1.2.0.

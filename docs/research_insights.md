@@ -183,8 +183,8 @@ for all tested n ≤ 30.
 
 ### Coprime Ramsey Numbers
 
-**Novel result**: R_cop(3) = 9 (classical R(3,3) = 6). The coprime graph's
-sparsity requires larger n to force monochromatic triangles.
+**Historical claim (superseded)**: R_cop(3) = 9 (classical R(3,3) = 6).
+**Correction (2026-10-17):** 9 was false; the exact value is **11**. A complete avoiding witness exists at 10, while {1,2,3,5,7,11} is K_6 and R(3,3)=6 forces a monochromatic triangle. See [corrections](coprime-ramsey-corrections.md).
 
 ---
 
@@ -1215,6 +1215,8 @@ $S((\mathbb{Z}/2\mathbb{Z})^n, 2) = 3 \cdot 2^{n-2}$ for $n \geq 2$ — verified
 ---
 
 ## XXVIII. Lean Formalization Progress
+
+**Coprime Ramsey status (2026-10-17):** `lean/CoprimeRamsey.lean` is incomplete and does not certify 11, 59, or 53. It contains nine `sorry` tactics and semantic defects, including a false admitted edge count at 11. No build of that file was performed in the audit. See [Lean status](../lean/README.md) and [corrections](coprime-ramsey-corrections.md). The dated table below records earlier work on other files.
 
 ### Summary (as of 2026-02)
 

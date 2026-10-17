@@ -1,0 +1,24 @@
+[
+  {
+    "k": 7,
+    "command": [
+      "/home/spinoza/venv/bin/python",
+      "-c",
+      "import sys; sys.path.insert(0,\"src\"); from coprime_ramsey_variants import compute_path_coprime_ramsey; print(compute_path_coprime_ramsey(7,max_n=13))"
+    ],
+    "seconds": 60.503034958965145,
+    "status": "timeout",
+    "timeout_seconds": 60
+  },
+  {
+    "k": 8,
+    "command": [
+      "/home/spinoza/venv/bin/python",
+      "-c",
+      "import sys; sys.path.insert(0,\"src\"); from coprime_ramsey_variants import compute_path_coprime_ramsey; print(compute_path_coprime_ramsey(8,max_n=13))"
+    ],
+    "seconds": 60.79216475598514,
+    "status": "timeout",
+    "timeout_seconds": 60
+  }
+]

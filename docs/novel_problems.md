@@ -638,10 +638,12 @@ For $k \geq 3$, define the **coprime Ramsey number** $R_{\text{cop}}(k)$ as the 
 
 ### Computed Values
 
+**Correction (2026-10-17):** the February heuristic value 20 below is false; it is retained as a historical search report. The exact value is **59**, from an avoiding witness at 58 and a K_18 prime clique at 59 with R(4,4)=18. Failure of a random search is not an upper bound. See [corrections](coprime-ramsey-corrections.md).
+
 | $k$ | $R_{\text{cop}}(k)$ | $R(k,k)$ | Method |
 |-----|---------------------|-----------|--------|
 | 3 | **11** (exact) | 6 | Extension method: exhaustive at n=8 (36 avoiding colorings), extended through n=9 (36), n=10 (156), n=11 (0) |
-| 4 | **20** (heuristic) | 18 | Heuristic: avoiding coloring found at n=19 (trial 160,806); no avoiding found at n=20..49 (30s random search each) |
+| 4 | ~~20~~ (superseded heuristic; exact value 59) | 18 | Heuristic: avoiding coloring found at n=19 (trial 160,806); no avoiding found at n=20..49 (30s random search each) |
 
 ### Key Properties
 
@@ -658,7 +660,7 @@ $R_{\text{cop}}(k) > R(k,k)$ for all $k \geq 3$.
 ### Research Directions
 
 1. ~~Compute $R_{\text{cop}}(3)$ exactly~~ **DONE**: $R_{\text{cop}}(3) = 11$ (February 2026).
-2. ~~Compute or bound $R_{\text{cop}}(4)$~~ **DONE (heuristic)**: $R_{\text{cop}}(4) = 20$ (February 2026). Avoiding colorings at n=19 are extremely rare (~1 in 160K random trials). At n=20, no avoiding coloring found in extensive search (n=20..49, 30s each). Note: not a proof since random search can miss very rare colorings. Extension method infeasible (1.47M avoiding colorings at n=8 base).
+2. ~~Compute or bound $R_{\text{cop}}(4)$~~ **Historical heuristic, superseded**: the February 2026 estimate $R_{\text{cop}}(4) = 20$ was false; exact value **59**. The original search report follows. Avoiding colorings at n=19 are extremely rare (~1 in 160K random trials). At n=20, no avoiding coloring found in extensive search (n=20..49, 30s each). Note: not a proof since random search can miss very rare colorings. Extension method infeasible (1.47M avoiding colorings at n=8 base).
 3. Determine asymptotic growth: is $R_{\text{cop}}(k) = \Theta(R(k,k))$ or $R_{\text{cop}}(k) = \omega(R(k,k))$?
 4. Connect to the probabilistic method: random 2-colorings of $G([n])$ should have predictable behavior.
 
@@ -768,10 +770,10 @@ The transition from 5→6 occurs at alpha=0.60, from 6→>12 at alpha=0.67.
 **Result**: R_cop(4) = 59. Every 2-coloring of coprime edges in [59] has a monochromatic K_4.
 
 **Proof**:
+
 - **Lower bound (SAT)**: Glucose4 confirms avoiding 2-colorings exist for n ≤ 58.
-- **Upper bound (extension)**: 100 independently generated valid K_4-free colorings of [58]
-  ALL fail to extend to [59]. The extension formula has 58 variables and ~9,141 clauses
-  (clause/variable ratio ~109, far above UNSAT threshold).
+- **Upper bound (prime clique)**: 1 together with the 17 primes at most 59 forms K_18. Since R(4,4)=18, every 2-coloring contains a monochromatic K_4.
+- **Correction (2026-10-17)**: the original upper-bound claim used 100 failed seeded extensions. Those are corroborating samples; they do not exhaust the avoiding colorings at 58. Clause density is not a proof of UNSAT. See [corrections](coprime-ramsey-corrections.md).
 - **Why n=59 is special**: 59 is prime, coprime to all 1..58, creating 58 new edges and
   9,141 coprime triples each forming a K_4 with vertex 59.
 
@@ -783,16 +785,43 @@ The transition from 5→6 occurs at alpha=0.60, from 6→>12 at alpha=0.67.
 
 **Conjecture**: R_cop(k)/R(k,k) → ∞ as k → ∞.
 
-### NPG-30: R_cop(k) is Always Prime
+### NPG-30: R_cop(k) is Always Prime (EXPLAINED, corollary of Du et al. Thm 4.4)
 
-**Conjecture**: R_cop(k) is prime for all k ≥ 2.
+**Status**: Resolved. No longer an open conjecture. Primality is automatic.
 
-**Evidence**: R_cop(2)=2, R_cop(3)=11, R_cop(4)=59 — all prime.
+**Original conjecture**: R_cop(k) is prime for all k ≥ 2.
 
-**Mechanism**: When n is prime, φ(n)=n-1 (coprime to ALL predecessors), creating maximum
-edge connectivity and a clique count explosion. The spectral analysis confirms: clique counts
-jump sharply at primes but the spectral gap is smooth. The Ramsey transition is combinatorial,
-not spectral, and is driven by the prime structure of new vertices.
+**Resolution**: Du, Xi, Deng & Ma (2026, arXiv:2605.26815, Thm 4.4) prove the prime-index identity
+
+> R_cop(k) = p_{R(k,k)-1},  the (R(k,k)-1)-th prime,
+
+where R(k,k) is the classical diagonal Ramsey number. (Precision: Thm 4.4 is the *edge*-coprime
+variant -- our R_cop -- not Du et al.'s vertex-coprime theorem 3.2, which gives the different
+identity p_{sum_i(k_i-1)}.) Because R_cop(k) is by definition the value
+of the prime function at an integer index, it is prime *by construction*. Primality is therefore a
+corollary of the structure of the map, not a mysterious empirical regularity in need of its own
+explanation.
+
+**Verification** (Python, sympy.prime / sympy.primepi):
+
+| k | R(k,k) | index R(k,k)-1 | R_cop(k) = p_{R(k,k)-1} |
+|---|--------|----------------|--------------------------|
+| 2 | 2  | 1  | p_1  = 2  |
+| 3 | 6  | 5  | p_5  = 11 |
+| 4 | 18 | 17 | p_17 = 59 |
+
+The multicolor value R_cop(3;3) = 53 = p_16 (with R(3,3,3) = 17) confirms the same identity off the
+two-color diagonal, replacing R(k,k) by the relevant multicolor Ramsey number.
+
+**Remaining diagonal question**: which primes occur as two-color diagonal R_cop(k) values?
+The forward map is numerically pinned down only where R(k,k) is known (k ≤ 4).
+The unrestricted mixed family has no such inverse obstruction: R(2,t)=t gives
+R_cop(2,t)=p_(t-1), so every prime occurs.
+
+**Earlier heuristic (superseded)**: the original note attributed primality to a connectivity
+mechanism (when n is prime, φ(n)=n-1, so n is coprime to all predecessors, producing a clique-count
+explosion). That heuristic is consistent with the data but is *not* the reason R_cop(k) is prime; the
+prime-map makes primality definitional.
 
 ### NPG-31: The Coprime Graph is Perfect
 

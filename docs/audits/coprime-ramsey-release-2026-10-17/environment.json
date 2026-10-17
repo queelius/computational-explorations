@@ -1,0 +1,32 @@
+{
+  "python": "3.10.20 (main, Mar  3 2026, 14:59:16) [Clang 21.1.4 ]",
+  "dependencies": {
+    "numpy": "2.2.6",
+    "PyYAML": "6.0.3",
+    "networkx": "3.4.2",
+    "python-sat": "1.9.dev6",
+    "pytest": "9.1.1",
+    "pytest-cov": "7.1.0",
+    "pytest-timeout": "2.4.0",
+    "pytest-xdist": "3.8.0",
+    "coverage": "7.15.0",
+    "scipy": "1.15.3",
+    "sympy": "1.14.0",
+    "scikit-learn": "1.7.2"
+  },
+  "base_commit": "4bef9df23fba3801b069dccdce32027d9c7e5865",
+  "working_tree_changes": true,
+  "source_sha256": {
+    "src/coprime_ramsey_sat.py": "dce7c10388715e78fb3a088ebbbdc77229c49534d481791030c8b3be2a6430ab",
+    "src/coprime_ramsey_variants.py": "b17786621f72122be358e17437067b64c7cf5b7ee2cfa30f14535ccceb0047c0",
+    "src/synthesis.py": "6f93a369eadea380c2d13ddb613b363f2a54ffb6839b241d24ffa9d84dd20832",
+    "src/nt_graph_ramsey.py": "65804c78fa2c947b83ed637fe762677758325e7a00e6492f21ea67ca598aaa80",
+    "tests/test_coprime_evidence.py": "abc0434e84dac8679a8f1537178ee64b7bd1903bf526a65d02ace3d5c2f499c0",
+    "tests/test_coprime_ramsey_sat.py": "4657c94f2ed209a37091832414d3dc759fdc95e94c8e0e5acc50ca5106546803",
+    "tests/test_coprime_ramsey_variants.py": "992d8e6492429ed4d9593a4c81f84836dcb245c361df722104af4c04116258ef",
+    "tests/test_synthesis.py": "8a170d837f4618c9b7b00c8bf2d64ddcfa7424d40f7502e17b6aac4b15a702eb",
+    "pyproject.toml": "2a1d19c66fa714df8f06782a38e931acb241fcfe349ce96edc892132c3698f1e"
+  },
+  "external_data_commit": "350c521bd45292ddcdb751e86604a652c68558c5",
+  "external_data_sha256": "09c6dbeae04dbe26f798bb874a5f54d70907e7208c72dba0aad6a1a465a0d396"
+}

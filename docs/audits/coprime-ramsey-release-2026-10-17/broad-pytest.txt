@@ -1,0 +1,308 @@
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  1%]
+........................................................................ [  2%]
+........................................................................ [  3%]
+........................................................................ [  4%]
+........................................................................ [  6%]
+........................................................................ [  7%]
+........................................................................ [  8%]
+........................................................................ [  9%]
+........................................................................ [ 10%]
+........................................................................ [ 12%]
+........................................................................ [ 13%]
+........................................................................ [ 14%]
+..................................................................EEEEEE [ 15%]
+E..EEE.................................................................. [ 16%]
+.............
+==================================== ERRORS ====================================
+_____ ERROR at setup of TestUnitDistancesComputation.test_matches_known[2] _____
+[gw0] linux -- Python 3.10.20 /home/spinoza/venv/bin/python
+
+self = <tests.test_geometry_attacks.TestUnitDistancesComputation object at 0x76c231750df0>
+
+    @pytest.fixture(scope="class")
+    def ud_results(self):
+>       return compute_max_unit_distances((2, 9), trials=100)
+
+tests/test_geometry_attacks.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/geometry_attacks.py:488: in compute_max_unit_distances
+    sa_count, sa_config = _optimize_unit_distances(n, trials=trials)
+src/geometry_attacks.py:449: in _optimize_unit_distances
+    if _has_duplicate_points(pts):
+src/geometry_attacks.py:368: in _has_duplicate_points
+    if np.linalg.norm(pts[i] - pts[j]) < min_sep:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+x = array([ 0.88310192, -0.4691812 ]), ord = None, axis = None, keepdims = None
+
+>   def _norm_dispatcher(x, ord=None, axis=None, keepdims=None):
+E   Failed: Timeout (>120.0s) from pytest-timeout.
+
+../../../../venv/lib/python3.10/site-packages/numpy/linalg/_linalg.py:2571: Failed
+---------------------------- Captured stdout setup -----------------------------
+~~~~~~~~~~~~~~~~~~~~~ Stack of <unknown> (130577897354944) ~~~~~~~~~~~~~~~~~~~~~
+  File "/home/spinoza/venv/lib/python3.10/site-packages/execnet/gateway_base.py", line 411, in _perform_spawn
+    reply.run()
+  File "/home/spinoza/venv/lib/python3.10/site-packages/execnet/gateway_base.py", line 341, in run
+    self._result = func(*args, **kwargs)
+  File "/home/spinoza/venv/lib/python3.10/site-packages/execnet/gateway_base.py", line 1160, in _thread_receiver
+    msg = Message.from_io(io)
+  File "/home/spinoza/venv/lib/python3.10/site-packages/execnet/gateway_base.py", line 567, in from_io
+    header = io.read(9)  # type 1, channel 4, payload 4
+  File "/home/spinoza/venv/lib/python3.10/site-packages/execnet/gateway_base.py", line 534, in read
+    data = self._read(numbytes - len(buf))
+_____ ERROR at setup of TestUnitDistancesComputation.test_matches_known[3] _____
+[gw0] linux -- Python 3.10.20 /home/spinoza/venv/bin/python
+
+self = <tests.test_geometry_attacks.TestUnitDistancesComputation object at 0x76c231750df0>
+
+    @pytest.fixture(scope="class")
+    def ud_results(self):
+>       return compute_max_unit_distances((2, 9), trials=100)
+
+tests/test_geometry_attacks.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/geometry_attacks.py:488: in compute_max_unit_distances
+    sa_count, sa_config = _optimize_unit_distances(n, trials=trials)
+src/geometry_attacks.py:449: in _optimize_unit_distances
+    if _has_duplicate_points(pts):
+src/geometry_attacks.py:368: in _has_duplicate_points
+    if np.linalg.norm(pts[i] - pts[j]) < min_sep:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+x = array([ 0.88310192, -0.4691812 ]), ord = None, axis = None, keepdims = None
+
+>   def _norm_dispatcher(x, ord=None, axis=None, keepdims=None):
+E   Failed: Timeout (>120.0s) from pytest-timeout.
+
+../../../../venv/lib/python3.10/site-packages/numpy/linalg/_linalg.py:2571: Failed
+_____ ERROR at setup of TestUnitDistancesComputation.test_matches_known[4] _____
+[gw0] linux -- Python 3.10.20 /home/spinoza/venv/bin/python
+
+self = <tests.test_geometry_attacks.TestUnitDistancesComputation object at 0x76c231750df0>
+
+    @pytest.fixture(scope="class")
+    def ud_results(self):
+>       return compute_max_unit_distances((2, 9), trials=100)
+
+tests/test_geometry_attacks.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/geometry_attacks.py:488: in compute_max_unit_distances
+    sa_count, sa_config = _optimize_unit_distances(n, trials=trials)
+src/geometry_attacks.py:449: in _optimize_unit_distances
+    if _has_duplicate_points(pts):
+src/geometry_attacks.py:368: in _has_duplicate_points
+    if np.linalg.norm(pts[i] - pts[j]) < min_sep:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+x = array([ 0.88310192, -0.4691812 ]), ord = None, axis = None, keepdims = None
+
+>   def _norm_dispatcher(x, ord=None, axis=None, keepdims=None):
+E   Failed: Timeout (>120.0s) from pytest-timeout.
+
+../../../../venv/lib/python3.10/site-packages/numpy/linalg/_linalg.py:2571: Failed
+_____ ERROR at setup of TestUnitDistancesComputation.test_matches_known[5] _____
+[gw0] linux -- Python 3.10.20 /home/spinoza/venv/bin/python
+
+self = <tests.test_geometry_attacks.TestUnitDistancesComputation object at 0x76c231750df0>
+
+    @pytest.fixture(scope="class")
+    def ud_results(self):
+>       return compute_max_unit_distances((2, 9), trials=100)
+
+tests/test_geometry_attacks.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/geometry_attacks.py:488: in compute_max_unit_distances
+    sa_count, sa_config = _optimize_unit_distances(n, trials=trials)
+src/geometry_attacks.py:449: in _optimize_unit_distances
+    if _has_duplicate_points(pts):
+src/geometry_attacks.py:368: in _has_duplicate_points
+    if np.linalg.norm(pts[i] - pts[j]) < min_sep:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+x = array([ 0.88310192, -0.4691812 ]), ord = None, axis = None, keepdims = None
+
+>   def _norm_dispatcher(x, ord=None, axis=None, keepdims=None):
+E   Failed: Timeout (>120.0s) from pytest-timeout.
+
+../../../../venv/lib/python3.10/site-packages/numpy/linalg/_linalg.py:2571: Failed
+_____ ERROR at setup of TestUnitDistancesComputation.test_matches_known[6] _____
+[gw0] linux -- Python 3.10.20 /home/spinoza/venv/bin/python
+
+self = <tests.test_geometry_attacks.TestUnitDistancesComputation object at 0x76c231750df0>
+
+    @pytest.fixture(scope="class")
+    def ud_results(self):
+>       return compute_max_unit_distances((2, 9), trials=100)
+
+tests/test_geometry_attacks.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/geometry_attacks.py:488: in compute_max_unit_distances
+    sa_count, sa_config = _optimize_unit_distances(n, trials=trials)
+src/geometry_attacks.py:449: in _optimize_unit_distances
+    if _has_duplicate_points(pts):
+src/geometry_attacks.py:368: in _has_duplicate_points
+    if np.linalg.norm(pts[i] - pts[j]) < min_sep:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+x = array([ 0.88310192, -0.4691812 ]), ord = None, axis = None, keepdims = None
+
+>   def _norm_dispatcher(x, ord=None, axis=None, keepdims=None):
+E   Failed: Timeout (>120.0s) from pytest-timeout.
+
+../../../../venv/lib/python3.10/site-packages/numpy/linalg/_linalg.py:2571: Failed
+_____ ERROR at setup of TestUnitDistancesComputation.test_matches_known[7] _____
+[gw0] linux -- Python 3.10.20 /home/spinoza/venv/bin/python
+
+self = <tests.test_geometry_attacks.TestUnitDistancesComputation object at 0x76c231750df0>
+
+    @pytest.fixture(scope="class")
+    def ud_results(self):
+>       return compute_max_unit_distances((2, 9), trials=100)
+
+tests/test_geometry_attacks.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/geometry_attacks.py:488: in compute_max_unit_distances
+    sa_count, sa_config = _optimize_unit_distances(n, trials=trials)
+src/geometry_attacks.py:449: in _optimize_unit_distances
+    if _has_duplicate_points(pts):
+src/geometry_attacks.py:368: in _has_duplicate_points
+    if np.linalg.norm(pts[i] - pts[j]) < min_sep:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+x = array([ 0.88310192, -0.4691812 ]), ord = None, axis = None, keepdims = None
+
+>   def _norm_dispatcher(x, ord=None, axis=None, keepdims=None):
+E   Failed: Timeout (>120.0s) from pytest-timeout.
+
+../../../../venv/lib/python3.10/site-packages/numpy/linalg/_linalg.py:2571: Failed
+_____ ERROR at setup of TestUnitDistancesComputation.test_matches_known[8] _____
+[gw0] linux -- Python 3.10.20 /home/spinoza/venv/bin/python
+
+self = <tests.test_geometry_attacks.TestUnitDistancesComputation object at 0x76c231750df0>
+
+    @pytest.fixture(scope="class")
+    def ud_results(self):
+>       return compute_max_unit_distances((2, 9), trials=100)
+
+tests/test_geometry_attacks.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/geometry_attacks.py:488: in compute_max_unit_distances
+    sa_count, sa_config = _optimize_unit_distances(n, trials=trials)
+src/geometry_attacks.py:449: in _optimize_unit_distances
+    if _has_duplicate_points(pts):
+src/geometry_attacks.py:368: in _has_duplicate_points
+    if np.linalg.norm(pts[i] - pts[j]) < min_sep:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+x = array([ 0.88310192, -0.4691812 ]), ord = None, axis = None, keepdims = None
+
+>   def _norm_dispatcher(x, ord=None, axis=None, keepdims=None):
+E   Failed: Timeout (>120.0s) from pytest-timeout.
+
+../../../../venv/lib/python3.10/site-packages/numpy/linalg/_linalg.py:2571: Failed
+_____ ERROR at setup of TestUnitDistancesComputation.test_matches_known[9] _____
+[gw0] linux -- Python 3.10.20 /home/spinoza/venv/bin/python
+
+self = <tests.test_geometry_attacks.TestUnitDistancesComputation object at 0x76c231750df0>
+
+    @pytest.fixture(scope="class")
+    def ud_results(self):
+>       return compute_max_unit_distances((2, 9), trials=100)
+
+tests/test_geometry_attacks.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/geometry_attacks.py:488: in compute_max_unit_distances
+    sa_count, sa_config = _optimize_unit_distances(n, trials=trials)
+src/geometry_attacks.py:449: in _optimize_unit_distances
+    if _has_duplicate_points(pts):
+src/geometry_attacks.py:368: in _has_duplicate_points
+    if np.linalg.norm(pts[i] - pts[j]) < min_sep:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+x = array([ 0.88310192, -0.4691812 ]), ord = None, axis = None, keepdims = None
+
+>   def _norm_dispatcher(x, ord=None, axis=None, keepdims=None):
+E   Failed: Timeout (>120.0s) from pytest-timeout.
+
+../../../../venv/lib/python3.10/site-packages/numpy/linalg/_linalg.py:2571: Failed
+___ ERROR at setup of TestUnitDistancesComputation.test_exact_match_small[2] ___
+[gw0] linux -- Python 3.10.20 /home/spinoza/venv/bin/python
+
+self = <tests.test_geometry_attacks.TestUnitDistancesComputation object at 0x76c231750df0>
+
+    @pytest.fixture(scope="class")
+    def ud_results(self):
+>       return compute_max_unit_distances((2, 9), trials=100)
+
+tests/test_geometry_attacks.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/geometry_attacks.py:488: in compute_max_unit_distances
+    sa_count, sa_config = _optimize_unit_distances(n, trials=trials)
+src/geometry_attacks.py:449: in _optimize_unit_distances
+    if _has_duplicate_points(pts):
+src/geometry_attacks.py:368: in _has_duplicate_points
+    if np.linalg.norm(pts[i] - pts[j]) < min_sep:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+x = array([ 0.88310192, -0.4691812 ]), ord = None, axis = None, keepdims = None
+
+>   def _norm_dispatcher(x, ord=None, axis=None, keepdims=None):
+E   Failed: Timeout (>120.0s) from pytest-timeout.
+
+../../../../venv/lib/python3.10/site-packages/numpy/linalg/_linalg.py:2571: Failed
+___ ERROR at setup of TestUnitDistancesComputation.test_exact_match_small[3] ___
+[gw0] linux -- Python 3.10.20 /home/spinoza/venv/bin/python
+
+self = <tests.test_geometry_attacks.TestUnitDistancesComputation object at 0x76c231750df0>
+
+    @pytest.fixture(scope="class")
+    def ud_results(self):
+>       return compute_max_unit_distances((2, 9), trials=100)
+
+tests/test_geometry_attacks.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/geometry_attacks.py:488: in compute_max_unit_distances
+    sa_count, sa_config = _optimize_unit_distances(n, trials=trials)
+src/geometry_attacks.py:449: in _optimize_unit_distances
+    if _has_duplicate_points(pts):
+src/geometry_attacks.py:368: in _has_duplicate_points
+    if np.linalg.norm(pts[i] - pts[j]) < min_sep:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+x = array([ 0.88310192, -0.4691812 ]), ord = None, axis = None, keepdims = None
+
+>   def _norm_dispatcher(x, ord=None, axis=None, keepdims=None):
+E   Failed: Timeout (>120.0s) from pytest-timeout.
+
+../../../../venv/lib/python3.10/site-packages/numpy/linalg/_linalg.py:2571: Failed
+=============================== warnings summary ===============================
+tests/test_nt_graph_ramsey.py::TestStructuralInvariants::test_divisibility_perfect
+tests/test_geometry_attacks.py::TestDistinctDistancesComputation::test_matches_known[3]
+tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_matches_known[2]
+tests/test_ml_problem_prediction.py::TestFullPipeline::test_has_all_components
+  /home/spinoza/venv/lib/python3.10/site-packages/_pytest/fixtures.py:1313: PytestRemovedIn10Warning: Class-scoped fixture defined as instance method is deprecated.
+  Instance attributes set in this fixture will NOT be visible to test methods,
+  as each test gets a new instance while the fixture runs only once per class.
+  Use @classmethod decorator and set attributes on cls instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#class-scoped-fixture-as-instance-method
+    fixturefunc = resolve_fixture_function(fixturedef, request)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_matches_known[2]
+ERROR tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_matches_known[3]
+ERROR tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_matches_known[4]
+ERROR tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_matches_known[5]
+ERROR tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_matches_known[6]
+ERROR tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_matches_known[7]
+ERROR tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_matches_known[8]
+ERROR tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_matches_known[9]
+ERROR tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_exact_match_small[2]
+ERROR tests/test_geometry_attacks.py::TestUnitDistancesComputation::test_exact_match_small[3]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 10 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!! xdist.dsession.Interrupted: stopping after 10 failures !!!!!!!!!!!!
+1011 passed, 4 warnings, 10 errors in 325.65s (0:05:25)

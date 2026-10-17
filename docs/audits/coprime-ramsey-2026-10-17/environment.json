@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-17",
+  "python": "3.10.20",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "head": "f5f43ddf6df291742c029fd073f6e99034a5fb85",
+  "packages": {
+    "numpy": "2.2.6",
+    "networkx": "3.4.2",
+    "PyYAML": "6.0.3",
+    "scipy": "1.15.3",
+    "sympy": "1.14.0",
+    "scikit-learn": null,
+    "python-sat": "1.9.dev6",
+    "pytest": "9.1.1",
+    "pytest-cov": "7.1.0",
+    "pytest-timeout": "2.4.0"
+  }
+}
