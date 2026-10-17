@@ -1,0 +1,77 @@
+{
+  "source_commit": "55706c75f61340513f5d6930770f695e72f5ff92",
+  "url": "https://github.com/queelius/computational-explorations/actions/runs/39025427125",
+  "result": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "15",
+    "skipped": "0",
+    "tests": "6015",
+    "time": "1130.554",
+    "timestamp": "2026-10-17T10:35:43.821768+00:00",
+    "hostname": "runnervm8k3b6"
+  },
+  "junit_sha256": "77f9f87491d13748cef425e7b63ab6a6cf429b85ddabac3ea1c457dcfe5766c7",
+  "failed": [
+    {
+      "classname": "tests.test_ramsey_algorithms.TestRandomColoringLowerBound",
+      "name": "test_n8_k3_high_success"
+    },
+    {
+      "classname": "tests.test_ramsey_algorithms.TestGreedyColoringLowerBound",
+      "name": "test_n8_k3_success"
+    },
+    {
+      "classname": "tests.test_ramsey_algorithms.TestCountCliquesByK",
+      "name": "test_clique_counts_decrease_with_k"
+    },
+    {
+      "classname": "tests.test_ramsey_algorithms.TestLowerBoundConsistency",
+      "name": "test_random_succeeds_below"
+    },
+    {
+      "classname": "tests.test_ramsey_algorithms.TestLowerBoundConsistency",
+      "name": "test_greedy_succeeds_below"
+    },
+    {
+      "classname": "tests.test_complexity_analysis.TestPlotPhaseDiagram",
+      "name": "test_plot_generates_file"
+    },
+    {
+      "classname": "tests.test_deep_analysis.TestOeisClusterAnalysisReal",
+      "name": "test_families_found"
+    },
+    {
+      "classname": "tests.test_attack_problems.TestScreening",
+      "name": "test_open_problems_count"
+    },
+    {
+      "classname": "tests.test_temporal_evolution.TestNamedProblemAnalysis",
+      "name": "test_named_count"
+    },
+    {
+      "classname": "tests.test_temporal_evolution.TestNamedProblemAnalysis",
+      "name": "test_unnamed_count"
+    },
+    {
+      "classname": "tests.test_temporal_evolution.TestNamedProblemAnalysis",
+      "name": "test_named_problems_list"
+    },
+    {
+      "classname": "tests.test_research_frontier.TestStagnationAnalysis",
+      "name": "test_geometry_most_stagnant"
+    },
+    {
+      "classname": "tests.test_research_frontier.TestFrontierScores",
+      "name": "test_ramsey_top_frontier"
+    },
+    {
+      "classname": "tests.test_attack_surface.TestStatusProximity",
+      "name": "test_falsifiable_count"
+    },
+    {
+      "classname": "tests.test_attack_surface.TestStatusProximity",
+      "name": "test_decidable_count"
+    }
+  ]
+}

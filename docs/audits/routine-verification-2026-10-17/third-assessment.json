@@ -1,0 +1,82 @@
+{
+  "tests": 3279,
+  "passed": 3262,
+  "failures": [
+    {
+      "classname": "tests.test_complexity_analysis.TestPlotPhaseDiagram",
+      "name": "test_plot_generates_file",
+      "message": "AssertionError: assert None == '/tmp/pytest-of-spinoza/pytest-520/popen-gw1/test_plot_generates_file0/phase_diagram.png'"
+    },
+    {
+      "classname": "tests.test_deep_analysis.TestOeisClusterAnalysisReal",
+      "name": "test_families_found",
+      "message": "assert '28 problem families' in \"## 1. OEIS Cluster Analysis\\n\\n**40 OEIS sequences** are shared by more than one problem.\\n\\nThese form **29 problem families** (connected components via shared sequences).\\n\\n### Key Named Families\\n\\n#### Arithmetic Progression Family (A003002-A003005)\\n\\nExpected problems: ['3', '139', '140', '142', '201']\\nActual problems found: ['3', '139', '140', '142', '201']\\n\\nStatus breakdown: {'open': 3, 'proved': 2}\\nCommon tags (all members share): ['additive combinatorics', 'arithmetic progressions']\\nUnion of tags: ['additive combinatorics', 'arithmetic progressions', 'number theory']\\n\\n#### Sidon Set Family (A143824, A227590, A003022)\\n\\nExpected problems: ['14', '30', '43', '155', '530', '861']\\nActual problems found: ['14', '30', '43', '155', '530', '861']\\n\\nStatus breakdown: {'open': 5, 'solved': 1}\\nCommon tags (all members share): ['sidon sets']\\nUnion of tags: ['additive combinatorics', 'number theory', 'sidon sets']\\n\\n#### A059442 Family\\n\\nExpected problems: ['77', '78', '87', '166', '545', '986', '1030']\\nActual problems found: ['77', '78', '87', '166', '545', '986', '1030']\\n\\nStatus breakdown: {'open': 6, 'proved': 1}\\nCommon tags (all members share): ['graph theory...graph theory', 'ramsey theory'] but no direct OEIS link (connected only indirectly)\\n- Problems #87 and #165: share tags ['graph theory', 'ramsey theory'] but no direct OEIS link (connected only indirectly)\\n- Problems #87 and #544: share tags ['graph theory', 'ramsey theory'] but no direct OEIS link (connected only indirectly)\\n- Problems #87 and #553: share tags ['graph theory', 'ramsey theory'] but no direct OEIS link (connected only indirectly)\\n- Problems #165 and #166: share tags ['graph theory', 'ramsey theory'] but no direct OEIS link (connected only indirectly)\\n- Problems #165 and #545: share tags ['graph theory', 'ramsey theory'] but no direct OEIS link (connected only indirectly)\\n- Problems #166 and #544: share tags ['graph theory', 'ramsey theory'] but no direct OEIS link (connected only indirectly)\\n- Problems #166 and #553: share tags ['graph theory', 'ramsey theory'] but no direct OEIS link (connected only indirectly)\\n- Problems #544 and #545: share tags ['graph theory', 'ramsey theory'] but no direct OEIS link (connected only indirectly)\\n- Problems #545 and #553: share tags ['graph theory', 'ramsey theory'] but no direct OEIS link (connected only indirectly)\\n\""
+    },
+    {
+      "classname": "tests.test_ramsey_algorithms.TestRandomColoringLowerBound",
+      "name": "test_n8_k3_high_success",
+      "message": "AssertionError: Should find avoiding colorings at n=8\nassert 0.0 > 0.001"
+    },
+    {
+      "classname": "tests.test_ramsey_algorithms.TestGreedyColoringLowerBound",
+      "name": "test_n8_k3_success",
+      "message": "assert 0 > 0"
+    },
+    {
+      "classname": "tests.test_ramsey_algorithms.TestCountCliquesByK",
+      "name": "test_clique_counts_decrease_with_k",
+      "message": "assert 42 <= 31"
+    },
+    {
+      "classname": "tests.test_ramsey_algorithms.TestLowerBoundConsistency",
+      "name": "test_random_succeeds_below",
+      "message": "assert 0 > 0"
+    },
+    {
+      "classname": "tests.test_ramsey_algorithms.TestLowerBoundConsistency",
+      "name": "test_greedy_succeeds_below",
+      "message": "assert 0 > 0"
+    },
+    {
+      "classname": "tests.test_attack_problems.TestScreening",
+      "name": "test_open_problems_count",
+      "message": "assert 650 == 636"
+    },
+    {
+      "classname": "tests.test_temporal_evolution.TestNamedProblemAnalysis",
+      "name": "test_named_count",
+      "message": "assert 65 == 61"
+    },
+    {
+      "classname": "tests.test_temporal_evolution.TestNamedProblemAnalysis",
+      "name": "test_unnamed_count",
+      "message": "assert 1118 == 1074"
+    },
+    {
+      "classname": "tests.test_temporal_evolution.TestNamedProblemAnalysis",
+      "name": "test_named_problems_list",
+      "message": "AssertionError: assert 65 == 61\n +  where 65 = len([{'number': 17, 'name': 'cluster primes', 'status': 'open', 'tags': ['number theory', 'primes'], ...}, {'number': 18, 'name': 'practical numbers', 'status': 'open', 'tags': ['divisors', 'factorials', 'number theory'], ...}, {'number': 20, 'name': 'sunflower conjecture', 'status': 'open', 'tags': ['combinatorics'], ...}, {'number': 36, 'name': 'minimum overlap problem', 'status': 'open', 'tags': ['additive combinatorics', 'number theory'], ...}, {'number': 52, 'name': 'sum-product problem', 'status': 'open', 'tags': ['additive combinatorics', 'number theory'], ...}, {'number': 67, 'name': 'Erd\u0151s discrepancy problem', 'status': 'proved', 'tags': ['discrepancy'], ...}, ...])"
+    },
+    {
+      "classname": "tests.test_research_frontier.TestStagnationAnalysis",
+      "name": "test_geometry_most_stagnant",
+      "message": "AssertionError: assert 'primes' == 'geometry'\n  \n  - geometry\n  + primes"
+    },
+    {
+      "classname": "tests.test_research_frontier.TestFrontierScores",
+      "name": "test_ramsey_top_frontier",
+      "message": "AssertionError: assert 'ramsey theory' in ['graph theory', 'discrepancy', 'additive combinatorics', 'arithmetic progressions', 'additive basis']"
+    },
+    {
+      "classname": "tests.test_attack_surface.TestStatusProximity",
+      "name": "test_falsifiable_count",
+      "message": "AssertionError: assert 25 == 31\n +  where 25 = len([{'number': 23, 'tags': ['graph theory'], 'prize': 0.0, 'status': 'falsifiable', ...}, {'number': 64, 'tags': ['cycles', 'graph theory'], 'prize': 1000.0, 'status': 'falsifiable', ...}, {'number': 97, 'tags': ['convex', 'distances', 'geometry'], 'prize': 100.0, 'status': 'falsifiable', ...}, {'number': 106, 'tags': ['geometry'], 'prize': 0.0, 'status': 'falsifiable', ...}, {'number': 107, 'tags': ['convex', 'geometry'], 'prize': 500.0, 'status': 'falsifiable', ...}, {'number': 128, 'tags': ['graph theory'], 'prize': 250.0, 'status': 'falsifiable', ...}, ...])"
+    },
+    {
+      "classname": "tests.test_attack_surface.TestStatusProximity",
+      "name": "test_decidable_count",
+      "message": "AssertionError: assert 9 == 8\n +  where 9 = len([{'number': 19, 'tags': ['chromatic number', 'graph theory'], 'prize': 500.0, 'status': 'decidable', ...}, {'number': 475, 'tags': ['additive combinatorics', 'number theory'], 'prize': 0.0, 'status': 'decidable', ...}, {'number': 506, 'tags': ['geometry'], 'prize': 0.0, 'status': 'decidable', ...}, {'number': 547, 'tags': ['graph theory', 'ramsey theory'], 'prize': 0.0, 'status': 'decidable', ...}, {'number': 551, 'tags': ['graph theory', 'ramsey theory'], 'prize': 0.0, 'status': 'decidable', ...}, {'number': 556, 'tags': ['graph theory', 'ramsey theory'], 'prize': 0.0, 'status': 'decidable', ...}, ...])"
+    }
+  ],
+  "status": "interrupted after two worker timeouts; incomplete"
+}

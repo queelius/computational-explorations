@@ -19,6 +19,7 @@ test = [
     "scipy",
     "sympy",
     "scikit-learn",
+    "matplotlib",
 ]
 
 [tool.pytest.ini_options]

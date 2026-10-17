@@ -1,6 +1,10 @@
 """Tests for ramsey_algorithms.py -- algorithm comparison for coprime Ramsey numbers."""
 
 import math
+from itertools import combinations
+import random
+
+import numpy as np
 import sys
 import time
 from pathlib import Path
@@ -254,10 +258,28 @@ class TestCompareAlgorithmsRcop3:
 # ============================================================================
 
 class TestRandomColoringLowerBound:
-    def test_n8_k3_high_success(self):
-        """At n=8 (well below R_cop(3)=11), random should succeed often."""
-        succ, trials, rate, dt = random_coloring_lower_bound(8, 3, num_trials=1000)
-        assert rate > 0.001, "Should find avoiding colorings at n=8"
+    @pytest.mark.parametrize("n", [3, 8])
+    def test_random_trials_match_exhaustive_coloring_oracle(self, n):
+        """Check sampled successes against an independent bit-mask truth table."""
+        edges = [e for e in combinations(range(1, n + 1), 2) if math.gcd(*e) == 1]
+        positions = {edge: index for index, edge in enumerate(edges)}
+        colorings = np.arange(1 << len(edges), dtype=np.uint32)
+        valid = np.ones(len(colorings), dtype=bool)
+        for triangle in combinations(range(1, n + 1), 3):
+            pairs = list(combinations(triangle, 2))
+            if all(pair in positions for pair in pairs):
+                mask = sum(1 << positions[pair] for pair in pairs)
+                colored = colorings & mask
+                valid &= (colored != 0) & (colored != mask)
+        avoiding = set(colorings[valid].tolist())
+        rng = random.Random(42)
+        expected = sum(
+            sum(rng.randint(0, 1) << i for i in range(len(edges))) in avoiding
+            for _ in range(1000)
+        )
+        succ, trials, rate, _ = random_coloring_lower_bound(n, 3, num_trials=1000, seed=42)
+        assert succ == expected
+        assert trials == 1000 and rate == succ / trials
 
     def test_n11_k3_zero_success(self):
         """At n=11 (R_cop(3)), no random coloring should avoid mono K_3."""
@@ -272,10 +294,10 @@ class TestRandomColoringLowerBound:
 
 
 class TestGreedyColoringLowerBound:
-    def test_n8_k3_success(self):
-        """Greedy should find avoiding colorings at n=8."""
-        succ, trials, dt = greedy_coloring_lower_bound(8, 3, num_trials=50)
-        assert succ > 0
+    def test_triangle_always_succeeds(self):
+        """The last edge of a triangle always has a safe color."""
+        succ, trials, dt = greedy_coloring_lower_bound(3, 3, num_trials=50)
+        assert succ == trials == 50
 
     def test_n11_k3_no_success(self):
         """Greedy cannot find avoiding coloring at n=11."""
@@ -438,11 +460,14 @@ class TestCountCliquesByK:
         counts = count_cliques_by_k(10, k_max=3)
         assert counts[2] == len(coprime_edges(10))
 
-    def test_clique_counts_decrease_with_k(self):
+    def test_counts_match_exhaustive_coprimality_check(self):
         counts = count_cliques_by_k(10, k_max=5)
-        for k in range(3, 6):
-            if k in counts and k - 1 in counts:
-                assert counts[k] <= counts[k - 1]
+        expected = {
+            k: sum(all(math.gcd(a, b) == 1 for a, b in combinations(vertices, 2))
+                   for vertices in combinations(range(1, 11), k))
+            for k in range(2, 6)
+        }
+        assert counts == expected
 
 
 class TestParameterizedComplexityAnalysis:
@@ -604,17 +629,17 @@ class TestAlgorithmConsistency:
 class TestLowerBoundConsistency:
     """All lower bound algorithms should succeed below R_cop(3) and fail at R_cop(3)."""
 
-    def test_random_succeeds_below(self):
-        succ, _, _, _ = random_coloring_lower_bound(9, 3, num_trials=500)
-        assert succ > 0
+    def test_random_zero_trials(self):
+        succ, trials, rate, _ = random_coloring_lower_bound(9, 3, num_trials=0)
+        assert (succ, trials, rate) == (0, 0, 0.0)
 
     def test_random_fails_at_rcop(self):
         succ, _, _, _ = random_coloring_lower_bound(11, 3, num_trials=500)
         assert succ == 0
 
-    def test_greedy_succeeds_below(self):
-        succ, _, _ = greedy_coloring_lower_bound(9, 3, num_trials=50)
-        assert succ > 0
+    def test_greedy_zero_trials(self):
+        succ, trials, _ = greedy_coloring_lower_bound(9, 3, num_trials=0)
+        assert (succ, trials) == (0, 0)
 
     def test_greedy_fails_at_rcop(self):
         succ, _, _ = greedy_coloring_lower_bound(11, 3, num_trials=50)

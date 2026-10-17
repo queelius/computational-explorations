@@ -93,17 +93,14 @@ class TestStatusProximity:
         assert "verifiable" in result["near_miss"]
         assert "decidable" in result["near_miss"]
 
-    def test_falsifiable_count(self, problems):
+    @pytest.mark.parametrize("status", ["falsifiable", "verifiable", "decidable"])
+    def test_categories_match_input_statuses(self, problems, status):
         result = status_proximity(problems)
-        assert len(result["near_miss"]["falsifiable"]) == 31
-
-    def test_verifiable_count(self, problems):
-        result = status_proximity(problems)
-        assert len(result["near_miss"]["verifiable"]) == 7
-
-    def test_decidable_count(self, problems):
-        result = status_proximity(problems)
-        assert len(result["near_miss"]["decidable"]) == 8
+        expected = {int(p["number"]) for p in problems
+                    if p.get("status", {}).get("state") == status}
+        actual = [p["number"] for p in result["near_miss"][status]]
+        assert len(actual) == len(set(actual))
+        assert set(actual) == expected
 
     def test_lean_coverage(self, problems):
         result = status_proximity(problems)

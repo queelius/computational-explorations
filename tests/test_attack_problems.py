@@ -285,12 +285,15 @@ class TestScreening:
             assert "weight" in tech
             assert isinstance(tech["required"], set)
 
-    def test_open_problems_count(self):
+    def test_screen_returns_only_open_problems(self):
         problems = load_problems()
-        open_count = sum(
-            1 for p in problems if p.get("status", {}).get("state") == "open"
-        )
-        assert open_count == 636
+        open_numbers = {p["number"] for p in problems
+                        if p.get("status", {}).get("state") == "open"}
+        scored = screen_problems(problems)
+        returned = [p["number"] for p in scored]
+        assert returned
+        assert len(returned) == len(set(returned))
+        assert set(returned) <= open_numbers
 
     def test_sidon_problems_match(self):
         """Problems tagged 'sidon sets' should match our Sidon technique."""

@@ -85,15 +85,45 @@ The local assessment resumes tests without passing JUnit outcomes and reruns
 the entire changed perfectness module. GitHub runs the whole routine selection
 from a fresh checkout. This avoids counting an interrupted batch as a full pass.
 
+The resumed local batch passed 3,262 tests, reported 15 assertion failures, and
+lost two workers to expensive tests. Its [report](third-assessment.json) is
+incomplete. The subsequent [complete hosted assessment](hosted-assessment.json)
+ran all 6,015 routine tests at commit `55706c7`: 6,000 passed and the same 15
+assertions failed, with no worker failures. These findings led to the following
+repairs:
+
+- Declare Matplotlib in the test extra so the plotting integration test creates
+  and checks a real PNG in a clean environment.
+- Replace stale counts and rankings outside the historical corpus analysis
+  with input-derived sets, an independent connected-family oracle, and small
+  controlled ranking examples. Keep the fixed March analysis assertions.
+- Correct two false mathematical assumptions: random search at n=8 has only
+  36 successful colorings among 2,097,152 possibilities, and clique counts need
+  not decrease with clique size. Independent exhaustive oracles now check the
+  sampled outcomes and clique counts. Finite heuristic search is not guaranteed
+  to succeed; triangle success and zero-trial contracts replace those assumptions.
+- Remove an unused exhaustive counting pass from `witness_mdl`; the following
+  enumeration already supplies the count and all witness statistics. Keep the
+  exact n=10 count and n=11 nonexistence assertions.
+- Allow 240 seconds for the monotonic lower-bound test, which performs two
+  exhaustive searches. Its calculations and assertion are unchanged.
+
+The dependency and assertion repairs pass 51 related tests on Python 3.10
+([47.72s](assertion-repairs-python310.txt)) and 3.13
+([25.95s](assertion-repairs-python313.txt)). All 12 timing-related regression
+tests pass in [187.76s](timing-repairs.txt): n=10 witness setup takes 43.92s,
+n=11 enumeration 54.51s, and the two-search test 89.15s. The additional
+parameterized oracle increases the
+routine selection to 6,016 tests. Final hosted results are linked from the
+[integration PR](https://github.com/queelius/computational-explorations/pull/3).
+
 The [collected selection](test-selection.json) lists every excluded test.
 Four existing searches with declared timeouts over 300 seconds and the
 three-test full algorithm benchmark now carry `slow` markers. The benchmark
 enumerates 134,217,728 colorings at n=9 and has an explicit 1,800-second timeout.
-Smaller algorithm tests remain routine; no failed mathematical assertion was
-removed or weakened. The 14 excluded research tests have not been completed by
-this assessment.
-
-Final routine and CI results are recorded after their runs finish.
+Smaller algorithm tests remain routine. Incorrect assumptions were replaced
+with the explicit checks described above, not hidden with exclusions or xfails.
+The 14 excluded research tests have not been completed by this assessment.
 
 ## Reproducibility limits
 

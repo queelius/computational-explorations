@@ -572,6 +572,7 @@ class TestPlotPhaseDiagram:
         outpath = str(tmp_path / "phase_diagram.png")
         result = plot_phase_diagram(profiles, output_path=outpath)
         assert result == outpath
+        assert (tmp_path / "phase_diagram.png").is_file()
 
     def test_plot_with_empty_profiles(self, tmp_path):
         """Empty profile list should not crash."""

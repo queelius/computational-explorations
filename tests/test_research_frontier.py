@@ -162,10 +162,18 @@ class TestStagnationAnalysis:
         for s in result:
             assert 0.0 <= s["open_fraction"] <= 1.0
 
-    def test_geometry_most_stagnant(self, problems):
-        # geometry has the longest stagnation run based on our analysis
+    def test_longest_open_run_determines_rank(self):
+        problems = [
+            {"number": str(i), "tags": ["long run"], "status": {"state": "open"}}
+            for i in range(1, 7)
+        ] + [
+            {"number": str(i), "tags": ["short run"],
+             "status": {"state": "open" if i % 2 else "proved"}}
+            for i in range(7, 13)
+        ]
         result = stagnation_analysis(problems)
-        assert result[0]["tag"] == "geometry"
+        assert [(r["tag"], r["longest_stagnation"], r["stagnation_start"], r["stagnation_end"])
+                for r in result] == [("long run", 6, 1, 6), ("short run", 1, 7, 7)]
 
 
 class TestEmergingConnections:
@@ -229,8 +237,15 @@ class TestFrontierScores:
             assert "z_score" in f
             assert "open_count" in f
 
-    def test_ramsey_top_frontier(self, problems):
-        result = frontier_scores(problems)
-        # Ramsey theory should be near the top
-        top_tags = [f["tag"] for f in result[:5]]
-        assert "ramsey theory" in top_tags
+    def test_prizes_raise_score_when_other_signals_match(self):
+        problems = [
+            {"number": str(2 * i + offset + 1), "tags": [tag], "prize": prize,
+             "status": {"state": "open" if i % 2 == 0 else "proved"}}
+            for i in range(10)
+            for offset, (tag, prize) in enumerate((("funded", "$100"), ("plain", "no")))
+        ]
+        funded, plain = frontier_scores(problems)
+        assert (funded["tag"], plain["tag"]) == ("funded", "plain")
+        for field in ("momentum", "z_score", "solve_rate", "longest_stagnation", "open_count"):
+            assert funded[field] == plain[field]
+        assert funded["frontier_score"] > plain["frontier_score"]

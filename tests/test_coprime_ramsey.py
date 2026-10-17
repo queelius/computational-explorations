@@ -4,6 +4,8 @@ import math
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from coprime_ramsey import (
@@ -220,6 +222,7 @@ class TestCoprimeLowerBoundHeuristic:
         lb = coprime_ramsey_lower_bound(2, max_n=10)
         assert lb >= 1
 
+    @pytest.mark.timeout(240)  # Two exhaustive searches share this test's budget.
     def test_lower_bound_monotone(self):
         """Larger max_n should give same or larger lower bound."""
         lb1 = coprime_ramsey_lower_bound(3, max_n=8)
