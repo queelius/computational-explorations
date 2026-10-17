@@ -55,11 +55,13 @@ python -m pytest -q \
   tests/test_coprime_evidence.py tests/test_coprime_ramsey_sat.py \
   tests/test_coprime_ramsey_variants.py tests/test_nt_graph_ramsey.py::TestRGCD \
   tests/test_synthesis.py tests/test_verify_coprime_witnesses.py \
+  tests/test_coprime_perfectness_proof.py \
   tests/test_geometry_attacks.py::TestUnitDistanceCount \
   tests/test_geometry_attacks.py::TestHasDuplicatePoints \
   --timeout=120 --timeout-method=thread \
   --cov=coprime_ramsey_sat --cov=coprime_ramsey_variants \
-  --cov=synthesis --cov=verify_coprime_witnesses --cov-report=term-missing
+  --cov=synthesis --cov=verify_coprime_witnesses --cov=coprime_perfectness_proof \
+  --cov-report=term-missing
 ```
 
 Coverage measures the selected modules. Existing coverage configuration excludes
@@ -71,7 +73,7 @@ percentage is currently enforced.
 
 ```sh
 mkdir -p test-results
-python -m pytest -q -m 'not slow' -n 2 --dist=loadfile \
+python -m pytest -v -m 'not slow' -n 2 --dist=loadfile \
   --timeout=120 --timeout-method=thread --durations=30 \
   --junitxml=test-results/routine.xml
 ```

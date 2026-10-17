@@ -1,6 +1,6 @@
 {
-  "collected": 6025,
-  "routine": 6011,
+  "collected": 6029,
+  "routine": 6015,
   "slow": [
     "tests/test_adversarial_rcop4.py::TestAV1DirectSAT::test_n59_unsat_cadical",
     "tests/test_adversarial_rcop4.py::TestAV1DirectSAT::test_n59_unsat_glucose4",

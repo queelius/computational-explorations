@@ -1,0 +1,17 @@
+........................................................................ [ 80%]
+.................                                                        [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.10.20-final-0 _______________
+
+Name                               Stmts   Miss  Cover   Missing
+----------------------------------------------------------------
+src/coprime_perfectness_proof.py     200     10    95%   176, 178, 297, 300, 336, 338, 382, 385, 466, 478
+----------------------------------------------------------------
+TOTAL                                200     10    95%
+============================= slowest 5 durations ==============================
+0.90s call     tests/test_coprime_perfectness_proof.py::TestRandomInducedSubgraphs::test_random_subgraphs_perfect[20]
+0.55s call     tests/test_coprime_perfectness_proof.py::TestChordlessCycleSearch::test_agrees_with_degree_oracle_on_all_five_vertex_graphs
+0.54s call     tests/test_coprime_perfectness_proof.py::TestRandomInducedSubgraphs::test_random_subgraphs_perfect[15]
+0.47s call     tests/test_coprime_perfectness_proof.py::TestRandomInducedSubgraphs::test_random_subgraphs_perfect[10]
+0.18s call     tests/test_coprime_perfectness_proof.py::TestFindOddHole::test_no_odd_hole[20]
+89 passed in 4.66s

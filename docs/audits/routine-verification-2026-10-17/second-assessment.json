@@ -1,0 +1,14 @@
+{
+  "status": "interrupted_for_diagnosis",
+  "passed": 2778,
+  "failed_or_errored": 1,
+  "issues": [
+    {
+      "class": "tests.test_coprime_perfectness_proof.TestFindOddHole",
+      "test": "test_no_odd_hole[15]",
+      "kind": "error",
+      "message": "failed on setup with \"worker 'gw1' crashed while running 'tests/test_coprime_perfectness_proof.py::TestFindOddHole::test_no_odd_hole[15]'\""
+    }
+  ],
+  "dataset_commit": "19cb6116c2c194240e8f46c973e13a161f7987b2"
+}

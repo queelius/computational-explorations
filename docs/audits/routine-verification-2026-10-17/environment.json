@@ -38,6 +38,7 @@
   "source_sha256": {
     "src/geometry_attacks.py": "75e5a8e35275c94b45b2d91367c7f3673522e3e1edf06fef3aeafa82b178c6e9",
     "src/verify_coprime_witnesses.py": "5ebcccdbd142b51994f384b4172bdb2fd111843139f77e10c4bf808cfb7901b7",
-    "requirements-test.txt": "30d7b45b5b027b2a2679d0a14a0d78e18c43f9585801378af65bd3fa9d732917"
+    "requirements-test.txt": "30d7b45b5b027b2a2679d0a14a0d78e18c43f9585801378af65bd3fa9d732917",
+    "src/coprime_perfectness_proof.py": "24469523c51b223c740f893e939f45693c02f74f73424971fccfb9298580ab9d"
   }
 }

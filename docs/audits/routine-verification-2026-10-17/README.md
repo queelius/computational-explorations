@@ -28,11 +28,13 @@ counts. The checker has 54 tests covering malformed inputs, direct model
 construction, exact edge coverage, palette validity, monochromatic cliques,
 batch failure reporting, and operation without site packages or assertions.
 
-All 241 focused tests pass on Python 3.10.20 (82.24s) and 3.13.15 (68.21s)
-against the pinned March snapshot. Logs: [3.10](focused-tests.txt),
-[3.13](focused-tests-python313.txt). Combined measured coverage is 84%; the
-independent checker is 99%. The four measured modules cover
-the SAT implementation, variants, synthesis, and independent checker.
+All 330 focused tests pass on Python 3.10.20 (112.74s) and 3.13.15 (98.47s)
+against the pinned March snapshot. This includes the 89 perfectness tests after
+the cycle-search repair below. Combined measured coverage is 85%; the checker
+is 99% and perfectness utilities are 95%. Logs: [3.10](focused-tests.txt),
+[3.13](focused-tests-python313.txt). The measured modules cover
+the SAT implementation, variants, synthesis, independent checker, and
+perfectness utilities.
 [Coverage details](focused-coverage.json) retain missing-line information.
 The main gaps are the synthesis report renderer and parts of the experimental
 extension search. Existing coverage configuration excludes `main` and
@@ -68,6 +70,20 @@ March corpus. CI now pins the March 16 upstream commit
 `19cb6116c2c194240e8f46c973e13a161f7987b2`. All 91 historical analysis tests
 pass against that snapshot without changing their assertions. This does not
 establish compatibility of those fixed-count assertions with current data.
+
+A second attempt passed 2,778 tests before a worker failed in
+`TestFindOddHole::test_no_odd_hole[15]`. It was interrupted for diagnosis.
+The DFS rejected chords only after constructing a complete cycle, so it
+enumerated paths that could never become induced cycles. It now rejects
+such paths immediately, permitting the edge to the start only when closing
+the cycle. No test was excluded for this failure. A deterministic recursion
+budget test failed before the fix; an independent degree oracle checks all
+1,024 five-vertex graphs, and positive tests cover five- and seven-cycles.
+All 89 perfectness tests then passed in 4.66 seconds with 95% module coverage.
+
+The local assessment resumes tests without passing JUnit outcomes and reruns
+the entire changed perfectness module. GitHub runs the whole routine selection
+from a fresh checkout. This avoids counting an interrupted batch as a full pass.
 
 The [collected selection](test-selection.json) lists every excluded test.
 Four existing searches with declared timeouts over 300 seconds and the
