@@ -1,0 +1,37 @@
+{
+  "verified_at": "2026-10-17T10:04:24.709686+00:00",
+  "records": [
+    {
+      "record": "https://zenodo.org/records/19058647",
+      "doi": "10.5281/zenodo.19058647",
+      "files": {
+        "coprime_ramsey_note.pdf": {
+          "size": 238813,
+          "checksum": "md5:ce0330361a5eac353798068306ceff64"
+        }
+      },
+      "description_before": "We define coprime Ramsey numbers R_cop(k) on the coprime graph G(n) and determine exact values R_cop(3)=11 and R_cop(4)=59 via SAT solving. We also compute R_cop(3;3)=53 for 3-color Ramsey, 25+ variant values, and prove R_gcd(3;d)=11d. All known coprime clique Ramsey values are prime. Adversarially verified.",
+      "description_after": "<p><strong>Correction and verification update &mdash; October 17, 2026.</strong> Please read this historical version together with the <a href=\"https://github.com/queelius/computational-explorations/blob/coprime-ramsey-2026.10.17/docs/coprime-ramsey-corrections.md\">dated correction notice and verification limits</a>. Corrected software, complete lower-bound witnesses, and a corrected research-draft manuscript are archived at <a href=\"https://doi.org/10.5281/zenodo.23433640\">10.5281/zenodo.23433640</a>. The notice distinguishes sampled search from proof, records the valid upper-bound arguments, and identifies remaining verification gaps. The files and DOI of this historical paper version are unchanged.</p>\n<p><strong>Original description:</strong></p>\n<p>We define coprime Ramsey numbers R_cop(k) on the coprime graph G(n) and determine exact values R_cop(3)=11 and R_cop(4)=59 via SAT solving. We also compute R_cop(3;3)=53 for 3-color Ramsey, 25+ variant values, and prove R_gcd(3;d)=11d. All known coprime clique Ramsey values are prime. Adversarially verified.</p>",
+      "other_metadata_unchanged": true,
+      "files_unchanged": true
+    },
+    {
+      "record": "https://zenodo.org/records/20636188",
+      "doi": "10.5281/zenodo.20636188",
+      "files": {
+        "coprime-ramsey-ejc.pdf": {
+          "size": 292351,
+          "checksum": "md5:cbbcd4178fae2da788f7fe5707b5d2b3"
+        },
+        "coprime-ramsey-ejc.tex": {
+          "size": 21049,
+          "checksum": "md5:3e54360271d586cf661bb1406dc904ef"
+        }
+      },
+      "description_before": "Version 2 (June 10, 2026): strengthened edition. R_cop(4) = 59 is now a complete theorem: an elementary clique bound (the set {1} together with the primes up to n is a clique of size 1+pi(n), giving R_cop(k) &lt;= p_{R(k,k)-1}) combines with the SAT lower bound, removing v1's caveat. Corrections: the restriction argument for R_cop(k) &gt;= R(k,k) is stated correctly; the classical comparison values R(2,3)=3, R(2,4)=4, and gr_3(K_3)=11 are fixed (with correct values every asymmetric entry matches the prime-index identity of Du, Xi, Deng, and Ma, arXiv:2605.26815, who cite these computations); the independence-number proof is repaired for odd n. New observation: the Gallai value GR_cop(3;3) = 29 = p_10 equals p_{gr_3(K_3)-1}, suggesting the prime-index identity extends to the Gallai setting.",
+      "description_after": "<p><strong>Correction and verification update &mdash; October 17, 2026.</strong> Please read this historical version together with the <a href=\"https://github.com/queelius/computational-explorations/blob/coprime-ramsey-2026.10.17/docs/coprime-ramsey-corrections.md\">dated correction notice and verification limits</a>. Corrected software, complete lower-bound witnesses, and a corrected research-draft manuscript are archived at <a href=\"https://doi.org/10.5281/zenodo.23433640\">10.5281/zenodo.23433640</a>. The notice distinguishes sampled search from proof, records the valid upper-bound arguments, and identifies remaining verification gaps. The files and DOI of this historical paper version are unchanged.</p>\n<p><strong>Original description:</strong></p>\n<p>Version 2 (June 10, 2026): strengthened edition. R_cop(4) = 59 is now a complete theorem: an elementary clique bound (the set {1} together with the primes up to n is a clique of size 1+pi(n), giving R_cop(k) &lt;= p_{R(k,k)-1}) combines with the SAT lower bound, removing v1's caveat. Corrections: the restriction argument for R_cop(k) &gt;= R(k,k) is stated correctly; the classical comparison values R(2,3)=3, R(2,4)=4, and gr_3(K_3)=11 are fixed (with correct values every asymmetric entry matches the prime-index identity of Du, Xi, Deng, and Ma, arXiv:2605.26815, who cite these computations); the independence-number proof is repaired for odd n. New observation: the Gallai value GR_cop(3;3) = 29 = p_10 equals p_{gr_3(K_3)-1}, suggesting the prime-index identity extends to the Gallai setting.</p>",
+      "other_metadata_unchanged": true,
+      "files_unchanged": true
+    }
+  ]
+}

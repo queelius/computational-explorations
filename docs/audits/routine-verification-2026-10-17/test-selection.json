@@ -1,0 +1,20 @@
+{
+  "collected": 6030,
+  "routine": 6016,
+  "slow": [
+    "tests/test_adversarial_rcop4.py::TestAV1DirectSAT::test_n59_unsat_cadical",
+    "tests/test_adversarial_rcop4.py::TestAV1DirectSAT::test_n59_unsat_glucose4",
+    "tests/test_adversarial_rcop4.py::TestAV1DirectSAT::test_n59_unsat_with_symmetry_break",
+    "tests/test_adversarial_rcop4.py::TestAV7CrossSolver::test_solvers_agree_n59",
+    "tests/test_adversarial_rcop4.py::TestAV5Extension::test_no_extension_to_59",
+    "tests/test_adversarial_rcop4.py::TestAV9TransitionSweep::test_transition_at_59",
+    "tests/test_adversarial_schur.py::TestOrder49Counterexample::test_z7z7_value",
+    "tests/test_adversarial_schur.py::TestOrder49Counterexample::test_order_49_counterexample",
+    "tests/test_binomial_factorial_attacks.py::TestWolstenholme::test_wolstenholme_prime_16843",
+    "tests/test_rado_extensions.py::TestEdgeCases::test_schur_s4",
+    "tests/test_ramsey_algorithms.py::TestCompareAlgorithmsRcop3::test_all_agree_on_n11",
+    "tests/test_ramsey_algorithms.py::TestCompareAlgorithmsRcop3::test_all_agree_on_n10",
+    "tests/test_ramsey_algorithms.py::TestCompareAlgorithmsRcop3::test_results_contain_all_algorithms",
+    "tests/test_verify_883.py::TestVerifyOptimized::test_medium_n"
+  ]
+}

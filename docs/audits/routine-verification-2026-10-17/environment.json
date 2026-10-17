@@ -1,0 +1,53 @@
+{
+  "base_commit": "dc5080ed281422b9229709d2237842469c218628",
+  "dataset": {
+    "repository": "https://github.com/teorth/erdosproblems",
+    "commit": "19cb6116c2c194240e8f46c973e13a161f7987b2",
+    "problems_yaml_sha256": "d567b1fc8f5a7c693e6a1bc0199df3a10b558d011d6aceb7ae4c92a335db3523"
+  },
+  "python": "3.10.20",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "installed": {
+    "PyYAML": "6.0.3",
+    "Pygments": "2.21.0",
+    "cloudpickle": "3.1.2",
+    "contourpy": "1.3.2",
+    "coverage": "7.15.0",
+    "cycler": "0.12.1",
+    "erdos-problems": "0.1.0",
+    "exceptiongroup": "1.3.1",
+    "execnet": "2.1.2",
+    "fonttools": "4.65.0",
+    "iniconfig": "2.3.1",
+    "joblib": "1.6.0",
+    "kiwisolver": "1.5.1",
+    "matplotlib": "3.10.9",
+    "mpmath": "1.3.0",
+    "networkx": "3.4.2",
+    "numpy": "2.2.6",
+    "packaging": "26.3",
+    "pillow": "12.3.0",
+    "pluggy": "1.7.0",
+    "pyparsing": "3.3.3",
+    "pytest": "9.1.1",
+    "pytest-cov": "7.1.0",
+    "pytest-timeout": "2.4.0",
+    "pytest-xdist": "3.8.0",
+    "python-dateutil": "2.9.0.post0",
+    "python-sat": "1.9.dev6",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.15.3",
+    "six": "1.17.0",
+    "sympy": "1.14.0",
+    "threadpoolctl": "3.7.0",
+    "tomli": "2.5.0",
+    "typing_extensions": "4.16.0"
+  },
+  "source_sha256": {
+    "src/geometry_attacks.py": "75e5a8e35275c94b45b2d91367c7f3673522e3e1edf06fef3aeafa82b178c6e9",
+    "src/verify_coprime_witnesses.py": "5ebcccdbd142b51994f384b4172bdb2fd111843139f77e10c4bf808cfb7901b7",
+    "requirements-test.txt": "d2dd4a4ec6a4788c94e0cf665550287aeff1f5beef3623fa8514f68d08ba87fb",
+    "src/coprime_perfectness_proof.py": "24469523c51b223c740f893e939f45693c02f74f73424971fccfb9298580ab9d",
+    "src/info_theory_deep.py": "b853ab0bc9032efcf089924f1f601f7e1245a41c3ca66dd568abfabe38c2bad4"
+  }
+}

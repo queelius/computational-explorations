@@ -785,6 +785,7 @@ class TestEdgeCases:
         So {1} is trivially sum-free."""
         assert modular_schur_colorable(2, 1)
 
+    @pytest.mark.slow
     @pytest.mark.timeout(600)
     def test_schur_s4(self):
         """S(4) = 44, so R(Schur, 4) = 45.

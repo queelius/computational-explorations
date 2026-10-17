@@ -1,8 +1,10 @@
 """Tests for coprime_perfectness_proof.py — Weak perfectness of integer coprime graphs."""
 
 import math
+from itertools import combinations
 import pytest
 
+import coprime_perfectness_proof as perfectness
 from coprime_perfectness_proof import (
     sieve_primes,
     sieve_smallest_prime_factor,
@@ -286,6 +288,48 @@ class TestVerifyWeakPerfectness:
 # ---------------------------------------------------------------------------
 # Strong perfectness investigation
 # ---------------------------------------------------------------------------
+
+class TestChordlessCycleSearch:
+    @pytest.mark.parametrize("length", [5, 7])
+    def test_finds_an_induced_cycle_with_an_isolated_vertex(self, length):
+        vertices = list(range(length + 1))
+        adj = {v: set() for v in vertices}
+        for v in range(1, length + 1):
+            neighbor = v % length + 1
+            adj[v].add(neighbor)
+            adj[neighbor].add(v)
+        cycle = perfectness._find_chordless_cycle(vertices, adj, length)
+        assert cycle is not None and set(cycle) == set(range(1, length + 1))
+
+    def test_agrees_with_degree_oracle_on_all_five_vertex_graphs(self):
+        vertices = list(range(5))
+        possible_edges = list(combinations(vertices, 2))
+        for bits in range(1 << len(possible_edges)):
+            adj = {v: set() for v in vertices}
+            for index, (a, b) in enumerate(possible_edges):
+                if bits & (1 << index):
+                    adj[a].add(b)
+                    adj[b].add(a)
+            # A simple 2-regular graph on five vertices must be a five-cycle.
+            expected = all(len(neighbors) == 2 for neighbors in adj.values())
+            cycle = perfectness._find_chordless_cycle(vertices, adj, 5)
+            assert (cycle is not None) == expected, bits
+
+    def test_dense_graph_search_avoids_factorial_path_enumeration(self, monkeypatch):
+        vertices = list(range(9))
+        adj = {v: set(vertices) - {v} for v in vertices}
+        original = perfectness._cycle_dfs
+        calls = 0
+
+        def counted_search(*args, **kwargs):
+            nonlocal calls
+            calls += 1
+            assert calls <= len(vertices) ** 3, "Search extended paths already containing chords"
+            return original(*args, **kwargs)
+
+        monkeypatch.setattr(perfectness, "_cycle_dfs", counted_search)
+        assert perfectness._find_chordless_cycle(vertices, adj, 7) is None
+
 
 class TestFindOddHole:
     @pytest.mark.parametrize("n", [10, 15, 20])

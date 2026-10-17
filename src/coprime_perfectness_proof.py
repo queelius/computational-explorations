@@ -345,6 +345,14 @@ def _cycle_dfs(path: List[int], target: int, length: int,
             continue  # no repeated vertices (except closing)
         if nxt <= path[0] and nxt != target:
             continue  # canonical ordering to avoid duplicates
+        closing = len(path) + 1 == length
+        # An induced path can only connect to its predecessor; the final
+        # vertex must also connect to the start to close the cycle.
+        nonconsecutive = path[1:-1] if closing else path[:-1]
+        if any(nxt in adj[v] for v in nonconsecutive):
+            continue
+        if closing and target not in adj[nxt]:
+            continue
         path.append(nxt)
         result = _cycle_dfs(path, target, length, adj, visited_starts)
         if result is not None:

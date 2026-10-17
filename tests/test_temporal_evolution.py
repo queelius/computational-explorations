@@ -220,21 +220,29 @@ class TestComplexityDrift:
 class TestNamedProblemAnalysis:
     """Test named problem analysis."""
 
+    @pytest.fixture
+    def named_corpus(self):
+        return [
+            {"number": "1", "comments": "Named example"},
+            {"number": "2"},
+            {"number": "3", "comments": ""},
+        ]
+
     def test_returns_dict(self, problems):
         result = named_problem_analysis(problems)
         assert isinstance(result, dict)
 
-    def test_named_count(self, problems):
-        result = named_problem_analysis(problems)
-        assert result["named_stats"]["count"] == 61
+    def test_named_count(self, named_corpus):
+        result = named_problem_analysis(named_corpus)
+        assert result["named_stats"]["count"] == 1
 
-    def test_unnamed_count(self, problems):
-        result = named_problem_analysis(problems)
-        assert result["unnamed_stats"]["count"] == 1074
+    def test_unnamed_count(self, named_corpus):
+        result = named_problem_analysis(named_corpus)
+        assert result["unnamed_stats"]["count"] == 2
 
-    def test_named_problems_list(self, problems):
-        result = named_problem_analysis(problems)
-        assert len(result["named_problems"]) == 61
+    def test_named_problems_list(self, named_corpus):
+        result = named_problem_analysis(named_corpus)
+        assert [(p["number"], p["name"]) for p in result["named_problems"]] == [(1, "Named example")]
 
     def test_named_have_comments(self, problems):
         result = named_problem_analysis(problems)

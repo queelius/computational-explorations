@@ -347,7 +347,22 @@ class TestOeisClusterAnalysisReal:
 
     def test_families_found(self, problems):
         result = oeis_cluster_analysis(problems)
-        assert "28 problem families" in result
+        # Independent set-union oracle, without a graph library or a dated count.
+        pending = {p["number"]: set(oeis_list(p)) for p in problems}
+        families = 0
+        while pending:
+            _, sequences = pending.popitem()
+            members = 1
+            while True:
+                connected = [number for number, other in pending.items()
+                             if sequences & other]
+                if not connected:
+                    break
+                for number in connected:
+                    sequences.update(pending.pop(number))
+                    members += 1
+            families += members > 1
+        assert f"{families} problem families" in result
 
     def test_missing_connections(self, problems):
         result = oeis_cluster_analysis(problems)

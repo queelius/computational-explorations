@@ -1,0 +1,8 @@
+............                                                             [100%]
+============================= slowest 10 durations =============================
+89.15s call     tests/test_coprime_ramsey.py::TestCoprimeLowerBoundHeuristic::test_lower_bound_monotone
+54.51s call     tests/test_info_theory_deep.py::TestWitnessMDL::test_no_avoiding_at_n11
+43.92s setup    tests/test_info_theory_deep.py::TestWitnessMDL::test_n10_k3_avoiding_count
+
+(7 durations < 0.005s hidden.  Use -vv to show these durations.)
+12 passed in 187.76s (0:03:07)

@@ -543,11 +543,8 @@ def witness_mdl(n: int = 10, k: int = 3) -> Dict[str, Any]:
             "backbone_fraction": 1.0, "backbone_bits": [],
         }
 
-    # Collect all avoiding colorings via incremental extension
-    av_count, _ = count_avoiding_colorings(n, k)
-
-    # We need the actual colorings, not just the count.
-    # Rebuild them (for moderate n this is feasible).
+    # Collect avoiding colorings directly; their count is derived below.
+    # A separate counting pass would repeat the same exhaustive enumeration.
     base_n = None
     base_avoiding: List[Dict] = []
     for bn in range(k, n + 1):

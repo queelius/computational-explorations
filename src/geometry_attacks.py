@@ -55,15 +55,10 @@ def distinct_distance_count(points: np.ndarray, tol: float = 1e-9) -> int:
 
 def unit_distance_count(points: np.ndarray, tol: float = 1e-7) -> int:
     """Count pairs of points at distance exactly 1 (within tolerance)."""
-    count = 0
-    n = len(points)
-    for i in range(n):
-        for j in range(i + 1, n):
-            diff = points[i] - points[j]
-            dsq = diff[0]**2 + diff[1]**2
-            if abs(dsq - 1.0) < tol:
-                count += 1
-    return count
+    if len(points) < 2:
+        return 0
+    squared_distances = pdist(points, metric="sqeuclidean")
+    return int(np.count_nonzero(np.abs(squared_distances - 1.0) < tol))
 
 
 def max_distance_multiplicity(points: np.ndarray, tol: float = 1e-9) -> Tuple[int, float]:
@@ -362,12 +357,9 @@ def _build_unit_distance_graph(n: int) -> np.ndarray:
 
 def _has_duplicate_points(pts: np.ndarray, min_sep: float = 1e-4) -> bool:
     """Check if any two points are closer than min_sep."""
-    n = len(pts)
-    for i in range(n):
-        for j in range(i + 1, n):
-            if np.linalg.norm(pts[i] - pts[j]) < min_sep:
-                return True
-    return False
+    if len(pts) < 2:
+        return False
+    return bool(np.any(pdist(pts) < min_sep))
 
 
 def _optimize_unit_distances(n: int, trials: int = 200,
