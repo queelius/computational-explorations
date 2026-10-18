@@ -215,13 +215,21 @@ def test_cli_reports_invalid_evidence_as_json(tmp_path, record):
     assert 'error' in json.loads(run.stderr)
 
 
-@pytest.mark.parametrize('filename,validate,key,count', [
-    ('cuts.json.gz', validate_cut_paths, 'validated_cuts', 62322),
-    ('fault-families.json.gz', validate_fault_paths, 'validated_orbits', 262),
-    ('extensions.json.gz', validate_cut_extensions, 'validated_pairs', 63859),
+@pytest.mark.parametrize('filename,validate,parameters,expected', [
+    ('cuts.json.gz', validate_cut_paths, {'minimum_side': 5},
+     {'minimum_side': 5, 'validated_cuts': 62322}),
+    ('fault-families.json.gz', validate_fault_paths,
+     {'deleted_vertices': 4, 'deleted_edges': 4},
+     {'validated_orbits': 262, 'covered_deletions': 2380,
+      'validated_paths': 30671, 'edge_faults_tolerated': 4}),
+    ('extensions.json.gz', validate_cut_extensions,
+     {'side_size': 4, 'minimum_side_edges': 5},
+     {'validated_pairs': 63859, 'qualified_cuts': 1253}),
 ])
-def test_archived_positive_certificates(filename, validate, key, count):
+def test_archived_positive_certificates(filename, validate, parameters, expected):
     with gzip.open(AUDIT / filename, 'rt') as source:
         data = json.load(source)
-    assert (data['n'], data['target_edges']) == (17, 9)
-    assert validate(data)[key] == count
+    identity = {'n': 17, 'target_edges': 9}
+    for field, value in (identity | parameters | {'status': 'complete'}).items():
+        assert data[field] == value
+    assert validate(data) == identity | expected

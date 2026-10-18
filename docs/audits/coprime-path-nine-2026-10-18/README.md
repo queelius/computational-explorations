@@ -23,8 +23,9 @@ with 30,671 paths; and 63,859 extension cases on 1,253 qualifying cuts.
 The checker derives case coverage from the input's integer task parameters,
 rejects missing or duplicate cases, and validates all path edges. The
 archived tasks have `n=17` and `target_edges=9`; changing these parameters
-changes the assertion being checked. Integration tests pin both parameters
-and the case counts. The `cuts` mode checks every smaller side from
+changes the assertion being checked. Integration tests pin every task
+parameter (including both deletion budgets), complete result fields, and
+case counts. The `cuts` mode checks every smaller side from
 `minimum_side` to floor(n/2); for even n, both equal-half orientations are
 required. `-O` does not disable any validation.
 
