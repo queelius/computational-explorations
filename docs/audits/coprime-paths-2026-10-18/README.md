@@ -111,6 +111,8 @@ took 121.66 seconds on this machine. Runtime varies with hardware.
 - `lower-check.json`, `formula-check.json`, `proof-check.txt`: independent results.
 - `manifest.json`: file hashes, environment, source identity, limits, and commands.
 - `tests.txt`, `coverage.json`: local regression results and measured coverage.
+- `ci-summary.json`, `ci/`: hosted job results and compressed JUnit/coverage
+  reports, plus the independently reproduced certificate checks.
 
 The new tests exercise malformed evidence, complete edge coverage, simple
 paths versus walks, disconnected clauses, small exact boundaries, resource
@@ -119,6 +121,24 @@ enumeration for all 512 colorings of G_5. CI checks the saved boundary evidence
 separately from the focused Python 3.10/3.13 and broader routine test jobs.
 See [Running verification](../../verification.md) for coverage exclusions and
 the 14 deliberately excluded long research tests.
+
+All four jobs in [CI run 39102840511](https://github.com/queelius/computational-explorations/actions/runs/39102840511)
+passed for source commit `8f419aba14cc79ce356bb7201e10cd31fda7e6be`:
+
+| Check | Result | Time |
+| --- | --- | --- |
+| Focused suite, Python 3.10 | 396 passed | 34.76 s |
+| Focused suite, Python 3.13 | 396 passed | 29.34 s |
+| Routine suite, Python 3.10 | 6,082 passed; 14 slow tests excluded | 1,239.80 s |
+| Independent boundary evidence | Witness and clause checks passed; proof VERIFIED | 80.42 s for proof |
+
+Measured coverage of the new validator is 100% and of the search logic 98%,
+under the repository's existing exclusions. A fresh read-only review found no
+actionable defects, rechecked the full witness, formula semantics and hashes,
+and verified fresh incremental proofs for three smaller UNSAT instances.
+The subsequent report-archiving commit changes only this audit's documentation
+and evidence records; tested source, tests, dependencies, and workflow are
+unchanged.
 
 ## Citation and publication implications
 
