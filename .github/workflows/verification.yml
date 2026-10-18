@@ -57,6 +57,7 @@ jobs:
             tests/test_coprime_path_certificates.py tests/test_coprime_path_search.py \
             tests/test_coprime_path_bounds.py \
             tests/test_coprime_path_structure_certificates.py \
+            tests/test_coprime_path_nine_resolution.py \
             tests/test_geometry_attacks.py::TestUnitDistanceCount \
             tests/test_geometry_attacks.py::TestHasDuplicatePoints \
             --timeout=120 --timeout-method=thread \
@@ -94,6 +95,9 @@ jobs:
           python -I -S -O src/coprime_path_certificates.py witness \
             docs/audits/coprime-paths-2026-10-18/lower-n12-k7/witness.json \
             > test-results/path-witness.json
+          python -I -S -O src/coprime_path_certificates.py witness \
+            docs/audits/coprime-path-nine-resolution-2026-10-18/lower-n16-k9.json \
+            > test-results/path-nine-witness.json
           python -I -S -O src/coprime_path_certificates.py formula \
             docs/audits/coprime-paths-2026-10-18/upper-n13-k8/formula.json.gz \
             --dimacs-out test-results/path-upper.cnf > test-results/path-formula.json

@@ -1,0 +1,76 @@
+{
+  "lower_witness": {
+    "command": [
+      "python3",
+      "-I",
+      "-S",
+      "-O",
+      "src/coprime_path_certificates.py",
+      "witness",
+      "docs/audits/coprime-path-nine-resolution-2026-10-18/lower-n16-k9.json"
+    ],
+    "exit_code": 0,
+    "result": {
+      "n": 16,
+      "path_edges": 9,
+      "edges": 79,
+      "witness_valid": true,
+      "longest_paths": [
+        8,
+        8
+      ]
+    }
+  },
+  "prior_structural_archive": {
+    "manifest": "docs/audits/coprime-path-nine-2026-10-18/manifest.json",
+    "manifest_sha256": "a8931d9fb58ac7c4d6c97de3f9395093fd29fb8e538fc7844e72b6fe44aca969",
+    "verified_file_count": 12,
+    "all_hashes_match": true
+  },
+  "focused_tests": {
+    "result": "510 passed",
+    "seconds": 78.26,
+    "python": "3.10.20",
+    "output": "focused-tests.txt",
+    "new_auxiliary_tests": 16
+  },
+  "coverage": {
+    "report": "coverage.json",
+    "totals": {
+      "covered_lines": 1563,
+      "num_statements": 1768,
+      "percent_covered": 88.40497737556561,
+      "percent_covered_display": "88",
+      "missing_lines": 205,
+      "excluded_lines": 463,
+      "percent_statements_covered": 88.40497737556561,
+      "percent_statements_covered_display": "88"
+    },
+    "path_witness_checker": {
+      "covered_lines": 88,
+      "num_statements": 88,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 37,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "path_structure_checker": {
+      "covered_lines": 143,
+      "num_statements": 143,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 23,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "scope": "Statement coverage using the repository configuration, which excludes main bodies; CLI integration is exercised separately. No production code changed."
+  },
+  "limits": [
+    "Auxiliary tests corroborate finite claims, not the complete mathematical deduction.",
+    "Published theorems and the written proof require mathematical review.",
+    "Inconclusive SAT probes are not proof dependencies."
+  ]
+}
