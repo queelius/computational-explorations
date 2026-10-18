@@ -45,6 +45,20 @@ combinatorially with their parameters.
 These files establish lower bounds at 10, 52, and 58. Upper bounds require the
 separate arguments described in the [corrections](coprime-ramsey-corrections.md).
 
+## Independently check the path certificates
+
+The [October 18 path audit](audits/coprime-paths-2026-10-18/README.md) includes
+commands to validate the complete coloring at 12, validate every clause of
+the formula at 13, and check its archived UNSAT proof using pinned DRAT-trim.
+The witness checker uses subset dynamic programming; the formula checker
+recognizes simple paths from their edge structure. Neither requires PySAT.
+Formula validation alone does **not** establish UNSAT.
+
+The separate **Independent path certificate** CI job performs all three checks
+without rerunning the SAT search. It builds the pinned proof checker and gives
+proof checking a 600-second process limit. This certifies the two boundary
+instances for P_cop(7) = P_cop(8) = 13; it is not a Lean formalization.
+
 ## Run the focused regression suite
 
 Set numerical libraries to one thread to avoid oversubscribing test workers:
@@ -56,11 +70,13 @@ python -m pytest -q \
   tests/test_coprime_ramsey_variants.py tests/test_nt_graph_ramsey.py::TestRGCD \
   tests/test_synthesis.py tests/test_verify_coprime_witnesses.py \
   tests/test_coprime_perfectness_proof.py \
+  tests/test_coprime_path_certificates.py tests/test_coprime_path_search.py \
   tests/test_geometry_attacks.py::TestUnitDistanceCount \
   tests/test_geometry_attacks.py::TestHasDuplicatePoints \
   --timeout=120 --timeout-method=thread \
   --cov=coprime_ramsey_sat --cov=coprime_ramsey_variants \
   --cov=synthesis --cov=verify_coprime_witnesses --cov=coprime_perfectness_proof \
+  --cov=coprime_path_certificates --cov=coprime_path_search \
   --cov-report=term-missing
 ```
 

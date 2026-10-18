@@ -54,11 +54,13 @@ jobs:
             tests/test_coprime_ramsey_variants.py tests/test_nt_graph_ramsey.py::TestRGCD \
             tests/test_synthesis.py tests/test_verify_coprime_witnesses.py \
             tests/test_coprime_perfectness_proof.py \
+            tests/test_coprime_path_certificates.py tests/test_coprime_path_search.py \
             tests/test_geometry_attacks.py::TestUnitDistanceCount \
             tests/test_geometry_attacks.py::TestHasDuplicatePoints \
             --timeout=120 --timeout-method=thread \
             --cov=coprime_ramsey_sat --cov=coprime_ramsey_variants \
             --cov=synthesis --cov=verify_coprime_witnesses --cov=coprime_perfectness_proof \
+            --cov=coprime_path_certificates --cov=coprime_path_search \
             --cov-report=term-missing --cov-report=xml:test-results/coverage.xml \
             --junitxml=test-results/focused.xml
       - name: Preserve verification reports
@@ -67,6 +69,46 @@ jobs:
         with:
           name: coprime-python-${{ matrix.python }}
           path: test-results/
+
+  path-certificate:
+    name: Independent path certificate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: marijnheule/drat-trim
+          ref: 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+          path: .proof-checker
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.10"
+      - name: Independently check the witness and clause semantics
+        run: |
+          mkdir -p test-results
+          python -I -S -O src/coprime_path_certificates.py witness \
+            docs/audits/coprime-paths-2026-10-18/lower-n12-k7/witness.json \
+            > test-results/path-witness.json
+          python -I -S -O src/coprime_path_certificates.py formula \
+            docs/audits/coprime-paths-2026-10-18/upper-n13-k8/formula.json.gz \
+            --dimacs-out test-results/path-upper.cnf > test-results/path-formula.json
+      - name: Check the archived UNSAT proof
+        run: |
+          make -C .proof-checker drat-trim
+          gzip -dc docs/audits/coprime-paths-2026-10-18/upper-n13-k8/proof.drat.gz \
+            > test-results/path-upper.drat
+          timeout 600 .proof-checker/drat-trim test-results/path-upper.cnf \
+            test-results/path-upper.drat -t 590 > test-results/path-proof-check.txt
+          cat test-results/path-proof-check.txt
+      - name: Preserve path check reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: path-certificate
+          path: |
+            test-results/*.json
+            test-results/path-proof-check.txt
 
   routine:
     name: Routine suite (Python 3.10)

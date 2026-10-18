@@ -1,0 +1,13 @@
+{
+  "n": 12,
+  "path_edges": 7,
+  "solver_status": "sat",
+  "rounds": 2425,
+  "elapsed_seconds": 0.5421623139991425,
+  "clauses": 9603,
+  "seconds_budget": 600.0,
+  "max_rounds": null,
+  "files_sha256": {
+    "witness.json": "f85e1a6141939198fa1e797ef0dfd51d4b1bcccbc6c4828b2f513c405b9324af"
+  }
+}
