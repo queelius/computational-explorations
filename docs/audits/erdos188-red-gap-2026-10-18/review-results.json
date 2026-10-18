@@ -1,0 +1,173 @@
+{
+  "recorded_utc": "2026-10-18T08:43:50.093909+00:00",
+  "python": "3.10.20",
+  "reviewed_files": {
+    "PLAN.md": "c964566f52b803ba146904d9161fd8fb7a9e2561be0871238a43f70a6326b351",
+    "README.md": "08526247d1487d28079e146abedba51bcdb60cafefbbfca3fc01cf396ca097d4",
+    "audit.py": "a0fa94170dd4075b0dcaf105e759f2b872f83ff47cf1394f311c9ce00f66df1c",
+    "test_audit.py": "aeb7d67963a2642e764bfea4b059b756f6aa282cd7d725f948f38525a806123f",
+    "cfg_k60.json": "b15251de28f6f552f4364d2170a58e923b730590d8797dfe5d09e007d2f87b2e",
+    "source-pins.json": "b0ef5393b0c1478c9f5308dab2704e8a7db4511b6c80d1bd08abae7e7c45d0e3",
+    "reviewer_checks.py": "3bcac59440c4cf276637ab9a450dbbb1a159c42a107d04d8dcd1ba2a7180b609"
+  },
+  "runs": [
+    {
+      "command": [
+        "python",
+        "reviewer_checks.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "status": "PASS",
+        "cells": 90,
+        "integer_scale": 1000000000,
+        "pair_specific_candidates": 662,
+        "near": 408,
+        "far": 254,
+        "candidate_translates": [
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            -1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "near_min_squared_margin": "137427179858569/40000000000000000",
+        "far_min_squared_margin": "71532731492067/7812500000000000",
+        "same_cell_min_margin": "3303/62500000",
+        "source_sha256": "b15251de28f6f552f4364d2170a58e923b730590d8797dfe5d09e007d2f87b2e",
+        "secant_check": {
+          "t": "9826655231/10173344769",
+          "s": "179258724537879326722/103496943788939663361",
+          "3_minus_s_squared": "1161798005509245509194239591994183679/10711617373650936361051003270168005816321"
+        },
+        "controls": [
+          "387 signed integer ceiling cases",
+          "smaller secant factor",
+          "duplicate JSON key",
+          "safe separated disks",
+          "safe overlapping disks",
+          "unit pair at original centers",
+          "unit pair across period",
+          "closed near endpoint",
+          "closed far endpoint",
+          "diameter endpoint",
+          "actual-source red unit centers",
+          "all 90 centers independently shifted by large signed lattice vectors"
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-O",
+        "reviewer_checks.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "status": "PASS",
+        "cells": 90,
+        "integer_scale": 1000000000,
+        "pair_specific_candidates": 662,
+        "near": 408,
+        "far": 254,
+        "candidate_translates": [
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            -1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "near_min_squared_margin": "137427179858569/40000000000000000",
+        "far_min_squared_margin": "71532731492067/7812500000000000",
+        "same_cell_min_margin": "3303/62500000",
+        "source_sha256": "b15251de28f6f552f4364d2170a58e923b730590d8797dfe5d09e007d2f87b2e",
+        "secant_check": {
+          "t": "9826655231/10173344769",
+          "s": "179258724537879326722/103496943788939663361",
+          "3_minus_s_squared": "1161798005509245509194239591994183679/10711617373650936361051003270168005816321"
+        },
+        "controls": [
+          "387 signed integer ceiling cases",
+          "smaller secant factor",
+          "duplicate JSON key",
+          "safe separated disks",
+          "safe overlapping disks",
+          "unit pair at original centers",
+          "unit pair across period",
+          "closed near endpoint",
+          "closed far endpoint",
+          "diameter endpoint",
+          "actual-source red unit centers",
+          "all 90 centers independently shifted by large signed lattice vectors"
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        ".",
+        "-p",
+        "test_audit.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_algebraic_radius_bound_and_invalid_bound_control (test_audit.ExactGeometryTests) ... ok\ntest_basis_orientation_does_not_change_conclusion (test_audit.ExactGeometryTests) ... ok\ntest_closed_distance_interval_endpoints_rejected (test_audit.ExactGeometryTests) ... ok\ntest_exact_recentering_handles_negative_and_integer_coordinates (test_audit.ExactGeometryTests) ... ok\ntest_long_but_nearly_parallel_periods_rejected (test_audit.ExactGeometryTests) ... ok\ntest_near_squared_inequality_requires_positive_room (test_audit.ExactGeometryTests) ... ok\ntest_overlapping_disks_are_allowed (test_audit.ExactGeometryTests) ... ok\ntest_same_cell_diameter_rejected (test_audit.ExactGeometryTests) ... ok\ntest_short_period_rejected_by_completeness_guard (test_audit.ExactGeometryTests) ... ok\ntest_small_safe_periodic_disks (test_audit.ExactGeometryTests) ... ok\ntest_squared_classifier_agrees_with_direct_rational_distances (test_audit.ExactGeometryTests) ... ok\ntest_unit_pair_across_period_boundary_rejected (test_audit.ExactGeometryTests) ... ok\ntest_unit_pair_inside_period_rejected (test_audit.ExactGeometryTests) ... ok\ntest_invalid_gap_rejected (test_audit.InputTests) ... ok\ntest_malformed_configurations_rejected (test_audit.InputTests) ... ok\ntest_actual_data_unit_pair_mutation_rejected (test_audit.SourceTests) ... ok\ntest_cli_rejects_corrupt_input_and_works_with_optimization (test_audit.SourceTests) ... ok\ntest_complete_source_certificate (test_audit.SourceTests) ... ok\ntest_separate_large_lattice_shifts_preserve_the_source_certificate (test_audit.SourceTests) ... ok\ntest_source_digest_guard_rejects_changed_bytes (test_audit.SourceTests) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 12.081s\n\nOK\n"
+    }
+  ],
+  "scope": "Independent AI review of the fixed red-distance gap only; not human peer review or formal verification.",
+  "final_readme_review_utc": "2026-10-18T08:44:24.561437+00:00",
+  "final_readme_review_note": "Reviewed addition of reproduction command, test count, and completed independent review description; mathematical proof and executable files unchanged."
+}
