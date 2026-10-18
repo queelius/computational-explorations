@@ -1,0 +1,78 @@
+{
+  "n": 17,
+  "path_edges": 9,
+  "conclusion": "inconclusive: no valid avoiding witness or independently checked UNSAT proof",
+  "python_version": "3.10.20",
+  "python_sat_version": "1.9.dev6",
+  "seed_generation": {
+    "seed_paths": 1688,
+    "automorphisms": 2304,
+    "twin_classes": [
+      [
+        2,
+        4,
+        8,
+        16
+      ],
+      [
+        3,
+        9
+      ],
+      [
+        6,
+        12
+      ],
+      [
+        1,
+        11,
+        13,
+        17
+      ]
+    ],
+    "unique_path_images": 711552,
+    "valid_path_clauses": 1423104,
+    "seconds": 42.48946358601097
+  },
+  "static_subset": {
+    "n": 17,
+    "path_edges": 9,
+    "solver": "Glucose4",
+    "solve_seconds_budget": 120,
+    "formula_sha256": "89cd9c661d728f81d70bd4bab3ef282bf0058bfdee9b70cec6639f1f5f42b33a",
+    "clauses": 1423105,
+    "scope": "static subset of valid path exclusions",
+    "setup_seconds": 5.275502365024295,
+    "solve_seconds": 0.04195261298445985,
+    "status": "sat_subset",
+    "solver_statistics": {
+      "restarts": 1,
+      "conflicts": 0,
+      "decisions": 53,
+      "propagations": 96
+    },
+    "avoiding_witness_valid": false,
+    "witness_validation_error": "coloring contains a forbidden monochromatic simple path"
+  },
+  "orbit_lazy_refinement": {
+    "n": 17,
+    "path_edges": 9,
+    "solver": "Glucose4",
+    "search_seconds_budget": 120,
+    "seed_formula_sha256": "89cd9c661d728f81d70bd4bab3ef282bf0058bfdee9b70cec6639f1f5f42b33a",
+    "seed_clauses": 1423105,
+    "automorphisms": 2304,
+    "status": "inconclusive",
+    "setup_seconds": 3.7902182150282897,
+    "search_seconds": 120.00649448897457,
+    "solver_statistics": {
+      "restarts": 289,
+      "conflicts": 28241,
+      "decisions": 42246,
+      "propagations": 342857
+    },
+    "rounds": 284,
+    "added_path_clauses": 975168,
+    "additional_clauses_sha256": "0e75db9d05de227cd094850e8023b656efe0e0b30266cb34b6130105279c3be7"
+  },
+  "artifact_scope": "Formula hashes identify private diagnostic scratch. Only positive structural certificates are archived publicly."
+}

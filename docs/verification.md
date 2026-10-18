@@ -59,6 +59,12 @@ without rerunning the SAT search. It builds the pinned proof checker and gives
 proof checking a 600-second process limit. This certifies the two boundary
 instances for P_cop(7) = P_cop(8) = 13; it is not a Lean formalization.
 
+The [nine-edge-path structural audit](audits/coprime-path-nine-2026-10-18/README.md)
+provides separate positive certificates for balanced cuts, deletion resilience,
+and cut extensions at G_17. Its standard-library checker runs under `-I -S -O`;
+the focused suite validates every archived case. These establish necessary
+conditions on an avoiding coloring, not the proposed exact threshold 17.
+
 ## Run the focused regression suite
 
 Set numerical libraries to one thread to avoid oversubscribing test workers:
@@ -72,6 +78,7 @@ python -m pytest -q \
   tests/test_coprime_perfectness_proof.py \
   tests/test_coprime_path_certificates.py tests/test_coprime_path_search.py \
   tests/test_coprime_path_bounds.py \
+  tests/test_coprime_path_structure_certificates.py \
   tests/test_geometry_attacks.py::TestUnitDistanceCount \
   tests/test_geometry_attacks.py::TestHasDuplicatePoints \
   --timeout=120 --timeout-method=thread \
@@ -79,6 +86,7 @@ python -m pytest -q \
   --cov=synthesis --cov=verify_coprime_witnesses --cov=coprime_perfectness_proof \
   --cov=coprime_path_certificates --cov=coprime_path_search \
   --cov=coprime_path_bounds \
+  --cov=coprime_path_structure_certificates \
   --cov-report=term-missing
 ```
 
