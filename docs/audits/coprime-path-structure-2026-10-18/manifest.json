@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-18",
+  "base_commit": "ab7586a04df6cedb1bf2cd27f6389c101b87a569",
+  "path_length_convention": "edges in a simple path; two colors",
+  "source_sha256": {
+    "src/coprime_path_bounds.py": "9adae93d5c72389a6d6eb743ac50c248da7bfeeb307e1d6816babbb7dcd83b5c",
+    "src/coprime_path_search.py": "56e9588c2e94051db99f51498259b351723fbd4f7185fba45745830b55095947",
+    "tests/test_coprime_path_bounds.py": "de223f119c738c417dbe4da1f69172f0cd00198753cd8bbbaaa3edcb350938a3"
+  },
+  "artifact_sha256": {
+    "finite-bounds.json": "96df0cb1b88437ef03c0615a8100327218ab12bae19f109a7ac4e907aea2362d",
+    "searches.json": "92c089fd0f03620a939991554eecda52bd2c126d6ca0b2a0045fc7d8757b65fb",
+    "tests.txt": "e29cf8ad4c613c5a125bc43280db5805dde6c9000e125396ffdec7d6fdf5eba3",
+    "coverage.json": "67d14cb0cfe844a208f5055554c7b3f9a632134527708437b7025c2193b5f2f7",
+    "focused-tests.txt": "e7ca6b593b3de4d783ebb7e4e800f4cc21b316a5280cff907340253c617b9a57"
+  },
+  "verification": {
+    "focused_new_tests": 43,
+    "python": "3.10.20",
+    "calculation_statement_coverage_percent": 100,
+    "coverage_exclusions": "Existing pyproject.toml excludes main and run_experiments bodies; CLI integration tests still run.",
+    "independent_table_check": "All 24 saved host counts recomputed by direct gcd enumeration through n=3287, including all deletion overlaps; all strict upper inequalities passed.",
+    "proof_check": "M\u00f6bius restricted-pair identities checked against 560 small gcd counts, deletion identities through n=420, rational coefficients and split-graph obstruction checked separately; full mathematical arguments are in the research note.",
+    "limits": "These finite checks support the arithmetic and implementation; they do not replace the analytic proof or certify exact thresholds.",
+    "existing_and_new_focused_regressions": {
+      "passed": 439,
+      "elapsed_seconds": 80.22
+    }
+  },
+  "reproduce_bounds": "python3 -I -S -O src/coprime_path_bounds.py 3 4 5 6 7 8 9 10 20 50 100 1000 --max-n 3400",
+  "reproduce_tests": "python -m pytest -q tests/test_coprime_path_bounds.py --cov=coprime_path_bounds --cov-report=term-missing"
+}
