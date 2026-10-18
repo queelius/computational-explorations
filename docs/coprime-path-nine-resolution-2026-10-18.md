@@ -73,10 +73,12 @@ deleted, with parts A of size five and B of size six.
    F0 there is a path of length at least eight; unless both lie in A,
    there is one of length at least nine. In particular, between two B
    vertices the latter length is even, hence ten.
-5. **Ali–Staton classification.** As stated in Nikiforov–Yuan,
-   https://arxiv.org/pdf/1308.4341 , Theorem 6: a connected graph with
-   n>=2k+1, minimum degree at least k, and no P_(2k+2) is a subgraph of
-   K_k join I_(n-k), or is exactly K1 join t disjoint K_k's, n=tk+1.
+5. **Ali–Staton classification.** Ali and Staton, *On Extremal Graphs
+   With No Long Paths*, Electronic Journal of Combinatorics 3 (1996),
+   R20, https://doi.org/10.37236/1244 , Theorem 3: if a connected graph
+   has minimum degree delta>=2, longest path order exactly 2*delta+1,
+   and n>=2*delta+2, then it is a subgraph of K_delta join I_(n-delta),
+   or is exactly K1 join t disjoint K_delta's, n=t*delta+1.
 6. **Hamiltonian closure and Chvátal.** Adding an edge between nonadjacent
    vertices whose degree sum is at least the order preserves existence
    of a Hamiltonian cycle (Bondy–Chvátal, *A method in graph theory*,
@@ -152,8 +154,13 @@ degree-one vertices to retain their edge. This contradicts the at-most-
 one-leaf conclusion. Therefore every edge lies in at least two triangles
 also at n=11 and n=12.
 
-At each n>=11, minimum degree at least four is impossible. Apply
-Ali–Staton with k=4. The windmill exception has 5(n-1)/2 edges, less than
+At each n>=11, minimum degree at least four is impossible. First, a longest
+nonspanning path has at least 2*delta+1 vertices. Otherwise its endpoint
+neighbor sets, indexed along the path, overlap to close the entire path
+into a cycle; connectivity supplies an edge from outside that cycle and
+extends the path. Here the longest path has at most nine vertices and is
+nonspanning, so delta>=4 forces delta=4 and longest path order exactly nine.
+Apply Ali–Staton, with n>=11>2*4+1. The windmill exception has 5(n-1)/2 edges, less than
 3n-3. In the K4 join independent-set exception, minimum degree four makes
 every edge between the four-vertex side and the independent side present.
 Its augmentation then contains K(5,6), since n-4>=7, contrary to the

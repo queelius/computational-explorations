@@ -20,10 +20,11 @@
       ]
     },
     {
-      "url": "https://arxiv.org/pdf/1308.4341",
-      "retrieved_pdf_sha256": "7b098c3b43cd70b91c3c0fbc9585cdcb567ac03554a43803ba9042f9b5467f66",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v3i1r20/pdf/",
+      "doi": "https://doi.org/10.37236/1244",
+      "retrieved_pdf_sha256": "a05f232b46acc7ee9c330d3ff1a8e11a1d2cb6a8941ae6e72aa957522677b28e",
       "used": [
-        "Theorem 6, Ali\u2013Staton classification"
+        "Theorem 3, with minimum degree 4, longest path order 9, and at least 11 vertices"
       ]
     },
     {
