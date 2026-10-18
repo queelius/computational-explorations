@@ -1,0 +1,23 @@
+{
+  "clauses": 1353,
+  "geometry_seconds": 0.02132127498043701,
+  "inputs_sha256": {
+    "cert180.cnf": "795aae29f7e4192f8c4deadae6bf9c0853cc054101ce2ec8af687d702f562e28",
+    "cert180.lrat": "1d7f52735dfe0624ac05396480baa81d4d904de39d7dab9019115a80035470b9",
+    "cert180.pts": "58fde2b848f64ecbb9a0084145fbffc74a897001655adc28ebaaa0c2dd9352a5"
+  },
+  "points": 180,
+  "proof": {
+    "additions": 317041,
+    "deleted_clauses": 318358,
+    "deletion_records": 159589,
+    "final_clause_id": 382906,
+    "final_live_clauses": 36,
+    "peak_live_clauses": 11040,
+    "propagation_hints": 7567456,
+    "records": 476630
+  },
+  "proof_seconds": 13.23181625601137,
+  "rectangles": 676,
+  "status": "PASS"
+}

@@ -59,6 +59,24 @@ without rerunning the SAT search. It builds the pinned proof checker and gives
 proof checking a 600-second process limit. This certifies the two boundary
 instances for P_cop(7) = P_cop(8) = 13; it is not a Lean formalization.
 
+## Independently check the two-color rectangle certificate
+
+The [Crocker rectangle audit](audits/erdos189-rectangles-2026-10-18/README.md)
+reconstructs all unit-area rectangles using equal diagonals with a shared
+midpoint, checks the exact CNF encoding, and replays every positive-hint LRAT
+step. It uses Python's standard library and does not execute downloaded code:
+
+```sh
+python docs/audits/erdos189-rectangles-2026-10-18/reproduce.py
+```
+
+This downloads the pinned 48.7 MB source archive. See the packet for the
+offline `--archive` option, exact expected counts, failure controls and trust
+boundary. The routine regression suite runs the packet's fast controls via
+`tests/test_erdos189_audit.py`; it does not download or replay the full external
+proof. This corroborates Crocker's two-color variant, not a new solution of
+the original Erdős Problem 189.
+
 ## Run the focused regression suite
 
 Set numerical libraries to one thread to avoid oversubscribing test workers:
