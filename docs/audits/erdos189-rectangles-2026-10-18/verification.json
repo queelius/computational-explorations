@@ -1,0 +1,63 @@
+{
+  "checked_at": "2026-10-18",
+  "classification": "written reduction plus exact finite computation; independently implemented source audit, not formal or human verification",
+  "archive_base": "c8324835b958f4ea887090dc98142bb66e042b59",
+  "destination_base": "32ab6c5e5ae4beae1e9304d8b69f956d42fc0c4b",
+  "tests": {
+    "normal_unit_tests": 21,
+    "optimized_unit_tests": 21,
+    "repository_pytest_bridge": "1 passed",
+    "source_mutation_controls": 4,
+    "reviewer_extra_boundary_controls": 10,
+    "reviewer_semantic_oracle": {
+      "two_variable_traces": 5868,
+      "accepted_entailed": 504,
+      "accepted_nonentailed": 0
+    },
+    "reviewer_geometry_counts": {
+      "source": 676,
+      "lattice_11_by_11": 194
+    }
+  },
+  "coverage": {
+    "command": "python -m coverage run --branch --data-file=.coverage-audit -m unittest -v test_audit; python -m coverage report --data-file=.coverage-audit --include='*/audit.py,*/reproduce.py' --show-missing",
+    "core_checker_percent": 92,
+    "uncovered_core_lines": "CLI main; separately exercised by full reproductions and failure subprocess",
+    "download_wrapper_percent": 37,
+    "note": "Unit-test coverage excludes subprocess executions. No numerical coverage threshold or proof claim."
+  },
+  "scope_excluded": [
+    "source Lean build",
+    "point minimality",
+    "stronger prescribed side-length list",
+    "optimal color count",
+    "original Erdős189 theorem",
+    "full unrelated repository research searches"
+  ],
+  "review": {
+    "separate_ai_reviewers": 1,
+    "report": "review.md",
+    "formal_proof": false,
+    "human_peer_review": false
+  },
+  "attribution": {
+    "contributor": "Alexander Richard Towell",
+    "predecessor": "Carson Crocker",
+    "assistance": "Substantial OpenAI Codex assistance"
+  },
+  "full_reproduction": {
+    "command": "python reproduce.py --archive /path/to/FINAL_189_release_189_lb.zip",
+    "status": "PASS",
+    "full_result": "final-reproduction.json",
+    "source_checks": 4,
+    "saved_reviewer_checks": "PASS"
+  },
+  "source_retrieval": {
+    "initial_full_download": "Matches both published MD5 and locally recorded SHA-256; 48,708,459 bytes.",
+    "default_command_network_attempt": "Failed closed on archive SHA-256 mismatch. Temporary offending bytes were not retained, so the precise cause is unresolved.",
+    "diagnostic_repeat": "A new complete download from the same URL was byte-identical (cmp exit0) to the pinned original, with published MD5 and exact SHA-256. No source pin changed.",
+    "diagnostic_note": "Checksum rejection now reports expected/actual digest and observed byte count; regression checked. The acceptance condition is unchanged.",
+    "diagnostic_receipt": "download-diagnostic.json",
+    "network_smoke_test_status": "Fresh source acquisition and offline complete reproduction independently passed; one earlier end-to-end fetch failed closed."
+  }
+}

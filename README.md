@@ -35,6 +35,7 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 ## Key Documents
 
 - [Running verification](docs/verification.md) — Fresh environment, independent witness checker, routine tests, and CI scope
+- [Two-color rectangle certificate audit](docs/audits/erdos189-rectangles-2026-10-18/README.md) — Independent exact corroboration of Carson Crocker's 180-point unit-area rectangle witness, with a complete finite refutation replay
 - [Coprime path certificates (2026-10-18)](docs/audits/coprime-paths-2026-10-18/README.md) — Independently checked evidence that P_cop(7) = P_cop(8) = 13
 - [Coprime path structural bounds (2026-10-18)](docs/coprime-path-structure-2026-10-18.md) — Linear growth, explicit density bounds, and limitations of the current proof methods
 - [Coprime Ramsey release](docs/coprime-ramsey-release.md) — Versioned corrections, witnesses, and verification scope
