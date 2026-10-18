@@ -38,6 +38,7 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 - [Coprime path certificates (2026-10-18)](docs/audits/coprime-paths-2026-10-18/README.md) — Independently checked evidence that P_cop(7) = P_cop(8) = 13
 - [Coprime path structural bounds (2026-10-18)](docs/coprime-path-structure-2026-10-18.md) — Linear growth, explicit density bounds, and limitations of the current proof methods
 - [Nine-edge-path constraints (2026-10-18)](docs/coprime-path-nine-2026-10-18.md) — Any avoiding coloring at 17 must be connected in both colors, with a 47/48 edge split; the exact threshold remains unresolved
+- [Crocker's red-distance certificate (2026-10-18)](docs/audits/erdos188-red-gap-2026-10-18/README.md) — Independent exact exclusion of distances [0.999, 1.001] for the specified Erdős 188 coloring; the blue-progression claim is outside this audit
 - [Coprime Ramsey release](docs/coprime-ramsey-release.md) — Versioned corrections, witnesses, and verification scope
 - [Coprime Ramsey corrections (2026-10-17)](docs/coprime-ramsey-corrections.md) — Current proof status and errata for the archived manuscript
 - [Coprime Ramsey audit](docs/coprime-ramsey-citation-audit.md) — Reproduced checks, witnesses, and remaining gaps
