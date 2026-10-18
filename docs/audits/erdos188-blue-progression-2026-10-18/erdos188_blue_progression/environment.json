@@ -1,0 +1,12 @@
+{
+  "python": "3.10.20 (main, Mar  3 2026, 14:59:16) [Clang 21.1.4 ]",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "available_cpus": 12,
+  "packages": {
+    "numpy": "2.2.6",
+    "numba": "0.68.0",
+    "llvmlite": "0.50.0",
+    "pytest": "9.1.1",
+    "coverage": "7.15.0"
+  }
+}

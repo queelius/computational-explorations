@@ -1,0 +1,61 @@
+{
+  "source": "https://doi.org/10.5281/zenodo.23405962",
+  "author": "Carson Crocker",
+  "version": "v5",
+  "modified": "2026-10-15T22:54:17.425088+00:00",
+  "license": "CC-BY-4.0 per Zenodo metadata",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "files": [
+    {
+      "source": "Crocker_Erdos188_note.pdf",
+      "bytes": 440471,
+      "sha256": "9cee37d0a347acb3e30a41e478e94c2e40f59a95e9d2e6879827bfb340af796d"
+    },
+    {
+      "source": "release_188_v5/README.txt",
+      "bytes": 40454,
+      "sha256": "baaa78acd399a13c7a4ae058ae4bf2b8a68e22a64245d9bb582acdb7a27b91e4"
+    },
+    {
+      "source": "release_188_v5/upper_bound/cfg_k60.json",
+      "bytes": 4823,
+      "sha256": "b15251de28f6f552f4364d2170a58e923b730590d8797dfe5d09e007d2f87b2e"
+    },
+    {
+      "source": "release_188_v5/upper_bound/verifier2/claimB_arb.py",
+      "bytes": 16266,
+      "sha256": "494104edad838f4a9044d9fb8fedcbb856f39e57e29a1d66b26f60f2b4f06dcd"
+    },
+    {
+      "source": "release_188_v5/upper_bound/verifier2/DIFF_NOTES.txt",
+      "bytes": 3727,
+      "sha256": "7eca4ef9fcd04445b492752fd5b73b077c0ff36eeb43eb461b94874d92532058"
+    },
+    {
+      "source": "release_188_v5/extra_checks/blind_verifier_V3/REPORT.txt",
+      "bytes": 10104,
+      "sha256": "29c6ca4d6a7bac3229cc7e4f80ba6d30175b022ef1bb63f686962ad5172ce8c4"
+    },
+    {
+      "source": "release_188_v5/extra_checks/blind_verifier_V3/engine.py",
+      "bytes": 6928,
+      "sha256": "8602effbed7049bf3fa06bb51e32f49c7edbf5a516895e9737ae215ad7d84a7a"
+    },
+    {
+      "source": "release_188_v5/extra_checks/blind_verifier_V3/checkfrac.py",
+      "bytes": 5959,
+      "sha256": "b183c5fb0c5210bf3ccda0719fc687aabd177df700d28cca9cdc5f955adc903c"
+    }
+  ],
+  "archive": {
+    "bytes": 122108629,
+    "metadata_md5": "00f80a80e8671feffab1af7779ed25a1",
+    "verification": "Selected members fetched by HTTP ranges, exact range/length checks and ZIP CRC; individual SHA256 computed. Full ZIP was not downloaded/verified."
+  },
+  "research_base": "66f660c657488a2d5f07828ec71eb11288888a66",
+  "destination_main_at_setup": "8bda81e8d3f867bb1450b0e492592164416ba98f",
+  "claimA_pr": "https://github.com/queelius/computational-explorations/pull/8",
+  "claimA_head": "e584642b6d78e6e4ba696b75ff64bd886c087e56",
+  "coordination": "https://github.com/plasma-ai/erdos/issues/62#issuecomment-6248625428",
+  "source_read_before_implementation": true
+}
