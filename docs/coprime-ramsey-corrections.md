@@ -36,9 +36,11 @@ The edge-clique identity and the Gallai triangle transfer are established in
 [Du et al. v2, Theorem 4.4 and Proposition 4.6](https://arxiv.org/html/2605.26815v2).
 Thus the value 29 for three-color Gallai triangles is also covered. Paths and
 cycles have non-complete targets; the matching pullback lower bound need not
-hold. The audit reproduced the shorter path and cycle thresholds, but path
-parameters 7 and 8 (counting edges) each timed out after 60 seconds. Their
-reported values 13 and 13 retain that qualification.
+hold. The October 17 audit reproduced the shorter path and cycle thresholds,
+but path parameters 7 and 8 (counting edges) each timed out after 60 seconds.
+The **October 18 follow-up** closes that gap: [independent path evidence](audits/coprime-paths-2026-10-18/README.md)
+establishes **P_cop(7) = P_cop(8) = 13** using a full avoiding coloring at 12
+and a checked UNSAT proof at 13. The dated October 17 report is unchanged.
 
 For R_cop(5), the supported interval is **181–197**, using
 [Angeltveit–McKay's R(5,5) <= 46](https://arxiv.org/abs/2409.15709) and the
@@ -114,6 +116,7 @@ The original coprime DOI archives only the PDF. The February
 [code DOI](https://zenodo.org/records/18638635) predates the SAT modules and is
 not an archive of the corrected repository. The [release record](coprime-ramsey-release.md)
 describes the subsequent software-and-witness snapshot. Counting defects identified in the audit are
-repaired as described above. Preserving solver certificates for all variant
-computations, reproducing the two longer path searches, and completing the
-Lean formalization remain outstanding.
+repaired as described above. Certificates for the two longer path thresholds
+are now preserved in the October 18 follow-up. Preserving certificates for
+the remaining variant computations and completing the Lean formalization
+remain outstanding.

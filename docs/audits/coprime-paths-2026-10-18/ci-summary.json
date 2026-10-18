@@ -1,0 +1,306 @@
+{
+  "run_id": 39102840511,
+  "run_url": "https://github.com/queelius/computational-explorations/actions/runs/39102840511",
+  "workflow_status": "completed",
+  "workflow_conclusion": "success",
+  "head_commit": "8f419aba14cc79ce356bb7201e10cd31fda7e6be",
+  "base_commit": "aaae80afcc6dba9cf9b443e562b07221bb9340e2",
+  "jobs": [
+    {
+      "id": 117602457584,
+      "name": "Routine suite (Python 3.10)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/queelius/computational-explorations/actions/runs/39102840511/job/117602457584"
+    },
+    {
+      "id": 117602457660,
+      "name": "Independent path certificate",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/queelius/computational-explorations/actions/runs/39102840511/job/117602457660"
+    },
+    {
+      "id": 117602457684,
+      "name": "Coprime checks (Python 3.10)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/queelius/computational-explorations/actions/runs/39102840511/job/117602457684"
+    },
+    {
+      "id": 117602457840,
+      "name": "Coprime checks (Python 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/queelius/computational-explorations/actions/runs/39102840511/job/117602457840"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12127960726,
+      "name": "routine-python-3.10",
+      "size_in_bytes": 71465,
+      "digest": "sha256:f98d015d92d9b45ae83a435579b030b31ab46ad917a036f549a0833919de83ad"
+    },
+    {
+      "id": 12127227669,
+      "name": "coprime-python-3.13",
+      "size_in_bytes": 9726,
+      "digest": "sha256:2c23f6495fafe5146b6591eaa4420a5481f106be38dcf4d22453d81175a873aa"
+    },
+    {
+      "id": 12127222681,
+      "name": "coprime-python-3.10",
+      "size_in_bytes": 9759,
+      "digest": "sha256:4872e949aeac40927c971de256b6e9c1f05dbef95fd6b1fd9031b0aacf00b387"
+    },
+    {
+      "id": 12126888683,
+      "name": "path-certificate",
+      "size_in_bytes": 880,
+      "digest": "sha256:954066cad0ed4bba5fd08d2127f550710aaf910f38da87bb3e481b374c5162d3"
+    }
+  ],
+  "scope": {
+    "slow_tests_excluded": 14,
+    "lean_checked": false,
+    "full_literature_novelty_review": false
+  },
+  "proof_check": {
+    "status": "VERIFIED",
+    "seconds": 80.415
+  },
+  "reports": [
+    {
+      "artifact": "coprime-python-3.10",
+      "file": "coverage.xml",
+      "uncompressed_sha256": "20c756569c454d776966d3001213b5a2c9737758f9e1d16c7de6682bcd6b8720",
+      "coverage": {
+        "version": "7.15.0",
+        "timestamp": "1792303625054",
+        "lines-valid": "1563",
+        "lines-covered": "1358",
+        "line-rate": "0.8688",
+        "branches-covered": "0",
+        "branches-valid": "0",
+        "branch-rate": "0",
+        "complexity": "0"
+      },
+      "archive": "ci/coprime-python-3.10/coverage.xml.gz"
+    },
+    {
+      "artifact": "coprime-python-3.10",
+      "file": "focused.xml",
+      "uncompressed_sha256": "3efde340276d952009adfe31b697bf26ff8ea80e4656b1485810ba993408156c",
+      "test_suites": [
+        {
+          "name": "pytest",
+          "errors": "0",
+          "failures": "0",
+          "skipped": "0",
+          "tests": "396",
+          "time": "34.755",
+          "timestamp": "2026-10-18T06:06:30.405638+00:00",
+          "hostname": "runnervm8k3b6"
+        }
+      ],
+      "archive": "ci/coprime-python-3.10/focused.xml.gz"
+    },
+    {
+      "artifact": "coprime-python-3.10",
+      "file": "witnesses.json",
+      "uncompressed_sha256": "6161b7644098de9234a2a0f5fb69596b7f60839afe153605858c7ba0dfc3836b",
+      "result": {
+        "valid": true,
+        "results": [
+          {
+            "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n10-k3-c2.json",
+            "valid": true,
+            "n": 10,
+            "forbidden_clique_size": 3,
+            "colors": 2,
+            "edges": 31,
+            "cliques_checked": 42
+          },
+          {
+            "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n52-k3-c3.json",
+            "valid": true,
+            "n": 52,
+            "forbidden_clique_size": 3,
+            "colors": 3,
+            "edges": 829,
+            "cliques_checked": 6684
+          },
+          {
+            "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n58-k4-c2.json",
+            "valid": true,
+            "n": 58,
+            "forbidden_clique_size": 4,
+            "colors": 2,
+            "edges": 1027,
+            "cliques_checked": 49815
+          }
+        ]
+      },
+      "archive": "ci/coprime-python-3.10/witnesses.json"
+    },
+    {
+      "artifact": "coprime-python-3.13",
+      "file": "coverage.xml",
+      "uncompressed_sha256": "cf460bb89e9c50296af6130587f1d1dbbb9dfbb4badf3ebd02551e43f78ef098",
+      "coverage": {
+        "version": "7.15.0",
+        "timestamp": "1792303616072",
+        "lines-valid": "1563",
+        "lines-covered": "1358",
+        "line-rate": "0.8688",
+        "branches-covered": "0",
+        "branches-valid": "0",
+        "branch-rate": "0",
+        "complexity": "0"
+      },
+      "archive": "ci/coprime-python-3.13/coverage.xml.gz"
+    },
+    {
+      "artifact": "coprime-python-3.13",
+      "file": "focused.xml",
+      "uncompressed_sha256": "224f1f996b01edb9e5258699afe87cef3ecd254a5b3ce15c45d427b5b52728ae",
+      "test_suites": [
+        {
+          "name": "pytest",
+          "errors": "0",
+          "failures": "0",
+          "skipped": "0",
+          "tests": "396",
+          "time": "29.335",
+          "timestamp": "2026-10-18T06:06:26.812225+00:00",
+          "hostname": "runnervm8k3b6"
+        }
+      ],
+      "archive": "ci/coprime-python-3.13/focused.xml.gz"
+    },
+    {
+      "artifact": "coprime-python-3.13",
+      "file": "witnesses.json",
+      "uncompressed_sha256": "6161b7644098de9234a2a0f5fb69596b7f60839afe153605858c7ba0dfc3836b",
+      "result": {
+        "valid": true,
+        "results": [
+          {
+            "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n10-k3-c2.json",
+            "valid": true,
+            "n": 10,
+            "forbidden_clique_size": 3,
+            "colors": 2,
+            "edges": 31,
+            "cliques_checked": 42
+          },
+          {
+            "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n52-k3-c3.json",
+            "valid": true,
+            "n": 52,
+            "forbidden_clique_size": 3,
+            "colors": 3,
+            "edges": 829,
+            "cliques_checked": 6684
+          },
+          {
+            "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n58-k4-c2.json",
+            "valid": true,
+            "n": 58,
+            "forbidden_clique_size": 4,
+            "colors": 2,
+            "edges": 1027,
+            "cliques_checked": 49815
+          }
+        ]
+      },
+      "archive": "ci/coprime-python-3.13/witnesses.json"
+    },
+    {
+      "artifact": "path-certificate",
+      "file": "path-formula.json",
+      "uncompressed_sha256": "885cdaf6c89100651be5ec31fc6efcf33c8ab1acec4e9fb3f3213ae11aec14bd",
+      "result": {
+        "n": 13,
+        "path_edges": 8,
+        "edges": 57,
+        "formula_semantics_valid": true,
+        "unsat_checked": false,
+        "path_clauses": 71832,
+        "clauses": 71833,
+        "dimacs_sha256": "d58210bbf7704683c1ab76abd6caccf9b4893a88cb60d1b305af882e28588ae1"
+      },
+      "archive": "ci/path-certificate/path-formula.json"
+    },
+    {
+      "artifact": "path-certificate",
+      "file": "path-proof-check.txt",
+      "uncompressed_sha256": "ad9d98522bda7bdd6925900a7c864f6ed07a14c2ea6fbf0919632a43a36d72c5",
+      "archive": "ci/path-certificate/path-proof-check.txt"
+    },
+    {
+      "artifact": "path-certificate",
+      "file": "path-witness.json",
+      "uncompressed_sha256": "941d38c5bec167ce6c39ac8953cc26945e23ab616b67453489284841808a3d6b",
+      "result": {
+        "n": 12,
+        "path_edges": 7,
+        "edges": 45,
+        "witness_valid": true,
+        "longest_paths": [
+          6,
+          6
+        ]
+      },
+      "archive": "ci/path-certificate/path-witness.json"
+    },
+    {
+      "artifact": "routine-python-3.10",
+      "file": "routine.xml",
+      "uncompressed_sha256": "47bfcac4e89c21c7e3e2cbba133158c0367a10ac3cc4e165bb87a13c48c6e466",
+      "test_suites": [
+        {
+          "name": "pytest",
+          "errors": "0",
+          "failures": "0",
+          "skipped": "0",
+          "tests": "6082",
+          "time": "1239.801",
+          "timestamp": "2026-10-18T06:06:35.892810+00:00",
+          "hostname": "runnervm8k3b6"
+        }
+      ],
+      "archive": "ci/routine-python-3.10/routine.xml.gz"
+    }
+  ],
+  "review": {
+    "model": "gpt-6-astra",
+    "base_commit": "aaae80afcc6dba9cf9b443e562b07221bb9340e2",
+    "head_commit": "8f419aba14cc79ce356bb7201e10cd31fda7e6be",
+    "findings": [],
+    "independent_tests_passed": 66,
+    "small_incremental_proofs_checked": [
+      [
+        3,
+        2
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        7,
+        4
+      ]
+    ]
+  },
+  "source_sha256": {
+    "src/coprime_path_certificates.py": "4959dfc1946d5ef8e0f1f3aadb2a0d5f7104e99a41717fae630fb3a64b4e7eab",
+    "src/coprime_path_search.py": "56e9588c2e94051db99f51498259b351723fbd4f7185fba45745830b55095947",
+    "tests/test_coprime_path_certificates.py": "c9beb3a3671665b6af623a955c86cd82180854f8e5e9c698cfe2c8ba1ab8be81",
+    "tests/test_coprime_path_search.py": "1b49494e29d4ba16daa36ef68e002b76f1279384122415f9b23b0c4979c1722d",
+    ".github/workflows/verification.yml": "b1fdcfb033d93b97e3581023194996e2b8c92144925675a0126f95b2ea218c3d",
+    "requirements-test.txt": "d2dd4a4ec6a4788c94e0cf665550287aeff1f5beef3623fa8514f68d08ba87fb"
+  }
+}

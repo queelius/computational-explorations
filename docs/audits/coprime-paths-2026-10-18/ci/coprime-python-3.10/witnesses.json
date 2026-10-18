@@ -1,0 +1,32 @@
+{
+  "valid": true,
+  "results": [
+    {
+      "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n10-k3-c2.json",
+      "valid": true,
+      "n": 10,
+      "forbidden_clique_size": 3,
+      "colors": 2,
+      "edges": 31,
+      "cliques_checked": 42
+    },
+    {
+      "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n52-k3-c3.json",
+      "valid": true,
+      "n": 52,
+      "forbidden_clique_size": 3,
+      "colors": 3,
+      "edges": 829,
+      "cliques_checked": 6684
+    },
+    {
+      "path": "docs/audits/coprime-ramsey-release-2026-10-17/witness-n58-k4-c2.json",
+      "valid": true,
+      "n": 58,
+      "forbidden_clique_size": 4,
+      "colors": 2,
+      "edges": 1027,
+      "cliques_checked": 49815
+    }
+  ]
+}

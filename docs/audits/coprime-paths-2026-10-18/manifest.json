@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-18",
+  "author": "Alexander Richard Towell",
+  "base_commit": "aaae80afcc6dba9cf9b443e562b07221bb9340e2",
+  "source_sha256": {
+    "src/coprime_path_certificates.py": "4959dfc1946d5ef8e0f1f3aadb2a0d5f7104e99a41717fae630fb3a64b4e7eab",
+    "src/coprime_path_search.py": "56e9588c2e94051db99f51498259b351723fbd4f7185fba45745830b55095947",
+    "tests/test_coprime_path_certificates.py": "c9beb3a3671665b6af623a955c86cd82180854f8e5e9c698cfe2c8ba1ab8be81",
+    "tests/test_coprime_path_search.py": "1b49494e29d4ba16daa36ef68e002b76f1279384122415f9b23b0c4979c1722d",
+    ".github/workflows/verification.yml": "b1fdcfb033d93b97e3581023194996e2b8c92144925675a0126f95b2ea218c3d",
+    "requirements-test.txt": "d2dd4a4ec6a4788c94e0cf665550287aeff1f5beef3623fa8514f68d08ba87fb"
+  },
+  "environment": {
+    "python": "3.10.20",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "packages": {
+      "python-sat": "1.9.dev6",
+      "pytest": "9.1.1",
+      "pytest-cov": "7.1.0",
+      "pytest-timeout": "2.4.0"
+    },
+    "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+  },
+  "proof_checker": {
+    "repository": "https://github.com/marijnheule/drat-trim",
+    "commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "build_command": "make drat-trim",
+    "binary_sha256": "92f0aa9575ed519d66a99b8b1b3dde6ece4618ae4c202a3a4b200265dda0aa7a"
+  },
+  "search_commands": [
+    "timeout 610 python src/coprime_path_search.py 12 7 --seconds 600 --output NEW_LOWER",
+    "timeout 610 python src/coprime_path_search.py 13 8 --seconds 600 --output NEW_UPPER"
+  ],
+  "check_commands": [
+    "python -I -S -O src/coprime_path_certificates.py witness LOWER/witness.json",
+    "python -I -S -O src/coprime_path_certificates.py formula UPPER/formula.json.gz --dimacs-out NEW.cnf",
+    "gzip -dc UPPER/proof.drat.gz > NEW.drat",
+    "timeout 600 drat-trim NEW.cnf NEW.drat -t 590"
+  ],
+  "checks": {
+    "witness_exit_code": 0,
+    "formula_exit_code": 0,
+    "proof_exit_code": 0,
+    "proof_status": "VERIFIED",
+    "proof_seconds": 121.662,
+    "lower_longest_paths": [
+      6,
+      6
+    ],
+    "variables": 57,
+    "clauses": 71833,
+    "path_clauses": 71832,
+    "tautologies": 1,
+    "dimacs_sha256": "d58210bbf7704683c1ab76abd6caccf9b4893a88cb60d1b305af882e28588ae1"
+  },
+  "local_tests": {
+    "command": "python -m pytest -q tests/test_coprime_path_certificates.py tests/test_coprime_path_search.py tests/test_coprime_ramsey_variants.py --cov=coprime_path_certificates --cov=coprime_path_search --cov-report=term-missing --cov-report=json:/tmp/coprime-path-coverage.json --junitxml=/tmp/coprime-path-tests.xml",
+    "passed": 114,
+    "seconds": 29.69,
+    "coverage_files": [
+      "src/coprime_path_certificates.py",
+      "src/coprime_path_search.py"
+    ],
+    "coverage_scope_note": "Repository configuration excludes main functions. CLI subprocess behavior is tested but not measured by this coverage run."
+  },
+  "artifacts": {
+    "coverage.json": {
+      "bytes": 10328,
+      "sha256": "c876d3ba96fc2ce280bc90161f28b508b1c0e93e9f1386fa66982300d2ecca98"
+    },
+    "formula-check.json": {
+      "bytes": 223,
+      "sha256": "885cdaf6c89100651be5ec31fc6efcf33c8ab1acec4e9fb3f3213ae11aec14bd"
+    },
+    "lower-check.json": {
+      "bytes": 88,
+      "sha256": "941d38c5bec167ce6c39ac8953cc26945e23ab616b67453489284841808a3d6b"
+    },
+    "lower-n12-k7/search.json": {
+      "bytes": 298,
+      "sha256": "9b5c84aa7234a8cb833fdec10dd74e334932d08f1765ddec9e2f8ee3b00068bc"
+    },
+    "lower-n12-k7/witness.json": {
+      "bytes": 1828,
+      "sha256": "f85e1a6141939198fa1e797ef0dfd51d4b1bcccbc6c4828b2f513c405b9324af"
+    },
+    "proof-check.txt": {
+      "bytes": 391,
+      "sha256": "ba1fa146ef90f96a0d8f0be3de4b0a0bcfa3276aedd020a53807dc06ec581ca3"
+    },
+    "tests.txt": {
+      "bytes": 776,
+      "sha256": "1199bb1bf59d8ce59dea7e323638e1c77980fe85225675feed540df3a102a251"
+    },
+    "upper-n13-k8/formula.json.gz": {
+      "bytes": 417383,
+      "sha256": "3011655e49258e4454f69004173d9f39e1c130e4b9eaa45ab1e0fe98ed43a178",
+      "uncompressed_bytes": 2098246,
+      "uncompressed_sha256": "832ff6cba3a7f375fc3d279cb1c565309ae6823f84b4b794ef3614a32dbc3dcf"
+    },
+    "upper-n13-k8/proof.drat.gz": {
+      "bytes": 13901526,
+      "sha256": "e969e63d168cb024f167127e92a67ee85bddd76fbd440b61e2ebd74ad96bade8",
+      "uncompressed_bytes": 52678251,
+      "uncompressed_sha256": "455d50d6f3e5e824e73a66ca34682dc2e127a715ad3ae23904ecd33c57422028"
+    },
+    "upper-n13-k8/search.json": {
+      "bytes": 393,
+      "sha256": "f43f0ef71104c0cb9e558074dfe858bf718d7cfb36451017c3251763882dd20b"
+    },
+    "focused-python310.txt": {
+      "bytes": 1660,
+      "sha256": "157f831b3a05766e0052051672b3712120c127dcd12c760c9f0a29e56f844462"
+    },
+    "path-python313.txt": {
+      "bytes": 99,
+      "sha256": "94d717895d8c0ddb3f7eeb66c4ef56b5e8446e8db271f600e297e1698f96e960"
+    },
+    "ci/coprime-python-3.10/coverage.xml.gz": {
+      "bytes": 3782,
+      "sha256": "ee8ce1b9d1074593021a01a8206602b6ccd9ea11b18c69bb972362433f682b17"
+    },
+    "ci/coprime-python-3.10/focused.xml.gz": {
+      "bytes": 4931,
+      "sha256": "23c7fa92ac62aed1831391c4385d56dcdf252f3ba04f48d4f396df873ac369b2"
+    },
+    "ci/coprime-python-3.10/witnesses.json": {
+      "bytes": 752,
+      "sha256": "6161b7644098de9234a2a0f5fb69596b7f60839afe153605858c7ba0dfc3836b"
+    },
+    "ci/coprime-python-3.13/coverage.xml.gz": {
+      "bytes": 3782,
+      "sha256": "a9d27e9bdfa1654228b383fec19a5af4813b6e3541b7fb168ae50b49651657db"
+    },
+    "ci/coprime-python-3.13/focused.xml.gz": {
+      "bytes": 4915,
+      "sha256": "90a9be3567934341cb910e40b8195b6b5306df6eb4b3c63241434aee2d990650"
+    },
+    "ci/coprime-python-3.13/witnesses.json": {
+      "bytes": 752,
+      "sha256": "6161b7644098de9234a2a0f5fb69596b7f60839afe153605858c7ba0dfc3836b"
+    },
+    "ci/path-certificate/path-formula.json": {
+      "bytes": 223,
+      "sha256": "885cdaf6c89100651be5ec31fc6efcf33c8ab1acec4e9fb3f3213ae11aec14bd"
+    },
+    "ci/path-certificate/path-proof-check.txt": {
+      "bytes": 390,
+      "sha256": "ad9d98522bda7bdd6925900a7c864f6ed07a14c2ea6fbf0919632a43a36d72c5"
+    },
+    "ci/path-certificate/path-witness.json": {
+      "bytes": 88,
+      "sha256": "941d38c5bec167ce6c39ac8953cc26945e23ab616b67453489284841808a3d6b"
+    },
+    "ci/routine-python-3.10/routine.xml.gz": {
+      "bytes": 68849,
+      "sha256": "cff8b897f2b4f0e1b3547fb3f5bac46de7a39ce3cda8aab4aa0b662b3f2bd366"
+    },
+    "ci-summary.json": {
+      "bytes": 9768,
+      "sha256": "57b2cf41a1782a1cee2223adf3b69e26c30cd0745dba214a8f3db7fe9f2a5c63"
+    }
+  },
+  "conclusions": {
+    "P_cop(7)": 13,
+    "P_cop(8)": 13,
+    "path_parameter": "edges",
+    "target": "simple path",
+    "colors": 2,
+    "lean_verified": false
+  },
+  "additional_checks": {
+    "focused_python310": {
+      "passed": 396,
+      "seconds": 57.38,
+      "command_source": ".github/workflows/verification.yml jobs.coprime Run focused regression tests and coverage"
+    },
+    "path_python313": {
+      "passed": 66,
+      "seconds": 1.28,
+      "command": "python -m pytest -q tests/test_coprime_path_certificates.py tests/test_coprime_path_search.py"
+    },
+    "actionlint": {
+      "version": "1.7.7",
+      "exit_code": 0,
+      "command": "go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.7 .github/workflows/verification.yml"
+    }
+  }
+}

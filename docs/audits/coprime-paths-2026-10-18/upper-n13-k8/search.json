@@ -1,0 +1,14 @@
+{
+  "n": 13,
+  "path_edges": 8,
+  "solver_status": "unsat",
+  "rounds": 18072,
+  "elapsed_seconds": 63.50739127502311,
+  "clauses": 71833,
+  "seconds_budget": 600.0,
+  "max_rounds": null,
+  "files_sha256": {
+    "formula.json.gz": "3011655e49258e4454f69004173d9f39e1c130e4b9eaa45ab1e0fe98ed43a178",
+    "proof.drat.gz": "e969e63d168cb024f167127e92a67ee85bddd76fbd440b61e2ebd74ad96bade8"
+  }
+}

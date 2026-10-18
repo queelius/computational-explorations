@@ -30,7 +30,11 @@ R(3,3,3) = 17, the map gives p_16 = 53, matching the SAT-computed value exactly.
 
 ### Path Ramsey P_cop(k)
 
-Here k counts edges (a path has k+1 vertices). Values at k=7,8 are historical SAT reports: the audit did not reproduce them within its 60-second limits; k=3..6 passed exact-threshold checks.
+Here k counts edges (a simple path has k+1 distinct vertices). The October 17
+audit reproduced k=3..6. The [October 18 path certificate](../../docs/audits/coprime-paths-2026-10-18/README.md)
+independently verifies k=7,8: a complete avoiding coloring at 12 and a
+semantically checked CNF with a DRAT-trim-verified UNSAT proof at 13 establish
+both values. This closes the earlier audit's 60-second timeout gap.
 
 | k | 3 | 4 | 5 | 6 | 7 | 8 |
 |---|---|---|---|---|---|---|
@@ -81,7 +85,7 @@ GR_cop(3; 3) = **29**. This is the complete-pattern transfer of the classical Ga
 - R_cop(4) = 59: a full avoiding witness at 58 supplies the lower bound. At 59, the set consisting of 1 and the 17 primes at most 59 forms K_18; R(4,4)=18 supplies the upper bound. The historical 100 failed seeded extensions are corroboration, not a proof of universal nonextendibility.
 - R_cop(3;3) = 53: a full witness at 52 and the K_17 prime clique at 53, using R(3,3,3)=17.
 - The [audit witnesses](../../docs/audits/coprime-ramsey-2026-10-17/) at 10, 58, and 52 were independently checked for all required edges, palette, and forbidden cliques.
-- Variants use pysat encodings. The audit records which exact transitions were rerun; model and UNSAT-certificate preservation remains incomplete.
+- Variants use pysat encodings. The [path audit](../../docs/audits/coprime-paths-2026-10-18/README.md) preserves a complete witness and an independently checked UNSAT certificate for k=7,8; certificate preservation for the other variants remains incomplete.
 
 ## Provenance
 
@@ -94,4 +98,5 @@ GR_cop(3; 3) = **29**. This is the complete-pattern transfer of the classical Ga
 - `src/coprime_ramsey.py` — Incremental extension algorithm
 - `src/coprime_ramsey_sat.py` — SAT-based computation
 - `src/coprime_ramsey_variants.py` — Path, cycle, multi-color, asymmetric-clique variants
+- `src/coprime_path_search.py`, `src/coprime_path_certificates.py` — Bounded path search and independent evidence validation
 - `tests/test_coprime_ramsey.py`, `tests/test_coprime_ramsey_sat.py`, `tests/test_coprime_ramsey_variants.py`

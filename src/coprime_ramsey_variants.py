@@ -12,7 +12,8 @@ Explores a landscape of combinatorial invariants around R_cop(k):
 Searches use SAT (pysat Glucose4); bounded enumeration reports whether it
 exhausted the colorings. See docs/coprime-ramsey-corrections.md for evidence.
 
-Reported values (path parameters 7 and 8 were not reproduced in the audit):
+Reported values (path parameters 7 and 8 now have checked boundary certificates;
+see docs/audits/coprime-paths-2026-10-18/README.md):
   P_cop: {3:5, 4:7, 5:9, 6:10, 7:13, 8:13}
   C_cop: {3:11, 4:8, 5:13, 6:11}
   R_cop(3;c): {2:11, 3:53}
