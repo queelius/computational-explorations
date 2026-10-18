@@ -63,7 +63,12 @@ The [nine-edge-path structural audit](audits/coprime-path-nine-2026-10-18/README
 provides separate positive certificates for balanced cuts, deletion resilience,
 and cut extensions at G_17. Its standard-library checker runs under `-I -S -O`;
 the focused suite validates every archived case. These establish necessary
-conditions on an avoiding coloring, not the proposed exact threshold 17.
+conditions on an avoiding coloring. The [subsequent proof](coprime-path-nine-resolution-2026-10-18.md)
+combines them with an extremal classification to establish P_cop(9)=17.
+Its [audit](audits/coprime-path-nine-resolution-2026-10-18/README.md) includes
+a complete lower witness at 16 and finite checks of auxiliary proof steps.
+These tests supplement independent review of the mathematical deduction;
+they do not formally verify the published theorems or the entire argument.
 
 ## Run the focused regression suite
 
@@ -79,6 +84,7 @@ python -m pytest -q \
   tests/test_coprime_path_certificates.py tests/test_coprime_path_search.py \
   tests/test_coprime_path_bounds.py \
   tests/test_coprime_path_structure_certificates.py \
+  tests/test_coprime_path_nine_resolution.py \
   tests/test_geometry_attacks.py::TestUnitDistanceCount \
   tests/test_geometry_attacks.py::TestHasDuplicatePoints \
   --timeout=120 --timeout-method=thread \

@@ -36,22 +36,25 @@ independently verifies k=7,8: a complete avoiding coloring at 12 and a
 semantically checked CNF with a DRAT-trim-verified UNSAT proof at 13 establish
 both values. This closes the earlier audit's 60-second timeout gap.
 
-| k | 3 | 4 | 5 | 6 | 7 | 8 |
-|---|---|---|---|---|---|---|
-| P_cop | **5** | **7** | **9** | **10** | **13** | **13** |
+| k | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|
+| P_cop | **5** | **7** | **9** | **10** | **13** | **13** | **17** |
 
 The [structural follow-up](../../docs/coprime-path-structure-2026-10-18.md)
 proves P_cop(k) = Θ(k), with asymptotic lower constant 2 and upper constant
 197π²/595 ≈ 3.267751. This is an elementary density argument, with no priority
 claim. It supplies finite sufficient bounds and explains why that method
-cannot recover the exact threshold 13; the next exact family remains unresolved.
+cannot recover the exact threshold 13; the general odd-path family remains unresolved.
 
 The [nine-edge-path investigation](../../docs/coprime-path-nine-2026-10-18.md)
 narrows any hypothetical avoiding coloring at 17: both colors must be
 connected and spanning, with 47 and 48 edges, and each retains at least five
 edges after every four-vertex deletion. The supporting finite certificates
-are independently checked. This does not establish P_cop(9)=17; the current
-bounds remain 17 ≤ P_cop(9) ≤ 26.
+are independently checked. The [subsequent extremal classification](../../docs/coprime-path-nine-resolution-2026-10-18.md)
+excludes the 48-edge color and establishes **P_cop(9)=17**. Its
+[audit record](../../docs/audits/coprime-path-nine-resolution-2026-10-18/README.md)
+includes the complete lower coloring at 16. The upper bound uses a written
+proof and checked finite lemmas; it is not a new SAT certificate or a Lean proof.
 
 ### Cycle Ramsey C_cop(k)
 | k | 3 | 4 | 5 | 6 |
