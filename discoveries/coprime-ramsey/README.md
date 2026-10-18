@@ -46,6 +46,13 @@ proves P_cop(k) = Θ(k), with asymptotic lower constant 2 and upper constant
 claim. It supplies finite sufficient bounds and explains why that method
 cannot recover the exact threshold 13; the next exact family remains unresolved.
 
+The [nine-edge-path investigation](../../docs/coprime-path-nine-2026-10-18.md)
+narrows any hypothetical avoiding coloring at 17: both colors must be
+connected and spanning, with 47 and 48 edges, and each retains at least five
+edges after every four-vertex deletion. The supporting finite certificates
+are independently checked. This does not establish P_cop(9)=17; the current
+bounds remain 17 ≤ P_cop(9) ≤ 26.
+
 ### Cycle Ramsey C_cop(k)
 | k | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|
