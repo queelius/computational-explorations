@@ -36,6 +36,7 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 
 - [Running verification](docs/verification.md) — Fresh environment, independent witness checker, routine tests, and CI scope
 - [Coprime path certificates (2026-10-18)](docs/audits/coprime-paths-2026-10-18/README.md) — Independently checked evidence that P_cop(7) = P_cop(8) = 13
+- [Coprime path structural bounds (2026-10-18)](docs/coprime-path-structure-2026-10-18.md) — Linear growth, explicit density bounds, and limitations of the current proof methods
 - [Coprime Ramsey release](docs/coprime-ramsey-release.md) — Versioned corrections, witnesses, and verification scope
 - [Coprime Ramsey corrections (2026-10-17)](docs/coprime-ramsey-corrections.md) — Current proof status and errata for the archived manuscript
 - [Coprime Ramsey audit](docs/coprime-ramsey-citation-audit.md) — Reproduced checks, witnesses, and remaining gaps

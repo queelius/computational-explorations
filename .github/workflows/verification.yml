@@ -55,12 +55,14 @@ jobs:
             tests/test_synthesis.py tests/test_verify_coprime_witnesses.py \
             tests/test_coprime_perfectness_proof.py \
             tests/test_coprime_path_certificates.py tests/test_coprime_path_search.py \
+            tests/test_coprime_path_bounds.py \
             tests/test_geometry_attacks.py::TestUnitDistanceCount \
             tests/test_geometry_attacks.py::TestHasDuplicatePoints \
             --timeout=120 --timeout-method=thread \
             --cov=coprime_ramsey_sat --cov=coprime_ramsey_variants \
             --cov=synthesis --cov=verify_coprime_witnesses --cov=coprime_perfectness_proof \
             --cov=coprime_path_certificates --cov=coprime_path_search \
+            --cov=coprime_path_bounds \
             --cov-report=term-missing --cov-report=xml:test-results/coverage.xml \
             --junitxml=test-results/focused.xml
       - name: Preserve verification reports

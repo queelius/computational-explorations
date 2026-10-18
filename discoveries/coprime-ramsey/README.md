@@ -40,6 +40,12 @@ both values. This closes the earlier audit's 60-second timeout gap.
 |---|---|---|---|---|---|---|
 | P_cop | **5** | **7** | **9** | **10** | **13** | **13** |
 
+The [structural follow-up](../../docs/coprime-path-structure-2026-10-18.md)
+proves P_cop(k) = Θ(k), with asymptotic lower constant 2 and upper constant
+197π²/595 ≈ 3.267751. This is an elementary density argument, with no priority
+claim. It supplies finite sufficient bounds and explains why that method
+cannot recover the exact threshold 13; the next exact family remains unresolved.
+
 ### Cycle Ramsey C_cop(k)
 | k | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|

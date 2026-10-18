@@ -1,0 +1,33 @@
+{
+  "interpretation": "Both searches are inconclusive and establish no bound. Partial formulas are retained only in local research scratch; their hashes are diagnostic, not certificates.",
+  "searches": [
+    {
+      "n": 17,
+      "path_edges": 9,
+      "solver_status": "inconclusive",
+      "rounds": 65284,
+      "elapsed_seconds": 120.38320663000923,
+      "clauses": 261057,
+      "seconds_budget": 120.0,
+      "max_rounds": null,
+      "files_sha256": {
+        "formula.json.gz": "babcc63c5b9c09d2a10c86e852625d225168b9eb40658bc1afd5cd1527af0110"
+      },
+      "command": "python src/coprime_path_search.py 17 9 --seconds 120 --output probe-n17-k9"
+    },
+    {
+      "n": 17,
+      "path_edges": 10,
+      "solver_status": "inconclusive",
+      "rounds": 79779,
+      "elapsed_seconds": 120.21802430402022,
+      "clauses": 319009,
+      "seconds_budget": 120.0,
+      "max_rounds": null,
+      "files_sha256": {
+        "formula.json.gz": "b23f927a7ea3e6bc86dd14751732678295d06b030b57e85039be459413ad85d2"
+      },
+      "command": "python src/coprime_path_search.py 17 10 --seconds 120 --output probe-n17-k10"
+    }
+  ]
+}

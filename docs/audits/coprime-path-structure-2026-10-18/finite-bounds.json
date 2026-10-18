@@ -1,0 +1,179 @@
+{
+  "definition": "two edge colors; simple path length counts edges",
+  "max_n": 3400,
+  "excluded_multiples": [
+    30,
+    42,
+    70
+  ],
+  "bounds": [
+    {
+      "path_edges": 3,
+      "lower_bound": 5,
+      "whole_graph_upper": {
+        "n": 7,
+        "vertices": 7,
+        "edges": 17
+      },
+      "induced_upper": {
+        "n": 7,
+        "vertices": 7,
+        "edges": 17
+      }
+    },
+    {
+      "path_edges": 4,
+      "lower_bound": 5,
+      "whole_graph_upper": {
+        "n": 10,
+        "vertices": 10,
+        "edges": 31
+      },
+      "induced_upper": {
+        "n": 10,
+        "vertices": 10,
+        "edges": 31
+      }
+    },
+    {
+      "path_edges": 5,
+      "lower_bound": 9,
+      "whole_graph_upper": {
+        "n": 13,
+        "vertices": 13,
+        "edges": 57
+      },
+      "induced_upper": {
+        "n": 13,
+        "vertices": 13,
+        "edges": 57
+      }
+    },
+    {
+      "path_edges": 6,
+      "lower_bound": 9,
+      "whole_graph_upper": {
+        "n": 17,
+        "vertices": 17,
+        "edges": 95
+      },
+      "induced_upper": {
+        "n": 17,
+        "vertices": 17,
+        "edges": 95
+      }
+    },
+    {
+      "path_edges": 7,
+      "lower_bound": 13,
+      "whole_graph_upper": {
+        "n": 19,
+        "vertices": 19,
+        "edges": 119
+      },
+      "induced_upper": {
+        "n": 19,
+        "vertices": 19,
+        "edges": 119
+      }
+    },
+    {
+      "path_edges": 8,
+      "lower_bound": 13,
+      "whole_graph_upper": {
+        "n": 23,
+        "vertices": 23,
+        "edges": 171
+      },
+      "induced_upper": {
+        "n": 23,
+        "vertices": 23,
+        "edges": 171
+      }
+    },
+    {
+      "path_edges": 9,
+      "lower_bound": 17,
+      "whole_graph_upper": {
+        "n": 26,
+        "vertices": 26,
+        "edges": 211
+      },
+      "induced_upper": {
+        "n": 26,
+        "vertices": 26,
+        "edges": 211
+      }
+    },
+    {
+      "path_edges": 10,
+      "lower_bound": 17,
+      "whole_graph_upper": {
+        "n": 29,
+        "vertices": 29,
+        "edges": 269
+      },
+      "induced_upper": {
+        "n": 29,
+        "vertices": 29,
+        "edges": 269
+      }
+    },
+    {
+      "path_edges": 20,
+      "lower_bound": 37,
+      "whole_graph_upper": {
+        "n": 61,
+        "vertices": 61,
+        "edges": 1161
+      },
+      "induced_upper": {
+        "n": 61,
+        "vertices": 58,
+        "edges": 1109
+      }
+    },
+    {
+      "path_edges": 50,
+      "lower_bound": 97,
+      "whole_graph_upper": {
+        "n": 161,
+        "vertices": 161,
+        "edges": 7937
+      },
+      "induced_upper": {
+        "n": 161,
+        "vertices": 151,
+        "edges": 7474
+      }
+    },
+    {
+      "path_edges": 100,
+      "lower_bound": 197,
+      "whole_graph_upper": {
+        "n": 325,
+        "vertices": 325,
+        "edges": 32211
+      },
+      "induced_upper": {
+        "n": 323,
+        "vertices": 304,
+        "edges": 30111
+      }
+    },
+    {
+      "path_edges": 1000,
+      "lower_bound": 1997,
+      "whole_graph_upper": {
+        "n": 3287,
+        "vertices": 3287,
+        "edges": 3285657
+      },
+      "induced_upper": {
+        "n": 3265,
+        "vertices": 3064,
+        "edges": 3061973
+      }
+    }
+  ]
+}
