@@ -34,6 +34,7 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 
 ## Key Documents
 
+- [Crocker Erdős188 blue-progression audit](docs/audits/erdos188-blue-progression-2026-10-18/README.md) — External integer verification of 147,421,290 covering squares; scoped computational corroboration, not human/formal review
 - [Running verification](docs/verification.md) — Fresh environment, independent witness checker, routine tests, and CI scope
 - [Coprime path certificates (2026-10-18)](docs/audits/coprime-paths-2026-10-18/README.md) — Independently checked evidence that P_cop(7) = P_cop(8) = 13
 - [Coprime path structural bounds (2026-10-18)](docs/coprime-path-structure-2026-10-18.md) — Linear growth, explicit density bounds, and limitations of the current proof methods

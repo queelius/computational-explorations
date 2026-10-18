@@ -1,0 +1,7 @@
+{
+  "uncompressed_sha256": "8863a876091d385ec1997fca0412ce1976ce68e5eaa18bab011d7d152eecd3f8",
+  "gzip_sha256": "9400bac810f3325db330692301eb0a89b532b81644f23f69c1d1ea83a3d01808",
+  "uncompressed_bytes": 16022504,
+  "compressed_bytes": 3465735,
+  "note": "Lossless compressed execution receipts, not an independently sufficient witness certificate. Full replay regenerates and checks every witness."
+}

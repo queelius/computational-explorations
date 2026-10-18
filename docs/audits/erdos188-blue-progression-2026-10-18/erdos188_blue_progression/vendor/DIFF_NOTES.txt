@@ -1,0 +1,41 @@
+V2MIX -- verifier 2 (Method 2, torus covering, arb) generalized to per-cell radii h_r.   2026-10-01
+Source: release_188_v3\upper_bound\verifier2\claimB_arb.py (v4), copied unchanged to claimB_arb_ORIG.py.txt here.
+Independence: nothing from verifier1\, vpoly2.py or data\n1001\V1MIX\ was read or used.
+Diff:  fc claimB_arb_ORIG.py.txt claimB_arb.py   (only the lines below changed)
+
+CHANGES in claimB_arb.py
+1. Config path.  CFG = os.environ['V2CFG'] instead of the release-relative ..\cfg_a42.json.  The env var is inherited
+   by the spawned multiprocessing workers, so every worker imports the same file.  The banner now prints the cfg path,
+   its sha256 and the set of distinct radii, so each log names its exact input.
+2. Radii.  Old: assert str(d['h']) == '0.4952'; hq = F(619,1250) (one radius).
+   New: hqs = [F(h)] * ncentres if "h" is a string, else [F(x) for x in "h"]; assert len(hqs) == ncentres and every
+   h_i > 0.  Each h_i is an exact Fraction parsed from the decimal or p/q string (F('0.4952') == 619/1250 exactly).
+   assert k == 24 and P1y == 0 kept.
+3. Stage 1 (numba floats, UNTRUSTED).  stage1() takes the per-cell float array hr and h = max(hr).  The candidate disk
+   for (cell i, translate j) gets radius hr[i] - j*delta - EPS_R (skipped if <= 0); the bin search window around a
+   leaf center uses h = max h_i (any disk of radius <= max h containing the point has its center within max h).  Stage 1
+   only proposes a certificate; a wrong proposal can only make stage 2 fail, never pass.
+4. Stage 2 (python-flint arb, TRUSTED).  _ARB['h'] is now the list of exact Arb radii A(h_i); a leaf certified by code
+   (i, j, a, b) is checked against the disk with center C_i + a P1 + b P2 - j u(tm) and radius h_i - j*delta, i.e.
+   the radius of THAT disk's own cell i (i is read from the same code record that supplies the center and is asserted
+   to be in range 0 <= i < ncentres, 0 <= j < NJ).  Everything else in stage 2 is unchanged: tree re-walked from the
+   root grid (leaves tile [0, NX/4] x [0, NY/4] by construction), leaf squares rebuilt exactly from integers,
+   TL, TM, TH, delta asserted exact, strict tests s = h_i - j*delta - rq > 0 and s^2 - |q - z|^2 > 0 certain in Arb.
+5. Unchanged: check_direction_cover (exact dyadic/binary boxes tile [0, 3.1416] and 3.1416 > pi in Arb; every
+   bisection's two children cover the parent, asserted tl < mid < th), the grid construction NX = ceil(L/(1/4)),
+   NY = ceil(H/(1/4)) with the exact check F(NX,4) >= L, F(NY,4) >= H, exit status 1 on failure.
+
+WHY IT STAYS RIGOROUS
+ * Red contains each closed disk D(c_i + g, h_i), g in Gamma, for every i (the inscribed disk of cell i).
+ * For theta in [tl, th] and delta >= |theta - tm|: |j u(theta) - j u(tm)| <= j delta, so
+   D(c_i + g - j u(tm), h_i - j delta) is inside D(c_i + g - j u(theta), h_i) -- this is per disk and holds for any
+   radius, so per-cell radii need no other change.  A leaf square inside the smaller disk is therefore inside
+   Red - j u(theta) for every theta in the box, with the radius of the cell that named it.
+ * Covering of the grid (hence of a fundamental domain [0,L) x [0,H) of Gamma = Z(L,0) + Z(P2x,H)) by these leaves
+   for j = 0..NJ-1, and of [0, pi] by the boxes, is checked exactly as before.  So: no blue l_NJ.
+ * Strict inequalities => also valid when cells are open.  Orientation of the 24-gons is irrelevant (only the
+   inscribed disk is used).
+ * The only global quantity that depended on h was the stage-1 bin window, which now uses max h_i; it is untrusted.
+
+sweep.py: NOT generalized (heuristic / witness script).  Changed only to read V2CFG and to assert that every h equals
+619/1250, so it cannot silently use the wrong radius on a mixed config.

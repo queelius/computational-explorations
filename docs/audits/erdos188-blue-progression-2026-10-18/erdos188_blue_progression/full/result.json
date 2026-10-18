@@ -1,0 +1,35 @@
+{
+  "certified_intervals": 40198,
+  "claim": "For all x in R^2 and unit u, exists integer 0<=j<60 with x+j*u red in the pinned periodic coloring.",
+  "dependencies": {
+    "numba": "0.68.0",
+    "numpy": "2.2.6"
+  },
+  "direction_tiling_checked": true,
+  "elapsed_seconds": 165.2301101880148,
+  "initial_intervals": 40000,
+  "interval_log_sha256": "8863a876091d385ec1997fca0412ce1976ce68e5eaa18bab011d7d152eecd3f8",
+  "leaves": 147421290,
+  "margin_denominator": 1208925819614629174706176,
+  "maximum_refinement": 5,
+  "minimum_integer_margin": 42717995227634795,
+  "nodes": 150133030,
+  "parameters": {
+    "depth": 14,
+    "intervals": 40000,
+    "pilot": 0,
+    "refinements": 8,
+    "workers": 8
+  },
+  "python": "3.10.20 (main, Mar  3 2026, 14:59:16) [Clang 21.1.4 ]",
+  "search_boxes_requiring_refinement": 198,
+  "source_hashes": {
+    "audit.py": "540bd70e299fd50a236e277cacccb0cfd95f89b049e5c6916d4a19754a921c6f",
+    "cfg_k60.json": "b15251de28f6f552f4364d2170a58e923b730590d8797dfe5d09e007d2f87b2e",
+    "run.py": "f50748cccf2a861562319381253789e6711dd53a42a7c73537afa28c490ec4b6",
+    "vendor/claimB_arb.py": "494104edad838f4a9044d9fb8fedcbb856f39e57e29a1d66b26f60f2b4f06dcd"
+  },
+  "status": "FULL_COVER_VERIFIED",
+  "trust": "Written geometry and Taylor bounds, Python integer/Fraction semantics and execution; not kernel verification or human peer review.",
+  "worst_j": 59
+}
