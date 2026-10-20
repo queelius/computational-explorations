@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "completed_date": "2026-10-20",
+  "project": {
+    "pull_request": "https://github.com/queelius/computational-explorations/pull/11",
+    "tested_head": "9a63312a83a12696512db95e594ae65ed0ce242b",
+    "merge_commit": "3809ed703d27108d072b8daaaca09a90b4ef74b0",
+    "merged_at": "2026-10-20T10:31:17Z",
+    "tested_and_merged_tree": "71357b6f3ed2a078a6b921e8f1af520ba0532ff8",
+    "tree_identity_verified": true
+  },
+  "central_index": {
+    "pull_request": "https://github.com/queelius/research-records/pull/1",
+    "merge_commit": "121dcb73f5f8d42490803ec708057f2ac015d83b",
+    "merged_at": "2026-10-20T10:17:17Z",
+    "concurrent_records_preserved": [
+      "tetrahedron-fixed-axis-barrier",
+      "harv2020-survey-structure-audit",
+      "smooth-strong-convex-interpolation"
+    ],
+    "record": "https://github.com/queelius/research-records/tree/main/records/computational-explorations-coprime-paths"
+  },
+  "ci": {
+    "run": "https://github.com/queelius/computational-explorations/actions/runs/39405847017",
+    "conclusion": "success",
+    "successful_jobs": [
+      "Research records and reproducible packets",
+      "Coprime checks (Python 3.10)",
+      "Coprime checks (Python 3.13)",
+      "Independent path certificate",
+      "Routine suite (Python 3.10)"
+    ],
+    "routine_junit": {
+      "tests": 6224,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1224.904
+    },
+    "local_routine_run": {
+      "tests": 6222,
+      "warnings": 63,
+      "seconds": 994.25,
+      "scope": "Run began before the two final command-schema regressions were added. All 28 record tests passed afterward, and final CI includes both regressions."
+    }
+  },
+  "packet": {
+    "filename": "coprime-paths-2026.10.20.zip",
+    "sha256": "04b35951d853da7d2c865038b277038b4570c5ea895971ac8b6db78ff79fa574",
+    "bytes": 16080657,
+    "github_build_download_matches_local_build": true,
+    "archival_doi": null,
+    "scope": "Reproducible GitHub CI artifact and local build; not a Zenodo deposit."
+  },
+  "preservation": {
+    "original_checkout_paths_verified": 331,
+    "original_checkout_status_unchanged": true,
+    "relocated_source_and_research_files_verified": 510,
+    "private_research_context_files_backed_up_and_verified": 698,
+    "private_backups_published": false,
+    "manuscript_bytes_unchanged": true,
+    "agents_md_unchanged": true,
+    "cited_release_unchanged": true
+  },
+  "remaining_research_work": [
+    "Human mathematical review of the edited manuscript.",
+    "Existing-Zenodo-family search, third-party template rights resolution or an evidence-only packet, and authorized archival publication.",
+    "Journal submission and novelty assessment are separate tasks."
+  ],
+  "receipt_scope": "This completion receipt and plan checkboxes were added after the tested implementation merge. They do not change source, tests, contribution metadata, or packet contents."
+}

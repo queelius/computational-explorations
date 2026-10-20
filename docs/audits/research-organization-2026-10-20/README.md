@@ -5,6 +5,8 @@ an independently reviewed schema correction, packet identity, reproduction
 from an extracted packet in a fresh environment, and preservation checks.
 The [public-event receipt](public-events.json) retains selected public GitHub
 timestamps observed through the connector, separately from local file dates.
+The [integration receipt](integration.json) records the completed merges and
+the final 6,224-test CI result.
 
 The source packet rebuilt byte for byte:
 
@@ -34,5 +36,7 @@ was 92% under existing exclusions; CLI behavior has subprocess tests.
 The auxiliary historical validators passed their 3 + 7 regression tests.
 
 These checks concern organization and finite computation. They do not replace
-the written proof, human review, or novelty assessment. The final routine/CI
-results belong to the integration record and public PR.
+the written proof, human review, or novelty assessment. All five implementation
+CI jobs passed, including 6,224 routine tests. The GitHub-built packet matched
+the local packet byte for byte. The final receipt-only commit does not change
+source, tests, metadata, or packet contents.

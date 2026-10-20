@@ -76,6 +76,10 @@ disclosures are separate from development state and review status.
 - [x] Link the records from the repository and manuscript documentation.
 - [x] Add CI validation and the curated cross-project index entry.
 - [x] Obtain an independent review; fix material issues and run checks.
-- [ ] Commit and publish the source/index changes; verify public links and CI.
-- [ ] Recheck preservation and record the remaining human-review and archival
+- [x] Commit and publish the source/index changes; verify public links and CI.
+- [x] Recheck preservation and record the remaining human-review and archival
   work in the contribution's lifecycle record.
+
+Completed through project PR #11 and research-records PR #1.
+The [integration receipt](audits/research-organization-2026-10-20/integration.json)
+records merge commits, final CI, and the cross-environment packet comparison.
