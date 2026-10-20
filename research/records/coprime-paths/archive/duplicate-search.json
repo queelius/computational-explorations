@@ -1,0 +1,77 @@
+{
+  "checked_at": "2026-10-20T11:21:22.359544+00:00",
+  "method": "Authenticated account depositions API, page size 100 until final short page; search metadata for coprime, computational-explorations, nine-edge",
+  "pages": 2,
+  "depositions_examined": 115,
+  "scope": "Account records, including drafts; not all public records",
+  "matches": [
+    {
+      "id": 23433640,
+      "title": "Computational Explorations: Coprime Ramsey Corrections and Reproducibility",
+      "submitted": true,
+      "doi": "10.5281/zenodo.23433640",
+      "conceptdoi": "10.5281/zenodo.23433639",
+      "files": [
+        "queelius/computational-explorations-coprime-ramsey-2026.10.17.zip"
+      ]
+    },
+    {
+      "id": 20636188,
+      "title": "Coprime Ramsey Numbers: Exact Values and Structural Properties",
+      "submitted": true,
+      "doi": "10.5281/zenodo.20636188",
+      "conceptdoi": "10.5281/zenodo.19058646",
+      "files": [
+        "coprime-ramsey-ejc.pdf",
+        "coprime-ramsey-ejc.tex"
+      ]
+    },
+    {
+      "id": 20634736,
+      "title": "Sum-Free Partitions in Finite Abelian Groups and Multiplicative Schur Numbers",
+      "submitted": true,
+      "doi": "10.5281/zenodo.20634736",
+      "conceptdoi": "10.5281/zenodo.19058652",
+      "files": [
+        "sumfree_partitions_note.tex",
+        "sumfree_partitions_note.pdf",
+        "sumfree_partitions_note.bib"
+      ]
+    },
+    {
+      "id": 19058655,
+      "title": "Mathematical Epidemiology: Survival Analysis of 1,183 Erdos Problems",
+      "submitted": true,
+      "doi": "10.5281/zenodo.19058655",
+      "conceptdoi": "10.5281/zenodo.19058654",
+      "files": [
+        "survival_analysis_note.pdf"
+      ]
+    },
+    {
+      "id": 18638638,
+      "title": "Three new problems from the Erd\u0151s corpus",
+      "submitted": true,
+      "doi": "10.5281/zenodo.18638638",
+      "conceptdoi": "10.5281/zenodo.18638632",
+      "files": [
+        "novel_ramsey_problems.pdf"
+      ]
+    },
+    {
+      "id": 18638635,
+      "title": "Code and formalizations for: Three new problems from the Erd\u0151s corpus",
+      "submitted": true,
+      "doi": "10.5281/zenodo.18638635",
+      "conceptdoi": "10.5281/zenodo.18638634",
+      "files": [
+        "erdos-code-v1.0.tar.gz"
+      ]
+    }
+  ],
+  "decision": {
+    "duplicate_contribution_found": false,
+    "family": "New contribution-specific family for the coprime path threshold, linear bounds, and evidence.",
+    "rationale": "Existing coprime records contain earlier clique results, historical manuscripts, or the October 17 software correction snapshot. None contains the later nine-edge proof and checked host certificates. The existing manuscript and whole-repository software families retain their identities; this archive is the distinct path contribution tracked under one central record."
+  }
+}

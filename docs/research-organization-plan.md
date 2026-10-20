@@ -4,6 +4,12 @@
 > original checkout. This dated plan records the authorized October 20, 2026
 > organization task; ongoing instructions live in `research/README.md`.
 
+**Later October 20 consolidation:** The user subsequently requested one
+primary checkout with local artifacts inside the repository. That cleanup
+supersedes this plan's temporary worktree layout; see
+[`workspace-layout.md`](workspace-layout.md). The original checkout state
+was preserved before switching to the published `main` branch.
+
 **Goal:** Make research attributable, discoverable, reproducible, and reusable
 without relying on an agent's hidden working directory or conversation.
 

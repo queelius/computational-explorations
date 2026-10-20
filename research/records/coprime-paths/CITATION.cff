@@ -25,8 +25,8 @@ keywords:
 - reproducible research
 - written mathematical proof
 repository-code: https://github.com/queelius/computational-explorations
-url: https://github.com/queelius/computational-explorations/tree/a3d7a509ab33ea3cee9bca98ced9a3905ff309d7
-commit: a3d7a509ab33ea3cee9bca98ced9a3905ff309d7
+url: https://github.com/queelius/computational-explorations/tree/1e00700a86bbb13c4b0800eaa9a708b857c8e439
+commit: 1e00700a86bbb13c4b0800eaa9a708b857c8e439
 license:
 - CC-BY-4.0
 - MIT

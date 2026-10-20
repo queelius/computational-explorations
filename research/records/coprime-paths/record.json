@@ -28,7 +28,7 @@
   },
   "source": {
     "repository": "https://github.com/queelius/computational-explorations",
-    "commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+    "commit": "1e00700a86bbb13c4b0800eaa9a708b857c8e439",
     "evidence_commit": "8bda81e8d3f867bb1450b0e492592164416ba98f"
   },
   "claims": [
@@ -75,13 +75,13 @@
     "Existing DOI records precede this follow-up and do not archive it.",
     "Exploratory endpoint and matching notes are not dependencies of the main proof.",
     "Historical manifests may refer to earlier CI configurations in their pinned repository commits; the packet contains the inputs for its listed reproduction commands.",
-    "The retained journal style has no license notice; resolve redistribution terms before DOI deposit, or omit it from an evidence-only packet."
+    "The archival packet excludes the journal's e-jc.sty template. The author's PDF and LaTeX are retained unchanged; rebuilding the journal layout requires obtaining that template separately. The written proof and listed computational checks are self-contained."
   ],
   "credits": [
     "Alexander Richard Towell: author and prior coprime Ramsey investigations. Earlier reported path values are retained as prior results, not new discoveries.",
     "Du, Xi, Deng, and Ma, arXiv:2605.26815: external work citing the earlier repository and contextualizing edge-coprime Ramsey numbers.",
     "Erdos-Gallai, Balister-Gyori-Lehel-Schelp, Furedi-Kostochka-Verstraete, Furedi-Kostochka-Luo-Verstraete, Ali-Staton, Bondy-Chvatal, and Chvatal: published graph-theoretic ingredients cited in the proof and manuscript.",
-    "Electronic Journal of Combinatorics: unchanged manuscript style file. Tutte-Berge and the credited exposition in the matching note: auxiliary matching argument."
+    "Electronic Journal of Combinatorics: manuscript formatting template, excluded from this archival packet. Tutte-Berge and the credited exposition in the matching note: auxiliary matching argument."
   ],
   "ai_assistance": "Substantial OpenAI Codex assistance in investigation, written arguments, programming, certificate generation and checking, editorial preparation, organization, and independent AI review. The author supplied the October 20 manuscript revision; human mathematical verification remains pending.",
   "review": {
@@ -131,6 +131,26 @@
       "date": "2026-10-20",
       "scope": "Relevant unit/integration tests and selected exploratory replay tests passed during promotion.",
       "evidence": "research/records/coprime-paths/promotion-verification.json"
+    },
+    {
+      "kind": "public_disclosure",
+      "date": "2026-10-20",
+      "timestamp": "2026-10-20T10:08:50Z",
+      "url": "https://github.com/queelius/computational-explorations/pull/11",
+      "scope": "Author-revised manuscript, selected auxiliary findings, contribution records, and reproducible packaging."
+    },
+    {
+      "kind": "repository_acceptance",
+      "date": "2026-10-20",
+      "timestamp": "2026-10-20T10:31:17Z",
+      "url": "https://github.com/queelius/computational-explorations/pull/11",
+      "scope": "Merged as 3809ed703d27108d072b8daaaca09a90b4ef74b0; 6,224 routine CI tests and all five verification jobs passed. Repository acceptance is separate from human mathematical review."
+    },
+    {
+      "kind": "verification",
+      "date": "2026-10-20",
+      "scope": "After checkout consolidation, 142 focused unit/integration tests passed; record tooling statement coverage 92%. Archive selection validates 79 pinned files and excludes the journal style.",
+      "evidence": "research/records/coprime-paths/archive/preparation.json"
     }
   ],
   "publication": {
@@ -647,20 +667,11 @@
       "license": "CC-BY-4.0"
     },
     {
-      "id": "e-jc-e-jc-sty",
-      "path": "e-jc/e-jc.sty",
-      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
-      "sha256": "0807adbf610d01145e6873f217e3a5d4d34b9891accd0d33aa7c1ce5d736dcea",
-      "bytes": 8253,
-      "role": "manuscript",
-      "license": "LicenseRef-EJC-template-terms-unresolved"
-    },
-    {
       "id": "research-records-coprime-paths-licenses-md",
       "path": "research/records/coprime-paths/LICENSES.md",
-      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
-      "sha256": "770d720f287c2eed69c3c9037ac1b536ee7cc83b41c8b0d0ef1f805d25d210d0",
-      "bytes": 2050,
+      "source_commit": "1e00700a86bbb13c4b0800eaa9a708b857c8e439",
+      "sha256": "d3df291ac5173a3ce42971a4c4720d848556cd54708c7dd2d83d791a9f971a23",
+      "bytes": 2247,
       "role": "license",
       "license": "CC-BY-4.0"
     },
@@ -967,28 +978,12 @@
       "expected_exit_code": 0,
       "expected": "114 tests passed.",
       "scope": "Unit and integration tests for the nine-edge proof, structural checker, and bounds calculator."
-    },
-    {
-      "id": "manuscript",
-      "argv": [
-        "latexmk",
-        "-pdf",
-        "-interaction=nonstopmode",
-        "-halt-on-error",
-        "-outdir=coprime-paths",
-        "coprime-paths/coprime-paths.tex"
-      ],
-      "cwd": "e-jc",
-      "expected_exit_code": 0,
-      "expected": "16-page PDF; no unresolved references. Byte identity of rebuilt PDFs is not asserted.",
-      "scope": "Requires TeX Live with lmodern, microtype, and latexmk. Visual and human mathematical review remain separate."
     }
   ],
   "next_steps": [
     "Complete and document human mathematical review of the edited manuscript.",
-    "Before DOI deposition, paginate existing Zenodo records and identify the appropriate version family.",
-    "Resolve third-party style redistribution terms or prepare an evidence-only archive; rerun checks from the staged archive.",
-    "When an archive is published, verify public file hashes and record its exact version DOI and true publication date in both repositories.",
+    "Publish the staged evidence archive after its reproduction checks and draft inspection; verify public downloads and record its exact version DOI.",
+    "Use one canonical archive version family for substantive updates; preserve earlier evidence and disclosure dates.",
     "Investigate the infinite odd-path family and shorter analytic host lemmas separately; reassess novelty before making priority claims."
   ]
 }

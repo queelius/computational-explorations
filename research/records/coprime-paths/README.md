@@ -47,6 +47,10 @@ Use the commands and expected outputs in `record.json` and the linked audits.
 The [repository record guide](../../README.md) explains validation, environment
 installation, and byte-reproducible packaging. Packets include the source,
 certificates, tests, manuscript, licenses, and a SHA-256 inventory.
+The archival selection contains 79 pinned files and omits the third-party
+`e-jc.sty` template. The manuscript PDF and author-edited LaTeX are unchanged;
+rebuilding its journal layout requires that template separately. All listed
+mathematical checks run from the packet itself.
 
 Generate the current contribution's citation with:
 
@@ -63,9 +67,10 @@ local author-revision date, and any future DOI publication date are separate.
 
 1. Complete the [author review route](../../../e-jc/coprime-paths/README.md),
    including proof reconstruction and attribution. Record its actual scope.
-2. For an evidence DOI, paginate the existing Zenodo records and choose the
-   appropriate version family; resolve the journal template's redistribution
-   terms or omit it from an evidence-only packet. Rerun the staged checks.
+2. Finish archival staging and replay. A complete
+   [Zenodo account search](archive/duplicate-search.json) found no existing
+   family for this follow-up; the earlier software and paper records retain
+   their separate identities.
 3. Publish an authorized archive, verify every public download, and update
    this record and the central index with the exact version DOI.
 4. Treat journal submission, shorter analytic proofs, the infinite family,
