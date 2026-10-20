@@ -1,6 +1,8 @@
 # Coprime paths: E-JC working manuscript
 
-**Status: AI-assisted working draft for author review, October 18, 2026.**
+**Status: AI-assisted editorial draft; human mathematical review pending,
+October 20, 2026.** The author's edited LaTeX copy was imported verbatim on
+October 20, superseding the October 18 draft.
 This is a separate follow-up to the historical manuscript in the parent
 directory. It has not been submitted or accepted. No arXiv submission is
 needed for this preparation route.
@@ -55,7 +57,7 @@ source or in a separate review note:
    contraction argument, seven simplicial deletions, the three closure
    cases, and Hall's condition in reconstruction. These are the main
    author-review checkpoints.
-5. **Asymptotics (Section 5).** Check the independent deleted set,
+5. **Asymptotics (Section 4).** Check the independent deleted set,
    inclusion-exclusion coefficient, error estimates, and the strict
    density condition. The constant is asymptotic, not a finite-k guarantee.
 6. **Attribution and overlap.** Check the literature note, all citations,
@@ -94,18 +96,27 @@ record or journal submission is created by preparing this draft.
 ## Preparation checks
 
 The 114 existing tests for the nine-edge resolution, structural certificate
-checker, and bounds calculator passed during manuscript preparation,
-including CLI integration checks. The latter two modules measured 100%
+checker, and bounds calculator passed during manuscript preparation and
+again after the October 20 revision (7.56 seconds), including CLI
+integration checks. The latter two modules measured 100%
 statement coverage under the repository's existing exclusions; `main`
 bodies have separate subprocess tests. No source code or tests were changed.
 The full routine suite previously passed on the evidence revision's
 reviewed source; it was not repeated for this documentation-only change.
 
-A fresh AI reviewer checked the transcription, source hypotheses,
+A fresh AI reviewer checked the October 18 transcription, source hypotheses,
 certificate scope, and literature comparison. The review identified a
 missing order hypothesis in a quoted lemma and three minor attribution
 or parameter-pinning issues, all corrected in this draft. This is an
 additional automated review, not the required human verification.
+
+The October 20 source matches the author's supplied file byte for byte.
+Its 16-page PDF builds without LaTeX warnings or box diagnostics; every
+page was visually inspected. The two newly added journal DOIs were
+checked against publisher metadata.
+A separate AI comparison found no mathematical regression in the revision
+and rechecked the certificate commands and FKVL theorem-number pin. It did
+not replace human mathematical review or establish novelty.
 
 The original cited manuscript, evidence archives, release tag, and
 `AGENTS.md` are preserved. The proof notes at the evidence revision
