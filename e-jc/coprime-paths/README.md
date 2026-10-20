@@ -10,6 +10,8 @@ needed for this preparation route.
 - [Read the manuscript](coprime-paths.pdf).
 - [Edit its single-file LaTeX source](coprime-paths.tex).
 - [Read the bounded literature comparison](LITERATURE.md).
+- [Contribution record](../../research/records/coprime-paths/README.md):
+  evidence pins, provenance, reproducible packet, citation, and next steps.
 
 The target is the **Electronic Journal of Combinatorics**, with **Discrete
 Mathematics** as a possible later alternative. The central result is
@@ -89,9 +91,11 @@ The existing Zenodo records
 [23433640](https://doi.org/10.5281/zenodo.23433640) and
 [19058647](https://doi.org/10.5281/zenodo.19058647) describe earlier
 material. They do not archive this follow-up or its new path evidence.
-After author review, a versioned GitHub release and an appropriate Zenodo
-archive can supply the public record without arXiv. No new archival
-record or journal submission is created by preparing this draft.
+A scoped evidence archive may be published independently of journal review,
+with its review status explicit. A later manuscript archive should reuse the
+appropriate version family after checking existing records. The contribution
+record tracks these separately; no new DOI or journal submission is created
+by this organizational update.
 
 ## Preparation checks
 

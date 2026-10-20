@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Repository research contribution",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "title", "version", "authors", "abstract", "keywords", "licenses", "source", "claims", "assumptions", "limitations", "credits", "ai_assistance", "review", "events", "publication", "artifacts", "reproduction", "next_steps"],
+  "properties": {
+    "schema_version": {"const": 1, "type": "integer"},
+    "id": {"$ref": "#/$defs/id"},
+    "title": {"$ref": "#/$defs/text"},
+    "version": {"$ref": "#/$defs/text"},
+    "authors": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["given_names", "family_names", "orcid", "affiliation"],
+        "properties": {
+          "given_names": {"$ref": "#/$defs/text"},
+          "family_names": {"$ref": "#/$defs/text"},
+          "orcid": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"},
+          "affiliation": {"$ref": "#/$defs/text"},
+          "email": {"type": "string", "format": "email"}
+        }
+      }
+    },
+    "abstract": {"$ref": "#/$defs/text"},
+    "keywords": {"$ref": "#/$defs/texts"},
+    "licenses": {
+      "type": "object", "additionalProperties": false, "required": ["code", "papers"],
+      "properties": {"code": {"$ref": "#/$defs/text"}, "papers": {"$ref": "#/$defs/text"}}
+    },
+    "source": {
+      "type": "object", "additionalProperties": false, "required": ["repository", "commit"],
+      "properties": {
+        "repository": {"$ref": "#/$defs/url"},
+        "commit": {"$ref": "#/$defs/commit"},
+        "evidence_commit": {"$ref": "#/$defs/commit"}
+      }
+    },
+    "claims": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "statement", "status", "evidence"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "statement": {"$ref": "#/$defs/text"},
+          "status": {"enum": ["written_proof", "finite_computation", "prior_result_reverified", "conjecture", "exploratory"]},
+          "evidence": {"$ref": "#/$defs/texts"}
+        }
+      }
+    },
+    "assumptions": {"$ref": "#/$defs/texts"},
+    "limitations": {"$ref": "#/$defs/texts"},
+    "credits": {"$ref": "#/$defs/texts"},
+    "ai_assistance": {"$ref": "#/$defs/text"},
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["human", "formal_proof", "novelty"],
+      "properties": {
+        "human": {"enum": ["pending", "partial", "reviewed"]},
+        "formal_proof": {"type": "boolean"},
+        "novelty": {"enum": ["not_assessed", "bounded_search_only", "assessment_documented"]},
+        "ai_review": {"$ref": "#/$defs/text"},
+        "verification": {"$ref": "#/$defs/text"}
+      }
+    },
+    "events": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["kind", "date", "scope"],
+        "properties": {
+          "kind": {"enum": ["public_disclosure", "repository_acceptance", "author_revision", "verification", "archive_publication"]},
+          "date": {"type": "string", "format": "date"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "url": {"$ref": "#/$defs/url"},
+          "scope": {"$ref": "#/$defs/text"},
+          "evidence": {"$ref": "#/$defs/text"}
+        },
+        "allOf": [{
+          "if": {"properties": {"kind": {"enum": ["public_disclosure", "repository_acceptance", "archive_publication"]}}},
+          "then": {"required": ["url"]}
+        }]
+      }
+    },
+    "publication": {
+      "type": "object", "additionalProperties": false,
+      "required": ["state", "version_doi", "concept_doi"],
+      "properties": {
+        "state": {"enum": ["not_archived", "draft", "published"]},
+        "version_doi": {"anyOf": [{"$ref": "#/$defs/doi"}, {"type": "null"}]},
+        "concept_doi": {"anyOf": [{"$ref": "#/$defs/doi"}, {"type": "null"}]},
+        "prior_records": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["doi", "scope", "contains_this_contribution"],
+            "properties": {
+              "doi": {"$ref": "#/$defs/doi"},
+              "scope": {"$ref": "#/$defs/text"},
+              "contains_this_contribution": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "path", "source_commit", "sha256", "bytes", "role", "license"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "path": {"$ref": "#/$defs/text"},
+          "source_commit": {"$ref": "#/$defs/commit"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "bytes": {"type": "integer", "minimum": 0},
+          "role": {"enum": ["proof", "certificate", "checker", "search", "test", "environment", "manuscript", "provenance", "literature", "exploration", "license"]},
+          "license": {"$ref": "#/$defs/text"}
+        }
+      }
+    },
+    "reproduction": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "argv", "cwd", "expected_exit_code", "expected", "scope"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "argv": {"$ref": "#/$defs/texts"},
+          "cwd": {"$ref": "#/$defs/text"},
+          "expected_exit_code": {"const": 0},
+          "expected": {"$ref": "#/$defs/text"},
+          "scope": {"$ref": "#/$defs/text"}
+        }
+      }
+    },
+    "next_steps": {"$ref": "#/$defs/texts"}
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1},
+    "texts": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "url": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "doi": {"type": "string", "pattern": "^10\\.[0-9]+/[^\\s]+$"}
+  }
+}
