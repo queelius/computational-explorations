@@ -1,0 +1,64 @@
+{
+  "id": 23497967,
+  "doi": "10.5281/zenodo.23497967",
+  "conceptdoi": "10.5281/zenodo.23497966",
+  "submitted": true,
+  "publication_date": "2026-10-20",
+  "publish_request_started_at": "2026-10-20T11:41:47.330517+00:00",
+  "published_observed_at": "2026-10-20T11:41:48.469074+00:00",
+  "public_record_created_at": "2026-10-20T11:41:47.484140+00:00",
+  "public_record_updated_at": "2026-10-20T11:41:48.021642+00:00",
+  "public_record_url": "https://zenodo.org/records/23497967",
+  "public_api_url": "https://zenodo.org/api/records/23497967",
+  "metadata_commit": "afb384ee910a6f25cadaeabb9cf8a74729a02666",
+  "public_downloads_verified": true,
+  "files": [
+    {
+      "filename": "coprime-paths-2026.10.20.zip",
+      "bytes": 16072364,
+      "sha256": "ce2d2015c0238343633e6e4eeaca6849535c8ead52ada0d1355cbfd8392d8de6",
+      "server_md5": "md5:83ac3980e6867829204f8a9cf5a6299d",
+      "url": "https://zenodo.org/api/records/23497967/files/coprime-paths-2026.10.20.zip/content",
+      "public_sha256_verified": true
+    },
+    {
+      "filename": "coprime-paths.pdf",
+      "bytes": 380942,
+      "sha256": "6aefb5481003c1dea2f3e0e63a9412acfe1880548dd354f8fafe9bc5d114f965",
+      "server_md5": "md5:15cbc6b9dd866995fa14c4a56e0551f8",
+      "url": "https://zenodo.org/api/records/23497967/files/coprime-paths.pdf/content",
+      "public_sha256_verified": true
+    },
+    {
+      "filename": "ARCHIVE-NOTE.md",
+      "bytes": 4459,
+      "sha256": "d64b7dce4f52b6c858aac11bcba68c75316c40172ceb8aa449614bc038c0e54d",
+      "server_md5": "md5:92036495c20430c69ea81a3d0b906689",
+      "url": "https://zenodo.org/api/records/23497967/files/ARCHIVE-NOTE.md/content",
+      "public_sha256_verified": true
+    },
+    {
+      "filename": "CITATION.cff",
+      "bytes": 1426,
+      "sha256": "178aeea11ac13f5c5d35bb009800e82e036e96c92abcb960eb88da5511880166",
+      "server_md5": "md5:9492fd59397c439106a0fac1710e7f94",
+      "url": "https://zenodo.org/api/records/23497967/files/CITATION.cff/content",
+      "public_sha256_verified": true
+    },
+    {
+      "filename": "VERIFICATION.json",
+      "bytes": 7796,
+      "sha256": "7c43b2dad3163c3daf39580964ef051847780c6bc93125b0eb64289a5d70848c",
+      "server_md5": "md5:77cd442431d394a0c131996e05ddf96a",
+      "url": "https://zenodo.org/api/records/23497967/files/VERIFICATION.json/content",
+      "public_sha256_verified": true
+    }
+  ],
+  "public_verified_at": "2026-10-20T11:51:54.250721+00:00",
+  "doi_resolver_target": "https://zenodo.org/records/23497967",
+  "public_license_ids": [
+    "cc-by-4.0",
+    "mit"
+  ],
+  "verification_note": "The first full ZIP transfer was interrupted after 14,823,664 bytes. Retried using validated HTTP byte ranges and verified the complete SHA-256; no deposited files changed."
+}

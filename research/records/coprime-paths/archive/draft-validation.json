@@ -1,0 +1,68 @@
+{
+  "checked_at": "2026-10-20T11:40:35.172773+00:00",
+  "id": 23497967,
+  "reserved_doi": "10.5281/zenodo.23497967",
+  "submitted": false,
+  "creators": [
+    {
+      "person_or_org": {
+        "type": "personal",
+        "name": "Towell, Alexander Richard",
+        "given_name": "Alexander Richard",
+        "family_name": "Towell",
+        "identifiers": [
+          {
+            "identifier": "0000-0001-6443-9897",
+            "scheme": "orcid"
+          }
+        ]
+      },
+      "affiliations": [
+        {
+          "name": "Southern Illinois University Edwardsville"
+        }
+      ]
+    }
+  ],
+  "license_ids": [
+    "cc-by-4.0",
+    "mit"
+  ],
+  "license_scope": "MIT for original code; CC BY 4.0 for original prose. See per-file licenses.",
+  "publication_date": "2026-10-20",
+  "files": [
+    {
+      "filename": "coprime-paths-2026.10.20.zip",
+      "bytes": 16072364,
+      "sha256": "ce2d2015c0238343633e6e4eeaca6849535c8ead52ada0d1355cbfd8392d8de6",
+      "server_md5": "md5:83ac3980e6867829204f8a9cf5a6299d"
+    },
+    {
+      "filename": "coprime-paths.pdf",
+      "bytes": 380942,
+      "sha256": "6aefb5481003c1dea2f3e0e63a9412acfe1880548dd354f8fafe9bc5d114f965",
+      "server_md5": "md5:15cbc6b9dd866995fa14c4a56e0551f8"
+    },
+    {
+      "filename": "ARCHIVE-NOTE.md",
+      "bytes": 4459,
+      "sha256": "d64b7dce4f52b6c858aac11bcba68c75316c40172ceb8aa449614bc038c0e54d",
+      "server_md5": "md5:92036495c20430c69ea81a3d0b906689"
+    },
+    {
+      "filename": "CITATION.cff",
+      "bytes": 1426,
+      "sha256": "178aeea11ac13f5c5d35bb009800e82e036e96c92abcb960eb88da5511880166",
+      "server_md5": "md5:9492fd59397c439106a0fac1710e7f94"
+    },
+    {
+      "filename": "VERIFICATION.json",
+      "bytes": 7796,
+      "sha256": "7c43b2dad3163c3daf39580964ef051847780c6bc93125b0eb64289a5d70848c",
+      "server_md5": "md5:77cd442431d394a0c131996e05ddf96a"
+    }
+  ],
+  "metadata_retained": true,
+  "citation_schema": "CFF 1.2.0 validated with cffconvert 2.0.0",
+  "staged_checks": "180 tests, 10 auxiliary tests, standalone nine-edge certificates, earlier-threshold witness/CNF checks and full DRAT replay all passed."
+}

@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-20T11:57:47.608678+00:00",
+  "metadata_commit": "afb384ee910a6f25cadaeabb9cf8a74729a02666",
+  "github_workflow_url": "https://github.com/queelius/computational-explorations/actions/runs/39415534899",
+  "all_five_jobs": "success",
+  "jobs": [
+    "Research records and reproducible packets",
+    "Coprime checks (Python 3.10)",
+    "Coprime checks (Python 3.13)",
+    "Independent path certificate",
+    "Routine suite (Python 3.10)"
+  ],
+  "ci_packet_sha256": "ce2d2015c0238343633e6e4eeaca6849535c8ead52ada0d1355cbfd8392d8de6",
+  "ci_packet_identical_to_local_and_public_archive": true,
+  "postpublication_metadata_validation": "passed",
+  "postpublication_record_tests": {
+    "passed": 28,
+    "seconds": 1.58
+  },
+  "citation_schema": "CFF 1.2.0 validated",
+  "scientific_source_changes_since_archive_preparation": false,
+  "note": "Subsequent changes record publication and workspace receipts, describe prior Schur work, and promote its separately checked historical witness. The packet recipe remains pinned to the commit above."
+}

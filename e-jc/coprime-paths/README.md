@@ -91,11 +91,14 @@ The existing Zenodo records
 [23433640](https://doi.org/10.5281/zenodo.23433640) and
 [19058647](https://doi.org/10.5281/zenodo.19058647) describe earlier
 material. They do not archive this follow-up or its new path evidence.
-A scoped evidence archive may be published independently of journal review,
-with its review status explicit. A later manuscript archive should reuse the
-appropriate version family after checking existing records. The contribution
-record tracks these separately; no new DOI or journal submission is created
-by this organizational update.
+The follow-up evidence and unchanged author-edited manuscript are now archived
+at [10.5281/zenodo.23497967](https://doi.org/10.5281/zenodo.23497967).
+The [archive receipt](../../research/records/coprime-paths/archive/README.md)
+records the exact packet, verification, dates, and public-download hashes.
+Its journal style is excluded; layout rebuilding requires that template
+separately. Human mathematical review remains pending, and no journal
+submission or acceptance is asserted. Substantive updates should reuse the
+same archival family.
 
 ## Preparation checks
 

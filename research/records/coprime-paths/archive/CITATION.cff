@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: Cite this exact archived contribution and evidence version. Human mathematical
+  review remains pending.
+type: dataset
+title: 'Coprime paths: the nine-edge threshold, linear bounds, and reproducible evidence'
+version: 2026.10.20
+authors:
+- given-names: Alexander Richard
+  family-names: Towell
+  orcid: https://orcid.org/0000-0001-6443-9897
+  affiliation: Southern Illinois University Edwardsville
+abstract: The coprime graph on 1,...,17 forces a monochromatic simple nine-edge path
+  in every two-edge-coloring, while a complete coloring at 16 avoids one. The upper
+  bound combines a written extremal classification with independently checked finite
+  host lemmas. The record also preserves earlier independently recertified seven-
+  and eight-edge thresholds, linear bounds, an author-revised manuscript, and clearly
+  separated exploratory findings. Human mathematical review and novelty assessment
+  remain incomplete.
+keywords:
+- coprime graph
+- Ramsey theory
+- monochromatic paths
+- extremal graph theory
+- finite certificates
+- reproducible research
+- written mathematical proof
+repository-code: https://github.com/queelius/computational-explorations
+url: https://github.com/queelius/computational-explorations/tree/1e00700a86bbb13c4b0800eaa9a708b857c8e439
+commit: 1e00700a86bbb13c4b0800eaa9a708b857c8e439
+license:
+- CC-BY-4.0
+- MIT
+doi: 10.5281/zenodo.23497967
+date-released: '2026-10-20'

@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "resource_type": {
+      "id": "dataset",
+      "title": {
+        "de": "Datensatz",
+        "en": "Dataset"
+      }
+    },
+    "creators": [
+      {
+        "person_or_org": {
+          "type": "personal",
+          "name": "Towell, Alexander Richard",
+          "given_name": "Alexander Richard",
+          "family_name": "Towell",
+          "identifiers": [
+            {
+              "identifier": "0000-0001-6443-9897",
+              "scheme": "orcid"
+            }
+          ]
+        },
+        "affiliations": [
+          {
+            "name": "Southern Illinois University Edwardsville"
+          }
+        ]
+      }
+    ],
+    "title": "Coprime paths: the nine-edge threshold, linear bounds, and reproducible evidence",
+    "publisher": "Zenodo",
+    "publication_date": "2026-10-20",
+    "subjects": [
+      {
+        "subject": "coprime graph"
+      },
+      {
+        "subject": "Ramsey theory"
+      },
+      {
+        "subject": "monochromatic paths"
+      },
+      {
+        "subject": "extremal graph theory"
+      },
+      {
+        "subject": "finite certificates"
+      },
+      {
+        "subject": "reproducible research"
+      },
+      {
+        "subject": "written mathematical proof"
+      },
+      {
+        "subject": "AI-assisted research"
+      }
+    ],
+    "languages": [
+      {
+        "id": "eng",
+        "title": {
+          "en": "English"
+        }
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/queelius/computational-explorations/tree/afb384ee910a6f25cadaeabb9cf8a74729a02666",
+        "scheme": "url",
+        "relation_type": {
+          "id": "issupplementto",
+          "title": {
+            "de": "Erg\u00e4nzt",
+            "en": "Is supplement to"
+          }
+        }
+      },
+      {
+        "identifier": "https://github.com/queelius/computational-explorations/pull/9",
+        "scheme": "url",
+        "relation_type": {
+          "id": "references",
+          "title": {
+            "de": "Referenziert",
+            "en": "References"
+          }
+        }
+      },
+      {
+        "identifier": "https://github.com/queelius/computational-explorations/pull/11",
+        "scheme": "url",
+        "relation_type": {
+          "id": "references",
+          "title": {
+            "de": "Referenziert",
+            "en": "References"
+          }
+        }
+      },
+      {
+        "identifier": "https://github.com/queelius/research-records/tree/main/records/computational-explorations-coprime-paths",
+        "scheme": "url",
+        "relation_type": {
+          "id": "isdocumentedby",
+          "title": {
+            "de": "Wird dokumentiert von",
+            "en": "Is documented by"
+          }
+        }
+      },
+      {
+        "identifier": "10.5281/zenodo.23433640",
+        "scheme": "doi",
+        "relation_type": {
+          "id": "references",
+          "title": {
+            "de": "Referenziert",
+            "en": "References"
+          }
+        }
+      },
+      {
+        "identifier": "10.5281/zenodo.20636188",
+        "scheme": "doi",
+        "relation_type": {
+          "id": "references",
+          "title": {
+            "de": "Referenziert",
+            "en": "References"
+          }
+        }
+      }
+    ],
+    "version": "2026.10.20",
+    "rights": [
+      {
+        "id": "cc-by-4.0",
+        "title": {
+          "en": "Creative Commons Attribution 4.0 International"
+        },
+        "description": {
+          "en": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited."
+        },
+        "icon": "cc-by-icon",
+        "props": {
+          "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+          "scheme": "spdx"
+        }
+      },
+      {
+        "id": "mit",
+        "title": {
+          "en": "MIT License"
+        },
+        "description": {
+          "en": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code."
+        },
+        "props": {
+          "url": "https://opensource.org/licenses/MIT",
+          "scheme": "spdx"
+        }
+      }
+    ],
+    "description": "<p>This evidence archive establishes the exact nine-edge coprime path threshold P_cop(9) = 17: every two-coloring of the edges of the coprime graph on 1,...,17 contains a monochromatic simple path with nine edges, while a checked coloring at 16 avoids one. The upper bound combines a written extremal classification with independently checked finite host lemmas.</p><p>Supporting results independently recertify the earlier reported values P_cop(7) = P_cop(8) = 13 and establish linear bounds with lower limiting ratio at least 2 and upper limiting ratio at most 197*pi^2/595. Earlier values are credited as prior results. The infinite odd-path formula remains unresolved.</p><p>The deterministic packet contains 79 pinned source files: proofs, finite certificates, checkers, tests, dependency pins, the author-edited manuscript, literature notes, clearly separated auxiliary explorations, licenses, and per-file hashes. Its metadata and packaging commit is afb384ee910a6f25cadaeabb9cf8a74729a02666. The journal style file is omitted; all listed mathematical checks are self-contained, while rebuilding the journal-formatted manuscript requires the journal template separately.</p><p>Substantial OpenAI Codex assistance and separate AI review are disclosed. The complete deduction is a written proof, not formal verification. No new nine-edge UNSAT certificate, human peer review, journal acceptance, established novelty, or legal priority is claimed. Tests and certificate replay verify finite evidence rather than every written argument.</p><p>Alexander Richard Towell is the author. Prior constructions, Du, Xi, Deng and Ma, and the graph-theoretic sources used in the proof are credited in the manuscript and record. The main proof was publicly disclosed in project PR9 on October 18, 2026; the revised manuscript and organized evidence became public in PR11 on October 20. These dates are distinct from archival publication. Original prose is CC BY 4.0 and original code is MIT; see the per-file licenses.</p>",
+    "additional_descriptions": [
+      {
+        "description": "This is the canonical archive family for the path-specific contribution, distinct from the earlier whole-repository software release and Coprime Ramsey Numbers manuscript families. Repository acceptance and archival publication do not establish peer review or novelty. The packet freezes metadata at assembly; subsequent publication receipts and the exact version citation are supplied separately.",
+        "type": {
+          "id": "notes",
+          "title": {
+            "de": "Anmerkungen",
+            "en": "Notes"
+          }
+        }
+      }
+    ]
+  },
+  "access": {
+    "record": "public",
+    "files": "public",
+    "embargo": {
+      "active": false,
+      "reason": null
+    },
+    "status": "open"
+  },
+  "files": {
+    "enabled": true,
+    "default_preview": "coprime-paths.pdf",
+    "order": [
+      "coprime-paths.pdf",
+      "ARCHIVE-NOTE.md",
+      "CITATION.cff",
+      "VERIFICATION.json",
+      "coprime-paths-2026.10.20.zip"
+    ]
+  }
+}

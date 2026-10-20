@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-10-20T11:48:25.200251+00:00",
+  "scope": "Promote and independently check the historical MS(3) lower witness; this does not replay the finite-abelian-group SAT grid.",
+  "artifact": {
+    "path": "discoveries/schur-extensions/grid/ms3_witness_16383.txt",
+    "sha256": "ce4ae7265b319a71a79b9c846311ca4e34ad2714b51a740f8bb99a419ea3790d",
+    "bytes": 119954,
+    "origin": "Author research preserved before workspace consolidation; byte-for-byte promotion."
+  },
+  "reproduction": {
+    "argv": [
+      "python",
+      "-c",
+      "import csv, json, math\nfrom pathlib import Path\nrows = list(csv.reader(Path(\"discoveries/schur-extensions/grid/ms3_witness_16383.txt\").open(), delimiter=\" \", skipinitialspace=True))\nif any(len(row) != 2 for row in rows): raise ValueError(\"Expected integer/color pairs\")\npairs = [(int(n), int(c)) for n, c in rows]\ncolors = dict(pairs)\nif len(colors) != len(pairs) or set(colors) != set(range(2, 16384)): raise ValueError(\"Incomplete or duplicate domain\")\nif not set(colors.values()) <= {0, 1, 2}: raise ValueError(\"Invalid palette\")\ndef violations(c):\n    return [(a, b, a*b) for a in range(2, math.isqrt(16383)+1) for b in range(a, 16383//a+1) if c[a] == c[b] == c[a*b]]\nfirst = violations(colors)\nsecond = [(a, p//a, p) for p in range(4, 16384) for a in range(2, math.isqrt(p)+1) if p % a == 0 and colors[a] == colors[p//a] == colors[p]]\nif first or second: raise ValueError(\"Monochromatic product triple\")\ncorrupted = dict(colors)\ncorrupted[4] = corrupted[2]\nif (2, 2, 4) not in violations(corrupted): raise ValueError(\"Rejecting control failed\")\nchecked = sum(16383//a-a+1 for a in range(2, math.isqrt(16383)+1))\nprint(json.dumps({\"n\":16383,\"colors\":3,\"integers\":len(colors),\"unordered_product_triples\":checked,\"monochromatic_triples\":0,\"independent_factorization_cross_check\":True,\"rejecting_control\":\"Recoloring 4 to match 2 detects (2,2,4)\"}))\n"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "stdout": {
+      "n": 16383,
+      "colors": 3,
+      "integers": 16382,
+      "unordered_product_triples": 64449,
+      "monochromatic_triples": 0,
+      "independent_factorization_cross_check": true,
+      "rejecting_control": "Recoloring 4 to match 2 detects (2,2,4)"
+    }
+  },
+  "upper_bound": "For N >= 2^14, a three-coloring restricts to 2^1,...,2^14. Since the classical Schur number S(3)=13, a monochromatic exponent triple i+j=k yields a monochromatic product triple. This is the written upper-bound argument of the June 10 archived manuscript, not new research here.",
+  "limitations": [
+    "No fresh replay of the full S(G,k) SAT grid or historical solver certificates.",
+    "No human peer review, formal verification, or new novelty assessment."
+  ]
+}

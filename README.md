@@ -8,6 +8,8 @@ The [coprime-path record](research/records/coprime-paths/README.md) links the
 latest manuscript and the public proof of `P_cop(9) = 17`. Cross-project
 discovery and archival records live in
 [research-records](https://github.com/queelius/research-records).
+The exact coprime-path evidence archive is
+[10.5281/zenodo.23497967](https://doi.org/10.5281/zenodo.23497967).
 
 ## Headline Results
 
@@ -17,7 +19,7 @@ discovery and archival records live in
 | Coprime Ramsey R_cop(4) | **59** | Checked witness at 58 + prime-clique upper bound |
 | Multi-color R_cop(3; 3) | **53** | Checked witness at 52 + prime-clique upper bound |
 | Coprime Ramsey variants | [Full table](discoveries/coprime-ramsey/) | Verification status recorded per family |
-| S(G,k) order-invariance | Holds k≤2, fails k=3 | Verified order ≤ 20 |
+| S(G,k) order-invariance | Fails at order 49 for k=2; at order 9 for k=3 | [Archived version 2 and verification scope](docs/schur-archive-handoff-2026-10-20.md) |
 | Coprime graph perfectness | χ = ω = 1+π(n) | Verified n ≤ 30 (prior art exists) |
 | Coprime Ramsey primality | All 4 known values prime | **Explained** (corollary of Du et al. Thm 4.4) |
 

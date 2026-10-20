@@ -1,10 +1,17 @@
 # Schur Number Extensions
 
+**October 20, 2026 archival handoff:** The
+[June 10 manuscript, version 2](https://doi.org/10.5281/zenodo.20634736)
+supersedes the early general order-invariance conjecture. See the
+[current handoff and verification scope](../../docs/schur-archive-handoff-2026-10-20.md)
+for the doubling theorem, order-49 split, and restored `MS(3)` witness.
+The remaining sections retain earlier computational context.
+
 ## 1. S(G,k) Order-Invariance
 
 For finite abelian groups G, the maximum size of a k-colorable sum-free subset S(G,k):
 
-- **k = 1, 2**: S(G,k) depends ONLY on |G|, not isomorphism type. Verified all abelian groups through order 20.
+- **k = 1, 2**: The early computation observed order-invariance through order 20. This does not extend to all orders: the archived version 2 gives a split at order 49.
 - **k = 3**: Order-invariance FAILS. First failure at order 9: S(Z/9Z, 3) = 8 ≠ S(Z/3Z × Z/3Z, 3) = 7.
 
 ### S(Z/nZ, 2) Sequence (n=2..20)
@@ -17,7 +24,7 @@ Note: S(Z/nZ, 3) = n-1 for n = 2..14 (all nonzero elements 3-colorable sum-free)
 
 ### Prior Art
 - Green & Ruzsa (2005): S(G,1) for general abelian groups — our k=1 invariance may follow.
-- S(G,2) invariance and k=3 failure appear novel.
+- The earlier general S(G,2) invariance conjecture is superseded. The archived manuscript credits Green–Ruzsa and Andrei Zabolotskii; this handoff makes no new novelty claim.
 
 ## 2. Density Schur Numbers DS(k, α)
 
@@ -40,6 +47,7 @@ MS(k) = max N such that [2..N] can be k-colored avoiding monochromatic {a, b, ab
 |---|-------|
 | 1 | **3** |
 | 2 | **31** |
+| 3 | **16383** (archived version 2; lower witness freshly replayed) |
 
 **CORRECTED**: Earlier computation reported 4 and 32 (off-by-one). Independently verified.
 

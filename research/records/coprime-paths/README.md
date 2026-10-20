@@ -58,20 +58,19 @@ Generate the current contribution's citation with:
 python src/research_records.py cite coprime-paths
 ```
 
-Use its immutable source commit until an exact version DOI exists. The
-earlier software DOI `10.5281/zenodo.23433640` and original-paper DOI
-`10.5281/zenodo.19058647` do **not** archive this follow-up. The public PR date,
-local author-revision date, and any future DOI publication date are separate.
+Cite the exact archive version
+[10.5281/zenodo.23497967](https://doi.org/10.5281/zenodo.23497967), published
+October 20, 2026. The [archive record](archive/README.md) gives its frozen
+packaging commit, file hashes, replay results, and verified public downloads.
+The earlier software DOI `10.5281/zenodo.23433640` and original-paper DOI
+`10.5281/zenodo.19058647` do **not** archive this follow-up. The public PR
+date, local author revision, and DOI publication are recorded separately.
 
 ## Next work
 
 1. Complete the [author review route](../../../e-jc/coprime-paths/README.md),
    including proof reconstruction and attribution. Record its actual scope.
-2. Finish archival staging and replay. A complete
-   [Zenodo account search](archive/duplicate-search.json) found no existing
-   family for this follow-up; the earlier software and paper records retain
-   their separate identities.
-3. Publish an authorized archive, verify every public download, and update
-   this record and the central index with the exact version DOI.
-4. Treat journal submission, shorter analytic proofs, the infinite family,
+2. Use the existing archival version family for substantive evidence updates,
+   preserving earlier versions and checking public downloads again.
+3. Treat journal submission, shorter analytic proofs, the infinite family,
    and a broader novelty assessment as separate tasks.

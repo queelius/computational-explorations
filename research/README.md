@@ -10,10 +10,15 @@ there alone does not certify a claim or publication readiness.
 
 - [Coprime paths](records/coprime-paths/README.md): exact nine-edge threshold,
   earlier certified values, linear bounds, manuscript, and review status.
+- [Schur archive handoff](../docs/schur-archive-handoff-2026-10-20.md):
+  existing version-2 manuscript, corrections, and restored lower witness.
+  Full computational-grid promotion remains a separate task.
 - [Workspace and preservation](../docs/workspace-layout.md): primary checkout,
   ignored `.local/` support files, and preserved unpublished work.
 - [Organization audit](../docs/audits/research-organization-2026-10-20/README.md):
   packet hash, reproduction checks, and review scope.
+- [Consolidation audit](../docs/audits/workspace-consolidation-2026-10-20/README.md):
+  completed worktree cleanup, preservation receipts, and archival handoff.
 - [Cross-project research index](https://github.com/queelius/research-records):
   curated discovery, archival DOIs, and publication receipts.
 
