@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-20",
+  "scope": "Relocation and promotion of existing material; no new mathematical claim or human review.",
+  "source_commit": "9a2465c1985718cb4684c8311d25da51458f32d8",
+  "preservation": {
+    "relocated_files_hash_verified": 510,
+    "original_working_files_in_private_backup": 331,
+    "original_checkout_unchanged": true
+  },
+  "checks": [
+    {
+      "argv": [
+        "python",
+        "research/records/coprime-paths/exploration/009-near-extremal-structure/test_validation.py"
+      ],
+      "passed": 3,
+      "seconds": 5.606
+    },
+    {
+      "argv": [
+        "python",
+        "research/records/coprime-paths/exploration/012-endpoint-forced-edges/test_validation.py"
+      ],
+      "passed": 7,
+      "seconds": 0.766
+    },
+    {
+      "argv": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_coprime_path_nine_resolution.py",
+        "tests/test_coprime_path_structure_certificates.py",
+        "tests/test_coprime_path_bounds.py"
+      ],
+      "passed": 114,
+      "seconds": 3.4
+    }
+  ],
+  "limits": [
+    "Auxiliary validators require Python assertions enabled.",
+    "No fresh DRAT replay or human mathematical review in these checks.",
+    "This local verification date does not assert a public disclosure date."
+  ]
+}

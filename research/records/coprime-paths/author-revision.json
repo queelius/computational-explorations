@@ -1,0 +1,53 @@
+{
+  "verified_at_utc": "2026-10-20T09:31:59.887780+00:00",
+  "base_commit": "cff5bfe79e323d2466a359ec7b8779435436e632",
+  "import": {
+    "source": "Author-supplied coprime-paths.tex",
+    "source_sha256": "0f83a32ab9d4b49ae66067e4f20f3ed03bebbbbd78528c8b9a314f8104d96329",
+    "prior_sha256": "6da9379660c9682e3ba348df49c4b3796a2066626317c033fdc388c2c6b404dd"
+  },
+  "latex_build": "passed; no warnings or box diagnostics",
+  "pdf_pages": 16,
+  "visual_review": "All 16 rendered pages inspected.",
+  "focused_tests": {
+    "passed": 114,
+    "seconds": 7.56,
+    "integration_tests_included": true
+  },
+  "coverage": {
+    "covered_lines": 205,
+    "num_statements": 205,
+    "percent_covered": 100.0,
+    "percent_covered_display": "100",
+    "missing_lines": 0,
+    "excluded_lines": 51,
+    "percent_statements_covered": 100.0,
+    "percent_statements_covered_display": "100"
+  },
+  "new_doi_sources": [
+    "https://www.sciencedirect.com/science/article/pii/S0012365X07006723",
+    "https://link.springer.com/article/10.1007/BF02024498"
+  ],
+  "sha256": {
+    "coprime-paths.tex": "0f83a32ab9d4b49ae66067e4f20f3ed03bebbbbd78528c8b9a314f8104d96329",
+    "coprime-paths.pdf": "6aefb5481003c1dea2f3e0e63a9412acfe1880548dd354f8fafe9bc5d114f965",
+    "README.md": "5ae5a0e0405e07f73b3921476355f3a08c1d354ade49b97c5183cadd317cf740"
+  },
+  "human_mathematical_review": "pending, as stated in the author revision",
+  "review": {
+    "kind": "fresh AI comparison with cff5bfe",
+    "result": "no actionable regression found",
+    "scope": [
+      "mathematical transcription",
+      "certificate commands",
+      "FKVL theorem numbering"
+    ],
+    "not_completed": [
+      "new full proof audit",
+      "new novelty assessment",
+      "DRAT rerun",
+      "human mathematical review"
+    ]
+  },
+  "scope": "Historical October 20 author-revision check, promoted unchanged except removal of the local Downloads path and addition of this scope field."
+}

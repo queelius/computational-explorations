@@ -1,0 +1,72 @@
+# Coprime paths: exact thresholds, bounds, and evidence
+
+**Author:** Alexander Richard Towell
+([ORCID](https://orcid.org/0000-0001-6443-9897)).
+Substantial OpenAI Codex assistance is disclosed in the manuscript and record.
+
+The main result is **`P_cop(9) = 17`**: every two-edge-coloring of the coprime
+graph on `1,…,17` has a monochromatic simple path with nine edges, while a
+checked coloring at 16 avoids one. The upper bound combines a written
+extremal classification with independently checked finite host lemmas.
+
+Earlier public values `P_cop(7) = P_cop(8) = 13` were independently
+recertified. A separate written argument establishes linear growth and
+`limsup P_cop(k)/k ≤ 197π²/595`, with lower limit at least 2.
+Those supporting results are not presented as new priority claims.
+
+## Read and continue
+
+- [Manuscript PDF](../../../e-jc/coprime-paths/coprime-paths.pdf) and
+  [editable LaTeX](../../../e-jc/coprime-paths/coprime-paths.tex).
+- [Nine-edge proof](../../../docs/coprime-path-nine-resolution-2026-10-18.md)
+  and [audit](../../../docs/audits/coprime-path-nine-resolution-2026-10-18/README.md).
+- [Structural bounds](../../../docs/coprime-path-structure-2026-10-18.md).
+- [Literature and overlap assessment](../../../e-jc/coprime-paths/LITERATURE.md).
+- [Preserved auxiliary findings](exploration/README.md), including the
+  endpoint and matching arguments and selected complete replayable evidence.
+- [Structured record](record.json), [citation](CITATION.cff),
+  [author-revision receipt](author-revision.json), and [licenses](LICENSES.md).
+
+## Evidence and review
+
+`P_cop(k)` counts **edges**, whereas `P_j` in the cited extremal graph theorems
+counts **vertices**. The statements concern two colors, simple paths, and
+edges between distinct coprime positive integers.
+
+The main proof was accepted into this repository in
+[PR #9](https://github.com/queelius/computational-explorations/pull/9)
+on October 18, 2026. That PR supplies a dated public disclosure and records
+AI review and passing CI. Repository acceptance is not journal acceptance.
+The author revised the manuscript on October 20; human mathematical review
+remains pending. There is no Lean verification, new nine-edge UNSAT
+certificate, established priority, or proof of the infinite odd-path family.
+
+## Reproduce and cite
+
+Use the commands and expected outputs in `record.json` and the linked audits.
+The [repository record guide](../../README.md) explains validation, environment
+installation, and byte-reproducible packaging. Packets include the source,
+certificates, tests, manuscript, licenses, and a SHA-256 inventory.
+
+Generate the current contribution's citation with:
+
+```sh
+python src/research_records.py cite coprime-paths
+```
+
+Use its immutable source commit until an exact version DOI exists. The
+earlier software DOI `10.5281/zenodo.23433640` and original-paper DOI
+`10.5281/zenodo.19058647` do **not** archive this follow-up. The public PR date,
+local author-revision date, and any future DOI publication date are separate.
+
+## Next work
+
+1. Complete the [author review route](../../../e-jc/coprime-paths/README.md),
+   including proof reconstruction and attribution. Record its actual scope.
+2. For an evidence DOI, paginate the existing Zenodo records and choose the
+   appropriate version family; resolve the journal template's redistribution
+   terms or omit it from an evidence-only packet. Rerun the staged checks.
+3. Publish an authorized archive, verify every public download, and update
+   this record and the central index with the exact version DOI.
+4. Treat journal submission, shorter analytic proofs, the infinite family,
+   and a broader novelty assessment as separate tasks.

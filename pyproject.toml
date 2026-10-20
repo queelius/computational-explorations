@@ -12,6 +12,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = [
+    "jsonschema>=4.23,<5",
     "pytest",
     "pytest-cov",
     "pytest-timeout",

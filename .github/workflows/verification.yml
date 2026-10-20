@@ -19,6 +19,48 @@ env:
   MKL_NUM_THREADS: "1"
 
 jobs:
+  research-records:
+    name: Research records and reproducible packets
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.10"
+          cache: pip
+          cache-dependency-path: requirements-test.txt
+      - name: Install declared dependencies with tested constraints
+        run: python -m pip install -c requirements-test.txt '.[test]'
+      - name: Validate metadata and evidence
+        run: |
+          python src/research_records.py validate
+          python -m pytest -q tests/test_research_records.py \
+            --cov=research_records --cov-report=term-missing
+      - name: Build every registered packet twice
+        env:
+          PYTHONPATH: src
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from research_records import build_packet, validate_catalog
+          root = Path(".").resolve()
+          output = root / "dist/research"
+          output.mkdir(parents=True)
+          for record in validate_catalog(root):
+              first = build_packet(root, record)
+              if build_packet(root, record) != first:
+                  raise SystemExit(f"Non-reproducible packet: {record['id']}")
+              (output / f"{record['id']}-{record['version']}.zip").write_bytes(first)
+          PY
+      - name: Preserve reproducible research packets
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: research-packets
+          path: dist/research/
+
   coprime:
     name: Coprime checks (Python ${{ matrix.python }})
     runs-on: ubuntu-24.04
@@ -124,6 +166,8 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: teorth/erdosproblems

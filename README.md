@@ -2,6 +2,13 @@
 
 A curiosity-driven research project exploring mathematical structure through computation, spanning Erdős problems, Ramsey theory, additive combinatorics, and cross-domain pattern discovery.
 
+Start with the [research records](research/README.md) for scoped claims,
+source pins, evidence, reproduction, citations, and publication status.
+The [coprime-path record](research/records/coprime-paths/README.md) links the
+latest manuscript and the public proof of `P_cop(9) = 17`. Cross-project
+discovery and archival records live in
+[research-records](https://github.com/queelius/research-records).
+
 ## Headline Results
 
 | Discovery | Value | Status |
@@ -22,6 +29,7 @@ tests/                  # Unit, integration, and long-running research tests
 lean/                   # Lean 4 formalizations (mixed status; coprime Ramsey incomplete)
 paper/                  # LaTeX papers for DOI minting
 docs/                   # Research findings, provenance, OEIS candidates
+research/               # Validated contribution metadata, citations, lifecycle
 discoveries/            # Organized discovery summaries
   coprime-ramsey/       # The coprime Ramsey theory we built
   schur-extensions/     # Schur number extensions (S(G,k), DS, MS)
@@ -34,6 +42,8 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 
 ## Key Documents
 
+- [Research lifecycle and reproducibility](research/README.md) — Durable records and deterministic research packets
+- [Workspace and preservation](docs/workspace-layout.md) — Visible worktree, protected local edits, and recovery locations
 - [Running verification](docs/verification.md) — Fresh environment, independent witness checker, routine tests, and CI scope
 - [Coprime path certificates (2026-10-18)](docs/audits/coprime-paths-2026-10-18/README.md) — Independently checked evidence that P_cop(7) = P_cop(8) = 13
 - [Coprime path structural bounds (2026-10-18)](docs/coprime-path-structure-2026-10-18.md) — Linear growth, explicit density bounds, and limitations of the current proof methods

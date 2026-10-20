@@ -1,0 +1,994 @@
+{
+  "schema_version": 1,
+  "id": "coprime-paths",
+  "title": "Coprime paths: the nine-edge threshold, linear bounds, and reproducible evidence",
+  "version": "2026.10.20",
+  "authors": [
+    {
+      "given_names": "Alexander Richard",
+      "family_names": "Towell",
+      "orcid": "0000-0001-6443-9897",
+      "affiliation": "Southern Illinois University Edwardsville",
+      "email": "lex@metafunctor.com"
+    }
+  ],
+  "abstract": "The coprime graph on 1,...,17 forces a monochromatic simple nine-edge path in every two-edge-coloring, while a complete coloring at 16 avoids one. The upper bound combines a written extremal classification with independently checked finite host lemmas. The record also preserves earlier independently recertified seven- and eight-edge thresholds, linear bounds, an author-revised manuscript, and clearly separated exploratory findings. Human mathematical review and novelty assessment remain incomplete.",
+  "keywords": [
+    "coprime graph",
+    "Ramsey theory",
+    "monochromatic paths",
+    "extremal graph theory",
+    "finite certificates",
+    "reproducible research",
+    "written mathematical proof"
+  ],
+  "licenses": {
+    "code": "MIT",
+    "papers": "CC-BY-4.0"
+  },
+  "source": {
+    "repository": "https://github.com/queelius/computational-explorations",
+    "commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+    "evidence_commit": "8bda81e8d3f867bb1450b0e492592164416ba98f"
+  },
+  "claims": [
+    {
+      "id": "nine-edge-threshold",
+      "statement": "P_cop(9) = 17.",
+      "status": "written_proof",
+      "evidence": [
+        "docs-coprime-path-nine-resolution-2026-10-18-md",
+        "docs-audits-coprime-path-nine-resolution-2026-10-18-lower-n16-k9-json",
+        "docs-audits-coprime-path-nine-2026-10-18-cuts-json-gz",
+        "docs-audits-coprime-path-nine-2026-10-18-fault-families-json-gz",
+        "docs-audits-coprime-path-nine-2026-10-18-extensions-json-gz"
+      ]
+    },
+    {
+      "id": "earlier-thresholds",
+      "statement": "Earlier public values P_cop(7) = P_cop(8) = 13 independently recertified.",
+      "status": "prior_result_reverified",
+      "evidence": [
+        "docs-audits-coprime-paths-2026-10-18-manifest-json"
+      ]
+    },
+    {
+      "id": "linear-bounds",
+      "statement": "2 <= liminf P_cop(k)/k <= limsup P_cop(k)/k <= 197*pi^2/595.",
+      "status": "written_proof",
+      "evidence": [
+        "docs-coprime-path-structure-2026-10-18-md",
+        "src-coprime-path-bounds-py"
+      ]
+    }
+  ],
+  "assumptions": [
+    "G_n has vertices 1,...,n and an edge between distinct coprime integers.",
+    "Two edge colors; simple paths; P_cop(k) counts edges.",
+    "P_j in the extremal graph sources counts vertices. Published source hypotheses are part of the written proof."
+  ],
+  "limitations": [
+    "The complete mathematical deduction is written, not formally verified.",
+    "No new nine-edge SAT UNSAT certificate or Lean proof.",
+    "Human mathematical review is pending; separate AI review is not human peer review.",
+    "No established novelty or legal priority claim; the infinite odd-path formula remains unresolved.",
+    "Existing DOI records precede this follow-up and do not archive it.",
+    "Exploratory endpoint and matching notes are not dependencies of the main proof.",
+    "Historical manifests may refer to earlier CI configurations in their pinned repository commits; the packet contains the inputs for its listed reproduction commands.",
+    "The retained journal style has no license notice; resolve redistribution terms before DOI deposit, or omit it from an evidence-only packet."
+  ],
+  "credits": [
+    "Alexander Richard Towell: author and prior coprime Ramsey investigations. Earlier reported path values are retained as prior results, not new discoveries.",
+    "Du, Xi, Deng, and Ma, arXiv:2605.26815: external work citing the earlier repository and contextualizing edge-coprime Ramsey numbers.",
+    "Erdos-Gallai, Balister-Gyori-Lehel-Schelp, Furedi-Kostochka-Verstraete, Furedi-Kostochka-Luo-Verstraete, Ali-Staton, Bondy-Chvatal, and Chvatal: published graph-theoretic ingredients cited in the proof and manuscript.",
+    "Electronic Journal of Combinatorics: unchanged manuscript style file. Tutte-Berge and the credited exposition in the matching note: auxiliary matching argument."
+  ],
+  "ai_assistance": "Substantial OpenAI Codex assistance in investigation, written arguments, programming, certificate generation and checking, editorial preparation, organization, and independent AI review. The author supplied the October 20 manuscript revision; human mathematical verification remains pending.",
+  "review": {
+    "human": "pending",
+    "formal_proof": false,
+    "novelty": "bounded_search_only",
+    "ai_review": "Separate AI reviews checked the proof, source hypotheses, finite certificates, and manuscript revisions; see the public PR and author-revision receipt.",
+    "verification": "PR #9 CI: 510 focused tests on Python 3.10 and 3.13, independent certificate replay, and 6,196 routine tests. October 20 promotion: 114 relevant tests and 10 auxiliary regression tests rerun. Full deduction and external theorems are not established by tests alone."
+  },
+  "events": [
+    {
+      "kind": "public_disclosure",
+      "date": "2026-10-18",
+      "timestamp": "2026-10-18T06:05:58Z",
+      "url": "https://github.com/queelius/computational-explorations/pull/4",
+      "scope": "Independent certification of earlier public seven- and eight-edge values; not the original disclosure of those values."
+    },
+    {
+      "kind": "public_disclosure",
+      "date": "2026-10-18",
+      "timestamp": "2026-10-18T06:55:24Z",
+      "url": "https://github.com/queelius/computational-explorations/pull/5",
+      "scope": "Linear bounds and exact density calculator; a dated public event, not an exhaustive earliest-priority determination."
+    },
+    {
+      "kind": "public_disclosure",
+      "date": "2026-10-18",
+      "timestamp": "2026-10-18T09:14:02Z",
+      "url": "https://github.com/queelius/computational-explorations/pull/9",
+      "scope": "Written proof of P_cop(9)=17 and associated evidence."
+    },
+    {
+      "kind": "repository_acceptance",
+      "date": "2026-10-18",
+      "timestamp": "2026-10-18T09:39:50Z",
+      "url": "https://github.com/queelius/computational-explorations/pull/9",
+      "scope": "Merged as 8bda81e8d3f867bb1450b0e492592164416ba98f; repository acceptance only."
+    },
+    {
+      "kind": "author_revision",
+      "date": "2026-10-20",
+      "scope": "Author-supplied LaTeX imported byte for byte; this is a local editorial event, not a public disclosure assertion.",
+      "evidence": "research/records/coprime-paths/author-revision.json"
+    },
+    {
+      "kind": "verification",
+      "date": "2026-10-20",
+      "scope": "Relevant unit/integration tests and selected exploratory replay tests passed during promotion.",
+      "evidence": "research/records/coprime-paths/promotion-verification.json"
+    }
+  ],
+  "publication": {
+    "state": "not_archived",
+    "version_doi": null,
+    "concept_doi": null,
+    "prior_records": [
+      {
+        "doi": "10.5281/zenodo.23433640",
+        "scope": "October 17 corrected software and witnesses.",
+        "contains_this_contribution": false
+      },
+      {
+        "doi": "10.5281/zenodo.19058647",
+        "scope": "Original Coprime Ramsey Numbers manuscript.",
+        "contains_this_contribution": false
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "docs-audits-coprime-path-nine-2026-10-18-readme-md",
+      "path": "docs/audits/coprime-path-nine-2026-10-18/README.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "7030181ee42a72eb7dfabd6ab60a4ade02c2baf50dd619aede93b454477a54ab",
+      "bytes": 3895,
+      "role": "provenance",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-2026-10-18-coverage-json",
+      "path": "docs/audits/coprime-path-nine-2026-10-18/coverage.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "7a316e5f0be06079cd5258caf43625098855749940f368f1bf2bcff6bf2436b5",
+      "bytes": 9162,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-2026-10-18-cuts-json-gz",
+      "path": "docs/audits/coprime-path-nine-2026-10-18/cuts.json.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "fd3eedbbb33ef887bb46a572d1a7a9d71944a17c8b08d81e4d503f09cab36ce6",
+      "bytes": 258164,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-2026-10-18-extensions-json-gz",
+      "path": "docs/audits/coprime-path-nine-2026-10-18/extensions.json.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "d97131b5e504846f8407c39e9e66d64c7e77b9c2d6bda80ec00e3191e50c2b1c",
+      "bytes": 312678,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-2026-10-18-fault-families-json-gz",
+      "path": "docs/audits/coprime-path-nine-2026-10-18/fault-families.json.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "c66358e87704300e02dd70a64cd5c78c1fd6b99981a7973cc8f3972adae6ed57",
+      "bytes": 101677,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-2026-10-18-focused-tests-txt",
+      "path": "docs/audits/coprime-path-nine-2026-10-18/focused-tests.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "4c147d84cde8acd824c80ae625d9ad7095f39a5c03096b90d0d08391ea6d62f4",
+      "bytes": 591,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-2026-10-18-independent-checks-json",
+      "path": "docs/audits/coprime-path-nine-2026-10-18/independent-checks.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "12cd81428e16a25ac4e92cf4ff03237190af129c8a278c6048f0ac892cc31bd0",
+      "bytes": 399,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-2026-10-18-manifest-json",
+      "path": "docs/audits/coprime-path-nine-2026-10-18/manifest.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "a8931d9fb58ac7c4d6c97de3f9395093fd29fb8e538fc7844e72b6fe44aca969",
+      "bytes": 1671,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-2026-10-18-searches-json",
+      "path": "docs/audits/coprime-path-nine-2026-10-18/searches.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "de3cb9f22f4867b76935faabbdd71b2a42abadac2f9240ec8f8181b2484643a8",
+      "bytes": 2075,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-2026-10-18-tests-txt",
+      "path": "docs/audits/coprime-path-nine-2026-10-18/tests.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "aca84bf2cff576f0f2cb85aae36a976178d3fc66c59f2827d141316b126c91c5",
+      "bytes": 703,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-resolution-2026-10-18-readme-md",
+      "path": "docs/audits/coprime-path-nine-resolution-2026-10-18/README.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "1e174d6914f30c5e355746e7885876288d12158b89e835dd1e8531a0e12164de",
+      "bytes": 2593,
+      "role": "provenance",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-resolution-2026-10-18-coverage-json",
+      "path": "docs/audits/coprime-path-nine-resolution-2026-10-18/coverage.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "2237a16ce391380875c9dcd0cdd52d2e7f1c19818770ed5c48574c4f083f2f77",
+      "bytes": 84016,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-resolution-2026-10-18-focused-tests-txt",
+      "path": "docs/audits/coprime-path-nine-resolution-2026-10-18/focused-tests.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "216ee0e6ded08f55438e8cd47e026659c9064d786ae8ad069cfa710927d55df7",
+      "bytes": 2111,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-resolution-2026-10-18-independent-checks-json",
+      "path": "docs/audits/coprime-path-nine-resolution-2026-10-18/independent-checks.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "63ce5c3cc70ee149fffb33bbd275b1f7e11467602d5e27a8ebd2ce0a7d95a18a",
+      "bytes": 2269,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-resolution-2026-10-18-lower-n16-k9-json",
+      "path": "docs/audits/coprime-path-nine-resolution-2026-10-18/lower-n16-k9.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "b25abb5de902c89c35b9a6bbce694e8984b04279557ae6ea7c5f5e112bb3822d",
+      "bytes": 3199,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-resolution-2026-10-18-manifest-json",
+      "path": "docs/audits/coprime-path-nine-resolution-2026-10-18/manifest.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "3ce6aee00b9fe92e0d57cf02e690b1ed45ae4909e457273c18cf05186886bd93",
+      "bytes": 1796,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-resolution-2026-10-18-searches-json",
+      "path": "docs/audits/coprime-path-nine-resolution-2026-10-18/searches.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "1d4e5b697422e2a93583ef0ddcfe39ca58e9dd6b201a3df63718ed93d2b32188",
+      "bytes": 4236,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-nine-resolution-2026-10-18-sources-json",
+      "path": "docs/audits/coprime-path-nine-resolution-2026-10-18/sources.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "d8de1d40d578cf08f7f71f55a870aaf7651c204cfcf1dc8bb77b2b7ff4777b30",
+      "bytes": 1188,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-structure-2026-10-18-coverage-json",
+      "path": "docs/audits/coprime-path-structure-2026-10-18/coverage.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "67d14cb0cfe844a208f5055554c7b3f9a632134527708437b7025c2193b5f2f7",
+      "bytes": 4576,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-structure-2026-10-18-finite-bounds-json",
+      "path": "docs/audits/coprime-path-structure-2026-10-18/finite-bounds.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "96df0cb1b88437ef03c0615a8100327218ab12bae19f109a7ac4e907aea2362d",
+      "bytes": 3259,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-structure-2026-10-18-focused-tests-txt",
+      "path": "docs/audits/coprime-path-structure-2026-10-18/focused-tests.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "e7ca6b593b3de4d783ebb7e4e800f4cc21b316a5280cff907340253c617b9a57",
+      "bytes": 1029,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-structure-2026-10-18-manifest-json",
+      "path": "docs/audits/coprime-path-structure-2026-10-18/manifest.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "6844fbe4e371ed19f10b15ae4f52888ec6d4dc41dbbda84c9ed5016346d345c8",
+      "bytes": 2165,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-structure-2026-10-18-searches-json",
+      "path": "docs/audits/coprime-path-structure-2026-10-18/searches.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "92c089fd0f03620a939991554eecda52bd2c126d6ca0b2a0045fc7d8757b65fb",
+      "bytes": 1135,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-path-structure-2026-10-18-tests-txt",
+      "path": "docs/audits/coprime-path-structure-2026-10-18/tests.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "e29cf8ad4c613c5a125bc43280db5805dde6c9000e125396ffdec7d6fdf5eba3",
+      "bytes": 631,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-readme-md",
+      "path": "docs/audits/coprime-paths-2026-10-18/README.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "34fb9c4e4b0e06ebe0b2a346df90c414679969baa3d3037285e7a973ba9d81dd",
+      "bytes": 8328,
+      "role": "provenance",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-summary-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci-summary.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "57b2cf41a1782a1cee2223adf3b69e26c30cd0745dba214a8f3db7fe9f2a5c63",
+      "bytes": 9768,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-coprime-python-3-10-coverage-xml-gz",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci/coprime-python-3.10/coverage.xml.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "ee8ce1b9d1074593021a01a8206602b6ccd9ea11b18c69bb972362433f682b17",
+      "bytes": 3782,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-coprime-python-3-10-focused-xml-gz",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci/coprime-python-3.10/focused.xml.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "23c7fa92ac62aed1831391c4385d56dcdf252f3ba04f48d4f396df873ac369b2",
+      "bytes": 4931,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-coprime-python-3-10-witnesses-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci/coprime-python-3.10/witnesses.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "6161b7644098de9234a2a0f5fb69596b7f60839afe153605858c7ba0dfc3836b",
+      "bytes": 752,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-coprime-python-3-13-coverage-xml-gz",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci/coprime-python-3.13/coverage.xml.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "a9d27e9bdfa1654228b383fec19a5af4813b6e3541b7fb168ae50b49651657db",
+      "bytes": 3782,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-coprime-python-3-13-focused-xml-gz",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci/coprime-python-3.13/focused.xml.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "90a9be3567934341cb910e40b8195b6b5306df6eb4b3c63241434aee2d990650",
+      "bytes": 4915,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-coprime-python-3-13-witnesses-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci/coprime-python-3.13/witnesses.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "6161b7644098de9234a2a0f5fb69596b7f60839afe153605858c7ba0dfc3836b",
+      "bytes": 752,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-path-certificate-path-formula-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci/path-certificate/path-formula.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "885cdaf6c89100651be5ec31fc6efcf33c8ab1acec4e9fb3f3213ae11aec14bd",
+      "bytes": 223,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-path-certificate-path-proof-check-txt",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci/path-certificate/path-proof-check.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "ad9d98522bda7bdd6925900a7c864f6ed07a14c2ea6fbf0919632a43a36d72c5",
+      "bytes": 390,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-path-certificate-path-witness-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci/path-certificate/path-witness.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "941d38c5bec167ce6c39ac8953cc26945e23ab616b67453489284841808a3d6b",
+      "bytes": 88,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-ci-routine-python-3-10-routine-xml-gz",
+      "path": "docs/audits/coprime-paths-2026-10-18/ci/routine-python-3.10/routine.xml.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "cff8b897f2b4f0e1b3547fb3f5bac46de7a39ce3cda8aab4aa0b662b3f2bd366",
+      "bytes": 68849,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-coverage-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/coverage.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "c876d3ba96fc2ce280bc90161f28b508b1c0e93e9f1386fa66982300d2ecca98",
+      "bytes": 10328,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-focused-python310-txt",
+      "path": "docs/audits/coprime-paths-2026-10-18/focused-python310.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "157f831b3a05766e0052051672b3712120c127dcd12c760c9f0a29e56f844462",
+      "bytes": 1660,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-formula-check-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/formula-check.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "885cdaf6c89100651be5ec31fc6efcf33c8ab1acec4e9fb3f3213ae11aec14bd",
+      "bytes": 223,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-lower-check-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/lower-check.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "941d38c5bec167ce6c39ac8953cc26945e23ab616b67453489284841808a3d6b",
+      "bytes": 88,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-lower-n12-k7-search-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/lower-n12-k7/search.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "9b5c84aa7234a8cb833fdec10dd74e334932d08f1765ddec9e2f8ee3b00068bc",
+      "bytes": 298,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-lower-n12-k7-witness-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/lower-n12-k7/witness.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "f85e1a6141939198fa1e797ef0dfd51d4b1bcccbc6c4828b2f513c405b9324af",
+      "bytes": 1828,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-manifest-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/manifest.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "e4d5e539496339fefe127dfd00987159db9cd5b77991c5b469632ae7a8606b40",
+      "bytes": 7459,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-path-python313-txt",
+      "path": "docs/audits/coprime-paths-2026-10-18/path-python313.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "94d717895d8c0ddb3f7eeb66c4ef56b5e8446e8db271f600e297e1698f96e960",
+      "bytes": 99,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-proof-check-txt",
+      "path": "docs/audits/coprime-paths-2026-10-18/proof-check.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "ba1fa146ef90f96a0d8f0be3de4b0a0bcfa3276aedd020a53807dc06ec581ca3",
+      "bytes": 391,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-tests-txt",
+      "path": "docs/audits/coprime-paths-2026-10-18/tests.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "1199bb1bf59d8ce59dea7e323638e1c77980fe85225675feed540df3a102a251",
+      "bytes": 776,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-upper-n13-k8-formula-json-gz",
+      "path": "docs/audits/coprime-paths-2026-10-18/upper-n13-k8/formula.json.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "3011655e49258e4454f69004173d9f39e1c130e4b9eaa45ab1e0fe98ed43a178",
+      "bytes": 417383,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-upper-n13-k8-proof-drat-gz",
+      "path": "docs/audits/coprime-paths-2026-10-18/upper-n13-k8/proof.drat.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "e969e63d168cb024f167127e92a67ee85bddd76fbd440b61e2ebd74ad96bade8",
+      "bytes": 13901526,
+      "role": "certificate",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-audits-coprime-paths-2026-10-18-upper-n13-k8-search-json",
+      "path": "docs/audits/coprime-paths-2026-10-18/upper-n13-k8/search.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "f43f0ef71104c0cb9e558074dfe858bf718d7cfb36451017c3251763882dd20b",
+      "bytes": 393,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "docs-coprime-path-nine-2026-10-18-md",
+      "path": "docs/coprime-path-nine-2026-10-18.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "2f11662c904a103f263a2ccef1ced8bd7dbf57545b650268483304ddb1df974f",
+      "bytes": 6797,
+      "role": "proof",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "docs-coprime-path-nine-resolution-2026-10-18-md",
+      "path": "docs/coprime-path-nine-resolution-2026-10-18.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "2692e13a3ba4626805302175d8b0545df58072ae632a78cd4767834bb6992f76",
+      "bytes": 14982,
+      "role": "proof",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "docs-coprime-path-structure-2026-10-18-md",
+      "path": "docs/coprime-path-structure-2026-10-18.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "14c57712a26e6f32e98a4579683414d0dad52bfd916bc9e1c38b1c12acfae48e",
+      "bytes": 10720,
+      "role": "proof",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "e-jc-coprime-paths-literature-md",
+      "path": "e-jc/coprime-paths/LITERATURE.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "ad55f49736311882ba448e7d40907a32386c0670d70144486d41a61a13bce37c",
+      "bytes": 5231,
+      "role": "literature",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "e-jc-coprime-paths-coprime-paths-pdf",
+      "path": "e-jc/coprime-paths/coprime-paths.pdf",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "6aefb5481003c1dea2f3e0e63a9412acfe1880548dd354f8fafe9bc5d114f965",
+      "bytes": 380942,
+      "role": "manuscript",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "e-jc-coprime-paths-coprime-paths-tex",
+      "path": "e-jc/coprime-paths/coprime-paths.tex",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "0f83a32ab9d4b49ae66067e4f20f3ed03bebbbbd78528c8b9a314f8104d96329",
+      "bytes": 44574,
+      "role": "manuscript",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "e-jc-e-jc-sty",
+      "path": "e-jc/e-jc.sty",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "0807adbf610d01145e6873f217e3a5d4d34b9891accd0d33aa7c1ce5d736dcea",
+      "bytes": 8253,
+      "role": "manuscript",
+      "license": "LicenseRef-EJC-template-terms-unresolved"
+    },
+    {
+      "id": "research-records-coprime-paths-licenses-md",
+      "path": "research/records/coprime-paths/LICENSES.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "770d720f287c2eed69c3c9037ac1b536ee7cc83b41c8b0d0ef1f805d25d210d0",
+      "bytes": 2050,
+      "role": "license",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "research-records-coprime-paths-author-revision-json",
+      "path": "research/records/coprime-paths/author-revision.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "c21e79387dccfba22695125464338c516ecc861d255c71b284e4694ab87dad5a",
+      "bytes": 1947,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "research-records-coprime-paths-exploration-009-near-extremal-structure-endpoint-cuts-json-gz",
+      "path": "research/records/coprime-paths/exploration/009-near-extremal-structure/endpoint-cuts.json.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "c25fd241898e8e12500b828ccaa9ceeda3c9e0f1c16975224290d9eb5a9124c5",
+      "bytes": 180365,
+      "role": "exploration",
+      "license": "MIT"
+    },
+    {
+      "id": "research-records-coprime-paths-exploration-009-near-extremal-structure-test-validation-py",
+      "path": "research/records/coprime-paths/exploration/009-near-extremal-structure/test_validation.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "c41c05c673aa701594b06d3175b619eac4cae32487c720ab2758dafd9087029f",
+      "bytes": 1054,
+      "role": "exploration",
+      "license": "MIT"
+    },
+    {
+      "id": "research-records-coprime-paths-exploration-009-near-extremal-structure-validate-endpoint-cuts-py",
+      "path": "research/records/coprime-paths/exploration/009-near-extremal-structure/validate_endpoint_cuts.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "9093274d87d5cf9e28644deecb9a190debc5196c1b02cecc20c80dd3cb157c18",
+      "bytes": 2657,
+      "role": "exploration",
+      "license": "MIT"
+    },
+    {
+      "id": "research-records-coprime-paths-exploration-012-endpoint-forced-edges-propagation-json-gz",
+      "path": "research/records/coprime-paths/exploration/012-endpoint-forced-edges/propagation.json.gz",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "73648a61b466a5878c42766473aebed5c1b50ef1ed5ab60f5a72a6de66e59475",
+      "bytes": 6012,
+      "role": "exploration",
+      "license": "MIT"
+    },
+    {
+      "id": "research-records-coprime-paths-exploration-012-endpoint-forced-edges-test-validation-py",
+      "path": "research/records/coprime-paths/exploration/012-endpoint-forced-edges/test_validation.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "3be3258d06e42710b02be9cc9130a6ad40ba07caaa8e9825a24a67a868245d5a",
+      "bytes": 1313,
+      "role": "exploration",
+      "license": "MIT"
+    },
+    {
+      "id": "research-records-coprime-paths-exploration-012-endpoint-forced-edges-validate-py",
+      "path": "research/records/coprime-paths/exploration/012-endpoint-forced-edges/validate.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "0d55a56eb765018d725580157e94742a585dab02f98976048d73ac0734d68e47",
+      "bytes": 2230,
+      "role": "exploration",
+      "license": "MIT"
+    },
+    {
+      "id": "research-records-coprime-paths-exploration-readme-md",
+      "path": "research/records/coprime-paths/exploration/README.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "0e243e2e2076d0e0bf7ed5300707b1d42a405ea3e3c5d965b87222650282198e",
+      "bytes": 3012,
+      "role": "exploration",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "research-records-coprime-paths-exploration-g17-endpoint-five-md",
+      "path": "research/records/coprime-paths/exploration/g17-endpoint-five.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "6afb13de49d223cc35ed41368b140e5a570a51edfbb7b331b5798bc2de896bbd",
+      "bytes": 3737,
+      "role": "exploration",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "research-records-coprime-paths-exploration-g17-matching-five-md",
+      "path": "research/records/coprime-paths/exploration/g17-matching-five.md",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "d66d7951158fc9f75042383d7d05404e04c64d01dd14269661036497e2f8d1e7",
+      "bytes": 1942,
+      "role": "exploration",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "research-records-coprime-paths-exploration-import-json",
+      "path": "research/records/coprime-paths/exploration/import.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "d096e80c8d0f4ee1ef7cd72f35b009a0c1b5f9954449cb821feb266a37550b54",
+      "bytes": 2808,
+      "role": "exploration",
+      "license": "MIT"
+    },
+    {
+      "id": "research-records-coprime-paths-promotion-verification-json",
+      "path": "research/records/coprime-paths/promotion-verification.json",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "650a67977128375736862d64605bf8debfef7cca190ae374738316b419339adc",
+      "bytes": 1302,
+      "role": "provenance",
+      "license": "MIT"
+    },
+    {
+      "id": "research-records-coprime-paths-requirements-txt",
+      "path": "research/records/coprime-paths/requirements.txt",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "d2dd4a4ec6a4788c94e0cf665550287aeff1f5beef3623fa8514f68d08ba87fb",
+      "bytes": 2989,
+      "role": "environment",
+      "license": "MIT"
+    },
+    {
+      "id": "src-coprime-path-bounds-py",
+      "path": "src/coprime_path_bounds.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "9adae93d5c72389a6d6eb743ac50c248da7bfeeb307e1d6816babbb7dcd83b5c",
+      "bytes": 5088,
+      "role": "checker",
+      "license": "MIT"
+    },
+    {
+      "id": "src-coprime-path-certificates-py",
+      "path": "src/coprime_path_certificates.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "4959dfc1946d5ef8e0f1f3aadb2a0d5f7104e99a41717fae630fb3a64b4e7eab",
+      "bytes": 7109,
+      "role": "checker",
+      "license": "MIT"
+    },
+    {
+      "id": "src-coprime-path-search-py",
+      "path": "src/coprime_path_search.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "56e9588c2e94051db99f51498259b351723fbd4f7185fba45745830b55095947",
+      "bytes": 6676,
+      "role": "search",
+      "license": "MIT"
+    },
+    {
+      "id": "src-coprime-path-structure-certificates-py",
+      "path": "src/coprime_path_structure_certificates.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "75114f884c9c8099b6987929c9386091f0c9edeb5d2cb37e5eee9cb4e32e36ad",
+      "bytes": 9564,
+      "role": "checker",
+      "license": "MIT"
+    },
+    {
+      "id": "tests-conftest-py",
+      "path": "tests/conftest.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "d348560f560b5a7e2f3591cd2c625a251ca3e1a658f68d154ad5b33e9fbc5dcb",
+      "bytes": 682,
+      "role": "test",
+      "license": "MIT"
+    },
+    {
+      "id": "tests-test-coprime-path-bounds-py",
+      "path": "tests/test_coprime_path_bounds.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "de223f119c738c417dbe4da1f69172f0cd00198753cd8bbbaaa3edcb350938a3",
+      "bytes": 5159,
+      "role": "test",
+      "license": "MIT"
+    },
+    {
+      "id": "tests-test-coprime-path-certificates-py",
+      "path": "tests/test_coprime_path_certificates.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "c9beb3a3671665b6af623a955c86cd82180854f8e5e9c698cfe2c8ba1ab8be81",
+      "bytes": 5040,
+      "role": "test",
+      "license": "MIT"
+    },
+    {
+      "id": "tests-test-coprime-path-nine-resolution-py",
+      "path": "tests/test_coprime_path_nine_resolution.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "05ff0cd71d99a6d638e163facc194ea2a7db1f45b6b2c13e446e7b0586290710",
+      "bytes": 4548,
+      "role": "test",
+      "license": "MIT"
+    },
+    {
+      "id": "tests-test-coprime-path-search-py",
+      "path": "tests/test_coprime_path_search.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "1b49494e29d4ba16daa36ef68e002b76f1279384122415f9b23b0c4979c1722d",
+      "bytes": 4103,
+      "role": "test",
+      "license": "MIT"
+    },
+    {
+      "id": "tests-test-coprime-path-structure-certificates-py",
+      "path": "tests/test_coprime_path_structure_certificates.py",
+      "source_commit": "a3d7a509ab33ea3cee9bca98ced9a3905ff309d7",
+      "sha256": "5ff023da0f4945c15e1803b0942e5cf4c17d3e73ce3ae020c269ee1bd788df00",
+      "bytes": 9518,
+      "role": "test",
+      "license": "MIT"
+    }
+  ],
+  "reproduction": [
+    {
+      "id": "environment",
+      "argv": [
+        "python",
+        "-m",
+        "pip",
+        "install",
+        "-r",
+        "research/records/coprime-paths/requirements.txt"
+      ],
+      "cwd": ".",
+      "expected_exit_code": 0,
+      "expected": "Dependencies installed under Python 3.10; recorded pins were tested on 3.10.20.",
+      "scope": "Install the archived test environment in a fresh virtual environment."
+    },
+    {
+      "id": "lower-nine",
+      "argv": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "src/coprime_path_certificates.py",
+        "witness",
+        "docs/audits/coprime-path-nine-resolution-2026-10-18/lower-n16-k9.json"
+      ],
+      "cwd": ".",
+      "expected_exit_code": 0,
+      "expected": "Longest monochromatic path lengths [8, 8].",
+      "scope": "Independent subset-DP verification of the complete lower coloring."
+    },
+    {
+      "id": "cuts",
+      "argv": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "src/coprime_path_structure_certificates.py",
+        "cuts",
+        "docs/audits/coprime-path-nine-2026-10-18/cuts.json.gz"
+      ],
+      "cwd": ".",
+      "expected_exit_code": 0,
+      "expected": "62,322 cuts.",
+      "scope": "Independent finite host lemma; does not verify the complete written deduction."
+    },
+    {
+      "id": "faults",
+      "argv": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "src/coprime_path_structure_certificates.py",
+        "faults",
+        "docs/audits/coprime-path-nine-2026-10-18/fault-families.json.gz"
+      ],
+      "cwd": ".",
+      "expected_exit_code": 0,
+      "expected": "262 deletion orbits; 2,380 deletions; 30,671 paths.",
+      "scope": "Independent finite host lemma; does not verify the complete written deduction."
+    },
+    {
+      "id": "extensions",
+      "argv": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "src/coprime_path_structure_certificates.py",
+        "extensions",
+        "docs/audits/coprime-path-nine-2026-10-18/extensions.json.gz"
+      ],
+      "cwd": ".",
+      "expected_exit_code": 0,
+      "expected": "63,859 extension cases on 1,253 cuts.",
+      "scope": "Independent finite host lemma; does not verify the complete written deduction."
+    },
+    {
+      "id": "focused-tests",
+      "argv": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_coprime_path_nine_resolution.py",
+        "tests/test_coprime_path_structure_certificates.py",
+        "tests/test_coprime_path_bounds.py"
+      ],
+      "cwd": ".",
+      "expected_exit_code": 0,
+      "expected": "114 tests passed.",
+      "scope": "Unit and integration tests for the nine-edge proof, structural checker, and bounds calculator."
+    },
+    {
+      "id": "manuscript",
+      "argv": [
+        "latexmk",
+        "-pdf",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-outdir=coprime-paths",
+        "coprime-paths/coprime-paths.tex"
+      ],
+      "cwd": "e-jc",
+      "expected_exit_code": 0,
+      "expected": "16-page PDF; no unresolved references. Byte identity of rebuilt PDFs is not asserted.",
+      "scope": "Requires TeX Live with lmodern, microtype, and latexmk. Visual and human mathematical review remain separate."
+    }
+  ],
+  "next_steps": [
+    "Complete and document human mathematical review of the edited manuscript.",
+    "Before DOI deposition, paginate existing Zenodo records and identify the appropriate version family.",
+    "Resolve third-party style redistribution terms or prepare an evidence-only archive; rerun checks from the staged archive.",
+    "When an archive is published, verify public file hashes and record its exact version DOI and true publication date in both repositories.",
+    "Investigate the infinite odd-path family and shorter analytic host lemmas separately; reassess novelty before making priority claims."
+  ]
+}

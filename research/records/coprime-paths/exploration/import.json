@@ -1,0 +1,57 @@
+{
+  "promoted_date": "2026-10-20",
+  "historical_date": "2026-10-18",
+  "public_disclosure_date": "Not inferred from local file dates; use the public PR event.",
+  "files": [
+    {
+      "historical_path": ".research/attempts/009-near-extremal-structure/endpoint-cuts.json.gz",
+      "path": "research/records/coprime-paths/exploration/009-near-extremal-structure/endpoint-cuts.json.gz",
+      "sha256": "c25fd241898e8e12500b828ccaa9ceeda3c9e0f1c16975224290d9eb5a9124c5",
+      "bytes": 180365
+    },
+    {
+      "historical_path": ".research/attempts/009-near-extremal-structure/validate_endpoint_cuts.py",
+      "path": "research/records/coprime-paths/exploration/009-near-extremal-structure/validate_endpoint_cuts.py",
+      "sha256": "9093274d87d5cf9e28644deecb9a190debc5196c1b02cecc20c80dd3cb157c18",
+      "bytes": 2657
+    },
+    {
+      "historical_path": ".research/attempts/009-near-extremal-structure/test_validation.py",
+      "path": "research/records/coprime-paths/exploration/009-near-extremal-structure/test_validation.py",
+      "sha256": "c41c05c673aa701594b06d3175b619eac4cae32487c720ab2758dafd9087029f",
+      "bytes": 1054
+    },
+    {
+      "historical_path": ".research/attempts/012-endpoint-forced-edges/propagation.json.gz",
+      "path": "research/records/coprime-paths/exploration/012-endpoint-forced-edges/propagation.json.gz",
+      "sha256": "73648a61b466a5878c42766473aebed5c1b50ef1ed5ab60f5a72a6de66e59475",
+      "bytes": 6012
+    },
+    {
+      "historical_path": ".research/attempts/012-endpoint-forced-edges/validate.py",
+      "path": "research/records/coprime-paths/exploration/012-endpoint-forced-edges/validate.py",
+      "sha256": "0d55a56eb765018d725580157e94742a585dab02f98976048d73ac0734d68e47",
+      "bytes": 2230
+    },
+    {
+      "historical_path": ".research/attempts/012-endpoint-forced-edges/test_validation.py",
+      "path": "research/records/coprime-paths/exploration/012-endpoint-forced-edges/test_validation.py",
+      "sha256": "3be3258d06e42710b02be9cc9130a6ad40ba07caaa8e9825a24a67a868245d5a",
+      "bytes": 1313
+    },
+    {
+      "historical_path": ".research/findings/g17-endpoint-five.md",
+      "historical_sha256": "64524394451d5bb377719a0fdca86c201f17f009c1a3dbcc86d9ebd3205b26dd",
+      "path": "research/records/coprime-paths/exploration/g17-endpoint-five.md",
+      "sha256": "6afb13de49d223cc35ed41368b140e5a570a51edfbb7b331b5798bc2de896bbd",
+      "bytes": 3737
+    },
+    {
+      "historical_path": ".research/findings/g17-matching-five.md",
+      "historical_sha256": "ca60d78e72aee3de596ad60be809c31df8a7babb8e8c10a3931388f6412a9785",
+      "path": "research/records/coprime-paths/exploration/g17-matching-five.md",
+      "sha256": "d66d7951158fc9f75042383d7d05404e04c64d01dd14269661036497e2f8d1e7",
+      "bytes": 1942
+    }
+  ]
+}
