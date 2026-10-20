@@ -12,6 +12,8 @@ there alone does not certify a claim or publication readiness.
   earlier certified values, linear bounds, manuscript, and review status.
 - [Workspace and preservation](../docs/workspace-layout.md): active checkout,
   original local edits, and recovery records.
+- [Organization audit](../docs/audits/research-organization-2026-10-20/README.md):
+  packet hash, reproduction checks, and review scope.
 - [Cross-project research index](https://github.com/queelius/research-records):
   curated discovery, archival DOIs, and publication receipts.
 

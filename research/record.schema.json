@@ -128,7 +128,12 @@
         "required": ["id", "argv", "cwd", "expected_exit_code", "expected", "scope"],
         "properties": {
           "id": {"$ref": "#/$defs/id"},
-          "argv": {"$ref": "#/$defs/texts"},
+          "argv": {
+            "type": "array",
+            "minItems": 1,
+            "prefixItems": [{"$ref": "#/$defs/text"}],
+            "items": {"type": "string"}
+          },
           "cwd": {"$ref": "#/$defs/text"},
           "expected_exit_code": {"const": 0},
           "expected": {"$ref": "#/$defs/text"},

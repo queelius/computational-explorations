@@ -59,23 +59,23 @@ disclosures are separate from development state and review status.
 
 - [x] Snapshot original files and Git references outside agent storage.
 - [x] Relocate the linked worktree and compare file hashes.
-- [ ] Document the visible workspace and recovery locations.
+- [x] Document the visible workspace and recovery locations.
 
 ### Task 2: Add contribution records and reproducible tooling
 
-- [ ] Write meaningful validator/packaging tests and observe expected failures.
-- [ ] Add the schema, catalog, validator, citation generation, and deterministic
+- [x] Write meaningful validator/packaging tests and observe expected failures.
+- [x] Add the schema, catalog, validator, citation generation, and deterministic
   packaging from pinned Git objects.
-- [ ] Register coprime paths, scoped evidence, author revision provenance, and
+- [x] Register coprime paths, scoped evidence, author revision provenance, and
   dated public events. Promote useful research notes with accurate status.
-- [ ] Run unit/integration tests, inspect coverage, and reproduce relevant
+- [x] Run unit/integration tests, inspect coverage, and reproduce relevant
   finite checks. Verify a packet extracted outside the working tree.
 
 ### Task 3: Make the organization discoverable and durable
 
-- [ ] Link the records from the repository and manuscript documentation.
-- [ ] Add CI validation and the curated cross-project index entry.
-- [ ] Obtain an independent review; fix material issues and run checks.
+- [x] Link the records from the repository and manuscript documentation.
+- [x] Add CI validation and the curated cross-project index entry.
+- [x] Obtain an independent review; fix material issues and run checks.
 - [ ] Commit and publish the source/index changes; verify public links and CI.
 - [ ] Recheck preservation and record the remaining human-review and archival
   work in the contribution's lifecycle record.

@@ -1,0 +1,28 @@
+{
+  "observed_on": "2026-10-20",
+  "source": "GitHub pull_request_read get; selected public fields only",
+  "interpretation": "Dated public PR and acceptance events. Not an exhaustive earliest-disclosure or legal-priority determination.",
+  "events": [
+    {
+      "pull_request": 4,
+      "created_at": "2026-10-18T06:05:58Z",
+      "merged_at": "2026-10-18T06:29:49Z",
+      "head_commit": "a0225304a0d59f83cf24974542730e87ee202867",
+      "url": "https://github.com/queelius/computational-explorations/pull/4"
+    },
+    {
+      "pull_request": 5,
+      "created_at": "2026-10-18T06:55:24Z",
+      "merged_at": "2026-10-18T07:17:42Z",
+      "head_commit": "aefc64a70608a5d12a0db7a152e998861ec9da39",
+      "url": "https://github.com/queelius/computational-explorations/pull/5"
+    },
+    {
+      "pull_request": 9,
+      "created_at": "2026-10-18T09:14:02Z",
+      "merged_at": "2026-10-18T09:39:50Z",
+      "head_commit": "71589f598f9284349907030b693b3406d7c812c8",
+      "url": "https://github.com/queelius/computational-explorations/pull/9"
+    }
+  ]
+}

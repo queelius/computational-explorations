@@ -142,6 +142,22 @@ def test_citation_source_commit_must_exist(repository):
         validate_catalog(root)
 
 
+def test_reproduction_preserves_repeated_flags_and_empty_argument_values(repository):
+    root, record = repository
+    argv = ["python", "-m", "pip", "install", "-r", "requirements.txt", "-r", ""]
+    record["reproduction"][0]["argv"] = argv
+    store_record(root, record)
+    assert validate_catalog(root)[0]["reproduction"][0]["argv"] == argv
+
+
+def test_reproduction_requires_a_nonempty_executable(repository):
+    root, record = repository
+    record["reproduction"][0]["argv"] = ["", "argument"]
+    store_record(root, record)
+    with pytest.raises(RecordError):
+        validate_catalog(root)
+
+
 @pytest.mark.parametrize("path", ["../secret", "/tmp/secret", "a/../proof.txt", ".git/config"])
 def test_unsafe_artifact_paths_are_rejected(repository, path):
     root, record = repository
