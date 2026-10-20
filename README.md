@@ -43,7 +43,7 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 ## Key Documents
 
 - [Research lifecycle and reproducibility](research/README.md) — Durable records and deterministic research packets
-- [Workspace and preservation](docs/workspace-layout.md) — Visible worktree, protected local edits, and recovery locations
+- [Workspace and preservation](docs/workspace-layout.md) — One primary checkout, ignored local outputs, and recovery locations
 - [Running verification](docs/verification.md) — Fresh environment, independent witness checker, routine tests, and CI scope
 - [Coprime path certificates (2026-10-18)](docs/audits/coprime-paths-2026-10-18/README.md) — Independently checked evidence that P_cop(7) = P_cop(8) = 13
 - [Coprime path structural bounds (2026-10-18)](docs/coprime-path-structure-2026-10-18.md) — Linear growth, explicit density bounds, and limitations of the current proof methods

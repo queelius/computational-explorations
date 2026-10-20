@@ -10,8 +10,8 @@ there alone does not certify a claim or publication readiness.
 
 - [Coprime paths](records/coprime-paths/README.md): exact nine-edge threshold,
   earlier certified values, linear bounds, manuscript, and review status.
-- [Workspace and preservation](../docs/workspace-layout.md): active checkout,
-  original local edits, and recovery records.
+- [Workspace and preservation](../docs/workspace-layout.md): primary checkout,
+  ignored `.local/` support files, and preserved unpublished work.
 - [Organization audit](../docs/audits/research-organization-2026-10-20/README.md):
   packet hash, reproduction checks, and review scope.
 - [Cross-project research index](https://github.com/queelius/research-records):
@@ -51,7 +51,8 @@ python -m pip install -c requirements-test.txt '.[test]'
 python src/research_records.py validate
 python src/research_records.py cite coprime-paths
 python -m pytest -q tests/test_research_records.py
-python src/research_records.py package coprime-paths --output /tmp/coprime-paths.zip
+mkdir -p .local/artifacts
+python src/research_records.py package coprime-paths --output .local/artifacts/coprime-paths.zip
 ```
 
 The validator checks metadata, references, working files, and pinned Git

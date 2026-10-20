@@ -10,10 +10,13 @@ Richard Towell are available under
 Credit the author, link the license, and identify changes. Preserve the AI
 assistance and predecessor disclosures in the record.
 
-The unchanged `e-jc/e-jc.sty` is the Electronic Journal of Combinatorics
-template, attributed to the journal. It has no license notice in the retained
-file; no MIT or CC license is asserted for that third-party template.
-Resolve its redistribution terms before including it in a DOI deposit.
+The repository's unchanged `e-jc/e-jc.sty` is the Electronic Journal of
+Combinatorics template, attributed to the journal. It has no license notice
+in the retained file; no MIT or CC license is asserted for it.
+**The archival packet excludes this third-party style file.** The author's
+manuscript PDF and LaTeX are included unchanged. Rebuilding its journal layout
+requires the template separately; the written proof and computational
+reproduction commands do not depend on that template.
 Cited articles are dependencies identified by bibliographic references and
 URLs, not redistributed article PDFs.
 

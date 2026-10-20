@@ -31,3 +31,6 @@ sys
 
 # external clone of teorth/erdosproblems, kept locally, pulled-updated (not tracked here)
 data/
+
+# Private recovery copies, environments, and generated research packets
+/.local/

@@ -1,48 +1,68 @@
 # Workspace and preservation
 
-The active coprime-path worktree was relocated on October 20, 2026:
+Use the repository itself as the normal place to work. On the author's
+machine, the layout is:
 
+```text
+~/github/research/computational-explorations/    main checkout
+    research/                                 durable contribution records
+    docs/, src/, tests/, e-jc/                 tracked research and manuscript
+    .local/                                   ignored local support files
+        artifacts/                            builds and verification outputs
+        recovery/                             preserved private worktree files
+        consolidation-2026-10-20/              recovery bundle and receipts
+~/github/research-records/                     public cross-project index
 ```
-~/github/research/computational-explorations/
-    Original checkout and shared Git object store; local edits preserved.
-~/github/research/worktrees/computational-explorations/coprime-paths/
-    Active research, manuscript, and contribution records.
-~/github/research/local-artifacts/computational-explorations/
-    Private preservation receipts, backups, and reproducible build outputs.
-~/github/research-records/
-    Public cross-project discovery and archive index.
-```
 
-These paths describe this machine, not dependencies of the research.
-Fresh clones use repository-relative paths and the committed reproduction
-instructions. Run `git worktree list` to discover current local checkouts.
+These absolute locations are conveniences, not research dependencies. Fresh
+clones use the repository-relative instructions in
+[`research/README.md`](../research/README.md).
 
-The old `~/.codex/worktrees/4559/computational-explorations` path is a
-compatibility symlink to the visible worktree. It contains no independent
-research copy. New durable work belongs in tracked repository files.
-Agent state, virtual environments, render previews, and raw session logs
-are operational scratch. Preserve any unique useful result in a contribution
-record before removing scratch.
+## Worktrees are temporary
 
-## Original checkout
+The coprime-path work was merged into public `main` in
+[PR #11](https://github.com/queelius/computational-explorations/pull/11).
+On October 20, its extra worktree was removed after preserving all local
+files, and this original checkout was switched to `main`. The old Codex
+compatibility symlink and empty project worktree directories were removed.
 
-The original checkout remains on `local/research-2026-10-18`. Do not reset,
-clean, switch, or bulk-merge it: it contains unpublished user work. The linked
-worktree shares its Git object store, so it is not an independent backup.
+For future isolated work, use a short-lived worktree, merge the reviewed
+changes, preserve any unique local files, and remove the worktree. Check
+`git worktree list` before cleanup. A linked worktree shares Git objects and
+does not provide an independent backup.
 
-Local recovery references include `preserve/local-history-2026-10-18` and
-`preserve/local-edits-2026-10-18`. The latter identifies snapshot
-`d06d0a29ee3aaefee5b0b967af02e752701d25a8`. A fresh October 20 file archive,
-Git bundle, hash inventory, and relocation receipt are in
-`local-artifacts/computational-explorations/organization-2026-10-20/`
-under the research directory above.
+## Local support files
 
-The earlier reconciliation identified five overlapping paths requiring
-selective review: `README.md`, `docs/coprime-ramsey-corrections.md`,
-`e-jc/coprime-ramsey-ejc.tex`, `e-jc/coprime-ramsey-ejc.pdf`, and
-`pyproject.toml`. Other local-only material also remains preserved.
-Reconciliation is a separate task; this organizational change does not
-approve or publish that material.
+`/.local/` is explicitly ignored by `.gitignore`. The former sibling
+`local-artifacts/computational-explorations/` directory was moved intact to
+`.local/artifacts/`. Untracked worktree context was moved to
+`.local/recovery/coprime-paths-worktree/` and checked against file hashes.
+
+Use `.local/` for environments, raw logs, generated packets, and private
+recovery copies. Relocated virtual environments can contain stale absolute
+paths; recreate them as needed. Never upload this directory wholesale.
+Promote useful findings, evidence, and reproduction instructions into tracked
+files before treating scratch as disposable. Back up unique recovery
+material before pruning it.
+
+## Preserved unpublished work
+
+The earlier checkout contained 23 local commits plus uncommitted edits,
+including Schur investigations and journal revisions. Its complete
+nonignored state is preserved on the local branch
+`preserve/unpublished-2026-10-20` at
+`c6f55df6662540da4eb9b68356449c22aa1a2ac0`.
+The older recovery branches and stash also remain.
+
+A separate Git bundle, file archive, and SHA-256 inventory are in
+`.local/consolidation-2026-10-20/`. These contain private material and are
+not public evidence. Inspect the preserved branch with `git show` or
+`git diff`; integrate coherent changes selectively after reviewing them.
+Do not merge or push the recovery branch wholesale.
+
+The published path results are already in `main`. Older unpublished Schur
+and editorial work remains a separate review queue, preserved rather than
+implicitly approved by this cleanup. `AGENTS.md` was retained byte for byte.
 
 ## Durable records
 
