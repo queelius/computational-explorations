@@ -51,6 +51,10 @@ is an immediate published-theorem corollary, not a new equality theorem.
 The remaining project-specific application is the coprime threshold and
 its finite evidence. The current recommendation is to retain an archived
 research note rather than pursue the present journal draft.
+The existing Zenodo landing page now carries a dated attribution update
+and links the short proof; the [update receipt](attribution-update-2026-10-21.json)
+verifies that its DOI, original metadata fields, and five deposited files
+were preserved.
 
 ## Reproduce and cite
 

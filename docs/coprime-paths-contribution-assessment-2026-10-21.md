@@ -103,3 +103,7 @@ It does not contain these October 21 findings. Cite this updated source
 note as well when discussing attribution. The author's TeX and PDF are
 preserved, and this review has not created a new DOI or replaced archived
 files. Any future revised manuscript should use the existing archive family.
+
+The existing Zenodo description now includes a dated attribution update
+and an immutable link to the short proof. The [metadata-update receipt](../research/records/coprime-paths/attribution-update-2026-10-21.json)
+records anonymous public verification and unchanged file identities.

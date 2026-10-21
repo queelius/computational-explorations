@@ -173,6 +173,13 @@
       "date": "2026-10-21",
       "scope": "Targeted follow-up resolved structural attribution through Yuan (2024), Theorem 3, credited to Ma–Yuan. Recorded a short n>=12 corollary and order-eleven counterexamples. Independent AI review and subset checks corroborate the boundary examples; no human or formal verification. Recommend retaining the archived research note rather than pursuing the current journal draft.",
       "evidence": "docs/coprime-path-equality-family-2026-10-21.md"
+    },
+    {
+      "kind": "verification",
+      "date": "2026-10-21",
+      "scope": "Published and anonymously verified a dated attribution update in the existing Zenodo description, with links to Ma–Yuan and the short corollary. Same version DOI, five unchanged file checksum/size identities, and all other metadata preserved. No new archive version.",
+      "url": "https://doi.org/10.5281/zenodo.23497967",
+      "evidence": "research/records/coprime-paths/attribution-update-2026-10-21.json"
     }
   ],
   "publication": {
