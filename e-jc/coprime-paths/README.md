@@ -10,11 +10,14 @@ needed for this preparation route.
 - [Read the manuscript](coprime-paths.pdf).
 - [Edit its single-file LaTeX source](coprime-paths.tex).
 - [Read the bounded literature comparison](LITERATURE.md).
+- [Read the October 21 contribution assessment](../../docs/coprime-paths-contribution-assessment-2026-10-21.md):
+  journal submission is on hold pending significance, overlap, and author review.
 - [Contribution record](../../research/records/coprime-paths/README.md):
   evidence pins, provenance, reproducible packet, citation, and next steps.
 
-The target is the **Electronic Journal of Combinatorics**, with **Discrete
-Mathematics** as a possible later alternative. The central result is
+The previously considered venues are the **Electronic Journal of Combinatorics**
+and **Discrete Mathematics**. Neither is a current submission commitment:
+the October 21 assessment recommends holding submission. The central result is
 `P_cop(9) = 17`, supported by the 17-vertex extremal classification and
 checked finite host lemmas. Earlier exact values are identified as prior
 public results. The linear bounds provide context; their priority is not

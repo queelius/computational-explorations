@@ -22,6 +22,10 @@ Those supporting results are not presented as new priority claims.
   and [audit](../../../docs/audits/coprime-path-nine-resolution-2026-10-18/README.md).
 - [Structural bounds](../../../docs/coprime-path-structure-2026-10-18.md).
 - [Literature and overlap assessment](../../../e-jc/coprime-paths/LITERATURE.md).
+- [October 21 contribution assessment](../../../docs/coprime-paths-contribution-assessment-2026-10-21.md):
+  hold journal submission; the possible structural increment is uniqueness
+  at equality. A linked parameterized deduction is provisional and is not
+  included in the October 20 DOI version.
 - [Preserved auxiliary findings](exploration/README.md), including the
   endpoint and matching arguments and selected complete replayable evidence.
 - [Structured record](record.json), [citation](CITATION.cff),
@@ -68,8 +72,9 @@ date, local author revision, and DOI publication are recorded separately.
 
 ## Next work
 
-1. Complete the [author review route](../../../e-jc/coprime-paths/README.md),
-   including proof reconstruction and attribution. Record its actual scope.
+1. Follow the [contribution assessment](../../../docs/coprime-paths-contribution-assessment-2026-10-21.md):
+   review the parameterized equality proof with the author and resolve its
+   precise overlap before deciding whether a journal note is justified.
 2. Use the existing archival version family for substantive evidence updates,
    preserving earlier versions and checking public downloads again.
 3. Treat journal submission, shorter analytic proofs, the infinite family,

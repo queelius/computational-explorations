@@ -88,7 +88,7 @@
     "human": "pending",
     "formal_proof": false,
     "novelty": "bounded_search_only",
-    "ai_review": "Separate AI reviews checked the proof, source hypotheses, finite certificates, and manuscript revisions; see the public PR and author-revision receipt.",
+    "ai_review": "Separate AI reviews checked the proof, source hypotheses, finite certificates, and manuscript revisions; see the public PR and author-revision receipt. October 21 bounded contribution assessment recommends holding journal submission; see docs/coprime-paths-contribution-assessment-2026-10-21.md. A parameterized equality deduction is provisional, outside the October 20 archive, and not an established novelty claim.",
     "verification": "Earlier PR #9 and organization CI checks are preserved in the audits. Archival staging replayed all 180 packaged scientific tests, 10 auxiliary tests, standalone nine-edge host certificates, and the complete earlier eight-edge DRAT proof. The consolidated checkout also passed 142 focused tooling/scientific tests. These checks do not establish every written deduction or external theorem."
   },
   "events": [
@@ -159,6 +159,12 @@
       "url": "https://doi.org/10.5281/zenodo.23497967",
       "scope": "Published the evidence packet, unchanged manuscript PDF, archive note, citation, and verification receipt. All five public downloads match local SHA-256 hashes. Timestamp records the successful publication observation, separately from earlier disclosures.",
       "evidence": "research/records/coprime-paths/archive/publication.json"
+    },
+    {
+      "kind": "verification",
+      "date": "2026-10-21",
+      "scope": "AI written-proof and bounded literature assessment; no definite proof gap identified, but human review and equality-uniqueness novelty remain unresolved. Recommends holding journal submission. No new finite computation or formal verification.",
+      "evidence": "docs/coprime-paths-contribution-assessment-2026-10-21.md"
     }
   ],
   "publication": {
@@ -989,7 +995,7 @@
     }
   ],
   "next_steps": [
-    "Complete and document human mathematical review of the edited manuscript.",
+    "Hold journal submission while the author reviews the parameterized equality deduction and a targeted literature review resolves uniqueness at equality; see docs/coprime-paths-contribution-assessment-2026-10-21.md. Assess whether a short structural note is justified.",
     "Use the existing archive family for substantive evidence updates; preserve prior versions, disclosure dates, and public-download verification receipts.",
     "Investigate the infinite odd-path family and shorter analytic host lemmas separately; reassess novelty before making priority claims."
   ]
