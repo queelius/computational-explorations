@@ -21,11 +21,12 @@ Those supporting results are not presented as new priority claims.
 - [Nine-edge proof](../../../docs/coprime-path-nine-resolution-2026-10-18.md)
   and [audit](../../../docs/audits/coprime-path-nine-resolution-2026-10-18/README.md).
 - [Structural bounds](../../../docs/coprime-path-structure-2026-10-18.md).
-- [Literature and overlap assessment](../../../e-jc/coprime-paths/LITERATURE.md).
+- [Historical October 18 literature comparison](../../../e-jc/coprime-paths/LITERATURE.md),
+  preserved in the archive and superseded on structural attribution below.
 - [October 21 contribution assessment](../../../docs/coprime-paths-contribution-assessment-2026-10-21.md):
-  hold journal submission; the possible structural increment is uniqueness
-  at equality. A linked parameterized deduction is provisional and is not
-  included in the October 20 DOI version.
+  equality uniqueness is also a corollary of published Ma–Yuan work.
+  The linked short proof gives the full `n >= 12` statement. These
+  attribution findings are not included in the October 20 DOI version.
 - [Preserved auxiliary findings](exploration/README.md), including the
   endpoint and matching arguments and selected complete replayable evidence.
 - [Structured record](record.json), [citation](CITATION.cff),
@@ -44,6 +45,12 @@ AI review and passing CI. Repository acceptance is not journal acceptance.
 The author revised the manuscript on October 20; human mathematical review
 remains pending. There is no Lean verification, new nine-edge UNSAT
 certificate, established priority, or proof of the infinite odd-path family.
+
+The October 21 follow-up resolved the structural overlap: the classification
+is an immediate published-theorem corollary, not a new equality theorem.
+The remaining project-specific application is the coprime threshold and
+its finite evidence. The current recommendation is to retain an archived
+research note rather than pursue the present journal draft.
 
 ## Reproduce and cite
 
@@ -73,8 +80,9 @@ date, local author revision, and DOI publication are recorded separately.
 ## Next work
 
 1. Follow the [contribution assessment](../../../docs/coprime-paths-contribution-assessment-2026-10-21.md):
-   review the parameterized equality proof with the author and resolve its
-   precise overlap before deciding whether a journal note is justified.
+   review the short attributed corollary and the coprime host reduction
+   with the author. Structural overlap is resolved; any future manuscript
+   should credit Ma–Yuan and justify the application's significance.
 2. Use the existing archival version family for substantive evidence updates,
    preserving earlier versions and checking public downloads again.
 3. Treat journal submission, shorter analytic proofs, the infinite family,

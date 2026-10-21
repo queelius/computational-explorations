@@ -76,3 +76,26 @@ cited original paper and recording dated errata. See
 **Rules:** Distinguish exhaustion, a counterexample, and a resource limit in
 return values and reports. Validate the entire witness contract. Do not promote
 a sampled failure or truncated count to a universal or exact claim.
+
+### Mistake #3 (2026-10-21) -- missed the published equality refinement
+
+**What:** The initial coprime-path assessment left structural uniqueness as
+a possible new contribution after checking older strict stability bounds.
+A targeted follow-up found Theorem 3 in Yuan's 2024 E-JC paper, credited to
+Ma–Yuan, which gives the entire classification as an immediate corollary.
+No priority claim had been made, but the journal assessment gave too much
+weight to this unresolved possibility.
+
+**Why:** The review had checked Ma–Yuan's 2020 clique-stability preprint,
+but had not followed the later citation chain to their different 2024
+Pósa-lemma paper and Yuan's accessible published equality statement.
+
+**How addressed:** Replaced the provisional novelty framing with an
+attributed short proof, updated the contribution assessment with the new
+literature finding, and retained the historical manuscript, frozen
+literature note, and Git versions. See
+`docs/coprime-path-equality-family-2026-10-21.md`.
+
+**Rule:** Before treating an equality boundary as a potential contribution,
+trace later papers and check exact published equality alternatives. A
+strict inequality in one source does not establish an unresolved case.

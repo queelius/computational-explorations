@@ -1,100 +1,105 @@
 # Coprime paths: contribution and submission assessment
 
-**Date:** October 21, 2026. **Recommendation:** hold journal submission.
-This is an AI-assisted mathematical and editorial assessment for Alexander
-Richard Towell, not human peer review or a novelty certification.
+**Updated:** October 21, 2026, after the targeted overlap review.
+**Recommendation:** retain the current contribution as an archived research
+note; do not pursue the present journal draft on the strength of its
+structural classification. This is an AI-assisted assessment, not human
+peer review or an editorial decision by a journal.
 
-## Judgment
+## Decisive finding
 
-The present 16-page manuscript does not yet have an established case for
-journal significance. Its written proof and reproducible finite evidence
-support a useful research record. That does not automatically make the
-increment substantial enough for the proposed journals. Conversely, the
-bounded review does not establish that the work is unpublishable.
+The entire structural theorem, including equality uniqueness for every
+`n >= 12`, is a direct corollary of **Ma–Yuan's published stability
+refinement**. It is stated as Theorem 3 in
+[Long-Tu Yuan, *Circumference, minimum degree and clique number*, E-JC
+31(4) (2024), #P4.64, page 2](https://www.combinatorics.org/ojs/index.php/eljc/article/download/v31i4p64/pdf/).
+The [short deduction and proof walkthrough](coprime-path-equality-family-2026-10-21.md)
+make the substitution and every exception explicit. The equality
+classification should not be presented as a new structural contribution.
 
-The best potential journal contribution is a sharp structural **uniqueness
-result at equality**, with the coprime threshold as an application. Before
-reworking the paper around it, determine whether that uniqueness is already
-known and whether its proof offers enough insight to justify a short note.
-Do not add more numerical cases merely to lengthen a submission.
+This resolves the main novelty question left open in the
+[earlier assessment](https://github.com/queelius/computational-explorations/blob/161d39034acacdaa1dc04dfc28b4977ed693d74e/docs/coprime-paths-contribution-assessment-2026-10-21.md).
+The older FKV/FKVL statements stopped at a strict density threshold; the
+later theorem explicitly includes the equality alternatives. Checking the
+older statements was insufficient to establish the contribution boundary.
 
-## What each part contributes
+## What remains attributable to this project
 
-| Part | Evidence and contribution boundary | Editorial assessment |
-| --- | --- | --- |
-| `P_cop(9) = 17` | Written structural proof plus independently checked finite host lemmas and a lower coloring. No human proof review or formal verification. | A concrete extension of a narrow parameter; significance depends on the structural explanation. |
-| Seventeen-vertex, 48-edge classification | Separate AI audits found no definite gap in contraction, deletion, closure, or reconstruction. | Strongest part of the present draft, but a fixed boundary case alone has a limited audience. |
-| Equality classification for all orders `n >= 13` | The existing proof appears to extend; the [parameterized deduction](coprime-path-equality-family-2026-10-21.md) records the changes. | More coherent formulation. The possible increment is uniqueness, not a new edge bound or construction. |
-| `P_cop(7) = P_cop(8) = 13` | Earlier public results, now independently recertified. | Reproducibility contribution; not new numerical results. |
-| Linear growth and the upper constant | Standard density and path bounds; the deletion construction improves the full-host constant by `4/595`, approximately 0.672%. Optimality and priority are unestablished. | Supporting context, not currently a persuasive independent journal contribution. |
+| Part | Current assessment |
+| --- | --- |
+| `P_cop(9) = 17` | A concrete coprime Ramsey application with checked finite host lemmas and a lower coloring. This review has not located that exact application elsewhere, but it is not an exhaustive novelty certification. |
+| Extremal classification and its `n >= 12` formulation | A corollary of Ma–Yuan, not a new classification. Our longer written proof may retain expository value, but it is unnecessary for the short deduction. |
+| `P_cop(7) = P_cop(8) = 13` | Earlier public values, independently recertified here. Reproducibility is the contribution. |
+| Linear growth and improved upper constant | Standard density/path methods, including a 0.672% improvement over the full-host constant. Priority and optimality remain unestablished. |
+| Reproducible evidence packet | Useful public documentation, certificate checking, and attribution. These benefits do not themselves establish journal significance. |
 
-Here `P_cop(k)` measures path edges; `P_10` measures ten vertices.
-The classification is constrained by vertex-cover size. It is not the
-ordinary connected extremal equality problem for `P_10`-free graphs.
+Here `P_cop(k)` counts edges and `P_10` counts vertices. The arithmetic
+host reduction remains a separate argument; the published classification
+does not itself state the coprime Ramsey value.
 
-## Literature boundary
+## Journal recommendation
 
-[Füredi–Kostochka–Verstraëte (FKV), Theorem 1.4](https://arxiv.org/pdf/1507.05338v2)
-already gives the strict stability bound at the relevant density. Its
-explicit sharpness construction, after removing a universal vertex, is
-`K_3 ∨ (K_3 ∪ I_(n-6))`. The edge bound for graphs with vertex-cover number
-at least five is therefore a corollary, not a new theorem of principle.
-Their Theorem 1.6 stops at the equality relevant to our application.
+The case for the current 16-page journal manuscript is weaker after this
+finding. Its longest structural component is an established corollary,
+and the remaining exact application is narrow. I recommend treating the
+public, citable research note as the endpoint for this contribution unless
+an independent expert identifies a compelling reason for a short journal
+note. This is a judgment about the present evidence for significance, not
+a proof that no journal could accept the application.
 
-[Füredi–Kostochka–Luo–Verstraëte (FKVL), Theorem 2.3](https://users.renyi.hu/~furedi/PUBS3/furedi_238_kostochka_ruthluo_verstraete_Erdos-Gallai-stability_II.pdf)
-extends the necessary stability input to smaller orders. Its strict
-threshold still does not directly classify our equality case. The
-parameterized note derives the bound down to `n = 13`; it does not attribute
-the uniqueness conclusion to that published theorem.
+A future submission would need an accurate attribution-led rewrite and
+human verification. It should lead with the coprime application, cite the
+short stability corollary, and move detailed computational material to a
+supplement. Do not inflate the paper with extra numerical cases or claim
+the known equality theorem as an advance. No outside reviewer has been
+contacted and no submission has been made.
 
-The additional bounded search inspected relevant statements in
-[Ma–Ning](https://arxiv.org/pdf/1708.00704v2),
-[Ning–Yuan](https://arxiv.org/pdf/2207.13650v2), and
-[Ma–Yuan](https://arxiv.org/pdf/2010.13667v2), together with connected-path
-extremal and path-saturation results. No inspected statement was identified
-as the exact uniqueness theorem needed here. Strict inequalities,
-minimum-degree hypotheses, and different extremal classes prevent the
-immediate applications considered. This is a bounded exclusion of those
-applications, not an exhaustive review of the papers or their consequences.
-The second literature pass ended without a complete citation-chain review.
+## Targeted search and its limits
 
-[Du–Xi–Deng–Ma, Table 12 and Open Problem 9.2](https://arxiv.org/html/2605.26815v2)
-explicitly connect earlier repository results to non-complete edge targets.
-That establishes relevance and prior attribution. It neither validates the
-new proof nor establishes the significance or novelty of this particular
-threshold. An external citation is not a journal-readiness test.
+The decisive cited work is Ma–Yuan,
+[*A Stability Result of the Pósa Lemma*, SIAM J. Discrete Math. 38(2)
+(2024), 1757–1783](https://doi.org/10.1137/20M1382143).
+Its bibliographic record was checked; full-text access was restricted.
+Yuan's accessible published Theorem 3 supplies the exact statement needed.
+This is a different paper from their 2020 clique-stability preprint
+`arXiv:2010.13667v2`, which the earlier review had examined.
 
-See also the earlier [source-by-source comparison](../e-jc/coprime-paths/LITERATURE.md).
+Two additional routes were checked before the decisive source was found:
 
-## Decision and next checkpoint
+- **Matching and cover numbers:** Shi–Ma,
+  [*Maximum size of a graph with given matching number and covering number*](https://doi.org/10.1016/j.dam.2025.12.064),
+  DAM 386 (2026), 70–74, Theorem 1.2, also gives our equality graph when
+  matching number is four and cover number is five. Its statement was
+  available in the publisher's indexed excerpt; its full proof was not
+  accessible. That restricted result alone did not settle the path problem.
+- **Later cycle stability:** Dong–Ning–Yuan–Zhang,
+  [arXiv:2511.01509v1](https://arxiv.org/abs/2511.01509v1), Lemma 2.2,
+  applies at a lower threshold but leaves additional configurations.
+  Following this literature led to the decisive published equality theorem.
 
-1. Walk through the parameterized equality argument with the author,
-   especially the eleven-vertex closure cases and Hall reconstruction.
-   Record the actual review scope and corrections.
-2. Resolve the narrow overlap question: is uniqueness of
-   `K_3 ∨ (K_3 ∪ I_(n-6))` at `e = 3n - 3`, for connected `P_10`-free
-   graphs with vertex-cover number at least five, already published or an
-   immediate known corollary? Consult the closest papers and their citation
-   chains; no outside person has been contacted.
-3. If that uniqueness is new and mathematically informative, prepare a
-   compact structural note with the Ramsey value as an application. If it
-   is known, reassess the application on its own merits; do not describe
-   the supporting stability theory as our contribution.
-4. If the remaining increment is too small, retain the reproducible public
-   research note and move on. A journal submission is optional.
+The earlier [literature comparison](../e-jc/coprime-paths/LITERATURE.md)
+is preserved as a frozen archive input; its unresolved equality conclusion
+is superseded here. The search remains bounded for the coprime
+application and asymptotic constant. It no longer leaves the classification
+as a plausible new structural result.
 
-## Provenance and archive scope
+## Review, provenance, and archive scope
 
-This assessment examined the author-edited manuscript and proof at project
-commit `100ebcd0b8745720ff3d4c79777a437f26b334f6`, with two separate AI review
-tasks and a root review. The literature task supplied bounded findings but
-did not finish a final synthesis because its model became unavailable.
-No new scientific computation, Lean proof, or human verification was
-performed for this assessment. Previously archived computation remains
-evidence for its stated finite checks, not for novelty or every deduction.
+The follow-up proof check improved the earlier `n >= 13` deduction to
+`n >= 12` and found explicit order-eleven counterexamples. A separate AI
+review agreed; exhaustive small-graph checks and an added-edge control
+corroborate those examples. The final short proof then follows directly
+from the published equality theorem. The finite checks do not establish
+novelty, the cited theorem, or human review.
 
-The [existing archive](https://doi.org/10.5281/zenodo.23497967) remains the
-citation for the October 20 manuscript and evidence. It does **not** contain
-this October 21 assessment or the parameterized deduction. The edited TeX,
-PDF, and frozen packet remain unchanged. This assessment does not warrant
-a separate DOI deposit.
+The source examined is the author-edited manuscript at project commit
+`161d39034acacdaa1dc04dfc28b4977ed693d74e`. Its mathematical statements have
+not been contradicted by this review. The correction concerns attribution,
+the length of the available proof, and our assessment of significance.
+
+The [October 20 archive](https://doi.org/10.5281/zenodo.23497967) remains the
+version-specific citation for the manuscript and evidence it contains.
+It does not contain these October 21 findings. Cite this updated source
+note as well when discussing attribution. The author's TeX and PDF are
+preserved, and this review has not created a new DOI or replaced archived
+files. Any future revised manuscript should use the existing archive family.

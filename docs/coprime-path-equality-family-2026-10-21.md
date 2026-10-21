@@ -1,126 +1,162 @@
-# A parameterized equality deduction for the ten-vertex path
+# A published stability corollary for the ten-vertex path
 
-**Date:** October 21, 2026. **Status:** provisional written deduction,
-AI-reviewed; human verification and novelty assessment pending.
-Prepared with substantial OpenAI Codex assistance for Alexander Richard
-Towell. This note is separate from his unchanged manuscript revision.
+**Updated:** October 21, 2026, after the targeted overlap review.
+**Status:** written corollary of published mathematics; human verification
+pending. The bound, equality uniqueness, and order range below are not
+claimed as new. Prepared for Alexander Richard Towell with substantial
+OpenAI Codex assistance.
 
-## Statement and attribution
+The earlier version extended our manuscript's proof to `n >= 13` and left
+uniqueness novelty unresolved. A further proof check extended it to 12.
+The subsequent literature check found that the entire statement follows
+directly from Ma–Yuan's equality refinement, stated as Theorem 3 in
+[Yuan, *Circumference, minimum degree and clique number*, E-JC 31(4)
+(2024), #P4.64, page 2](https://www.combinatorics.org/ojs/index.php/eljc/article/download/v31i4p64/pdf/).
+The [earlier deduction remains in Git](https://github.com/queelius/computational-explorations/blob/161d39034acacdaa1dc04dfc28b4977ed693d74e/docs/coprime-path-equality-family-2026-10-21.md).
 
-Let `J` be a connected simple graph on `n >= 13` vertices with no path on
-ten vertices. Write `tau(J)` for the minimum vertex-cover size. Then
+## Statement
+
+Let `J` be a connected simple graph on `n >= 12` vertices with no path on
+ten vertices. Write `tau(J)` for its minimum vertex-cover size. If
+`tau(J) >= 5`, then
 
 \[
-\tau(J)\geq5\quad\Longrightarrow\quad e(J)\leq3n-3.
+e(J)\leq3n-3,
 \]
 
-The candidate equality conclusion is
+with equality if and only if
 
 \[
-e(J)=3n-3,\quad\tau(J)\geq5
-\quad\Longleftrightarrow\quad
 J\cong K_3\vee\bigl(K_3\cup\overline K_{n-6}\bigr).
 \]
 
-The connectedness and forbidden-path assumptions remain in force on both
-sides. Equivalently, every connected `P_10`-free graph at this density has
-a cover of size at most four or is the displayed graph.
+Paths here count vertices. The symbol `vee` means joining every vertex
+of one graph to every vertex of the other.
 
-The upper bound and sharpness construction follow from published stability
-theory. Only uniqueness at equality is a possible contribution here; it
-has not been established as novel. The proof below explains precisely how
-Section 3 of the [existing manuscript](../e-jc/coprime-paths/coprime-paths.tex)
-extends beyond order 17. It uses that section's lemmas and case analysis;
-it is not an independent self-contained replacement for them.
+## Short proof and walkthrough
 
-## Upper bound from published stability
+**1. Turn paths into cycles.** Add a universal vertex `u`, obtaining
+`Q = J + u` of order `N = n + 1 >= 13`. Removing `u` leaves connected `J`;
+removing any other vertex leaves a graph connected through `u`. Thus `Q`
+is 2-connected. A cycle of at least eleven vertices through `u` would give
+a ten-vertex path after deleting `u`; one avoiding `u` already contains
+such a path. Hence `Q` has circumference less than eleven.
 
-Put `Q = J + u`, adding a universal vertex. It is 2-connected and has no
-cycle of length at least eleven. If `e(J) > 3n - 3`, then
+**2. Apply the published equality refinement.** Write
 
 \[
-e(Q)>4n-3=h(n+1,11,4)>h(n+1,11,3)=3n+7.
+h(N,k,a)=\binom{k-a}{2}+a(N-k+a).
 \]
 
-[FKVL, Theorem 2.3](https://users.renyi.hu/~furedi/PUBS3/furedi_238_kostochka_ruthluo_verstraete_Erdos-Gallai-stability_II.pdf),
-specialized to odd cycle threshold eleven, places `Q` in
-`H(n+1,11,5)` or `H(n+1,11,2)`. The latter has only `2n+20` edges,
-fewer than `4n-3` for `n >= 13`. The former is `K_5 ∨ I_(n-4)`;
-its five-vertex part must contain the universal vertex `u`. Removing `u`
-therefore supplies a four-vertex cover of `J`, a contradiction.
-
-The same construction notation in
-[FKV](https://arxiv.org/pdf/1507.05338v2) identifies the equality example:
-delete a universal vertex from `H(n+1,11,4)` to obtain
-`H(n,9,3) = K_3 ∨ (K_3 ∪ I_(n-6))`. Neither this construction nor the
-preceding density deduction should be presented as a new discovery.
-
-## Extending the equality proof
-
-Assume equality and no four-vertex cover. Use the manuscript's family
-`F_0` consisting of `K_(5,6)` with at most two edges deleted. Its
-Lemma `lem:F0` implies that `Q` contains no member of this family.
-
-Initially every edge of `J` lies in at least two triangles. Otherwise
-contract such an edge in `Q`: the result is still a universal augmentation
-of a connected graph, is 2-connected, has circumference less than eleven,
-and has at least `4n-6` edges on `n` vertices. For `n >= 13`,
+Here `H(N,k,a)` consists of a joining clique of size `a`, a clique of
+size `k-2a`, and `N-k+a` independent vertices; the latter two parts have
+no edges between them. For `k=11`, the three relevant sizes are
 
 \[
-4n-6>\max\{4n-7,\ 3n+4,\ 2n+18\}.
+h(N,11,2)=2N+18,\quad h(N,11,3)=3N+4,\quad
+h(N,11,4)=4N-7.
 \]
 
-The manuscript's stability, dense-subgraph, and contraction-lifting inputs
-then force `F_0` in `Q`, a contradiction. Thus minimum degree is at least
-three. This replaces its initial numerical calculation at orders 18 and
-17; the general inequalities are essential at the smaller starting orders.
+Suppose `e(J) >= 3n-3`. Then `e(Q) >= 4N-7`. For `N >= 13`, both of
+the first two displayed sizes are strictly smaller. Theorem 3, specialized
+to `k=11` and `ell=5`, leaves the following possibilities:
 
-The remaining deletion invariant already uses a variable order `m`:
-connected, `P_10`-free, `e=3m-3`, minimum degree at least two, and no `F_0`
-in the augmentation. For every `m >= 13`, the same inequalities exclude
-low-triangle edges. At `m = 11,12`, the manuscript's leaf-count argument
-excludes the remaining `H(m,11,2)` container. These small intermediate
-orders must still be treated even though the initial order is at least 13.
+| Published alternative | Consequence here |
+| --- | --- |
+| `Q` is a subgraph of `H(N,11,2)` | Impossible: too few edges. |
+| `Q = H(N,11,3)` | Impossible: too few edges. |
+| `Q` is a subgraph of `H(N,11,5)` | Gives a four-vertex cover of `J`, as below. |
+| `Q = H(N,11,4)` | Gives the asserted equality graph. |
 
-The minimum-degree-four alternative is excluded exactly as in Section 3.2:
-the longest-path bound and Ali–Staton force a sparse windmill or a complete
-cross part giving `F_0`. Hence a degree-three vertex exists; its neighbors
-form a triangle. Deleting it preserves the invariant. After **`n-10`
-deletions**, rather than seven, the same ten-vertex, 27-edge core remains.
+The exceptional case for cycle threshold seven is irrelevant. The strict
+edge inequality in this published refinement is what lets us handle
+equality; the older FKV/FKVL statements alone stopped at that boundary.
 
-Section 3.3's closure analysis is independent of the initial order. It
-gives precisely the three possibilities
+**3. Remove the universal vertex.** The container `H(N,11,5)` is
+`K_5` joined to an independent set. Its outside vertices have degree at
+most five, whereas `u` has degree `N-1 >= 12`. Thus `u` lies in the
+five-vertex part. The other four vertices cover `J`, contrary to
+`tau(J) >= 5`.
 
-\[
-K_2\vee(K_5\cup I_3),\qquad
-K_3\vee(K_3\cup I_4),\qquad
-L_{10}\subseteq K_4\vee I_6.
-\]
+Only `Q = H(N,11,4)` remains. Its universal vertices are exactly its
+four-vertex joining clique. Deleting `u` gives
+`K_3 ∨ (K_3 ∪ I_(n-6))` and exactly `3n-3` edges. In particular, more
+than `3n-3` edges is impossible under the cover assumption.
 
-Section 3.4's reconstruction is inductive and likewise has no upper bound
-on the number of additions. The first core cannot survive even one
-addition. The second forces every added vertex to attach exactly to the
-joining triangle, producing `K_3 ∨ (K_3 ∪ I_(n-6))`. In the third, the Hall
-argument forces every addition to have its earlier neighborhood inside
-the same four-vertex set, which then covers the final graph. This
-contradicts the assumed cover number. Since `n >= 13`, there is at least
-one addition, as required to reject the first core.
+**4. Check the converse.** Write the graph's parts as a joining triangle
+`A`, another triangle `C`, and independent set `B` of size `n-6`. It has
+`3 + 3 + 9 + 3(n-6) = 3n-3` edges. Its largest independent set is
+`B` plus one vertex of `C`, of size `n-5`, so its cover number is five.
+After deleting the at most three `A` vertices from a path, at most four
+blocks remain. If any block meets `C`, all such blocks together use at
+most three vertices; all other blocks are singletons in `B`. There are
+therefore at most nine path vertices. Without `C`, there are at most
+seven. This proves `P_10`-freeness and completes the corollary.
 
-## Checking the equality example
+## Why the starting order is sharp
 
-Write its parts as triangles `A,C` and independent set `B`, of sizes
-`3,3,n-6`, with all edges from `A` to `B ∪ C`. Its size is
-`3 + 3 + 9 + 3(n-6) = 3n-3`. An independent set has maximum size
-`|B|+1 = n-5`, so its vertex-cover number is five.
+At order eleven, take `K_8` and attach three leaves to the same core
+vertex. The graph has 31 edges and cover number seven, contradicting
+the proposed upper bound `3*11-3 = 30`. Every path uses at most one leaf,
+unless it is the three-vertex leaf–center–leaf path, so its longest path
+has nine vertices.
 
-Deleting the at most three `A` vertices from any path leaves at most four
-blocks. Each block lies entirely in `B` or entirely in `C`, and a `B`
-block is a singleton. If `r >= 1` blocks meet `C`, together they use at
-most three vertices, so the path has at most
-`3 + 3 + (4-r) <= 9` vertices. With no `C` block, it has at most seven.
-Thus the graph has no `P_10`.
+Delete a core edge whose endpoints differ from the attachment center.
+The resulting graph has 30 edges, independence number five, and cover
+number six. It is still `P_10`-free and is not the equality graph above.
+This also disproves equality uniqueness at order eleven. These examples
+explain the sharp range of the corollary; they are not priority claims.
 
-This completes the parameterized deduction, conditional on the cited
-inputs and the manuscript's detailed core and reconstruction arguments.
-Its [contribution assessment](coprime-paths-contribution-assessment-2026-10-21.md)
-explains why this does not yet establish journal readiness.
+The following Python 3.10+ check exhausts subsets of these small graphs.
+Endpoint dynamic programming checks path orders, and a separate subset
+enumeration checks independence. The added-edge control must contain a
+ten-vertex path. This finite check supplements the preceding arguments.
+
+```python
+from itertools import combinations
+
+def check(n, edges):
+    adjacency = [0] * n
+    for a, b in edges:
+        adjacency[a] |= 1 << b
+        adjacency[b] |= 1 << a
+    endpoints = [0] * (1 << n)
+    for v in range(n):
+        endpoints[1 << v] = 1 << v
+    for mask in range(1, 1 << n):
+        for v in range(n):
+            if mask & (1 << v) and (
+                endpoints[mask ^ (1 << v)] & adjacency[v]
+            ):
+                endpoints[mask] |= 1 << v
+    longest = max(m.bit_count() for m in range(1 << n) if endpoints[m])
+    alpha = max(
+        m.bit_count() for m in range(1 << n)
+        if all(not (adjacency[v] & m) for v in range(n) if m & (1 << v))
+    )
+    return len(edges), longest, n - alpha
+
+edges = set(combinations(range(8), 2)) | {(0, v) for v in range(8, 11)}
+assert check(11, edges) == (31, 9, 7)
+edges.remove((1, 2))
+assert check(11, edges) == (30, 9, 6)
+assert check(11, edges | {(1, 8)})[1] >= 10
+print("Both order-eleven counterexamples and the added-edge control passed.")
+```
+
+## Attribution and review scope
+
+Yuan explicitly credits Theorem 3 to Jie Ma and Long-Tu Yuan,
+[*A Stability Result of the Pósa Lemma*, SIAM Journal on Discrete
+Mathematics 38(2) (2024), 1757–1783](https://doi.org/10.1137/20M1382143).
+We inspected the accessible published statement in Yuan's paper and the
+SIAM bibliographic record; the original SIAM full text was access restricted.
+That article is distinct from Ma–Yuan's 2020 clique-stability preprint
+previously checked in this project.
+
+Two AI reviewers and the coordinating review checked the relevant
+deductions; these are not human or formal verification. This short route
+replaces the long equality argument as the recommended review path. The
+author-edited manuscript and October 20 DOI packet remain historical
+versions without this new attribution. The [contribution assessment](coprime-paths-contribution-assessment-2026-10-21.md)
+records the resulting change in publication recommendation.

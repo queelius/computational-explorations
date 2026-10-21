@@ -75,20 +75,22 @@
     "Earlier software and original-paper DOI versions do not contain this follow-up; cite the contribution-specific archive version.",
     "Exploratory endpoint and matching notes are not dependencies of the main proof.",
     "Historical manifests may refer to earlier CI configurations in their pinned repository commits; the packet contains the inputs for its listed reproduction commands.",
-    "The archival packet excludes the journal's e-jc.sty template. The author's PDF and LaTeX are retained unchanged; rebuilding the journal layout requires obtaining that template separately. The written proof and listed computational checks are self-contained."
+    "The archival packet excludes the journal's e-jc.sty template. The author's PDF and LaTeX are retained unchanged; rebuilding the journal layout requires obtaining that template separately. The written proof and listed computational checks are self-contained.",
+    "October 21 literature follow-up resolved the structural overlap: the bound and equality uniqueness follow from published Ma–Yuan work. The archived author manuscript predates this attribution; consult the current short proof and assessment. Novelty of the coprime application remains bounded-search only."
   ],
   "credits": [
     "Alexander Richard Towell: author and prior coprime Ramsey investigations. Earlier reported path values are retained as prior results, not new discoveries.",
     "Du, Xi, Deng, and Ma, arXiv:2605.26815: external work citing the earlier repository and contextualizing edge-coprime Ramsey numbers.",
     "Erdos-Gallai, Balister-Gyori-Lehel-Schelp, Furedi-Kostochka-Verstraete, Furedi-Kostochka-Luo-Verstraete, Ali-Staton, Bondy-Chvatal, and Chvatal: published graph-theoretic ingredients cited in the proof and manuscript.",
-    "Electronic Journal of Combinatorics: manuscript formatting template, excluded from this archival packet. Tutte-Berge and the credited exposition in the matching note: auxiliary matching argument."
+    "Electronic Journal of Combinatorics: manuscript formatting template, excluded from this archival packet. Tutte-Berge and the credited exposition in the matching note: auxiliary matching argument.",
+    "Ma and Yuan, A Stability Result of the Posa Lemma, SIAM J. Discrete Math. 38(2) (2024), 1757–1783, DOI 10.1137/20M1382143: equality refinement stated as Theorem 3 in Yuan, E-JC 31(4) (2024), P4.64, DOI 10.37236/12322. The full connected P10-free classification for n>=12 is an immediate corollary; equality uniqueness is not claimed as new."
   ],
   "ai_assistance": "Substantial OpenAI Codex assistance in investigation, written arguments, programming, certificate generation and checking, editorial preparation, organization, and independent AI review. The author supplied the October 20 manuscript revision; human mathematical verification remains pending.",
   "review": {
     "human": "pending",
     "formal_proof": false,
     "novelty": "bounded_search_only",
-    "ai_review": "Separate AI reviews checked the proof, source hypotheses, finite certificates, and manuscript revisions; see the public PR and author-revision receipt. October 21 bounded contribution assessment recommends holding journal submission; see docs/coprime-paths-contribution-assessment-2026-10-21.md. A parameterized equality deduction is provisional, outside the October 20 archive, and not an established novelty claim.",
+    "ai_review": "Separate AI reviews checked the written proof, source hypotheses, finite certificates, and manuscript revisions. The October 21 follow-up located the exact equality refinement: Ma–Yuan, as stated in Yuan (2024), Theorem 3. The complete n>=12 classification is a direct corollary, not a new structural result. See docs/coprime-path-equality-family-2026-10-21.md and docs/coprime-paths-contribution-assessment-2026-10-21.md; these findings are outside the October 20 archive. Human review remains pending.",
     "verification": "Earlier PR #9 and organization CI checks are preserved in the audits. Archival staging replayed all 180 packaged scientific tests, 10 auxiliary tests, standalone nine-edge host certificates, and the complete earlier eight-edge DRAT proof. The consolidated checkout also passed 142 focused tooling/scientific tests. These checks do not establish every written deduction or external theorem."
   },
   "events": [
@@ -165,6 +167,12 @@
       "date": "2026-10-21",
       "scope": "AI written-proof and bounded literature assessment; no definite proof gap identified, but human review and equality-uniqueness novelty remain unresolved. Recommends holding journal submission. No new finite computation or formal verification.",
       "evidence": "docs/coprime-paths-contribution-assessment-2026-10-21.md"
+    },
+    {
+      "kind": "verification",
+      "date": "2026-10-21",
+      "scope": "Targeted follow-up resolved structural attribution through Yuan (2024), Theorem 3, credited to Ma–Yuan. Recorded a short n>=12 corollary and order-eleven counterexamples. Independent AI review and subset checks corroborate the boundary examples; no human or formal verification. Recommend retaining the archived research note rather than pursuing the current journal draft.",
+      "evidence": "docs/coprime-path-equality-family-2026-10-21.md"
     }
   ],
   "publication": {
@@ -995,7 +1003,7 @@
     }
   ],
   "next_steps": [
-    "Hold journal submission while the author reviews the parameterized equality deduction and a targeted literature review resolves uniqueness at equality; see docs/coprime-paths-contribution-assessment-2026-10-21.md. Assess whether a short structural note is justified.",
+    "Review the short attributed Ma–Yuan corollary and the finite coprime-host reduction with the author. Retain the archived research note as the current endpoint; a future manuscript must incorporate the resolved structural attribution and justify the application on its own merits.",
     "Use the existing archive family for substantive evidence updates; preserve prior versions, disclosure dates, and public-download verification receipts.",
     "Investigate the infinite odd-path family and shorter analytic host lemmas separately; reassess novelty before making priority claims."
   ]

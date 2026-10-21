@@ -9,20 +9,31 @@ needed for this preparation route.
 
 - [Read the manuscript](coprime-paths.pdf).
 - [Edit its single-file LaTeX source](coprime-paths.tex).
-- [Read the bounded literature comparison](LITERATURE.md).
+- [Read the historical October 18 literature comparison](LITERATURE.md),
+  preserved as an archived artifact; the October 21 assessment supersedes
+  its unresolved structural-overlap conclusion.
 - [Read the October 21 contribution assessment](../../docs/coprime-paths-contribution-assessment-2026-10-21.md):
-  journal submission is on hold pending significance, overlap, and author review.
+  the structural classification is a corollary of published work; the
+  present journal submission is not recommended.
+- [Read the short attributed proof and walkthrough](../../docs/coprime-path-equality-family-2026-10-21.md).
 - [Contribution record](../../research/records/coprime-paths/README.md):
   evidence pins, provenance, reproducible packet, citation, and next steps.
 
 The previously considered venues are the **Electronic Journal of Combinatorics**
 and **Discrete Mathematics**. Neither is a current submission commitment:
-the October 21 assessment recommends holding submission. The central result is
+the October 21 assessment recommends retaining the archived research note.
+The central result is
 `P_cop(9) = 17`, supported by the 17-vertex extremal classification and
 checked finite host lemmas. Earlier exact values are identified as prior
 public results. The linear bounds provide context; their priority is not
 established. Paths in `P_cop(k)` have **k edges**, whereas `P_j` in the
 extremal arguments has **j vertices**.
+
+The October 21 overlap review located Ma–Yuan's published equality
+refinement, which gives the classification directly. The author's LaTeX
+and PDF below are preserved historical versions and do not yet include
+this attribution. Use the linked short proof for the current review;
+the longer argument in Section 3 is not needed for that deduction.
 
 ## Build
 
@@ -53,15 +64,14 @@ source or in a separate review note:
    deletion-orbit coverage, component-size bounds, and why the 13-vertex
    component case is excluded. A checker exit code alone is insufficient
    for reviewing the mathematical reduction.
-3. **Published hypotheses (Section 3).** Compare the stated specializations
-   with the original sources. Check the strict inequalities, the
-   2-connectivity of contractions, and the Ali-Staton order condition
-   `n >= 2*delta + 2`. The original Ali-Staton theorem is the dependency;
-   a broader boundary formulation in a later secondary statement is not.
-4. **Equality classification (Section 3.2-3.4).** Verify the at-most-one-leaf
-   contraction argument, seven simplicial deletions, the three closure
-   cases, and Hall's condition in reconstruction. These are the main
-   author-review checkpoints.
+3. **Published equality theorem.** Read Theorem 3 in Yuan (2024), credited
+   to Ma–Yuan, and the linked short deduction. Check 2-connectivity and
+   circumference after augmentation, the three edge counts, and why the
+   universal vertex lies in the joining part of each remaining container.
+4. **Historical proof (optional).** Section 3.2-3.4 supplies a longer
+   independent route through contractions, simplicial deletions, closure,
+   and Hall reconstruction. Reviewing that route is separate from using
+   the shorter published corollary; it does not establish structural novelty.
 5. **Asymptotics (Section 4).** Check the independent deleted set,
    inclusion-exclusion coefficient, error estimates, and the strict
    density condition. The constant is asymptotic, not a finite-k guarantee.
