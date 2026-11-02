@@ -1,0 +1,245 @@
+{
+  "checked_at": "2026-10-20T11:35:55.545607+00:00",
+  "packet": {
+    "filename": "coprime-paths-2026.10.20.zip",
+    "sha256": "ce2d2015c0238343633e6e4eeaca6849535c8ead52ada0d1355cbfd8392d8de6",
+    "bytes": 16072364,
+    "metadata_commit": "afb384ee910a6f25cadaeabb9cf8a74729a02666",
+    "pinned_source_files": 79,
+    "hashed_payload_files": 82,
+    "two_local_builds_byte_identical": true,
+    "all_manifest_hashes_verified": true,
+    "third_party_journal_style_excluded": true
+  },
+  "environment": {
+    "python": "3.10.20",
+    "creation": [
+      "uv",
+      "venv",
+      "--python",
+      "3.10.20",
+      "VENV"
+    ],
+    "installation": [
+      "uv",
+      "pip",
+      "install",
+      "--python",
+      "VENV/bin/python",
+      "-r",
+      "source/research/records/coprime-paths/requirements.txt"
+    ],
+    "requirements_sha256": "d2dd4a4ec6a4788c94e0cf665550287aeff1f5beef3623fa8514f68d08ba87fb",
+    "system": "Linux",
+    "architecture": "x86_64",
+    "compiler_gcc": "13.3.0",
+    "uv": "uv 0.12.21 (7af826859 2026-09-29 x86_64-unknown-linux-gnu)"
+  },
+  "tests": {
+    "argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests",
+      "--cov=src",
+      "--cov-report=term-missing"
+    ],
+    "cwd": "coprime-paths/source",
+    "exit_code": 0,
+    "tests": 180,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 17.56,
+    "coverage": {
+      "covered_lines": 395,
+      "num_statements": 494,
+      "percent_covered": 79.95951417004049,
+      "percent_covered_display": "80",
+      "missing_lines": 99,
+      "excluded_lines": 0,
+      "percent_statements_covered": 79.95951417004049,
+      "percent_statements_covered_display": "80"
+    },
+    "coverage_scope": "Four archived scientific Python modules; standalone subprocess checker invocations are recorded separately."
+  },
+  "nine_edge_certificate_replay": [
+    {
+      "id": "lower-nine",
+      "argv": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "src/coprime_path_certificates.py",
+        "witness",
+        "docs/audits/coprime-path-nine-resolution-2026-10-18/lower-n16-k9.json"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "{\"n\": 16, \"path_edges\": 9, \"edges\": 79, \"witness_valid\": true, \"longest_paths\": [8, 8]}\n",
+      "stderr": "",
+      "seconds": 0.134
+    },
+    {
+      "id": "cuts",
+      "argv": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "src/coprime_path_structure_certificates.py",
+        "cuts",
+        "docs/audits/coprime-path-nine-2026-10-18/cuts.json.gz"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "{\"minimum_side\": 5, \"n\": 17, \"target_edges\": 9, \"validated_cuts\": 62322}\n",
+      "stderr": "",
+      "seconds": 1.34
+    },
+    {
+      "id": "faults",
+      "argv": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "src/coprime_path_structure_certificates.py",
+        "faults",
+        "docs/audits/coprime-path-nine-2026-10-18/fault-families.json.gz"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "{\"covered_deletions\": 2380, \"edge_faults_tolerated\": 4, \"n\": 17, \"target_edges\": 9, \"validated_orbits\": 262, \"validated_paths\": 30671}\n",
+      "stderr": "",
+      "seconds": 1.107
+    },
+    {
+      "id": "extensions",
+      "argv": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "src/coprime_path_structure_certificates.py",
+        "extensions",
+        "docs/audits/coprime-path-nine-2026-10-18/extensions.json.gz"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "{\"n\": 17, \"qualified_cuts\": 1253, \"target_edges\": 9, \"validated_pairs\": 63859}\n",
+      "stderr": "",
+      "seconds": 1.449
+    }
+  ],
+  "earlier_threshold_replay": {
+    "checker_repository": "https://github.com/marijnheule/drat-trim",
+    "checker_commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "commands": [
+      {
+        "argv": [
+          "python",
+          "-I",
+          "-S",
+          "-O",
+          "src/coprime_path_certificates.py",
+          "witness",
+          "docs/audits/coprime-paths-2026-10-18/lower-n12-k7/witness.json"
+        ],
+        "stdout": "{\"n\": 12, \"path_edges\": 7, \"edges\": 45, \"witness_valid\": true, \"longest_paths\": [6, 6]}\n",
+        "stderr": "",
+        "exit_code": 0,
+        "seconds": 0.066
+      },
+      {
+        "argv": [
+          "python",
+          "-I",
+          "-S",
+          "-O",
+          "src/coprime_path_certificates.py",
+          "formula",
+          "docs/audits/coprime-paths-2026-10-18/upper-n13-k8/formula.json.gz",
+          "--dimacs-out",
+          "path-upper.cnf"
+        ],
+        "stdout": "{\"n\": 13, \"path_edges\": 8, \"edges\": 57, \"formula_semantics_valid\": true, \"unsat_checked\": false, \"path_clauses\": 71832, \"clauses\": 71833, \"dimacs_sha256\": \"d58210bbf7704683c1ab76abd6caccf9b4893a88cb60d1b305af882e28588ae1\"}\n",
+        "stderr": "",
+        "exit_code": 0,
+        "seconds": 1.015
+      },
+      {
+        "argv": [
+          "drat-trim",
+          "path-upper.cnf",
+          "path-upper.drat",
+          "-t",
+          "590"
+        ],
+        "stdout": "\nc parsing input formula with 57 variables and 71833 clauses\n\nc finished parsing\n\nc detected empty clause; start verification via backward checking\n\nc 57506 of 71833 clauses in core                            \n\nc 391234 of 511240 lemmas in core using 4858014 resolution steps\n\nc 0 RAT lemmas in core; 53431 redundant literals in core lemmas\n\ns VERIFIED\n\nc verification time: 203.092 seconds\n",
+        "stderr": "",
+        "exit_code": 0,
+        "seconds": 203.114
+      }
+    ],
+    "build": {
+      "source": "Pinned Git archive, separate from the research packet",
+      "argv": [
+        "make",
+        "-C",
+        "drat-trim",
+        "drat-trim"
+      ],
+      "exit_code": 0
+    }
+  },
+  "auxiliary_tests": [
+    {
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "-q",
+        "test_validation.py"
+      ],
+      "cwd": "research/records/coprime-paths/exploration/009-near-extremal-structure",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "----------------------------------------------------------------------\nRan 3 tests in 10.049s\n\nOK\n",
+      "seconds": 10.169
+    },
+    {
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "-q",
+        "test_validation.py"
+      ],
+      "cwd": "research/records/coprime-paths/exploration/012-endpoint-forced-edges",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "----------------------------------------------------------------------\nRan 7 tests in 1.322s\n\nOK\n",
+      "seconds": 1.409
+    }
+  ],
+  "review_scope": [
+    "180 staged unit/integration tests include rejecting controls and independent small-case cross-checks.",
+    "The complete historical eight-edge UNSAT proof was freshly replayed with drat-trim pinned to 2e3b2dc0ecf938addbd779d42877b6ed69d9a985; the lower coloring and CNF semantics were separately checked.",
+    "The nine-edge upper bound remains a written deduction using independently checked finite lemmas and published extremal theorems.",
+    "No human peer review, formal verification, exhaustive novelty assessment, or new nine-edge UNSAT proof is asserted.",
+    "The manuscript PDF and LaTeX are preserved byte for byte; journal-layout rebuilding is not part of this evidence archive."
+  ],
+  "manuscript": {
+    "coprime-paths.tex": {
+      "sha256": "0f83a32ab9d4b49ae66067e4f20f3ed03bebbbbd78528c8b9a314f8104d96329",
+      "bytes": 44574
+    },
+    "coprime-paths.pdf": {
+      "sha256": "6aefb5481003c1dea2f3e0e63a9412acfe1880548dd354f8fafe9bc5d114f965",
+      "bytes": 380942
+    }
+  }
+}

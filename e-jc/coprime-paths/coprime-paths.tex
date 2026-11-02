@@ -1,0 +1,1118 @@
+\documentclass[12pt]{article}
+\usepackage[amsmath]{e-jc}
+\usepackage{mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\hypersetup{
+  pdftitle={Path Ramsey Thresholds in Coprime Graphs},
+  pdfauthor={Alexander Richard Towell},
+  pdfsubject={AI-assisted editorial draft; human mathematical review pending; not submitted},
+  pdfkeywords={coprime graph, path Ramsey number, extremal graph theory}
+}
+
+\newcommand{\Pcop}{P_{\mathrm{cop}}}
+\newcommand{\Fzero}{\mathcal F_0}
+\newcommand{\Ic}{\overline K}
+\newcommand{\repo}{https://github.com/queelius/computational-explorations}
+\newcommand{\revision}{8bda81e8d3f867bb1450b0e492592164416ba98f}
+
+% The journal style is used for preparation, not to imply acceptance.
+\makeatletter
+\def\the@dateline{Editorial revision, October 20, 2026\\[0.5ex]
+Human mathematical review pending; not submitted}
+\def\ps@plain{%
+  \def\@oddhead{}\def\@evenhead{}%
+  \def\@oddfoot{\normalfont\hfil Working draft --- \thepage\hfil}%
+  \let\@evenfoot\@oddfoot}
+\makeatother
+\pagestyle{plain}
+\MSC{05C38, 05C55, 05D10, 11A05}
+\Copyright{The author.}
+\title{Path Ramsey Thresholds in Coprime Graphs}
+\author{Alexander Richard Towell\authornote{1}}
+\authortext{1}{Department of Computer Science, Southern Illinois University
+Edwardsville, Edwardsville, Illinois, USA
+(\email{lex@metafunctor.com}). ORCID: 0000-0001-6443-9897.}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $G_n$ be the graph on $\{1,\ldots,n\}$ in which two distinct
+vertices are adjacent when they are coprime. Write $\Pcop(k)$ for
+the least $n$ such that every two-coloring of $E(G_n)$ contains a
+monochromatic path with $k$ edges. We prove that $\Pcop(9)=17$.
+An elementary coloring gives the lower bound. For the upper bound,
+explicit path certificates force any coloring avoiding a nine-edge
+path to have a connected, 48-edge color graph on 17 vertices in
+which every four-vertex deletion leaves at least five edges.
+We classify the possible graphs and show that each admits a
+four-vertex deletion leaving at most one edge. We also prove
+\[
+ 2\leq\liminf_{k\to\infty}\frac{\Pcop(k)}k
+ \leq\limsup_{k\to\infty}\frac{\Pcop(k)}k
+ \leq\frac{197\pi^2}{595},
+\]
+and give independently checkable certificates for the previously
+reported values $\Pcop(7)=\Pcop(8)=13$.
+\end{abstract}
+
+\smallskip\noindent\textbf{Keywords:} coprime graph, path Ramsey number,
+extremal graph theory, computational certificate.
+
+\section{Introduction}
+
+How large must the coprime graph be before every red--blue edge
+coloring contains a monochromatic path of a prescribed length?
+Let $G_n$ have vertex set $[n]=\{1,\ldots,n\}$ and edge set
+\[
+ E(G_n)=\bigl\{\{a,b\}:1\leq a<b\leq n,\ \gcd(a,b)=1\bigr\}.
+\]
+We write $\Pcop(k)$ for the least $n$ that forces a monochromatic
+path with $k$ edges. Throughout the paper, $P_j$ denotes a path
+on $j$ \emph{vertices}; thus the target defining $\Pcop(k)$ is
+$P_{k+1}$. All paths are simple. Each color graph has the full
+vertex set of the host, including any isolated vertices.
+
+Parity gives a useful starting point. The even vertices of $G_n$
+are independent, so the odd vertices form a vertex cover.
+Partitioning that cover into two small sets gives an edge coloring
+in which both colors have small vertex covers and therefore no
+long paths. On $G_{16}$, this construction avoids a monochromatic
+nine-edge path. Our main result shows that it cannot be extended
+to $G_{17}$.
+
+\begin{theorem}\label{thm:main}
+Every two-coloring of $E(G_{17})$ contains a monochromatic $P_{10}$,
+whereas some two-coloring of $E(G_{16})$ contains none. Consequently,
+$\Pcop(9)=17$.
+\end{theorem}
+
+The upper bound combines three finite properties of $G_{17}$ with
+an extremal graph argument. The finite properties are certified
+by explicit paths. They reduce a hypothetical avoiding coloring
+to two connected color graphs with 47 and 48 edges, each retaining
+at least five edges after any four vertices are deleted.
+The following theorem gives the opposing conclusion for the
+48-edge graph.
+
+We use $X\vee Y$ for the join of disjoint graphs $X$ and $Y$, and
+$\Ic_t$ for an independent set of order~$t$.
+
+\begin{theorem}\label{thm:classification}
+Let $J$ be a connected $P_{10}$-free graph on 17 vertices with
+48 edges. Either $J$ has a vertex cover of size at most four, or
+\[
+ J\cong K_3\vee(K_3\cup\Ic_{11}).
+\]
+In either case, some four-vertex deletion leaves at most one edge.
+\end{theorem}
+
+The proof of Theorem~\ref{thm:classification} uses the stability
+theorems of F\"uredi, Kostochka, and Verstra\"ete~\cite{fkv} and
+F\"uredi, Kostochka, Luo, and Verstra\"ete~\cite{fkvl}, together
+with the longest-path classification of Ali and Staton~\cite{ali}
+and Hamiltonian closure. The graph lies exactly at the edge-count
+threshold of the relevant stability result, so a separate
+analysis of equality is needed.
+
+For general path lengths, the same vertex-cover construction
+gives a lower bound. An application of the Erd\H{o}s--Gallai
+theorem to a suitable induced subgraph gives an upper bound.
+
+\begin{theorem}\label{thm:linear}
+For $k\geq3$,
+\[
+ \Pcop(k)\geq4\left\lfloor\frac{k-1}{2}\right\rfloor+1.
+\]
+Moreover,
+\[
+ 2\leq\liminf_{k\to\infty}\frac{\Pcop(k)}k
+ \leq\limsup_{k\to\infty}\frac{\Pcop(k)}k
+ \leq\frac{197\pi^2}{595}=3.267751373\ldots.
+\]
+In particular, $\Pcop(k)=\Theta(k)$.
+\end{theorem}
+
+The path problem differs from the corresponding problem for
+cliques. Du, Xi, Deng, and Ma~\cite{du} express the edge-coloring
+thresholds for complete targets in terms of classical Ramsey
+numbers and prime labels. For paths, pulling a coloring back
+through such labels can identify distinct vertices, so the
+same argument does not preserve the required path.
+Their Table~12 records earlier path computations from the
+author's repository, and their Open Problem~9.2 asks about
+non-complete edge targets.
+
+Section~\ref{sec:finite} gives the Ramsey argument for
+Theorem~\ref{thm:main}, using Theorem~\ref{thm:classification}.
+We prove the classification in Section~\ref{sec:classification}
+and the linear bounds in Section~\ref{sec:linear}.
+Section~\ref{sec:earlier} records certificates for the earlier
+values $\Pcop(7)=\Pcop(8)=13$. The final section discusses
+the remaining questions, and Appendix~\ref{sec:evidence}
+gives the computational evidence and checking instructions.
+
+\section{Proof of the exact threshold}\label{sec:finite}
+
+\subsection{A coloring on sixteen vertices}
+
+If a graph has a vertex cover of size $m$, every path has at most
+$2m$ edges: it uses at most $m$ vertices of the cover and at most
+$m+1$ vertices outside it. We will use this observation both here
+and in the general lower bound.
+
+In $G_{16}$, partition the odd vertices into
+\[
+ A=\{1,3,5,7\},\qquad B=\{9,11,13,15\}.
+\]
+Color an edge red if it meets $A$, and blue otherwise.
+Then $A$ covers the red graph. Since there are no even--even
+edges, every blue edge meets $B$, so $B$ covers the blue graph.
+Both colors therefore have paths of at most eight edges.
+This proves $\Pcop(9)>16$.
+
+\subsection{Three properties of the host}
+
+For disjoint sets $A,B\subseteq[17]$, let $G_{17}[A,B]$
+denote the graph consisting of the host edges between $A$ and $B$.
+We need the following three properties. They will force large
+color components, prevent sparse remainders after vertex
+deletions, and rule out the final obstruction to connectedness.
+
+\begin{lemma}\label{lem:finite}
+The graph $G_{17}$ has the following properties.
+\begin{enumerate}
+\item\label{item:cuts} If $A\cup B=[17]$ is a partition with
+$|A|,|B|\geq5$, then $G_{17}[A,B]$ contains a $P_{10}$.
+\item\label{item:faults} For every four-element set $A\subset[17]$
+and every set $F$ of at most four edges of $G_{17}-A$, the graph
+$G_{17}-A-F$ contains a $P_{10}$.
+\item\label{item:extensions} If $|A|=4$, $e(G_{17}[A])\geq5$,
+and $B=[17]\setminus A$, then, for every edge
+$e\in E(G_{17}[B])$, the graph with edge set
+$E(G_{17}[A,B])\cup\{e\}$ contains a $P_{10}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}[Proof by finite certificates]
+For parts~\ref{item:cuts} and~\ref{item:extensions}, the archive
+supplies a path for every required cut or pair $(A,e)$.
+For part~\ref{item:faults}, it supplies, for each four-vertex
+deletion up to checked host symmetries, a family of paths that
+cannot all be met by four edges. Hence at least one path
+survives any further deletion of at most four edges.
+
+An independent checker verifies every path, the coverage of all
+required cases, and the symmetries used to reduce the vertex
+deletions. The path-family condition is checked by exhaustive
+branching over possible sets of four edges.
+Appendix~\ref{sec:evidence} describes this verification and
+identifies the certificates and checker.
+\end{proof}
+
+\subsection{From the host properties to connected color graphs}
+
+We first recall the exceptional graph in the connected-path
+bounds. The graph $H(n,k,a)$ has three parts $A,B,C$ of sizes
+$a,n-k+a,k-2a$, respectively. It has all edges within $A\cup C$
+and all edges between $A$ and $B$, and no others. Thus
+\begin{equation}\label{eq:h}
+ h(n,k,a):=e(H(n,k,a))
+ =\binom{k-a}{2}+a(n-k+a).
+\end{equation}
+In particular, deleting the four-vertex part $A$ from
+$H(s,10,4)$ leaves one edge and isolated vertices.
+
+For a connected 13-vertex $P_{10}$-free graph,
+Balister, Gy\H{o}ri, Lehel, and Schelp~\cite[Theorem~1.3]{bgls}
+give
+\begin{equation}\label{eq:13bound}
+ e\leq\max\left\{\binom82+5,\binom52+4\cdot8\right\}=42.
+\end{equation}
+For a connected $P_{10}$-free graph of order $s\geq14$,
+the path stability theorem~\cite[Theorem~1.6]{fkv} gives
+$e\leq3s-3$, unless the graph is a subgraph of $H(s,10,4)$.
+
+\begin{proposition}\label{prop:reduction}
+If a two-coloring of $G_{17}$ has no monochromatic $P_{10}$,
+both color graphs are connected on all 17 vertices, their edge
+counts are 47 and 48, and each retains at least five edges after
+every four-vertex deletion.
+\end{proposition}
+
+\begin{proof}
+We first establish the deletion condition. Suppose that deleting
+a four-element set $A$ leaves at most four red edges. Delete
+those edges as well. Every remaining edge is blue, so
+Lemma~\ref{lem:finite}(\ref{item:faults}) gives a blue $P_{10}$,
+a contradiction. The same argument applies with the colors
+interchanged.
+
+Next, each color must have a component of order at least 13.
+Otherwise, a union of its components would have order between
+5 and 12. Indeed, if no single component has order in that range,
+all components have order at most four; accumulate them until
+the union first has at least five vertices, when it has at most
+eight. All host edges across the resulting cut have the other
+color, contrary to Lemma~\ref{lem:finite}(\ref{item:cuts}).
+
+Let $s\geq13$ be the order of the large component in either
+color. If $s\geq14$, this component cannot be a subgraph of
+$H(s,10,4)$: deleting its distinguished four vertices would
+leave at most
+\[
+ 1+\binom{17-s}{2}\leq4
+\]
+edges of that color in the whole graph, contradicting the
+deletion condition. The connected-path bounds therefore give
+the following upper bounds for the total number of edges in
+that color:
+\[
+\begin{array}{c|rrrrr}
+ \text{large component order }s&13&14&15&16&17\\ \hline
+ \text{total edges, at most}&48&42&43&45&48.
+\end{array}
+\]
+The first entry is $42+\binom42$; the others are
+$3s-3+\binom{17-s}{2}$. Since $e(G_{17})=95$, neither
+color can have fewer than 47 edges. Thus the two edge counts
+are 47 and 48, and each large component has order 13 or 17.
+
+It remains to exclude order 13. Suppose a component of one
+color has vertex set $B$, with $|B|=13$, and put
+$A=[17]\setminus B$. By~\eqref{eq:13bound}, at least
+$47-42=5$ edges of that color lie in $A$. In particular,
+$e(G_{17}[A])\geq5$. Every crossing edge has the other color.
+If any host edge inside $B$ also had that other color,
+Lemma~\ref{lem:finite}(\ref{item:extensions}) would give a
+monochromatic $P_{10}$. Consequently every host edge inside
+$B$ has the component's color. But
+Lemma~\ref{lem:finite}(\ref{item:faults}), with no edge
+deletion, gives a $P_{10}$ in $G_{17}[B]$.
+This contradiction proves that both color graphs are connected
+on all 17 vertices.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The coloring above proves the lower bound. For the upper bound,
+suppose that a coloring of $G_{17}$ avoids a monochromatic
+$P_{10}$. Proposition~\ref{prop:reduction} supplies a connected,
+48-edge color graph in which every four-vertex deletion leaves
+at least five edges. Theorem~\ref{thm:classification} supplies
+a four-vertex deletion leaving at most one edge, a contradiction.
+\end{proof}
+
+\section{The extremal equality case}\label{sec:classification}
+
+We now prove Theorem~\ref{thm:classification}. The argument has
+three stages. First, a dense bipartite configuration in the
+universal augmentation of $J$ forces a four-vertex cover.
+If this configuration is absent, the stability theorems let us
+delete vertices of degree three until only ten vertices remain.
+We then classify the possible ten-vertex cores and determine how
+they can be reconstructed without creating a $P_{10}$.
+
+\subsection{Stability inputs and a forbidden configuration}
+
+Adding a universal vertex $u$ to a connected $P_{10}$-free graph
+$L$ of order at least two gives a 2-connected graph $L+u$
+with no cycle of length at
+least 11. Indeed, a cycle of that length through $u$ would
+leave a $P_{10}$ after $u$ is removed, while a cycle avoiding
+$u$ would itself contain a $P_{10}$. We call $L+u$ the
+\emph{universal augmentation} of $L$.
+
+Let $\Fzero$ be the family obtained from $K_{5,6}$ by deleting
+at most two edges. For a member of this family, write $A$ and
+$B$ for its parts of sizes five and six.
+The following specializations of the published stability
+results will be used. In each statement, $Q$ is 2-connected,
+has order $n$, and has circumference $c(Q)<11$.
+\begin{enumerate}
+\item If $n\geq15$ and $e(Q)>h(n,11,4)$, then
+$Q\subseteq H(n,11,5)$ \cite[Theorem~1.4]{fkv}.
+\item If $n\geq11$ and
+$e(Q)>\max\{h(n,11,4),h(n,11,3)\}$, then
+$Q\subseteq H(n,11,5)$ or $Q\subseteq H(n,11,2)$
+\cite[Theorem~2.3]{fkvl}.
+\item If $n\geq11$, a subgraph of $H(n,11,5)$ with more
+than $h(n,11,4)$ edges contains a member of $\Fzero$
+\cite[Lemma~4.6]{fkvl}.
+\item If an edge contraction $Q/xy$ is 2-connected and
+contains a member of $\Fzero$, then $Q$ contains a member
+of $\Fzero$ \cite[Lemma~4.9]{fkv}.
+\end{enumerate}
+Contraction suppresses loops and parallel edges. The relevant
+edge counts from~\eqref{eq:h} are
+\begin{equation}\label{eq:thresholds}
+ h(n,11,4)=4n-7,\qquad h(n,11,3)=3n+4,\qquad
+ h(n,11,2)=2n+18.
+\end{equation}
+
+We also use the following path property of $\Fzero$
+\cite[Lemma~4.8]{fkv}. Every pair of distinct vertices in a
+member of $\Fzero$ is joined by a path of at least eight edges.
+If the pair is not entirely in $A$, there is such a path of at
+least nine edges. A path between two vertices of $B$ has even
+length, so in that case there is a path of ten edges.
+
+\begin{lemma}\label{lem:F0}
+Suppose that a 2-connected graph $Q$ has circumference less than
+11 and contains a member of $\Fzero$ with parts $A,B$.
+Then $Q-A$ is independent. If $Q=J+u$, where $u$ is universal
+and $|J|\geq10$, then $J$ has a vertex cover of size at most four.
+\end{lemma}
+
+\begin{proof}
+Let $S$ be a component of $Q-(A\cup B)$. It has at least two
+attachments in $A\cup B$. If $|S|\geq2$, the attachment edges
+also meet at least two vertices of $S$; otherwise their unique
+endpoint in $S$ would be a cut vertex. Thus we can choose
+attachment edges $px,qy$ with distinct $p,q\in A\cup B$
+and distinct $x,y\in S$. A path in $S$ from $x$ to $y$
+gives a $p$--$q$ path of at least three edges, internally
+outside $A\cup B$. Combining it with a path of at least eight edges
+in the member of $\Fzero$ gives a cycle of length at least
+11, a contradiction. Hence every such component $S$ is
+a singleton.
+
+If a singleton has an attachment in $B$, join that attachment
+to a second attachment by a path of at least nine edges in
+$\Fzero$. Together with the two attachment edges, this again
+gives a cycle of length at least 11. Therefore all vertices
+outside $A\cup B$ attach only to $A$.
+An edge within $B$ would close a ten-edge path in $\Fzero$
+and is likewise impossible. This proves that $Q-A$ is
+independent.
+
+In a universal augmentation, $u$ has degree at least ten.
+Every vertex outside $A$ has degree at most five, so $u\in A$.
+The set $A\setminus\{u\}$ is consequently a four-vertex cover
+of $J$.
+\end{proof}
+
+For the rest of the proof, assume that $J$ has no vertex cover
+of size at most four. By Lemma~\ref{lem:F0}, its universal
+augmentation contains no member of $\Fzero$. The same is
+true of the augmentation of every induced subgraph of $J$.
+
+\subsection{Deleting vertices down to a ten-vertex core}
+
+We first show that every edge of $J$ lies in at least two
+triangles. The augmentation $J+u$ has 18 vertices and 65 edges.
+If an edge $xy$ lies in at most one triangle of $J$, it lies
+in at most two triangles of $J+u$. Contracting it therefore
+loses at most three edges, leaving at least 62 edges on
+17 vertices. The contracted graph is still a universal
+augmentation of a connected graph, hence is 2-connected.
+Contraction cannot increase circumference.
+
+Since $62>h(17,11,4)=61$, the first and third stability
+inputs give a member of $\Fzero$ after contraction.
+The fourth input lifts it back to $J+u$, a contradiction.
+In particular, every vertex of $J$ has degree at least three.
+
+We will preserve the following conditions for a current induced
+subgraph $L$ of order $n$:
+\begin{equation}\label{eq:invariant}
+ \begin{gathered}
+ L\text{ is connected and }P_{10}\text{-free},\qquad e(L)=3n-3,\\
+ \delta(L)\geq2,\qquad L+u\text{ contains no member of }\Fzero.
+ \end{gathered}
+\end{equation}
+They hold initially for $L=J$. Suppose that $n\geq11$.
+
+As before, an edge lying in at most one triangle of $L$
+can be contracted in $L+u$ at a loss of at most three edges.
+The augmentation has $n+1$ vertices and $4n-3$ edges,
+so the contraction has $n$ vertices and at least $4n-6$
+edges. This exceeds both $4n-7$ and $3n+4$.
+The second stability input therefore places the contraction
+in $H(n,11,5)$ or $H(n,11,2)$. The first alternative is
+impossible by the dense-subgraph and lifting inputs.
+For $n\geq13$, the second is also impossible because
+$4n-6>2n+18=h(n,11,2)$.
+
+For $n=11,12$, we exclude the second alternative by counting
+leaves. Put $M=L/xy$. An old vertex can become a leaf only
+if it is a common neighbor of $x$ and $y$, and there is at
+most one such vertex. The merged vertex can become a leaf
+only if $x$ and $y$ both had degree two and shared their other
+neighbor. If this common neighbor also became a leaf, the
+three vertices would form an isolated triangle in $L$,
+contrary to connectedness and $n>3$. Thus $M$ has at most
+one leaf.
+
+On the other hand, if $M+u\subseteq H(n,11,2)$, the universal
+vertex $u$ must lie in the two-vertex joining part of the
+container. Removing $u$ would make $M$ a connected spanning
+subgraph of
+\[
+ K_1\vee(K_7\cup\Ic_{n-9}).
+\]
+Each of its $n-9\geq2$ independent vertices must then be a
+leaf, a contradiction. We have proved that every edge of
+$L$ lies in at least two triangles. Hence $\delta(L)\geq3$.
+
+We next exclude $\delta(L)\geq4$. If a longest path in a
+connected graph is not spanning, it has at least $2\delta+1$
+vertices, where $\delta$ is the minimum degree. Here is the
+short argument. Suppose the path is $v_1,\ldots,v_r$ with
+$r\leq2\delta$. All neighbors of its endpoints lie on the
+path. Among the $r-1$ indices $i$, at least $\delta$ satisfy
+$v_1v_{i+1}\in E(L)$ and at least $\delta$ satisfy
+$v_iv_r\in E(L)$. The two index sets intersect, closing the
+path into a cycle through all its vertices. Connectivity and
+a vertex outside the cycle then give a longer path, a
+contradiction.
+
+In our graph $L$, a longest path has order $r\leq9<n$.
+Thus $\delta(L)\geq4$ would force $\delta(L)=4$ and $r=9$.
+Ali and Staton~\cite[Theorem~3]{ali} classify connected graphs
+of minimum degree $\delta\geq2$, longest path order
+$2\delta+1$, and order at least $2\delta+2$.
+They are subgraphs of $K_\delta\vee\Ic_{n-\delta}$ or
+windmills $K_1\vee(tK_\delta)$.
+For $\delta=4$, a windmill has $5(n-1)/2<3n-3$ edges.
+In the other case, minimum degree four forces every edge
+between the parts of $K_4\vee\Ic_{n-4}$ to be present.
+Its augmentation then contains $K_{5,6}$, also impossible.
+Therefore $\delta(L)=3$.
+
+Let $v$ be a degree-three vertex. Each edge incident with $v$
+lies in two triangles, so the three neighbors of $v$ form
+a triangle. Deleting $v$ preserves connectedness, removes
+exactly three edges, and leaves minimum degree at least two.
+The other conditions in~\eqref{eq:invariant} are inherited.
+We may therefore repeat the deletion.
+
+Seven deletions leave a connected $P_{10}$-free graph $L_{10}$
+on ten vertices with 27 edges and minimum degree at least two.
+Its predecessor $L_{11}$ had minimum degree at least three.
+Reversing the process adds one vertex at a time, adjacent to
+exactly three mutually adjacent vertices already present.
+
+\subsection{The possible cores}
+
+We show that $L_{10}$ has one of the following three forms:
+\begin{equation}\label{eq:cores}
+ \begin{aligned}
+ &K_2\vee(K_5\cup\Ic_3),\\
+ &K_3\vee(K_3\cup\Ic_4),\\
+ &\text{a subgraph of }K_4\vee\Ic_6.
+ \end{aligned}
+\end{equation}
+Let $Q=L_{10}+u$. It has 11 vertices, 37 edges, and minimum
+degree at least three, and it has no Hamiltonian cycle.
+Take its 11-closure: repeatedly add an edge between nonadjacent
+vertices whose degree sum is at least 11.
+The Bondy--Chv\'atal theorem~\cite{closure} preserves
+non-Hamiltonicity.
+
+If any edge is added, the closure has at least 38 edges.
+The two thresholds in the second stability input both equal
+37 at $n=11$, so the closure is a subgraph of $H(11,11,5)$
+or $H(11,11,2)$. The latter has two vertices of degree two
+and is excluded by the minimum degree.
+In $H(11,11,5)=K_5\vee\Ic_6$, the universal vertex $u$
+must lie in the five-vertex part. Removing it gives
+$L_{10}\subseteq K_4\vee\Ic_6$.
+
+It remains to consider the case where $Q$ is already closed.
+Write its degrees in nondecreasing order as
+$d_1,\ldots,d_{11}$. Since $Q$ is not Hamiltonian,
+Chv\'atal's degree-sequence criterion, in the form stated
+in~\cite[Theorem~4.2]{fkvl}, gives an index $i<11/2$ with
+\[
+ d_i\leq i,\qquad d_{11-i}\leq10-i.
+\]
+Minimum degree three restricts $i$ to $3,4,5$.
+
+For $i=3$, deleting $u$ gives the following termwise upper
+bounds for the degrees of $L_{10}$:
+\[
+ (2,2,2,6,6,6,6,6,9,9).
+\]
+Their sum is $54=2e(L_{10})$, so equality holds in every
+position. The two degree-nine vertices are universal.
+Removing them leaves five vertices of degree four and three
+isolated vertices, which forces
+$L_{10}=K_2\vee(K_5\cup\Ic_3)$.
+
+For $i=4$, the corresponding upper sequence is
+\[
+ (3,3,3,3,5,5,5,9,9,9),
+\]
+again with sum 54. The three degree-nine vertices are
+universal; removing them leaves a triangle and four isolated
+vertices. Hence $L_{10}=K_3\vee(K_3\cup\Ic_4)$.
+
+For $i=5$, choose a set $B$ of six vertices of degree at most
+five in $Q$, and let $A=V(Q)\setminus B$. We will show that
+an edge inside $B$ would force $Q$ to be Hamiltonian.
+First, $A$ is a clique. The degree sum of $Q$ is 74, only
+six below the upper bound
+\[
+ 6\cdot5+5\cdot10=80.
+\]
+If two vertices of $A$ were nonadjacent, closedness would
+give them degree sum at most ten. Those two vertices alone
+would contribute a deficit of at least ten, a contradiction.
+
+Let $b=e(Q[B])$, and let $m$ be the number of missing
+$A$--$B$ edges. Since $A$ is a clique, the edge count gives
+$37=10+30-m+b$, or $m=b+3$.
+For $v\in B$, let $s_v$ count its missing cross edges and
+$t_v$ its neighbors within $B$. Its degree is
+$5-s_v+t_v\leq5$. Thus, on putting $q_v=s_v-t_v$, we obtain
+\[
+ q_v\geq0,\qquad
+ \sum_{v\in B}q_v=m-2b=3-b,\qquad 0\leq b\leq3.
+\]
+For $a\in A$, let $r_a$ count its missing cross edges.
+Every absent pair $av$ satisfies, by closedness,
+\begin{equation}\label{eq:closed-pair}
+ (10-r_a)+(5-q_v)\leq10,
+ \qquad\text{so}\qquad r_a+q_v\geq5.
+\end{equation}
+
+Suppose $b>0$. Since $q_v\leq3-b$, every vertex of $A$
+incident with a missing cross edge must have at least
+$b+2$ such missing edges. There are only $m=b+3$ missing
+cross edges in total. Consequently they are all incident
+with a single vertex $a_0\in A$.
+It follows that $s_v\leq1$ for every $v\in B$.
+As $t_v\leq s_v$, the edges in $B$ form a matching.
+
+If $b=1$, the endpoints of its edge have $q_v=0$.
+Equation~\eqref{eq:closed-pair} would require $r_{a_0}\geq5$,
+whereas $m=4$. If $b=2$, the missing cross edges join $a_0$
+to the four matching endpoints and one isolated vertex.
+If $b=3$, they join $a_0$ to all six vertices of $B$.
+In both remaining cases,
+\[
+ Q\cong K_4\vee(3K_2\cup K_1).
+\]
+Indeed, the four vertices of $A\setminus\{a_0\}$ are universal.
+Outside them there are three edges and one isolated vertex;
+when $b=2$, the third edge joins $a_0$ to its sole neighbor
+in $B$.
+
+This graph is Hamiltonian: place its three two-vertex blocks
+and its singleton between successive vertices of the $K_4$
+in a cycle. Thus $b>0$ is impossible. We have $b=0$,
+and deleting the universal vertex $u\in A$ again gives
+$L_{10}\subseteq K_4\vee\Ic_6$.
+This completes the list~\eqref{eq:cores}.
+
+\subsection{Reconstructing the graph}
+
+We now examine which cores can survive the seven reverse
+additions. Each new vertex has a triangle as its neighborhood
+among the vertices already present.
+
+The first core, $K_2\vee(K_5\cup\Ic_3)$, is impossible.
+Its three independent vertices have degree two, so all three
+would have to be adjacent to the first new vertex in order
+to obtain $\delta(L_{11})\geq3$. But three independent
+vertices cannot form its required neighborhood triangle.
+
+For the second core, $K_3\vee(K_3\cup\Ic_4)$, let $A$
+be the joining triangle, $C$ the other triangle, and $B$
+the independent set. Every vertex outside $A$ is an endpoint
+of a nine-vertex path, as the following templates show:
+\[
+ \begin{split}
+ &c_1,c_2,c_3,a_1,b_1,a_2,b_2,a_3,b_3,\\
+ &b_1,a_1,c_1,c_2,c_3,a_2,b_2,a_3,b_3.
+ \end{split}
+\]
+A new vertex cannot be adjacent to such an endpoint, since
+prepending the new vertex would give a $P_{10}$.
+Its earlier neighborhood must therefore be exactly $A$.
+The same templates apply to this new vertex as a member of
+the enlarged independent set $B$. Induction forces all
+seven additions to have earlier neighborhood $A$.
+No edges join the added vertices, and the final graph is
+$K_3\vee(K_3\cup\Ic_{11})$.
+
+Finally, suppose $L_{10}\subseteq K_4\vee\Ic_6$, with parts
+$A$ and $B$. The container has 30 edges and the core has 27,
+so at most three cross edges are missing.
+We claim that every vertex of $B$, and every previously added
+vertex whose earlier neighborhood lies in $A$, is an endpoint
+of a nine-vertex path.
+
+To prove the claim, let $z$ be such a vertex. Choose a neighbor
+$a_1\in A$ of $z$ and order the other three vertices as
+$a_2,a_3,a_4$. Select five original vertices of $B$,
+excluding $z$ if $z\in B$, and call this set $B'$.
+We seek distinct representatives in $B'$ for the four slots
+\[
+ \{a_1,a_2\},\qquad \{a_2,a_3\},\qquad
+ \{a_3,a_4\},\qquad \{a_4\}.
+\]
+A vertex is eligible for a slot if it is adjacent to every
+vertex in that slot.
+
+Each slot has at least two eligible vertices, since there
+are five candidates and at most three missing cross edges.
+This proves Hall's condition for one or two slots.
+For a collection of three or four slots, a vertex outside
+the union of their eligible sets must account for at least
+two missing cross edges: one missing edge affects at most
+two slots. With only three missing cross edges in total,
+at most one vertex of $B'$ can be outside such a union.
+The union therefore has at least four vertices.
+Hall's condition holds for every collection of slots.
+
+The resulting distinct representatives give the path
+\[
+ z,a_1,b_1,a_2,b_2,a_3,b_3,a_4,b_4,
+\]
+proving the claim. Now consider the first added vertex whose
+earlier neighborhood is not contained in $A$. Its earlier
+neighbor outside $A$ starts a path of this form, so
+prepending the new vertex creates a $P_{10}$.
+No such addition is possible. Thus $A$ covers the final
+graph, contrary to our standing assumption.
+
+Only the triangle-join graph remains when there is no
+four-vertex cover. In that graph, deleting the joining
+triangle and one vertex of the other triangle leaves one
+edge. In the cover case, deleting four vertices containing
+the cover leaves no edges. This proves
+Theorem~\ref{thm:classification}.
+
+\section{Linear bounds}\label{sec:linear}
+
+\begin{proof}[Proof of Theorem~\ref{thm:linear}]
+\emph{The lower bound.}
+Put $m=\lfloor(k-1)/2\rfloor$. The $2m$ odd vertices cover
+$G_{4m}$. Partition them into two sets of size $m$, color
+every edge meeting the first set red, and color the remaining
+edges blue. Each color has a cover of size $m$, so its paths
+have at most $2m<k$ edges. This gives
+\[
+ \Pcop(k)\geq4m+1
+ =4\left\lfloor\frac{k-1}{2}\right\rfloor+1
+\]
+and hence the asymptotic lower constant two.
+
+\medskip
+\noindent\emph{A density upper bound.}
+By the Erd\H{o}s--Gallai path theorem~\cite{eg}, a graph
+with no $k$-edge path has at most $(k-1)v/2$ edges.
+If a two-coloring of a subgraph $H\subseteq G_n$ avoids
+such a path, applying the theorem to both color graphs gives
+$e(H)\leq(k-1)v(H)$. Therefore
+\begin{equation}\label{eq:density}
+ e(H)>(k-1)v(H)\quad\Longrightarrow\quad\Pcop(k)\leq n.
+\end{equation}
+The strict inequality in this criterion is essential.
+
+Write $E_n=e(G_n)$. Counting ordered coprime pairs by
+M\"obius inversion gives
+\[
+ 2E_n+1=\sum_{r=1}^n\mu(r)\lfloor n/r\rfloor^2
+       =\frac6{\pi^2}n^2+O(n\log n).
+\]
+The extra one counts the pair $(1,1)$.
+Replacing the floors by their arguments contributes
+$O(n\log n)$, and the tail of
+$\sum_{r\geq1}\mu(r)/r^2=1/\zeta(2)$ contributes $O(n)$.
+Taking $H=G_n$ in~\eqref{eq:density} already yields
+\[
+ \limsup_{k\to\infty}\frac{\Pcop(k)}k\leq\frac{\pi^2}{3}.
+\]
+
+\medskip
+\noindent\emph{Improving the edge-to-vertex ratio.}
+To improve the constant, we remove a set of vertices that
+contributes relatively few edges. We use the multiples of
+$30$, $42$, and $70$. Their small prime factors restrict
+their coprime neighbors, and all these vertices are even,
+so they form an independent set. Put
+\[
+ D_n=\{a\leq n:30\mid a\text{ or }42\mid a\text{ or }70\mid a\},
+ \qquad H_n=G_n-D_n.
+\]
+Every pair of the three divisors has least common multiple
+210. Inclusion-exclusion gives
+\[
+ \begin{split}
+ |D_n|
+ &=\lfloor n/30\rfloor+\lfloor n/42\rfloor
+   +\lfloor n/70\rfloor-2\lfloor n/210\rfloor\\
+ &=\frac{13}{210}n+O(1).
+ \end{split}
+\]
+
+We also need to count the edges lost. For a fixed squarefree
+integer $d\geq2$, let $C_d(n)$ count ordered coprime pairs
+$(a,b)\in[n]^2$ with $d\mid a$. M\"obius inversion gives
+\begin{align*}
+ C_d(n)
+ &=\sum_{r=1}^n\mu(r)
+   \left\lfloor\frac n{\operatorname{lcm}(d,r)}\right\rfloor
+   \left\lfloor\frac nr\right\rfloor\\
+ &=\frac{6n^2}{\pi^2\prod_{p\mid d}(p+1)}
+   +O_d(n\log n).
+\end{align*}
+The floor and tail estimates are as above. The leading
+coefficient follows from the Euler product
+\[
+ \begin{split}
+ \sum_{r\geq1}\frac{\mu(r)}{r\operatorname{lcm}(d,r)}
+ &=\frac1d\prod_{p\mid d}(1-1/p)
+             \prod_{p\nmid d}(1-1/p^2)\\
+ &=\frac6{\pi^2\prod_{p\mid d}(p+1)}.
+ \end{split}
+\]
+Because $D_n$ is independent, each lost edge is counted
+exactly once by an ordered pair whose first endpoint is
+deleted. The number of lost edges is therefore
+\begin{align*}
+ &C_{30}(n)+C_{42}(n)+C_{70}(n)-2C_{210}(n)\\
+ &\quad=\frac6{\pi^2}
+  \left(\frac1{72}+\frac1{96}+\frac1{144}-\frac2{576}\right)n^2
+  +O(n\log n)\\
+ &\quad=\frac{n^2}{6\pi^2}+O(n\log n).
+\end{align*}
+It follows that
+\[
+ v(H_n)=\frac{197}{210}n+O(1),\qquad
+ e(H_n)=\frac{17}{6\pi^2}n^2+O(n\log n),
+\]
+and hence
+\[
+ \frac{e(H_n)}{v(H_n)}
+ =\frac{595}{197\pi^2}n+O(\log n).
+\]
+For any $\varepsilon>0$, choose
+\[
+ n=\left\lceil\left(\frac{197\pi^2}{595}+\varepsilon\right)k
+       \right\rceil.
+\]
+The positive linear margin from $\varepsilon k$ dominates
+the logarithmic error, so~\eqref{eq:density} applies for
+all sufficiently large $k$. Letting $\varepsilon$ tend to
+zero proves the asserted upper bound.
+\end{proof}
+
+\section{Certificates for the earlier thresholds}\label{sec:earlier}
+
+The values
+\[
+ \Pcop(7)=\Pcop(8)=13
+\]
+were reported in the author's earlier computations and appear
+in Table~12 of Du et al.~\cite{du}. We record their certificates
+here for completeness. The upper-bound certificate uses a
+different method from the explicit host paths at $n=17$.
+
+For the lower bound, partition the odd vertices of $G_{12}$
+into $\{1,3,11\}$ and $\{5,7,9\}$. The vertex-cover coloring
+used in Section~\ref{sec:finite} gives each color a cover of
+size three, so neither color has a path with more than six
+edges. Thus $\Pcop(7),\Pcop(8)>12$.
+
+For the upper bound at $n=13$, assign one Boolean variable
+to each of the 57 host edges. An eight-edge path gives two
+clauses, excluding its two monochromatic assignments.
+The archived formula contains 71\,832 valid path-exclusion
+clauses and one harmless tautology ensuring that the solver
+registers all 57 variables. It imposes no symmetry restrictions.
+
+An independent semantic check verifies that every path clause
+excludes a monochromatic assignment of a valid eight-edge path.
+A separate DRAT certificate establishes that the formula is
+unsatisfiable. This subset of the path constraints is enough:
+every coloring with no monochromatic eight-edge path would
+satisfy all of them. Hence every coloring of $G_{13}$ contains
+an eight-edge path, and therefore also a seven-edge path.
+Together with the lower coloring, this proves the two
+previously reported values.
+
+Appendix~\ref{sec:evidence} identifies the formula, DRAT proof,
+verification records, and required checkers.
+
+\section{Related bounds and further questions}\label{sec:context}
+
+The equality case in Theorem~\ref{thm:classification} lies
+just outside the strict stability bounds used in its proof.
+The universal augmentation has 18 vertices and 65 edges,
+exactly $h(18,11,4)$.
+The later refinements of Ma and Ning~\cite{ma-ning} also
+retain a strict inequality at this point.
+In their notation, $W_{n,a,c}=H(n,c+1,a)$, and at
+$(n,c)=(18,10)$ the term $f(n,4,c)$ equals 65.
+Their Theorems~1.7 and~1.9 require more edges than a maximum
+containing this term, so neither directly gives the boundary
+classification needed here. This comparison concerns those
+statements; a comprehensive determination of priority for
+the classification is outside the scope of the paper.
+
+The lower construction suggests asking whether
+\[
+ \Pcop(2m+1)=4m+1\qquad\text{for every }m\geq1.
+\]
+Theorem~\ref{thm:main} proves the case $m=4$, but its
+host-specific certificates do not establish the general
+upper bound. It also remains to close the gap between the
+asymptotic constants $2$ and $197\pi^2/595$. The deletion
+set used in Section~\ref{sec:linear} gives an explicit
+improvement over the full-host density bound; we do not
+claim that this choice is optimal or that the refinement
+has priority over all earlier work.
+
+A shorter structural proof of
+$\Pcop(7)=\Pcop(8)=13$ would be useful as well.
+It would give an account of these earlier values without
+the separate SAT certificate.
+
+\appendix
+\section{Certificates and reproducibility}\label{sec:evidence}
+
+The computational evidence and proof notes are available in
+the repository at the immutable
+\href{\repo/tree/\revision}{revision \texttt{8bda81e}}
+\cite{repository}. This revision predates the present
+editorial revision. All paths below are relative to the
+repository root.
+
+\subsection{What each archive contains}
+
+\begin{description}
+\item[The three host properties.]
+The
+\href{\repo/tree/\revision/docs/audits/coprime-path-nine-2026-10-18}
+{structural archive}
+contains the crossing paths, deletion families, and cut
+extensions certifying the three parts of Lemma~\ref{lem:finite}.
+\item[The nine-edge threshold.]
+The
+\href{\repo/tree/\revision/docs/audits/coprime-path-nine-resolution-2026-10-18}
+{resolution archive}
+contains \texttt{lower-n16-k9.json}, which records all 79
+colored edges of the lower witness, together with source
+and verification records.
+\item[The earlier thresholds.]
+The
+\href{\repo/tree/\revision/docs/audits/coprime-paths-2026-10-18}
+{earlier path archive}
+contains the 45-edge lower witness at $n=12$, the compressed
+formula and DRAT proof at $n=13$, and their verification records.
+\end{description}
+
+The first two archives use checkers written in standard-library
+Python; verifying their certificates requires no SAT solver.
+
+\subsection{Verifying the three host properties}
+
+For Lemma~\ref{lem:finite}(\ref{item:cuts}), a certificate
+gives a crossing path for each smaller side of a cut. There
+are
+\[
+ \sum_{s=5}^8\binom{17}{s}=62\,322
+\]
+such sides; taking complements covers the other orientations.
+For part~\ref{item:extensions}, there is one path for every
+qualifying pair $(A,e)$.
+
+For part~\ref{item:faults}, there are
+$\binom{17}{4}=2380$ vertex deletions.
+Checked host automorphisms reduce them to 262 equivalence
+classes. For each class, the certificate supplies a family
+of surviving paths with no edge transversal of size at most
+four. Here an \emph{edge transversal} is a set of edges
+meeting every path in the family. If no such transversal
+exists, deleting four edges cannot destroy all the paths.
+
+The checker establishes nonexistence of a transversal by
+exhaustive branching. It selects a path not yet met by the
+chosen edges and branches on each of that path's edges as
+the next choice. Any transversal extending the current
+choice must contain at least one of these edges, so the
+branches cover every possibility. Branches requiring more
+than four edges are rejected.
+
+For every supplied path, the checker verifies ten distinct
+vertices, all nine gcd adjacencies, and the relevant cut
+or deletion restrictions. It also verifies every transposition
+within each declared vertex class against host adjacency.
+These transpositions generate the within-class permutations,
+so deletions with the same class counts are equivalent.
+The checker derives the required cases from the task
+parameters and requires every deletion signature exactly
+once. It does not rely on saved completion flags.
+
+The expected counts are:
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Certificate & Verified cases or witnesses\\
+\hline
+Cuts & $62\,322$ cuts\\
+Vertex and edge deletions & $2380$ deletions in $262$ classes\\
+                         & $30\,671$ paths in the families\\
+Extensions & $63\,859$ pairs $(A,e)$ on $1253$ sets $A$\\
+\hline
+\end{tabular}
+\end{center}
+
+To obtain the cited revision and run the checks with Python
+3.10 or newer:
+
+\noindent\begin{minipage}{\linewidth}
+\small
+\begin{verbatim}
+git clone https://github.com/queelius/computational-explorations.git
+cd computational-explorations
+git checkout --detach 8bda81e8d3f867bb1450b0e492592164416ba98f
+
+cert_dir=docs/audits/coprime-path-nine-2026-10-18
+checker=src/coprime_path_structure_certificates.py
+python3 -I -S -O "$checker" cuts "$cert_dir/cuts.json.gz"
+python3 -I -S -O "$checker" faults "$cert_dir/fault-families.json.gz"
+python3 -I -S -O "$checker" extensions "$cert_dir/extensions.json.gz"
+\end{verbatim}
+\end{minipage}
+
+Require a successful exit, the counts above, and the intended
+task parameters: $n=17$, target length nine, minimum cut
+side five, and vertex- and edge-deletion budgets of four.
+For extensions, require \texttt{side\_size=4} and
+\texttt{minimum\_side\_edges=5}. The symmetry checks concern
+the host only; no assumption is made that a coloring
+respects those symmetries.
+
+\subsection{Lower colorings and the separate SAT certificate}
+
+The complete lower colorings are checked independently by
+subset dynamic programming. For each vertex subset and
+color, it records the possible endpoints of a path using
+exactly that subset. The longest monochromatic path lengths,
+measured in edges, are $(8,8)$ at $n=16$ and $(6,6)$ at
+$n=12$.
+
+For the $n=13$ upper bound, a separate formula checker verifies
+that every non-tautological clause has uniform sign and
+consists of the eight distinct edges of a simple path.
+The unsatisfiability proof is checked with DRAT-trim, pinned
+at revision
+{\small\texttt{2e3b2dc0ecf938addbd779d42877b6ed69d9a985}}.
+The archive README gives the complete commands.
+Its verification record reports a proof core with
+57\,506 clauses, 391\,234 lemmas, and 4\,858\,014 resolution
+steps, with no RAT lemmas in the core.
+
+These checks have separate roles: path and coloring checkers
+validate explicit combinatorial witnesses; the formula
+checker validates the path constraints; DRAT-trim validates
+the proof of their inconsistency. The $n=17$ argument uses
+the explicit host certificates and the written extremal
+proof, with no SAT unsatisfiability certificate.
+
+The verification depends on the checkers, their execution
+environments, and the published mathematical inputs.
+Checking the finite claims does not formally verify the
+whole written argument, for which there is no Lean
+formalization. Unfinished or time-limited searches supply
+no proof of the statements here.
+
+\subsection{Historical records}
+
+The earlier code archive is available at
+\href{https://doi.org/10.5281/zenodo.23433640}
+{doi:10.5281/zenodo.23433640}.
+The earlier manuscript is available at
+\href{https://doi.org/10.5281/zenodo.19058647}
+{doi:10.5281/zenodo.19058647}.
+
+Both deposits are retained as historical records.
+The new nine-edge-path evidence is identified by the
+immutable repository revision above, rather than by
+these earlier deposits.
+
+\section*{AI assistance and draft status}
+
+Codex assisted with the proof investigation, certificate
+software, literature checks, and preparation and editorial
+revision of this manuscript. Human verification of every
+proof step and citation, and the author's final revision
+of the AI-assisted proofs in the author's own words,
+remain pending. This is a working draft and has not been
+submitted to a journal.
+
+\clearpage
+
+
+
+\begin{thebibliography}{99}
+\bibitem{ali}
+A. A. Ali and W. Staton.
+On extremal graphs with no long paths.
+\emph{Electronic Journal of Combinatorics}, 3(1):R20, 1996.
+\href{https://doi.org/10.37236/1244}{doi:10.37236/1244}.
+
+\bibitem{bgls}
+P. N. Balister, E. Gy\H{o}ri, J. Lehel, and R. H. Schelp.
+Connected graphs without long paths.
+\emph{Discrete Mathematics}, 308(19):4487--4494, 2008.
+\href{https://doi.org/10.1016/j.disc.2007.08.047}{doi:10.1016/j.disc.2007.08.047}.
+\href{https://www.memphis.edu/msci/people/pbalistr/nopk.pdf}{Author manuscript}.
+
+\bibitem{closure}
+J. A. Bondy and V. Chv\'atal.
+A method in graph theory.
+\emph{Discrete Mathematics}, 15:111--135, 1976.
+\href{https://doi.org/10.1016/0012-365X(76)90078-9}{doi:10.1016/0012-365X(76)90078-9}.
+
+\bibitem{du}
+Z. Du, W. Xi, Z. Deng, and L. Ma.
+Prime certificates for exact vertex-coprime Ramsey numbers.
+Preprint, 2026.
+\href{https://arxiv.org/abs/2605.26815v2}{arXiv:2605.26815v2}.
+
+\bibitem{eg}
+P. Erd\H{o}s and T. Gallai.
+On maximal paths and circuits of graphs.
+\emph{Acta Mathematica Academiae Scientiarum Hungaricae},
+10:337--356, 1959.
+\href{https://doi.org/10.1007/BF02024498}{doi:10.1007/BF02024498}.
+\href{https://web.vu.lt/mif/s.jukna/tropical/Erdos-Gallai-1959.pdf}{Full text}.
+
+\bibitem{fkv}
+Z. F\"uredi, A. Kostochka, and J. Verstra\"ete.
+Stability in the Erd\H{o}s--Gallai Theorems on cycles and paths.
+\emph{Journal of Combinatorial Theory, Series B}, 121:197--228, 2016.
+\href{https://doi.org/10.1016/j.jctb.2016.06.004}{doi:10.1016/j.jctb.2016.06.004}.
+Theorem numbering follows
+\href{https://arxiv.org/abs/1507.05338v2}{arXiv:1507.05338v2}.
+
+\bibitem{fkvl}
+Z. F\"uredi, A. Kostochka, R. Luo, and J. Verstra\"ete.
+Stability in the Erd\H{o}s--Gallai Theorem on cycles and paths, II.
+\emph{Discrete Mathematics}, 341(5):1253--1263, 2018.
+\href{https://doi.org/10.1016/j.disc.2017.12.018}{doi:10.1016/j.disc.2017.12.018}.
+Theorem numbering follows
+\href{https://arxiv.org/abs/1704.02866v1}{arXiv:1704.02866v1}.
+
+\bibitem{ma-ning}
+J. Ma and B. Ning.
+Stability results on the circumference of a graph.
+\emph{Combinatorica}, 40:105--147, 2020.
+\href{https://doi.org/10.1007/s00493-019-3843-4}{doi:10.1007/s00493-019-3843-4}.
+The comparison uses
+\href{https://arxiv.org/abs/1708.00704v2}{arXiv:1708.00704v2}.
+
+\bibitem{repository}
+A. R. Towell.
+Computational explorations: coprime path proof notes and certificates.
+GitHub repository, revision \texttt{8bda81e}, October 18, 2026.
+\href{\repo/tree/\revision}{Immutable source and evidence}.
+\end{thebibliography}
+\end{document}

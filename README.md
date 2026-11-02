@@ -2,6 +2,15 @@
 
 A curiosity-driven research project exploring mathematical structure through computation, spanning Erdős problems, Ramsey theory, additive combinatorics, and cross-domain pattern discovery.
 
+Start with the [research records](research/README.md) for scoped claims,
+source pins, evidence, reproduction, citations, and publication status.
+The [coprime-path record](research/records/coprime-paths/README.md) links the
+latest manuscript and the public proof of `P_cop(9) = 17`. Cross-project
+discovery and archival records live in
+[research-records](https://github.com/queelius/research-records).
+The exact coprime-path evidence archive is
+[10.5281/zenodo.23497967](https://doi.org/10.5281/zenodo.23497967).
+
 ## Headline Results
 
 | Discovery | Value | Status |
@@ -10,7 +19,7 @@ A curiosity-driven research project exploring mathematical structure through com
 | Coprime Ramsey R_cop(4) | **59** | Checked witness at 58 + prime-clique upper bound |
 | Multi-color R_cop(3; 3) | **53** | Checked witness at 52 + prime-clique upper bound |
 | Coprime Ramsey variants | [Full table](discoveries/coprime-ramsey/) | Verification status recorded per family |
-| S(G,k) order-invariance | Holds k≤2, fails k=3 | Verified order ≤ 20 |
+| S(G,k) order-invariance | Fails at order 49 for k=2; at order 9 for k=3 | [Archived version 2 and verification scope](docs/schur-archive-handoff-2026-10-20.md) |
 | Coprime graph perfectness | χ = ω = 1+π(n) | Verified n ≤ 30 (prior art exists) |
 | Coprime Ramsey primality | All 4 known values prime | **Explained** (corollary of Du et al. Thm 4.4) |
 
@@ -22,6 +31,7 @@ tests/                  # Unit, integration, and long-running research tests
 lean/                   # Lean 4 formalizations (mixed status; coprime Ramsey incomplete)
 paper/                  # LaTeX papers for DOI minting
 docs/                   # Research findings, provenance, OEIS candidates
+research/               # Validated contribution metadata, citations, lifecycle
 discoveries/            # Organized discovery summaries
   coprime-ramsey/       # The coprime Ramsey theory we built
   schur-extensions/     # Schur number extensions (S(G,k), DS, MS)
@@ -34,11 +44,15 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 
 ## Key Documents
 
-- [Crocker Erdős188 blue-progression audit](docs/audits/erdos188-blue-progression-2026-10-18/README.md) — External integer verification of 147,421,290 covering squares; scoped computational corroboration, not human/formal review
+- [Research lifecycle and reproducibility](research/README.md) — Durable records and deterministic research packets
+- [Workspace and preservation](docs/workspace-layout.md) — One primary checkout, ignored local outputs, and recovery locations
 - [Running verification](docs/verification.md) — Fresh environment, independent witness checker, routine tests, and CI scope
+- [Two-color rectangle certificate audit](docs/audits/erdos189-rectangles-2026-10-18/README.md) — Independent exact corroboration of Carson Crocker's 180-point unit-area rectangle witness, with a complete finite refutation replay
 - [Coprime path certificates (2026-10-18)](docs/audits/coprime-paths-2026-10-18/README.md) — Independently checked evidence that P_cop(7) = P_cop(8) = 13
 - [Coprime path structural bounds (2026-10-18)](docs/coprime-path-structure-2026-10-18.md) — Linear growth, explicit density bounds, and limitations of the current proof methods
 - [Nine-edge-path threshold (2026-10-18)](docs/coprime-path-nine-resolution-2026-10-18.md) — P_cop(9) = 17, from a checked lower coloring, structural certificates, and an extremal classification
+- [Crocker's red-distance certificate (2026-10-18)](docs/audits/erdos188-red-gap-2026-10-18/README.md) — Independent exact exclusion of distances [0.999, 1.001] for the specified Erdős 188 coloring; the blue-progression claim is outside this audit
+- [Crocker Erdős188 blue-progression audit](docs/audits/erdos188-blue-progression-2026-10-18/README.md) — External integer verification of 147,421,290 covering squares; scoped computational corroboration, not human/formal review
 - [Coprime Ramsey release](docs/coprime-ramsey-release.md) — Versioned corrections, witnesses, and verification scope
 - [Coprime Ramsey corrections (2026-10-17)](docs/coprime-ramsey-corrections.md) — Current proof status and errata for the archived manuscript
 - [Coprime Ramsey audit](docs/coprime-ramsey-citation-audit.md) — Reproduced checks, witnesses, and remaining gaps

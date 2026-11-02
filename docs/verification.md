@@ -70,6 +70,42 @@ a complete lower witness at 16 and finite checks of auxiliary proof steps.
 These tests supplement independent review of the mathematical deduction;
 they do not formally verify the published theorems or the entire argument.
 
+## Independently check the two-color rectangle certificate
+
+The [Crocker rectangle audit](audits/erdos189-rectangles-2026-10-18/README.md)
+reconstructs all unit-area rectangles using equal diagonals with a shared
+midpoint, checks the exact CNF encoding, and replays every positive-hint LRAT
+step. It uses Python's standard library and does not execute downloaded code:
+
+```sh
+python docs/audits/erdos189-rectangles-2026-10-18/reproduce.py
+```
+
+This downloads the pinned 48.7 MB source archive. See the packet for the
+offline `--archive` option, exact expected counts, failure controls and trust
+boundary. The routine regression suite runs the packet's fast controls via
+`tests/test_erdos189_audit.py`; it does not download or replay the full external
+proof. This corroborates Crocker's two-color variant, not a new solution of
+the original Erdős Problem 189.
+
+## Independently check Crocker's red-distance gap
+
+The [Erdős 188 audit](audits/erdos188-red-gap-2026-10-18/README.md) proves an
+all-translates reduction and exactly checks the exclusion of the closed
+distance interval `[0.999,1.001]` for the specified periodic red cells:
+
+```sh
+python -I -S -O docs/audits/erdos188-red-gap-2026-10-18/audit.py
+python -m pytest -q tests/test_erdos188_audit.py
+```
+
+Expected: 90 cells, 72,810 ordered image pairs, 408 near and 72,402 far;
+the pytest bridge runs 20 unit/integration tests. A separate scaled-integer
+checker and written proof are in the packet. The source configuration is
+pinned and included under CC BY 4.0, so no download or installation is needed
+for the standalone checker. This independently corroborates Claim A only;
+it does not verify the blue-progression condition or the full Ramsey bound.
+
 ## Run the focused regression suite
 
 Set numerical libraries to one thread to avoid oversubscribing test workers:

@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "id": "coprime-paths",
+      "metadata": "research/records/coprime-paths/record.json"
+    }
+  ]
+}

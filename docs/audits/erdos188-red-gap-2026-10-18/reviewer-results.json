@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "cells": 90,
+  "integer_scale": 1000000000,
+  "pair_specific_candidates": 662,
+  "near": 408,
+  "far": 254,
+  "candidate_translates": [
+    [
+      -1,
+      0
+    ],
+    [
+      -1,
+      1
+    ],
+    [
+      0,
+      -1
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      1,
+      0
+    ]
+  ],
+  "near_min_squared_margin": "137427179858569/40000000000000000",
+  "far_min_squared_margin": "71532731492067/7812500000000000",
+  "same_cell_min_margin": "3303/62500000",
+  "source_sha256": "b15251de28f6f552f4364d2170a58e923b730590d8797dfe5d09e007d2f87b2e",
+  "secant_check": {
+    "t": "9826655231/10173344769",
+    "s": "179258724537879326722/103496943788939663361",
+    "3_minus_s_squared": "1161798005509245509194239591994183679/10711617373650936361051003270168005816321"
+  },
+  "controls": [
+    "387 signed integer ceiling cases",
+    "smaller secant factor",
+    "duplicate JSON key",
+    "safe separated disks",
+    "safe overlapping disks",
+    "unit pair at original centers",
+    "unit pair across period",
+    "closed near endpoint",
+    "closed far endpoint",
+    "diameter endpoint",
+    "actual-source red unit centers",
+    "all 90 centers independently shifted by large signed lattice vectors"
+  ]
+}
