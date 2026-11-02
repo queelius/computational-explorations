@@ -52,6 +52,7 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 - [Coprime path structural bounds (2026-10-18)](docs/coprime-path-structure-2026-10-18.md) — Linear growth, explicit density bounds, and limitations of the current proof methods
 - [Nine-edge-path threshold (2026-10-18)](docs/coprime-path-nine-resolution-2026-10-18.md) — P_cop(9) = 17, from a checked lower coloring, structural certificates, and an extremal classification
 - [Crocker's red-distance certificate (2026-10-18)](docs/audits/erdos188-red-gap-2026-10-18/README.md) — Independent exact exclusion of distances [0.999, 1.001] for the specified Erdős 188 coloring; the blue-progression claim is outside this audit
+- [Crocker Erdős188 blue-progression audit](docs/audits/erdos188-blue-progression-2026-10-18/README.md) — External integer verification of 147,421,290 covering squares; scoped computational corroboration, not human/formal review
 - [Coprime Ramsey release](docs/coprime-ramsey-release.md) — Versioned corrections, witnesses, and verification scope
 - [Coprime Ramsey corrections (2026-10-17)](docs/coprime-ramsey-corrections.md) — Current proof status and errata for the archived manuscript
 - [Coprime Ramsey audit](docs/coprime-ramsey-citation-audit.md) — Reproduced checks, witnesses, and remaining gaps

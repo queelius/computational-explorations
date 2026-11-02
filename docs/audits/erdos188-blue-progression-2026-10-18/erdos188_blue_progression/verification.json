@@ -1,0 +1,32 @@
+{
+  "claim_status": "corroborated by written proof and complete exact execution",
+  "full_replay": "full/result.json",
+  "unit_tests": {
+    "normal": 20,
+    "optimized": 20,
+    "statement_branch_coverage_percent": 100
+  },
+  "public_packaging_tests": {
+    "passed": 23,
+    "seconds": 16.24,
+    "includes": [
+      "standard-library unit tests",
+      "separate exact oracles",
+      "44 real witness/binding/angle controls",
+      "subprocess pilot cannot claim full coverage"
+    ]
+  },
+  "review": "review.md; one separate AI reviewer; no blocking finding",
+  "human_peer_review": false,
+  "formal_proof": false,
+  "core_byte_identical_in_public_package": true,
+  "scope_limits": [
+    "No check of source lower bound",
+    "No new coloring or Ramsey bound",
+    "No global optimality",
+    "No claim of blind replication",
+    "No second independent full leaf replay",
+    "Full witness regeneration required; log is a receipt only"
+  ],
+  "prepublication_feedback": "PR8 has no comments/reviews and all4CIchecks passed. Sourcev5 remains latest; no overlapping ClaimB claim/PR at selection."
+}

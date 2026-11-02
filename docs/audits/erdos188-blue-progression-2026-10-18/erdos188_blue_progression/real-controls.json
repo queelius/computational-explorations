@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "positive_real_certificates": [
+    {
+      "initial_index": 0,
+      "leaves": 4458,
+      "nodes": 4789,
+      "minimum_integer_margin": 685960238361586558412,
+      "worst_j": 59
+    },
+    {
+      "initial_index": 10000,
+      "leaves": 3630,
+      "nodes": 3685,
+      "minimum_integer_margin": 373215644768648902601,
+      "worst_j": 59
+    },
+    {
+      "initial_index": 20000,
+      "leaves": 3903,
+      "nodes": 4049,
+      "minimum_integer_margin": 122755464385232758230,
+      "worst_j": 59
+    },
+    {
+      "initial_index": 30000,
+      "leaves": 3663,
+      "nodes": 3729,
+      "minimum_integer_margin": 715823394876989540291,
+      "worst_j": 59
+    },
+    {
+      "initial_index": 39999,
+      "leaves": 4410,
+      "nodes": 4725,
+      "minimum_integer_margin": 671167087234981660318,
+      "worst_j": 59
+    }
+  ],
+  "rejected_mutations": [
+    "0:missing leaf",
+    "0:trailing leaf",
+    "0:invalid negative code",
+    "0:invalid cell",
+    "0:j=60",
+    "0:insufficient j range",
+    "0:wrong lattice shift",
+    "0:tiny disks",
+    "10000:missing leaf",
+    "10000:trailing leaf",
+    "10000:invalid negative code",
+    "10000:invalid cell",
+    "10000:j=60",
+    "10000:insufficient j range",
+    "10000:wrong lattice shift",
+    "10000:tiny disks",
+    "20000:missing leaf",
+    "20000:trailing leaf",
+    "20000:invalid negative code",
+    "20000:invalid cell",
+    "20000:j=60",
+    "20000:insufficient j range",
+    "20000:wrong lattice shift",
+    "20000:tiny disks",
+    "30000:missing leaf",
+    "30000:trailing leaf",
+    "30000:invalid negative code",
+    "30000:invalid cell",
+    "30000:j=60",
+    "30000:insufficient j range",
+    "30000:wrong lattice shift",
+    "30000:tiny disks",
+    "39999:missing leaf",
+    "39999:trailing leaf",
+    "39999:invalid negative code",
+    "39999:invalid cell",
+    "39999:j=60",
+    "39999:insufficient j range",
+    "39999:wrong lattice shift",
+    "39999:tiny disks",
+    "configuration hash mismatch",
+    "generator hash mismatch",
+    "full receipt with one interior angle removed",
+    "full receipt with one angle duplicated"
+  ],
+  "reject_count": 44,
+  "receipt_intervals": 40198,
+  "receipt_sha256": "8863a876091d385ec1997fca0412ce1976ce68e5eaa18bab011d7d152eecd3f8",
+  "scope": "Five actual source trees and altered witnesses; receipt aggregation checks. Not a second full replay and not a blue59 counterexample."
+}

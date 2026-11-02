@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "source_sha256": "b15251de28f6f552f4364d2170a58e923b730590d8797dfe5d09e007d2f87b2e",
+  "subject_sha256": "540bd70e299fd50a236e277cacccb0cfd95f89b049e5c6916d4a19754a921c6f",
+  "reviewer_sha256": "38302c0800d3139da0bc493279ed63e3a56f7d2f8df04525b3bcf628b230b7a2",
+  "trig_oracle_samples": 138,
+  "pi_oracle": {
+    "identity": "pi/4 = atan(1/2) + atan(1/3)",
+    "terms_per_arctangent": 50,
+    "production_enclosure_confirmed": true
+  },
+  "corner_oracle": {
+    "cases": 108,
+    "accepted": 63,
+    "rejected": 45
+  },
+  "controls": [
+    "exact tangent corner",
+    "tangent minus one grid unit",
+    "tangent plus one grid unit passes",
+    "missing root leaf",
+    "missing fourth child",
+    "unused trailing node",
+    "oversized leaf index",
+    "negative non-split code",
+    "bool tree code",
+    "noninteger translation",
+    "negative cell index",
+    "j=60",
+    "negative j",
+    "nonpositive shrunken radius",
+    "midpoint outside interval",
+    "zero angle width",
+    "too-deep split",
+    "unequal witness vector lengths",
+    "direction coverage empty",
+    "direction coverage omits start",
+    "direction coverage gap",
+    "direction coverage overlap",
+    "direction coverage stops short of pi",
+    "complete reordered angular tiling passes"
+  ],
+  "scope": "Finite controls and separate AI mathematical review; not full replay or formal proof."
+}
