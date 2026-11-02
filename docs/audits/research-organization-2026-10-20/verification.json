@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-10-20T10:07:15.139932+00:00",
+  "scope": "Research organization, metadata validation, pinned packet assembly, and reproduction of existing finite checks.",
+  "metadata_tests": {
+    "passed": 28,
+    "seconds": 4.88,
+    "unit_and_cli_integration": true,
+    "coverage": {
+      "covered_lines": 144,
+      "num_statements": 156,
+      "percent_covered": 92.3076923076923,
+      "percent_covered_display": "92",
+      "missing_lines": 12,
+      "excluded_lines": 37,
+      "percent_statements_covered": 92.3076923076923,
+      "percent_statements_covered_display": "92"
+    },
+    "coverage_limits": "Existing coverage configuration excludes main; CLI integration tests execute it separately. Uncovered lines are recorded in the local full coverage report."
+  },
+  "packet": {
+    "filename": "coprime-paths-2026.10.20.zip",
+    "sha256": "04b35951d853da7d2c865038b277038b4570c5ea895971ac8b6db78ff79fa574",
+    "bytes": 16080657,
+    "byte_identical_rebuild": true,
+    "pinned_source_files": 80,
+    "payload_hashes_verified": 83,
+    "extracted_fresh_environment_tests": 114,
+    "test_seconds": 20.5,
+    "python": "3.10.20",
+    "isolated_optimized_lower_check": {
+      "edges": 79,
+      "longest_paths": [
+        8,
+        8
+      ]
+    },
+    "isolated_optimized_structural_checks": {
+      "cuts": 62322,
+      "fault_orbits": 262,
+      "covered_deletions": 2380,
+      "fault_paths": 30671,
+      "extension_pairs": 63859
+    },
+    "latex_build": {
+      "passed": true,
+      "pages": 16,
+      "pdf_byte_reproducibility_claimed": false
+    }
+  },
+  "review": {
+    "kind": "independent AI code and record review",
+    "reviewed_range": "9a2465c..2d85415",
+    "finding": "The argv schema rejected repeated flags and empty argument values.",
+    "severity_ruling": "Treated as important for extensibility: valid future reproduction commands must be representable.",
+    "resolution": "Regression observed failing, schema corrected, full 28-test record suite passed.",
+    "declined_and_disposition": {
+      "mathematical_correctness_or_novelty": "Outside this organization task; existing proof/review scope and open novelty status retained.",
+      "remote_public_timestamps": "Coordinator read PR 4, 5, and 9 creation/merge timestamps through the authenticated GitHub connector; only public fields retained.",
+      "third_party_redistribution": "No new license asserted; unresolved template terms recorded as archival next step.",
+      "original_checkout_preservation": "Coordinator independently compared all 331 preserved paths and porcelain status with the private pre-migration receipt.",
+      "fresh_clone_installation": "Extracted evidence packet tested in a fresh virtual environment; full-clone CI remains an integration check."
+    }
+  },
+  "preservation": {
+    "original_paths_checked": 331,
+    "original_status_unchanged": true,
+    "manuscript_tex_sha256": "0f83a32ab9d4b49ae66067e4f20f3ed03bebbbbd78528c8b9a314f8104d96329",
+    "manuscript_pdf_sha256": "6aefb5481003c1dea2f3e0e63a9412acfe1880548dd354f8fafe9bc5d114f965",
+    "cited_release_unchanged": true
+  },
+  "limits": [
+    "No DOI or journal submission created.",
+    "No new mathematical proof review or novelty assessment.",
+    "The full routine suite was still running when this receipt was prepared; its result is recorded separately at integration."
+  ]
+}

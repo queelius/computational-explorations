@@ -1,0 +1,41 @@
+{
+  "recorded_at": "2026-10-20T11:51:48.834575+00:00",
+  "scope": "Workspace consolidation requested after the earlier organizational work; no change to the cited repository remote or historical release.",
+  "canonical_checkout": "~/github/research/computational-explorations",
+  "main_at_switch": "b669faeb9e1fbd4eaf9b330cc1dbcc472e0beb01",
+  "worktree_count_before": 2,
+  "worktree_count_after": 1,
+  "removed_worktree": "~/github/research/worktrees/computational-explorations/coprime-paths",
+  "compatibility_symlink_removed": true,
+  "local_artifacts_destination": ".local/artifacts",
+  "gitignore_rule": "/.local/",
+  "preservation": {
+    "original_path_states": 331,
+    "original_history_branch": "local/research-2026-10-18",
+    "snapshot_branch": "refs/heads/preserve/unpublished-2026-10-20",
+    "snapshot_commit": "c6f55df6662540da4eb9b68356449c22aa1a2ac0",
+    "backup_directory": ".local/consolidation-2026-10-20",
+    "independent_git_bundle_verified": true,
+    "removed_worktree_local_files": 61513,
+    "removed_worktree_local_files_hash_checked": true,
+    "recovery_directory": ".local/recovery/coprime-paths-worktree",
+    "agents_sha256": "d06cb7b859a6cb0d0ce48f5dbc83eb220d57c1156e73159842d933d96ed3fe1f",
+    "agents_bytes_unchanged": true
+  },
+  "merged_local_branches_removed": [
+    {
+      "branch": "coprime-paths-ejc-draft-2026-10-18",
+      "merged_commit": "9a2465c1985718cb4684c8311d25da51458f32d8"
+    },
+    {
+      "branch": "research-records-2026-10-20",
+      "merged_commit": "9a63312a83a12696512db95e594ae65ed0ce242b"
+    }
+  ],
+  "remaining_local_work": "Historical Schur grid and editorial revisions remain on the private local preservation branch for selective review. The MS(3) witness was separately checked and promoted; the existing public Schur manuscript is indexed.",
+  "operational_correction": "Stash captured successfully but its cleanup failed on ignored .local pathspec. Reverified all original files and snapshot bytes, then restored only the 43 staged paths from the old HEAD before switching.",
+  "publication_records": [
+    "research/records/coprime-paths/archive/publication.json",
+    "docs/audits/schur-archive-2026-10-20/publication.json"
+  ]
+}

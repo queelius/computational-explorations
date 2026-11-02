@@ -63,7 +63,30 @@ The [nine-edge-path structural audit](audits/coprime-path-nine-2026-10-18/README
 provides separate positive certificates for balanced cuts, deletion resilience,
 and cut extensions at G_17. Its standard-library checker runs under `-I -S -O`;
 the focused suite validates every archived case. These establish necessary
-conditions on an avoiding coloring, not the proposed exact threshold 17.
+conditions on an avoiding coloring. The [subsequent proof](coprime-path-nine-resolution-2026-10-18.md)
+combines them with an extremal classification to establish P_cop(9)=17.
+Its [audit](audits/coprime-path-nine-resolution-2026-10-18/README.md) includes
+a complete lower witness at 16 and finite checks of auxiliary proof steps.
+These tests supplement independent review of the mathematical deduction;
+they do not formally verify the published theorems or the entire argument.
+
+## Independently check the two-color rectangle certificate
+
+The [Crocker rectangle audit](audits/erdos189-rectangles-2026-10-18/README.md)
+reconstructs all unit-area rectangles using equal diagonals with a shared
+midpoint, checks the exact CNF encoding, and replays every positive-hint LRAT
+step. It uses Python's standard library and does not execute downloaded code:
+
+```sh
+python docs/audits/erdos189-rectangles-2026-10-18/reproduce.py
+```
+
+This downloads the pinned 48.7 MB source archive. See the packet for the
+offline `--archive` option, exact expected counts, failure controls and trust
+boundary. The routine regression suite runs the packet's fast controls via
+`tests/test_erdos189_audit.py`; it does not download or replay the full external
+proof. This corroborates Crocker's two-color variant, not a new solution of
+the original Erdős Problem 189.
 
 ## Independently check Crocker's red-distance gap
 
@@ -97,6 +120,7 @@ python -m pytest -q \
   tests/test_coprime_path_certificates.py tests/test_coprime_path_search.py \
   tests/test_coprime_path_bounds.py \
   tests/test_coprime_path_structure_certificates.py \
+  tests/test_coprime_path_nine_resolution.py \
   tests/test_geometry_attacks.py::TestUnitDistanceCount \
   tests/test_geometry_attacks.py::TestHasDuplicatePoints \
   --timeout=120 --timeout-method=thread \

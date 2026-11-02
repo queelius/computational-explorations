@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-10-20T11:27:16.469095+00:00",
+  "scope": "Checkout consolidation and archival selection; scientific source and manuscript bytes unchanged.",
+  "tests": {
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_research_records.py",
+      "tests/test_coprime_path_nine_resolution.py",
+      "tests/test_coprime_path_structure_certificates.py",
+      "tests/test_coprime_path_bounds.py"
+    ],
+    "passed": 142,
+    "failed": 0,
+    "seconds": 9.34,
+    "python": "3.10.20",
+    "tooling_coverage": {
+      "covered_lines": 143,
+      "num_statements": 156,
+      "percent_covered": 91.66666666666667,
+      "percent_covered_display": "92",
+      "missing_lines": 13,
+      "excluded_lines": 37,
+      "percent_statements_covered": 91.66666666666667,
+      "percent_statements_covered_display": "92"
+    }
+  },
+  "artifact_count": 79,
+  "exclusions": [
+    {
+      "path": "e-jc/e-jc.sty",
+      "reason": "Third-party template without explicit redistribution notice. The manuscript PDF and source remain; journal-layout rebuild is outside archived reproduction commands."
+    }
+  ],
+  "earlier_ci": {
+    "url": "https://github.com/queelius/computational-explorations/actions/runs/39405847017",
+    "head": "9a63312a83a12696512db95e594ae65ed0ce242b",
+    "routine_tests": 6224,
+    "all_five_jobs": "success"
+  },
+  "review_limits": [
+    "No new mathematical novelty assessment or human review.",
+    "Tests establish the stated computational checks, not the complete written deduction."
+  ]
+}

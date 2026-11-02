@@ -1,0 +1,33 @@
+{
+  "author": "Carson Crocker",
+  "doi": "10.5281/zenodo.23178517",
+  "license": "CC-BY-4.0",
+  "license_evidence": [
+    "Zenodo record metadata",
+    "release_189_lb/README.txt"
+  ],
+  "archive": {
+    "name": "FINAL_189_release_189_lb.zip",
+    "sha256": "7b5dbdf14a96a29f6c4cb7b3176002d185776a85fd51747da6f693259b582e18",
+    "zenodo_md5": "bdf689e72eab72cb15f79ae006b111a9",
+    "bytes": 48708459,
+    "url": "https://zenodo.org/api/records/23178517/files/FINAL_189_release_189_lb.zip/content"
+  },
+  "inputs": {
+    "cert180.cnf": {
+      "sha256": "795aae29f7e4192f8c4deadae6bf9c0853cc054101ce2ec8af687d702f562e28",
+      "bytes": 23913
+    },
+    "cert180.lrat": {
+      "sha256": "1d7f52735dfe0624ac05396480baa81d4d904de39d7dab9019115a80035470b9",
+      "bytes": 62819033
+    },
+    "cert180.pts": {
+      "sha256": "58fde2b848f64ecbb9a0084145fbffc74a897001655adc28ebaaa0c2dd9352a5",
+      "bytes": 1615
+    }
+  },
+  "examined_at": "2026-10-18",
+  "python": "3.10.20 (main, Mar  3 2026, 14:59:16) [Clang 21.1.4 ]",
+  "mathematical_scope": "two-color unit-area rectangle certificate; no point minimality or Lean recheck"
+}
