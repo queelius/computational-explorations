@@ -1,0 +1,17 @@
+{
+  "scope": "Positive structural certificates and their validation; no exact threshold certificate",
+  "files_sha256": {
+    "docs/audits/coprime-path-nine-2026-10-18/README.md": "7030181ee42a72eb7dfabd6ab60a4ade02c2baf50dd619aede93b454477a54ab",
+    "docs/audits/coprime-path-nine-2026-10-18/coverage.json": "7a316e5f0be06079cd5258caf43625098855749940f368f1bf2bcff6bf2436b5",
+    "docs/audits/coprime-path-nine-2026-10-18/cuts.json.gz": "fd3eedbbb33ef887bb46a572d1a7a9d71944a17c8b08d81e4d503f09cab36ce6",
+    "docs/audits/coprime-path-nine-2026-10-18/extensions.json.gz": "d97131b5e504846f8407c39e9e66d64c7e77b9c2d6bda80ec00e3191e50c2b1c",
+    "docs/audits/coprime-path-nine-2026-10-18/fault-families.json.gz": "c66358e87704300e02dd70a64cd5c78c1fd6b99981a7973cc8f3972adae6ed57",
+    "docs/audits/coprime-path-nine-2026-10-18/focused-tests.txt": "4c147d84cde8acd824c80ae625d9ad7095f39a5c03096b90d0d08391ea6d62f4",
+    "docs/audits/coprime-path-nine-2026-10-18/independent-checks.json": "12cd81428e16a25ac4e92cf4ff03237190af129c8a278c6048f0ac892cc31bd0",
+    "docs/audits/coprime-path-nine-2026-10-18/searches.json": "de3cb9f22f4867b76935faabbdd71b2a42abadac2f9240ec8f8181b2484643a8",
+    "docs/audits/coprime-path-nine-2026-10-18/tests.txt": "aca84bf2cff576f0f2cb85aae36a976178d3fc66c59f2827d141316b126c91c5",
+    "src/coprime_path_structure_certificates.py": "75114f884c9c8099b6987929c9386091f0c9edeb5d2cb37e5eee9cb4e32e36ad",
+    "tests/test_coprime_path_structure_certificates.py": "5ff023da0f4945c15e1803b0942e5cf4c17d3e73ce3ae020c269ee1bd788df00",
+    "docs/coprime-path-nine-2026-10-18.md": "2f11662c904a103f263a2ccef1ced8bd7dbf57545b650268483304ddb1df974f"
+  }
+}

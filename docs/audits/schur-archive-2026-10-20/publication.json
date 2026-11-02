@@ -1,0 +1,36 @@
+{
+  "doi": "10.5281/zenodo.20634736",
+  "conceptdoi": "10.5281/zenodo.19058652",
+  "public_record_url": "https://zenodo.org/records/20634736",
+  "publication_date": "2026-06-10",
+  "public_record_created_at": "2026-06-10T23:42:34.824956+00:00",
+  "public_record_updated_at": "2026-06-10T23:42:35.188984+00:00",
+  "verified_at": "2026-10-20T11:46:33.333451+00:00",
+  "files": [
+    {
+      "filename": "sumfree_partitions_note.tex",
+      "bytes": 23330,
+      "sha256": "605e35fe09982f2d0a16e4f661225765b509efbcffd9329d9d55370d7a321c7d",
+      "url": "https://zenodo.org/api/records/20634736/files/sumfree_partitions_note.tex/content",
+      "matches_preserved_source": true
+    },
+    {
+      "filename": "sumfree_partitions_note.pdf",
+      "bytes": 248657,
+      "sha256": "528d984506f6f6ea0245da6817ca3dfd1c0823705f6cf2354fb4b542af7737d9",
+      "url": "https://zenodo.org/api/records/20634736/files/sumfree_partitions_note.pdf/content",
+      "matches_preserved_source": true
+    },
+    {
+      "filename": "sumfree_partitions_note.bib",
+      "bytes": 2441,
+      "sha256": "d53634082dc7c620d1e8685c426e591cb9e4c06ac1894f145326ec7072601345",
+      "url": "https://zenodo.org/api/records/20634736/files/sumfree_partitions_note.bib/content",
+      "matches_preserved_source": true
+    }
+  ],
+  "scope": "Unauthenticated download and identity verification against preserved author files. Scientific claims were read in the archived manuscript; no fresh SAT-grid replay, proof-assistant verification, human peer review or novelty assessment was performed in this indexing pass.",
+  "license": {
+    "id": "cc-by-4.0"
+  }
+}

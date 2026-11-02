@@ -59,6 +59,17 @@ without rerunning the SAT search. It builds the pinned proof checker and gives
 proof checking a 600-second process limit. This certifies the two boundary
 instances for P_cop(7) = P_cop(8) = 13; it is not a Lean formalization.
 
+The [nine-edge-path structural audit](audits/coprime-path-nine-2026-10-18/README.md)
+provides separate positive certificates for balanced cuts, deletion resilience,
+and cut extensions at G_17. Its standard-library checker runs under `-I -S -O`;
+the focused suite validates every archived case. These establish necessary
+conditions on an avoiding coloring. The [subsequent proof](coprime-path-nine-resolution-2026-10-18.md)
+combines them with an extremal classification to establish P_cop(9)=17.
+Its [audit](audits/coprime-path-nine-resolution-2026-10-18/README.md) includes
+a complete lower witness at 16 and finite checks of auxiliary proof steps.
+These tests supplement independent review of the mathematical deduction;
+they do not formally verify the published theorems or the entire argument.
+
 ## Independently check the two-color rectangle certificate
 
 The [Crocker rectangle audit](audits/erdos189-rectangles-2026-10-18/README.md)
@@ -90,6 +101,8 @@ python -m pytest -q \
   tests/test_coprime_perfectness_proof.py \
   tests/test_coprime_path_certificates.py tests/test_coprime_path_search.py \
   tests/test_coprime_path_bounds.py \
+  tests/test_coprime_path_structure_certificates.py \
+  tests/test_coprime_path_nine_resolution.py \
   tests/test_geometry_attacks.py::TestUnitDistanceCount \
   tests/test_geometry_attacks.py::TestHasDuplicatePoints \
   --timeout=120 --timeout-method=thread \
@@ -97,6 +110,7 @@ python -m pytest -q \
   --cov=synthesis --cov=verify_coprime_witnesses --cov=coprime_perfectness_proof \
   --cov=coprime_path_certificates --cov=coprime_path_search \
   --cov=coprime_path_bounds \
+  --cov=coprime_path_structure_certificates \
   --cov-report=term-missing
 ```
 

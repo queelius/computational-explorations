@@ -1,0 +1,22 @@
+{
+  "cuts": {
+    "minimum_side": 5,
+    "n": 17,
+    "target_edges": 9,
+    "validated_cuts": 62322
+  },
+  "faults": {
+    "covered_deletions": 2380,
+    "edge_faults_tolerated": 4,
+    "n": 17,
+    "target_edges": 9,
+    "validated_orbits": 262,
+    "validated_paths": 30671
+  },
+  "extensions": {
+    "n": 17,
+    "qualified_cuts": 1253,
+    "target_edges": 9,
+    "validated_pairs": 63859
+  }
+}

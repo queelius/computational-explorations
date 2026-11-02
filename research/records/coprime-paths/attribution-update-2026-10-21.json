@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-21",
+  "verified_at": "2026-10-21T09:28:25.824676+00:00",
+  "record_id": 23497967,
+  "version_doi": "10.5281/zenodo.23497967",
+  "change": "Metadata-only attribution update: structural equality theorem is a direct Ma–Yuan corollary. No new DOI, version, upload, or change to archived files.",
+  "source_commit": "fa53216bee17ce0f6587c8afbfa52aa4b9a2d12d",
+  "statement_source": {
+    "doi": "10.37236/12322",
+    "theorem": "Theorem 3, page 2, attributed to Ma and Yuan"
+  },
+  "original_theorem_doi": "10.1137/20M1382143",
+  "description_sha256": "65f3b663b579d7bad979b71a1478be3589f8b0c51f3f7e9278d87646a0c03e76",
+  "public_files_unchanged": {
+    "ARCHIVE-NOTE.md": {
+      "checksum": "md5:92036495c20430c69ea81a3d0b906689",
+      "size": 4459
+    },
+    "coprime-paths-2026.10.20.zip": {
+      "checksum": "md5:83ac3980e6867829204f8a9cf5a6299d",
+      "size": 16072364
+    },
+    "coprime-paths.pdf": {
+      "checksum": "md5:15cbc6b9dd866995fa14c4a56e0551f8",
+      "size": 380942
+    },
+    "CITATION.cff": {
+      "checksum": "md5:9492fd59397c439106a0fac1710e7f94",
+      "size": 1426
+    },
+    "VERIFICATION.json": {
+      "checksum": "md5:77cd442431d394a0c131996e05ddf96a",
+      "size": 7796
+    }
+  },
+  "verification": "Anonymous RDM API read matched the requested description and relation identifiers; all other metadata, version DOI, and five file checksum/size identities matched the pre-edit record. Existing download-hash verification remains in archive/publication.json; files were not downloaded again for this metadata-only edit."
+}
