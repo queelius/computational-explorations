@@ -47,6 +47,7 @@ data/                   # Erdős problem database (from teorth/erdosproblems)
 - [Research lifecycle and reproducibility](research/README.md) — Durable records and deterministic research packets
 - [Workspace and preservation](docs/workspace-layout.md) — One primary checkout, ignored local outputs, and recovery locations
 - [Running verification](docs/verification.md) — Fresh environment, independent witness checker, routine tests, and CI scope
+- [Two-color rectangle certificate audit](docs/audits/erdos189-rectangles-2026-10-18/README.md) — Independent exact corroboration of Carson Crocker's 180-point unit-area rectangle witness, with a complete finite refutation replay
 - [Coprime path certificates (2026-10-18)](docs/audits/coprime-paths-2026-10-18/README.md) — Independently checked evidence that P_cop(7) = P_cop(8) = 13
 - [Coprime path structural bounds (2026-10-18)](docs/coprime-path-structure-2026-10-18.md) — Linear growth, explicit density bounds, and limitations of the current proof methods
 - [Nine-edge-path threshold (2026-10-18)](docs/coprime-path-nine-resolution-2026-10-18.md) — P_cop(9) = 17, from a checked lower coloring, structural certificates, and an extremal classification

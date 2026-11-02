@@ -1,0 +1,26 @@
+test_malformed_input (test_audit.DimacsTests) ... ok
+test_multiline_and_multiclause (test_audit.DimacsTests) ... ok
+test_area_preserving_shear_is_not_rectangle (test_audit.GeometryTests) ... ok
+test_clause_order_is_irrelevant (test_audit.GeometryTests) ... ok
+test_missing_or_extra_clause_rejected (test_audit.GeometryTests) ... ok
+test_point_comments_and_variable_count (test_audit.GeometryTests) ... ok
+test_point_parser_rejects_duplicates_and_gaps (test_audit.GeometryTests) ... ok
+test_rectangle_with_wrong_area (test_audit.GeometryTests) ... ok
+test_same_area_rhombus_is_not_rectangle (test_audit.GeometryTests) ... ok
+test_translation_and_central_reflection (test_audit.GeometryTests) ... ok
+test_unit_area_rectangle (test_audit.GeometryTests) ... ok
+test_bad_proofs (test_audit.LratTests) ... ok
+test_complete_refutation_with_deletion (test_audit.LratTests) ... ok
+test_deletion_and_record_boundaries (test_audit.LratTests) ... ok
+test_false_unit_derivation (test_audit.LratTests) ... ok
+test_original_empty_clause_and_trailing_blank_lines (test_audit.LratTests) ... ok
+test_satisfiable_formula_has_no_empty_derivation (test_audit.LratTests) ... ok
+test_satisfied_hint_is_rejected (test_audit.LratTests) ... ok
+test_changed_archive_rejected_before_extraction (test_audit.ProvenanceTests) ... ok
+test_cli_missing_certificate_is_failure (test_audit.ProvenanceTests) ... ok
+test_source_receipt_matches_fetcher (test_audit.ProvenanceTests) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.197s
+
+OK
