@@ -1,0 +1,75 @@
+{
+  "verified_at": "2026-10-18T08:44:38.012063+00:00",
+  "python": "3.10.20",
+  "base_commit": "13cd72bbb9b0ca24f4593132ad4f7fe40b45906d",
+  "public_base_commit": "627c68b89b2570fbdfe0d11e0356105f16af8044",
+  "classification": "written proof with complete exact finite arithmetic, independently corroborated by one AI reviewer",
+  "formal_proof": false,
+  "human_review": false,
+  "scope": "Only fixed-data red-distance interval [999/1000,1001/1000], all closed cell boundaries and all lattice translates.",
+  "commands": [
+    {
+      "command": "python audit.py",
+      "exit": 0,
+      "expected": "PASS: 90 cells, 72810 ordered pairs, 408 near, 72402 far"
+    },
+    {
+      "command": "python -m unittest discover -s . -p test_audit.py -v",
+      "exit": 0,
+      "tests": 20,
+      "direct_distance_cases": 806,
+      "log": "tests-normal.txt"
+    },
+    {
+      "command": "python -I -S -O -m unittest discover -s . -p test_audit.py -v",
+      "exit": 0,
+      "tests": 20,
+      "log": "tests-optimized.txt"
+    },
+    {
+      "command": "python -I -S -O reviewer_checks.py",
+      "exit": 0,
+      "expected": "PASS: 662 candidates, 408 near, 254 far; 12 control groups",
+      "receipt": "reviewer-results.json"
+    },
+    {
+      "command": "python -m coverage run --source=audit -m unittest test_audit; python -m coverage report -m",
+      "exit": 0,
+      "statement_coverage_percent": 86,
+      "scope": "audit.py only; subprocess CLI execution is tested but not measured by this coverage run. Three defensive branches and CLI lines remain unmeasured.",
+      "receipt": "coverage.txt"
+    },
+    {
+      "command": "python -m pytest -q tests/test_erdos188_audit.py",
+      "location": "public repository root",
+      "exit": 0,
+      "tests": 1,
+      "inner_tests": 20
+    }
+  ],
+  "files": {
+    "audit.py": "a0fa94170dd4075b0dcaf105e759f2b872f83ff47cf1394f311c9ce00f66df1c",
+    "test_audit.py": "aeb7d67963a2642e764bfea4b059b756f6aa282cd7d725f948f38525a806123f",
+    "cfg_k60.json": "b15251de28f6f552f4364d2170a58e923b730590d8797dfe5d09e007d2f87b2e",
+    "reviewer_checks.py": "3bcac59440c4cf276637ab9a450dbbb1a159c42a107d04d8dcd1ba2a7180b609",
+    "certificate.json": "fbbe1fe438f3f42d51cc6a88d2c7e979ae40a5455fe6fc66c00bbaf981004e5b",
+    "reviewer-results.json": "e6f6604a30be22d44efc9af91968403928c25e3ae09815766470bf1c4422446e"
+  },
+  "not_checked": [
+    "Blue 60-term progression exclusion",
+    "Lower bound and 59-term witness",
+    "Full source ZIP and unrelated certificates",
+    "Lean or other kernel formalization",
+    "Unrelated full repository research test suite; hosted CI runs routine suite after PR creation"
+  ],
+  "overlap_refresh": {
+    "zenodo_latest_record": 23405962,
+    "zenodo_version": "v5",
+    "open_destination_prs": [
+      7
+    ],
+    "plasma_open_prs": 0,
+    "coordination": "No competing Claim A audit observed; source checkers credited."
+  },
+  "attribution": "Alexander Richard Towell; Carson Crocker and predecessor construction work credited; substantial OpenAI Codex assistance including one separate AI review."
+}

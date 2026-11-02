@@ -1,0 +1,50 @@
+{
+  "doi": "10.5281/zenodo.23405962",
+  "version": "v5",
+  "metadata_modified": "2026-10-15T22:54:17.425088+00:00",
+  "source_author": "Carson Crocker",
+  "license": "CC-BY-4.0",
+  "license_evidence": "Zenodo API metadata.license.id",
+  "archive": {
+    "name": "release_188_v5.zip",
+    "url": "https://zenodo.org/api/records/23405962/files/release_188_v5.zip/content",
+    "bytes": 122108629,
+    "metadata_md5": "00f80a80e8671feffab1af7779ed25a1",
+    "full_archive_verified": false,
+    "retrieval": "Selected ZIP members fetched by HTTP ranges, Content-Range and length checked, ZIP CRC verified; individual SHA-256 pins below. Full ZIP was not needed."
+  },
+  "files": [
+    {
+      "path": "Crocker_Erdos188_note.pdf",
+      "bytes": 440471,
+      "sha256": "9cee37d0a347acb3e30a41e478e94c2e40f59a95e9d2e6879827bfb340af796d"
+    },
+    {
+      "path": "release_188_v5/README.txt",
+      "bytes": 40454,
+      "sha256": "baaa78acd399a13c7a4ae058ae4bf2b8a68e22a64245d9bb582acdb7a27b91e4"
+    },
+    {
+      "path": "release_188_v5/upper_bound/cfg_k60.json",
+      "bytes": 4823,
+      "sha256": "b15251de28f6f552f4364d2170a58e923b730590d8797dfe5d09e007d2f87b2e"
+    },
+    {
+      "path": "release_188_v5/upper_bound/claimA_nf.py",
+      "bytes": 4267,
+      "sha256": "a93eea6ef515ece4854374ded9bb5e53a094b415a0605563933165f792b743df"
+    },
+    {
+      "path": "release_188_v5/upper_bound/indep_nearfar.py",
+      "bytes": 3996,
+      "sha256": "66a8e78f63a573ff8eb25c88d4c1a198af4f3a75dca14b22669fef58ae836314"
+    },
+    {
+      "path": "release_188_v5/extra_checks/blind_verifier_V3/claimA_v3.py",
+      "bytes": 4014,
+      "sha256": "c537b5c70ab4715bbdb4a9184e9ba39110095f51c3624b74590b2f67f93c3c50"
+    }
+  ],
+  "source_programs_executed": false,
+  "claim_url": "https://github.com/plasma-ai/erdos/issues/62#issuecomment-6247695218"
+}

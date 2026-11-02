@@ -1,0 +1,25 @@
+test_algebraic_radius_bound_and_invalid_bound_control (test_audit.ExactGeometryTests) ... ok
+test_basis_orientation_does_not_change_conclusion (test_audit.ExactGeometryTests) ... ok
+test_closed_distance_interval_endpoints_rejected (test_audit.ExactGeometryTests) ... ok
+test_exact_recentering_handles_negative_and_integer_coordinates (test_audit.ExactGeometryTests) ... ok
+test_long_but_nearly_parallel_periods_rejected (test_audit.ExactGeometryTests) ... ok
+test_near_squared_inequality_requires_positive_room (test_audit.ExactGeometryTests) ... ok
+test_overlapping_disks_are_allowed (test_audit.ExactGeometryTests) ... ok
+test_same_cell_diameter_rejected (test_audit.ExactGeometryTests) ... ok
+test_short_period_rejected_by_completeness_guard (test_audit.ExactGeometryTests) ... ok
+test_small_safe_periodic_disks (test_audit.ExactGeometryTests) ... ok
+test_squared_classifier_agrees_with_direct_rational_distances (test_audit.ExactGeometryTests) ... ok
+test_unit_pair_across_period_boundary_rejected (test_audit.ExactGeometryTests) ... ok
+test_unit_pair_inside_period_rejected (test_audit.ExactGeometryTests) ... ok
+test_invalid_gap_rejected (test_audit.InputTests) ... ok
+test_malformed_configurations_rejected (test_audit.InputTests) ... ok
+test_actual_data_unit_pair_mutation_rejected (test_audit.SourceTests) ... ok
+test_cli_rejects_corrupt_input_and_works_with_optimization (test_audit.SourceTests) ... ok
+test_complete_source_certificate (test_audit.SourceTests) ... ok
+test_separate_large_lattice_shifts_preserve_the_source_certificate (test_audit.SourceTests) ... ok
+test_source_digest_guard_rejects_changed_bytes (test_audit.SourceTests) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 9.618s
+
+OK
